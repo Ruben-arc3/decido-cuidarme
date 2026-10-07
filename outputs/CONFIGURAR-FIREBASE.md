@@ -1,32 +1,26 @@
 # Configurar el aula digital de Villa Esther
 
-La página ya contiene práctica local sin conexión. Cuentas, sincronización, grupos y Gemini se activan cuando se configura y publica el backend Firebase.
+La página ya contiene práctica local sin conexión. Firebase se usa para cuentas, sincronización y grupos. Las solicitudes a Gemini salen por una Pages Function de Cloudflare.
 
 ## 1. Crear la app web
 
 El proyecto `camp2-93288` y su app web ya están escritos en `.firebaserc` y `outputs/js/firebase-config.js`. En Firebase Console, abre **Authentication**, pulsa **Comenzar**, habilita **Sign-in method → correo y contraseña** y agrega el dominio donde publicarás la página en **Settings → Authorized domains**. Para probar localmente, sírvela desde `localhost`; abrirla como `file://` no es adecuado para el inicio de sesión. También crea la base en **Firestore Database**. La configuración web identifica el proyecto; nunca pongas allí la clave de Gemini.
 
-## 2. Proteger la API Gemini
+## 2. Configurar Gemini en Cloudflare
 
-La captura adjunta muestra una clave Gemini. Revócala en Google AI Studio/Google Cloud y genera otra. No la pegues en este HTML ni en `firebase-config.js`. Desde una terminal en la raíz del proyecto, instala Firebase CLI si hace falta y ejecuta:
+La clave que apareció en una captura debe revocarse en Google AI Studio/Google Cloud. Genera una nueva y no la pegues en el HTML, en `firebase-config.js` ni en GitHub. En el proyecto de Cloudflare Pages, abre **Settings → Variables and Secrets → Add**, crea el secreto `GEMINI_API_KEY`, pega allí la nueva clave y guarda. Configúralo en Production y, si usarás previews, también en Preview. Debe estar creado antes de desplegar.
 
-```sh
-npm install --prefix firebase-functions
-firebase login
-firebase functions:secrets:set GEMINI_API_KEY
+La ruta `functions/api/aula.js` lee el secreto desde Cloudflare y verifica que la solicitud incluya una sesión Firebase válida. El navegador nunca recibe la clave de Gemini. Para publicar los cambios con Wrangler desde la raíz del repositorio:
+
+```powershell
+npx wrangler pages deploy outputs --project-name decido-cuidarme
 ```
 
-Pega la clave nueva solo en el prompt privado de la terminal. Despliega con:
-
-```sh
-firebase deploy --only firestore:rules,functions,hosting
-```
-
-Cloud Functions exige vincular una cuenta de facturación (plan Blaze). Gemini también puede tener cargos según modelo, volumen y cuotas. Define alertas de presupuesto y límites de cuota; las alertas no son un tope automático de gasto.
+Si el repositorio está conectado con **Pages → Connect to Git**, basta con hacer `git push`; Cloudflare inicia el despliegue. No uses `npx wrangler deploy`, que es para Workers. Gemini tiene cuotas gratuitas sujetas a límites y cambios del proveedor; en el nivel gratuito Google puede usar las solicitudes para mejorar sus productos. No envíes información personal ni relatos identificables de estudiantes.
 
 ## 3. App Check y rol docente
 
-En Firebase Console → **App Check**, registra los dominios reales de Firebase Hosting y Cloudflare Pages con reCAPTCHA Enterprise. Pon la clave de sitio en `recaptchaEnterpriseSiteKey` de `outputs/js/firebase-config.js`. La función callable exige App Check. No uses tokens de depuración en producción.
+En Firebase Console → **App Check**, registra los dominios reales de Firebase Hosting y Cloudflare Pages con reCAPTCHA Enterprise. Pon la clave de sitio en `recaptchaEnterpriseSiteKey` de `outputs/js/firebase-config.js`. App Check protege las funciones Firebase que gestionan grupos; la función de Gemini valida el token de inicio de sesión Firebase en Cloudflare. No uses tokens de depuración en producción.
 
 Las cuentas nuevas son estudiantes. Nadie puede asignarse el rol docente desde la página. El administrador del proyecto debe asignar los claims `role: "teacher"` y `school: "villa-esther"` a las cuentas docentes. Con credenciales de administrador configuradas en la máquina autorizada, ejecuta:
 
@@ -40,7 +34,7 @@ El ejemplo conserva otros claims existentes. Luego el docente debe cerrar sesió
 
 - Estudiantes: crear/iniciar sesión, vincularse con el código de su grupo y consultar las herramientas de estudio.
 - Docentes habilitados: crear grupos, compartir códigos, revisar resultados agregados y publicar preguntas con explicación.
-- Gemini: preguntas nuevas de práctica, propuestas de clase y tutoría; el reto advierte que el material generado debe revisarse.
+- Gemini: preguntas nuevas de práctica, propuestas de clase, tutoría y orientación vocacional a través de Cloudflare Pages Functions; el material generado debe revisarse.
 - Sin conexión: el banco incorporado y el plan semanal siguen funcionando. Firestore guarda su caché y sincroniza cambios cuando vuelve internet; la primera descarga, el login y Gemini requieren conexión.
 - PWA: el service worker se activa al alojar la página en HTTPS. Abrir el HTML con `file://` no permite instalar la PWA, pero no impide el reto local.
 
@@ -48,4 +42,4 @@ Antes de crear cuentas de menores o guardar su progreso, la institución debe de
 
 ## 5. Compatibilidad con Cloudflare Pages
 
-`wrangler.jsonc` y la carpeta `functions/` se conservan para publicar los archivos estáticos y la función antigua de Cloudflare Pages. El backend Firebase usa `firebase-functions/` para no interferir con las rutas de Pages. El mismo frontend puede llamar a Firebase Functions desde el dominio de Pages si ese dominio también se registra en App Check. Firebase Hosting queda configurado como otra opción de publicación. La práctica local no depende de ninguno de los dos servicios.
+`wrangler.jsonc` configura la carpeta estática `outputs`; `functions/api/aula.js` es el endpoint de Gemini. La carpeta `firebase-functions/` conserva las funciones de Firebase usadas por grupos y otras herramientas existentes. Firebase Hosting queda configurado como otra opción de publicación. La práctica local no depende de ninguno de los dos servicios.
