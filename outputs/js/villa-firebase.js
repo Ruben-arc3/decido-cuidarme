@@ -40,9 +40,7 @@ function setAuthView(user) {
       ? "Firebase aún no está configurado para esta página."
       : !user
         ? "Inicia sesión para conversar con Gemini."
-        : recaptchaEnterpriseSiteKey === "REEMPLAZAR_SITE_KEY_RECAPTCHA_ENTERPRISE"
-          ? "Falta configurar App Check para habilitar Gemini."
-          : "Sesión iniciada. Puedes conversar con Gemini.";
+        : "Sesión iniciada. Puedes conversar con Gemini.";
   }
   $("teacherTools").hidden = true;
   if (user) user.getIdTokenResult().then(token => {
@@ -208,11 +206,6 @@ $("careerChatForm").addEventListener("submit", async event => {
     addCareerMessage("system", "Primero inicia sesión o crea una cuenta en Aula digital. Usa el enlace de abajo para ir al formulario.");
     return;
   }
-  if (recaptchaEnterpriseSiteKey === "REEMPLAZAR_SITE_KEY_RECAPTCHA_ENTERPRISE") {
-    $("careerChatStatus").textContent = "Falta configurar App Check para habilitar Gemini.";
-    addCareerMessage("system", "La cuenta ya inició sesión, pero falta registrar este dominio en App Check y agregar su clave de sitio en js/firebase-config.js.");
-    return;
-  }
   careerChat.busy = true;
   const button = $("careerChatSend"), clearButton = $("careerChatClear"), statusEl = $("careerChatStatus");
   button.disabled = true; clearButton.disabled = true; input.disabled = true;
@@ -249,12 +242,19 @@ $("studentClass").addEventListener("change", e => { activeClassId = e.target.val
 window.aulaGemini = async payload => {
   if (!ready) throw new Error("Firebase aún no está configurado para esta página.");
   if (!currentUser) throw new Error("Inicia sesión en Aula digital para usar Gemini.");
-  if (!functions) throw new Error("No se pudo iniciar la conexión de Gemini con Firebase.");
   try {
-    const result = await httpsCallable(functions, "createLearningMaterial")(payload);
-    return result.data;
+    const token = await currentUser.getIdToken();
+    const response = await fetch("/api/aula", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
+      body: JSON.stringify(payload)
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(data.error || `Gemini respondió con error (${response.status}).`);
+    return data;
   } catch (error) {
-    throw new Error(readableFunctionError(error));
+    if (error instanceof TypeError) throw new Error("No se pudo conectar con Gemini. Revisa la conexión e intenta de nuevo.");
+    throw error;
   }
 };
 window.addEventListener("villa:attempt", async event => {
