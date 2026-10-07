@@ -1,0 +1,10 @@
+{
+  "functions": [{ "source": "firebase-functions", "codebase": "default" }],
+  "hosting": {
+    "public": "outputs",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [{ "source": "**", "destination": "/index.html" }],
+    "headers": [{ "source": "**/*.@(js|css|json)", "headers": [{ "key": "Cache-Control", "value": "public,max-age=3600" }] }]
+  },
+  "firestore": { "rules": "firestore.rules" }
+}

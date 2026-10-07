@@ -1,0 +1,48 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function teacher() { return signedIn() && request.auth.token.role == 'teacher' && request.auth.token.school == 'villa-esther'; }
+    match /users/{uid} {
+      allow read: if signedIn() && request.auth.uid == uid;
+      allow create: if signedIn() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['displayName','email','createdAt','updatedAt','school'])
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.school == 'villa-esther';
+      allow update: if signedIn() && request.auth.uid == uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['displayName','updatedAt']);
+      allow delete: if false;
+      match /results/{resultId} {
+        allow read: if signedIn() && request.auth.uid == uid;
+        allow create: if signedIn() && request.auth.uid == uid
+          && request.resource.data.keys().hasOnly(['area','total','correct','percent','byArea','createdAt','source','classId'])
+          && request.resource.data.total is int && request.resource.data.correct is int
+          && request.resource.data.percent is int
+          && (!('classId' in request.resource.data) || exists(/databases/$(database)/documents/users/$(uid)/memberships/$(request.resource.data.classId)));
+        allow update, delete: if false;
+      }
+      match /memberships/{classId} {
+        allow read: if signedIn() && request.auth.uid == uid;
+        allow write: if false;
+      }
+    }
+    match /questions/{questionId} {
+      allow read: if signedIn() && resource.data.status == 'published' && resource.data.school == 'villa-esther';
+      allow create, update, delete: if teacher();
+    }
+    match /classes/{classId} {
+      allow read: if teacher() && resource.data.teacherUid == request.auth.uid;
+      allow create: if teacher() && request.resource.data.teacherUid == request.auth.uid
+        && request.resource.data.keys().hasOnly(['name','teacherUid','joinCode','active','createdAt','school'])
+        && request.resource.data.school == 'villa-esther';
+      allow update: if teacher() && resource.data.teacherUid == request.auth.uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name','active']);
+      allow delete: if teacher() && resource.data.teacherUid == request.auth.uid;
+      match /members/{uid} {
+        allow read: if signedIn() && (request.auth.uid == uid || (teacher() && get(/databases/$(database)/documents/classes/$(classId)).data.teacherUid == request.auth.uid));
+        allow write: if false;
+      }
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}

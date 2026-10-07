@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#100d20">
+<title>Rutas de luz · Arcade cooperativo</title>
+<style>
+:root{--ink:#fbf1d8;--muted:#c1b8d5;--bg:#100d20;--panel:#211b36;--wall:#513b7a;--wallhi:#8e68bc;--pink:#fa5a9d;--cyan:#55ead4;--gold:#ffe36b;--line:#725b91}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% 0,#4b2865 0,transparent 55%),var(--bg);color:var(--ink);font:16px/1.45 "Courier New",monospace;image-rendering:pixelated}body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:10;background:repeating-linear-gradient(0deg,#0000 0 3px,#0005 4px);opacity:.2}button,a{font:inherit}button{cursor:pointer;color:inherit}.top{display:flex;justify-content:space-between;align-items:center;padding:13px max(16px,calc((100vw - 1080px)/2));border-bottom:3px solid #5c426f;background:#100d20d9}.brand{color:var(--gold);font-weight:bold;letter-spacing:.08em}.top a{color:var(--cyan);text-decoration:none;font-size:.85rem}.wrap{max-width:1080px;margin:20px auto;padding:0 16px}.hero{display:grid;grid-template-columns:1.3fr .7fr;gap:14px;margin-bottom:14px}.panel{background:linear-gradient(145deg,#28203d,#171429);border:2px solid var(--line);box-shadow:5px 5px 0 #090714;border-radius:8px;padding:15px}.tag{color:var(--cyan);font-size:.73rem;letter-spacing:.13em;font-weight:bold}.hero h1{color:var(--gold);font-size:clamp(1.6rem,4vw,2.55rem);line-height:1.03;margin:.35rem 0 .6rem;text-shadow:3px 3px #8e427f}.hero p{margin:.4rem 0;color:#e0d8ec}.roles{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.roles span{padding:5px 8px;border:1px solid #6b548b;background:#33274b;border-radius:3px;font-size:.73rem}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.stat{text-align:center;background:#100d20;padding:8px 3px;border:1px solid #43355f;border-radius:4px}.stat b{display:block;color:var(--gold);font-size:1rem}.stat small{font-size:.61rem;color:var(--muted)}#message{min-height:35px;margin:9px 0 0;color:#f8e6b3;font-size:.76rem}.boardlayout{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:14px;align-items:start}.board{padding:12px}.boardhead{display:flex;justify-content:space-between;align-items:center;margin:0 2px 9px;font-size:.82rem}.boardhead strong{color:var(--cyan)}#gate{color:var(--pink);font-size:.7rem;text-align:right}.banner{display:flex;align-items:center;gap:9px;padding:8px 10px;margin-bottom:9px;background:linear-gradient(90deg,#56316f,#244f65);border:1px solid #e8c466;border-radius:4px}.banner b{display:block;color:var(--gold);font-size:.72rem}.banner small{display:block;color:#f3eafa;font-size:.67rem}.banner .scene{margin-left:auto;white-space:nowrap;font-size:1.15rem}#maze{position:relative;display:grid;grid-template-columns:repeat(17,1fr);gap:2px;width:min(100%,680px);aspect-ratio:17/11;margin:auto;padding:5px;background:#080917;border:3px solid #9a72be;box-shadow:0 0 18px #b34ffc66;overflow:hidden}.cell{position:relative;display:grid;place-items:center;background:#1b1930;border-radius:2px}.cell.wall{background:linear-gradient(135deg,#73549b,#402f65);border:1px solid #a57bcc;box-shadow:inset 0 0 0 2px #574077}.cell.wall:after{content:"+";font-weight:bold;color:#d6b2ee;font-size:clamp(6px,.85vw,10px);opacity:.7}.pickup{font-size:clamp(10px,1.65vw,17px);filter:drop-shadow(0 0 5px #ffe36b);z-index:1;animation:blink .7s infinite alternate}.shielditem{font-size:clamp(9px,1.3vw,14px);filter:drop-shadow(0 0 6px #55ead4);z-index:1;animation:blink .55s infinite alternate}@keyframes blink{to{transform:scale(.76);filter:brightness(1.5)}}.actors{position:absolute;inset:5px;pointer-events:none}.actor{position:absolute;width:5%;height:7%;display:grid;place-items:center;transform:translate(-50%,-50%);font-size:clamp(12px,2vw,21px);filter:drop-shadow(0 2px 2px #000)}.player{border-radius:45%;background:#ffe36b33;outline:2px solid var(--gold);animation:float .35s infinite alternate}.entity{border-radius:50%;background:#f84c8c35;outline:2px solid #ff73ad;animation:entity .8s infinite alternate}.entity.e1{background:#a861ed44;outline-color:#c08bff}.entity.e2{background:#f45a6b44;outline-color:#ff8587}.entity.e3{background:#41bfca44;outline-color:#75f1ee}@keyframes float{to{transform:translate(-50%,-50%) scale(1.12)}}@keyframes entity{to{transform:translate(-50%,-50%) scale(.86);filter:drop-shadow(0 0 7px #fa5a9d)}}.player.safe{outline:3px solid var(--cyan);box-shadow:0 0 16px var(--cyan)}.door{border-radius:3px;background:#b33e5555;outline:1px solid #ff8293}.door.open{background:#42eab888;outline:2px solid #7dffe8;box-shadow:0 0 12px #54ffe5;animation:blink .5s infinite alternate}.toast{height:23px;text-align:center;color:var(--gold);font-size:.72rem;padding-top:4px}.buttons{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin-top:9px}.buttons button,.action{padding:8px 11px;background:#463362;border:1px solid #9b79b8;border-radius:3px;font-weight:bold;font-size:.75rem;box-shadow:2px 2px #080717}.buttons button:hover,.action:hover{background:#674a88}.pad{display:grid;grid-template-columns:repeat(3,44px);gap:4px;justify-content:center;margin-top:8px}.pad button{height:37px;background:#302444;border:1px solid #8970a7;border-radius:3px;font-size:1.1rem;touch-action:manipulation}.pad button:nth-child(1){grid-column:2}.pad button:nth-child(2){grid-column:1;grid-row:2}.pad button:nth-child(3){grid-column:2;grid-row:2}.pad button:nth-child(4){grid-column:3;grid-row:2}.side .panel{margin-bottom:10px}.side h2{font-size:.83rem;color:var(--cyan);margin:0 0 8px}.side ul{padding-left:16px;margin:5px 0;color:#ddd5ec;font-size:.72rem}.side li{margin:5px 0}.legend{display:grid;gap:7px}.legend span{display:flex;align-items:center;gap:7px;font-size:.68rem;color:#e1d9eb}.legend i{font-style:normal;font-size:1rem}.note{font-size:.65rem;color:var(--muted);margin-top:10px}.overlay{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:16px;background:#090716dd}.overlay[hidden]{display:none}.dialog{width:min(500px,100%);padding:23px;background:#211a36;border:3px solid #b58bd4;box-shadow:7px 7px #080615;text-align:center}.dialog h2{color:var(--gold);font-size:1.45rem;text-shadow:2px 2px #9f477d}.dialog p{color:#e5ddee;font-size:.82rem}.dialog .action{margin-top:8px;background:#f5ce56;color:#241b36;border:0;padding:10px 16px}.scanline{color:var(--pink)}
+@media(max-width:800px){.hero{grid-template-columns:1fr}.boardlayout{grid-template-columns:1fr}.side{display:grid;grid-template-columns:1fr 1fr;gap:8px}.side .panel{margin:0}}
+@media(max-width:520px){.wrap{padding:0 9px;margin:12px auto}.panel{padding:10px}.side{grid-template-columns:1fr}.banner .scene{display:none}.actor{font-size:13px}.stats small{font-size:.55rem}.top{padding:11px 12px}.tag{font-size:.65rem}}
+.dialog-icon{display:none!important}
+</style>
+</head>
+<body>
+<header class="top"><span class="brand">RUTAS DE LUZ · ARCADE</span><a href="../index.html">← Página central</a></header>
+<main class="wrap">
+<section class="hero">
+<div class="panel"><div class="tag">CAMPAÑA DE PREVENCIÓN · VIOLENCIA INTRAFAMILIAR</div><h1>Rutas de luz</h1><p>Guía a Alex hasta un lugar seguro. Las entidades representan barreras; busca otra ruta en lugar de enfrentarlas.</p><div class="roles"><span>Piloto: mueve a Alex</span><span>Navegación: propone rutas</span><span>Radar: avisa de entidades y apoyos</span><span>🔁 Cambien de piloto cada nivel</span></div><p class="note">Historia ficticia. No hace falta compartir experiencias personales. Si esto te preocupa en la vida real, busca a una persona adulta de confianza.</p></div>
+<div class="panel"><div class="stats"><div class="stat"><b id="level">1 / 3</b><small>NIVEL</small></div><div class="stat"><b id="lives">♥ ♥ ♥</b><small>ENERGÍA</small></div><div class="stat"><b id="count">0 / 3</b><small>OBJETOS</small></div><div class="stat"><b id="clock">05:00</b><small>TIEMPO</small></div></div><p id="message">Encuentra el teléfono, la persona de confianza y la ruta segura.</p></div>
+</section>
+<section class="boardlayout">
+<div class="panel board"><div class="boardhead"><strong id="levelName">NIVEL 1 · CASA DE PAPEL</strong><span id="gate">SALIDA BLOQUEADA</span></div><div class="banner"><span>☎️</span><span><b>NO ESTÁS A SOLAS</b><small>Recoge los tres apoyos y llega a la puerta verde.</small></span><span class="scene">🟣　📱　🤝　🟢</span></div><div id="maze" aria-label="Laberinto arcade"></div><div id="toast" class="toast" aria-live="polite"></div><div class="buttons"><button id="start">▶ INICIAR</button><button id="pause">Ⅱ PAUSA</button><button id="project">⛶ PANTALLA</button></div><div class="pad"><button data-dir="up">↑</button><button data-dir="left">←</button><button data-dir="down">↓</button><button data-dir="right">→</button></div></div>
+<aside class="side">
+<div class="panel"><h2>MISIÓN</h2><ul><li>Recoge teléfono, contacto de confianza y señal de lugar seguro.</li><li>Los tres apoyos abren la puerta de salida.</li><li>Si una entidad te toca, pierdes energía y reapareces con protección breve.</li><li>Las entidades no se combaten: cambia de ruta, usa el escudo o pide una pausa.</li></ul></div>
+<div class="panel"><h2>ENTIDADES</h2><div class="legend"><span><i>🔒</i> Control: persigue por las rutas</span><span><i>🤫</i> Silencio: se mueve entre pasillos</span><span><i>🌫️</i> Miedo: se acerca y confunde</span><span><i>🕸️</i> Aislamiento: ronda los accesos</span><span><i>🛡️</i> Escudo de pausa: protección temporal</span></div><p class="note">Flechas / WASD para moverse · P para pausar. Los apoyos se recogen al tocarlos o pasar junto a ellos.</p></div>
+</aside>
+</section></main>
+<div class="overlay" id="intro"><div class="dialog"><div class="tag">ARCADE RETRO · 3 NIVELES</div><h2>La salida se encuentra en equipo</h2><p>Guía a Alex por tres laberintos, esquiva las entidades y reúne los objetos de apoyo que abren la salida. Nadie tiene que enfrentarse a otra persona: el objetivo es encontrar una ruta segura y pedir ayuda.</p><p><b>El grupo puede dar indicaciones y cambiar de piloto en cada nivel.</b></p><button id="go" class="action">EMPEZAR</button><p class="note">Funciona sin conexión. Controles: flechas o WASD.</p></div></div>
+<div class="overlay" id="ending" hidden><div class="dialog"><div class="tag">FIN DE LA PARTIDA</div><h2 id="endTitle">¡Llegaron a un lugar seguro!</h2><p id="endText"></p><p><b>Conversen en equipo:</b> ¿qué apoyo fue más útil para encontrar una ruta segura?</p><button id="again" class="action">JUGAR OTRA VEZ</button></div></div>
+<script>
+(function(){
+'use strict';
+const W=17,H=11,LEVELS=['CASA DE PAPEL','CALLES DE SOMBRA','RED DE APOYO'];
+const DIR={up:[0,-1],down:[0,1],left:[-1,0],right:[1,0]};
+const $=id=>document.getElementById(id),maze=$('maze');
+let s={level:0,lives:3,grid:[],items:new Map(),shields:new Set(),player:{x:1,y:1},entities:[],dir:null,next:null,tick:0,started:false,paused:true,remaining:300,shield:0,interval:null,over:false};
+function key(x,y){return x+','+y}
+function floor(x,y){return x>0&&y>0&&x<W-1&&y<H-1&&s.grid[y][x]===' '}
+function makeMaze(){
+ const g=Array.from({length:H},()=>Array(W).fill('#')),seen=new Set(),stack=[[1,1]];
+ g[1][1]=' ';seen.add(key(1,1));
+ while(stack.length){
+  const [x,y]=stack[stack.length-1],opts=[[0,-2],[2,0],[0,2],[-2,0]].map(([dx,dy])=>[x+dx,y+dy,dx,dy]).filter(([nx,ny])=>nx>0&&ny>0&&nx<W-1&&ny<H-1&&!seen.has(key(nx,ny)));
+  if(!opts.length){stack.pop();continue}
+  const [nx,ny,dx,dy]=opts[Math.floor(Math.random()*opts.length)];g[y+dy/2][x+dx/2]=' ';g[ny][nx]=' ';seen.add(key(nx,ny));stack.push([nx,ny])
+ }
+ for(let i=0;i<23;i++){const x=2+Math.floor(Math.random()*(W-4)),y=2+Math.floor(Math.random()*(H-4));if(g[y][x]==='#'&&((g[y][x-1]===' '&&g[y][x+1]===' ')||(g[y-1][x]===' '&&g[y+1][x]===' ')))g[y][x]=' '}
+ for(let x=1;x<W-1;x++)g[5][x]=' ';
+ for(let y=1;y<H-1;y++)g[y][9]=' ';
+ return g
+}
+function newLevel(){
+ s.grid=makeMaze();s.player={x:1,y:1};s.dir=null;s.next=null;s.tick=0;s.shield=0;s.exit={x:15,y:9};
+ const coords=[[3,5,'📱','Teléfono'],[9,5,'🤝','Persona de confianza'],[13,5,'📍','Lugar seguro']];
+ s.items=new Map(coords.map(([x,y,icon,name])=>[key(x,y),{icon,name}]));
+ s.shields=new Set([key(5,5),key(11,5)]);
+ const homes=[[15,1],[1,9],[15,7],[7,9]],icons=['🔒','🤫','🌫️','🕸️'],classes=['e1','e2','e3','e4'],names=['Control','Silencio','Miedo','Aislamiento'];
+ s.entities=homes.map((p,i)=>({x:p[0],y:p[1],home:{x:p[0],y:p[1]},icon:icons[i],name:names[i],className:classes[i]}));
+ $('level').textContent=(s.level+1)+' / 3';$('levelName').textContent='NIVEL '+(s.level+1)+' · '+LEVELS[s.level];$('count').textContent='0 / 3';$('gate').textContent='SALIDA BLOQUEADA';
+ $('message').textContent=['Encuentra los apoyos del patio y planea una ruta.','Cruza las calles; las entidades cambian de pasillo.','Último tramo: usa la red de apoyo y llega a la salida.'][s.level];
+ render();hud()
+}
+function render(){
+ maze.innerHTML='';maze.dataset.level=String(s.level+1);
+ for(let y=0;y<H;y++)for(let x=0;x<W;x++){
+  const c=document.createElement('div');c.className='cell'+(s.grid[y][x]==='#'?' wall':'');
+  const item=s.items.get(key(x,y));if(item){const p=document.createElement('span');p.className='pickup';p.textContent=item.icon;p.title=item.name;c.appendChild(p)}
+  if(s.shields.has(key(x,y))){const a=document.createElement('span');a.className='shielditem';a.textContent='🛡️';a.title='Escudo de pausa';c.appendChild(a)}
+  maze.appendChild(c)
+ }
+ const layer=document.createElement('div');layer.className='actors';
+ const put=(x,y,cls,icon,label)=>{const a=document.createElement('div');a.className='actor '+cls;a.style.left=((x+.5)/W*100)+'%';a.style.top=((y+.5)/H*100)+'%';a.textContent=icon;a.title=label;if(cls==='player'&&s.shield>0)a.classList.add('safe');layer.appendChild(a)};
+ const d=document.createElement('div');d.className='actor door '+(s.items.size===0?'open':'locked');d.textContent='🚪';d.style.left=((s.exit.x+.5)/W*100)+'%';d.style.top=((s.exit.y+.5)/H*100)+'%';layer.appendChild(d);
+ s.entities.forEach(e=>put(e.x,e.y,'entity '+e.className,e.icon,e.name));put(s.player.x,s.player.y,'player','🧑','Alex');maze.appendChild(layer)
+}
+function hud(){
+ $('lives').textContent='♥ '.repeat(s.lives)||'—';$('count').textContent=(3-s.items.size)+' / 3';
+ $('gate').textContent=s.items.size?(s.items.size===1?'FALTA 1 APOYO':'FALTAN '+s.items.size+' APOYOS'):'¡SALIDA ABIERTA!';
+ $('clock').textContent=String(Math.floor(s.remaining/60)).padStart(2,'0')+':'+String(s.remaining%60).padStart(2,'0')
+}
+function collect(){
+ const pos=[...s.items.keys()].find(k=>{const [x,y]=k.split(',').map(Number);return Math.abs(x-s.player.x)+Math.abs(y-s.player.y)<=1});
+ if(pos){const item=s.items.get(pos);s.items.delete(pos);$('message').textContent='Apoyo recogido: '+item.name+'.'+(s.items.size===0?' ¡La salida está abierta!':'');toast(item.name+' recogido');hud()}
+ const shield=[...s.shields].find(k=>{const [x,y]=k.split(',').map(Number);return Math.abs(x-s.player.x)+Math.abs(y-s.player.y)<=1});
+ if(shield){s.shields.delete(shield);s.shield=16;$('message').textContent='Escudo de pausa activado por unos segundos.';toast('¡Escudo!');hud()}
+ if(s.items.size===0&&s.player.x===s.exit.x&&s.player.y===s.exit.y)nextLevel()
+}
+function movePlayer(){
+ if(s.next){const [dx,dy]=DIR[s.next];if(floor(s.player.x+dx,s.player.y+dy))s.dir=s.next}
+ if(s.dir){const [dx,dy]=DIR[s.dir];if(floor(s.player.x+dx,s.player.y+dy)){s.player.x+=dx;s.player.y+=dy}}
+ collect()
+}
+function pathStep(from,target){
+ const q=[from],prev=new Map([[key(from.x,from.y),null]]);
+ while(q.length){const p=q.shift();if(p.x===target.x&&p.y===target.y){let k=key(p.x,p.y),last=prev.get(k);while(last&&last!==key(from.x,from.y)){k=last;last=prev.get(k)}return k.split(',').map(Number)}
+  for(const [dx,dy] of Object.values(DIR)){const nx=p.x+dx,ny=p.y+dy,k=key(nx,ny);if(floor(nx,ny)&&!prev.has(k)){prev.set(k,key(p.x,p.y));q.push({x:nx,y:ny})}}
+ }
+ return null
+}
+function moveEntities(){
+ s.entities.forEach((e,i)=>{
+  const options=Object.values(DIR).map(([dx,dy])=>[e.x+dx,e.y+dy]).filter(([x,y])=>floor(x,y));let step=null;
+  if(s.shield>0)step=pathStep(e,e.home);
+  else if(i===s.level%4||s.tick%9===0)step=pathStep(e,s.player);
+  if(!step&&options.length)step=options[Math.floor(Math.random()*options.length)];
+  if(step){e.x=step[0];e.y=step[1]}
+ });
+ if(s.shield===0&&s.entities.some(e=>e.x===s.player.x&&e.y===s.player.y)){
+  s.lives--;if(s.lives<=0){end(false);return}
+  s.player={x:1,y:1};s.entities.forEach(e=>{e.x=e.home.x;e.y=e.home.y});s.shield=22;
+  $('message').textContent='Una entidad te alcanzó: descansa un momento, recuperaste el rumbo.';toast('Energía -1 · escudo breve');hud()
+ }
+}
+function nextLevel(){s.level++;if(s.level>=3){end(true);return}toast('¡Nivel superado! Cambien de piloto.');newLevel()}
+function end(win){s.over=true;s.paused=true;clearInterval(s.interval);$('endTitle').textContent=win?'¡Llegaron a un lugar seguro!':'Pausa y nuevo intento';$('endText').textContent=win?'Alex encontró personas de confianza y llegó a un lugar seguro. Pedir apoyo es una decisión valiente.':'Las entidades cerraron la ruta por ahora. Reinicien y prueben otro camino; Alex puede seguir buscando apoyo.';$('ending').hidden=false}
+function tick(){
+ if(!s.started||s.paused)return;s.tick++;movePlayer();
+ if(s.tick%4===0)moveEntities();if(s.shield>0)s.shield--;
+ if(s.tick%10===0){s.remaining--;if(s.remaining<=0){s.remaining=300;s.entities.forEach(e=>{e.x=e.home.x;e.y=e.home.y});$('message').textContent='¡Momento de respiro! Las entidades regresan a sus rincones.';toast('Pausa de las entidades')}}
+ render();hud()
+}
+function start(){if(s.over){reset();return}s.started=true;s.paused=false;$('intro').hidden=true;$('message').textContent='¡En marcha! El salón puede guiar a Alex y pedir pausa en cualquier momento.';clearInterval(s.interval);s.interval=setInterval(tick,180)}
+function reset(){clearInterval(s.interval);s={level:0,lives:3,grid:[],items:new Map(),shields:new Set(),player:{x:1,y:1},entities:[],dir:null,next:null,tick:0,started:false,paused:true,remaining:300,shield:0,interval:null,over:false};$('ending').hidden=true;$('intro').hidden=false;newLevel()}
+function setDir(dir){s.next=dir;if(!s.started)start()}
+function toast(t){$('toast').textContent=t;setTimeout(()=>{if($('toast').textContent===t)$('toast').textContent=''},1300)}
+function pause(){if(!s.started)return;s.paused=!s.paused;$('pause').textContent=s.paused?'▶ SEGUIR':'Ⅱ PAUSA';$('message').textContent=s.paused?'Pausa de equipo: planeen otra ruta.':'¡Adelante!'}
+document.addEventListener('keydown',e=>{const map={ArrowUp:'up',w:'up',W:'up',ArrowDown:'down',s:'down',S:'down',ArrowLeft:'left',a:'left',A:'left',ArrowRight:'right',d:'right',D:'right'};if(map[e.key]){e.preventDefault();setDir(map[e.key])}else if(e.key.toLowerCase()==='p')pause()});
+document.querySelectorAll('[data-dir]').forEach(b=>b.addEventListener('pointerdown',e=>{e.preventDefault();setDir(b.dataset.dir)}));
+$('start').onclick=start;$('go').onclick=start;$('again').onclick=reset;$('pause').onclick=pause;
+$('project').onclick=()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.()};
+newLevel()
+})();
+</script>
+</body></html>

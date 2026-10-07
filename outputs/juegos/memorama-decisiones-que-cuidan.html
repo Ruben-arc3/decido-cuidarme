@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#142039">
+<title>Memorama: Decisiones que cuidan · Prevención de sustancias</title>
+<style>
+:root{--bg:#101a2d;--panel:#1c2a43;--panel2:#243650;--ink:#f3f6ff;--muted:#b7c4dc;--gold:#ffd76a;--cyan:#64ead5;--pink:#ff7c9e;--line:#3a5272}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#315477 0,transparent 60%),var(--bg);color:var(--ink);font:15px/1.45 system-ui,Segoe UI,sans-serif}button{font:inherit;color:inherit;cursor:pointer}.top{display:flex;align-items:center;justify-content:space-between;padding:13px max(17px,calc((100vw - 1200px)/2));border-bottom:1px solid var(--line);background:#101a2de8}.brand{font-weight:900;letter-spacing:.1em;color:var(--gold);font-size:.8rem}.top a{color:var(--cyan);text-decoration:none;font-size:.85rem}.wrap{max-width:1200px;margin:17px auto;padding:0 16px}.intro{display:grid;grid-template-columns:1.15fr .85fr;gap:12px;margin-bottom:12px}.panel{background:linear-gradient(145deg,#263750,#19263d);border:1px solid #49617e;border-radius:15px;padding:14px;box-shadow:0 5px 15px #050b1855}.eyebrow{color:var(--cyan);font-size:.68rem;font-weight:900;letter-spacing:.13em}h1{font-size:clamp(1.55rem,3.4vw,2.35rem);line-height:1.05;color:var(--gold);margin:.3rem 0 .5rem}p{margin:.4rem 0;color:#d9e2f4}.roles{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.roles span{padding:4px 8px;border-radius:99px;background:#344761;border:1px solid #56708e;font-size:.68rem}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.stat{padding:8px 4px;border-radius:10px;text-align:center;background:#111d31;border:1px solid #364d69}.stat b{display:block;color:var(--gold);font-size:1rem}.stat small{color:var(--muted);font-size:.6rem;font-weight:800;letter-spacing:.04em}.instructions{font-size:.72rem;color:#d7e5f6;margin-top:9px}.layout{display:grid;grid-template-columns:minmax(0,1fr) 245px;gap:12px;align-items:start}.board-panel{padding:12px}.boardhead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 2px 8px}.boardhead strong{color:var(--cyan);font-size:.84rem}.boardhead span{font-size:.7rem;color:var(--gold);font-weight:800}.memory-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px;max-width:900px;margin:auto}.tile{position:relative;min-width:0;height:clamp(64px,8.5vh,82px);padding:5px;border:1px solid #6e8eaf;border-radius:11px;background:linear-gradient(145deg,#3a5271,#233550);box-shadow:0 4px #101b2e;transition:transform .16s,background .2s,border-color .2s;overflow:hidden}.tile:hover:not(:disabled){transform:translateY(-2px);border-color:#ffe28c}.tile.flipped,.tile.face-up{animation:flipIn .22s ease-out}.tile.face-up .back{display:none}.tile.face-up .front{display:flex}@keyframes flipIn{from{transform:rotateY(82deg) scale(.86)}to{transform:rotateY(0) scale(1)}}.tile:disabled{cursor:default}.tile .back{display:flex;height:100%;align-items:center;justify-content:center;gap:7px;color:#e1eafa;font-weight:900}.tile .back i{font-style:normal;font-size:1.35rem;color:var(--gold);text-shadow:0 2px #795e25}.tile .coord{position:absolute;left:5px;top:4px;color:#b8c8dd;font-size:.52rem}.tile .front{display:none;height:100%;flex-direction:column;align-items:center;justify-content:center;gap:1px}.tile.flipped,.tile.matched{background:linear-gradient(150deg,#f5f1e6,#dbe3ea);color:#1c2e45;border-color:#fff}.tile.flipped.signal,.tile.matched.signal{background:linear-gradient(150deg,#fff0ee,#ffd6dc);border-color:#ffb6c3}.tile.flipped.support,.tile.matched.support{background:linear-gradient(150deg,#e4fff8,#b8f0e4);border-color:#85dfcf}.tile.flipped .back,.tile.matched .back{display:none}.tile.flipped .front,.tile.matched .front{display:flex}.kind{font-size:.48rem;letter-spacing:.1em;font-weight:1000;color:#44607e}.tile.signal .kind{color:#b34463}.tile.support .kind{color:#147967}.icon{font-size:clamp(15px,2vw,22px);line-height:1.1}.faceText{font-size:clamp(.53rem,.72vw,.67rem);line-height:1.1;font-weight:850;max-width:98%;text-align:center;color:#22344c}.matched{box-shadow:0 0 0 2px #63dcc5,0 4px #101b2e}.toolbar{display:flex;justify-content:center;align-items:center;gap:7px;flex-wrap:wrap;margin:9px 0 0}.toolbar button,.action{padding:8px 11px;border:1px solid #557393;border-radius:9px;background:#2c405e;font-weight:850;font-size:.72rem}.toolbar button:hover,.action:hover{background:#3d5676}.toolbar .primary{background:#e3b93f;border-color:#ffdf7a;color:#162338}.toast{height:21px;text-align:center;color:var(--gold);font-size:.69rem;padding-top:3px}.side .panel{margin-bottom:10px}.side h2{font-size:.83rem;margin:0 0 7px;color:var(--cyan)}.side ul{margin:5px 0;padding-left:17px;color:#dce6f5;font-size:.69rem}.side li{margin:5px 0}.active-team{padding:9px;border-radius:10px;background:#111d31;color:var(--gold);font-weight:900;font-size:.78rem}.ledger{display:grid;gap:5px;margin-top:8px;max-height:250px;overflow:auto}.ledger span{padding:6px;border-radius:7px;background:#253750;font-size:.65rem;color:#e4edf9}.note{font-size:.65rem;color:var(--muted);margin-top:8px}.overlay{position:fixed;inset:0;z-index:10;display:grid;place-items:center;padding:16px;background:#07101cdd}.overlay[hidden]{display:none}.dialog{width:min(510px,100%);padding:23px;background:linear-gradient(145deg,#263750,#17243b);border:2px solid #7192af;border-radius:17px;box-shadow:0 20px 70px #0009;text-align:center}.dialog h2{font-size:1.55rem;color:var(--gold);margin:.2rem 0 .7rem}.dialog p{font-size:.83rem}.dialog .action{margin-top:8px;background:#ffd76a;border:0;color:#1b2a3d;padding:10px 16px}.roundLabel{color:var(--pink);font-weight:900}.tiny{font-size:.65rem;color:var(--muted)}
+@media(max-width:850px){.intro{grid-template-columns:1fr}.layout{grid-template-columns:1fr}.side{display:grid;grid-template-columns:1fr 1fr;gap:9px}.side .panel{margin:0}}
+@media(max-width:560px){.wrap{padding:0 9px;margin:10px auto}.panel{padding:10px}.side{grid-template-columns:1fr}.memory-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}.tile{height:72px;padding:3px}.faceText{font-size:.56rem}.coord{font-size:.47rem}.top{padding:11px 12px}.stats{gap:4px}}
+.dialog-icon{display:none!important}
+</style>
+</head>
+<body>
+<header class="top"><span class="brand">DECIDO CUIDARME · JUEGO COOPERATIVO</span><a href="../index.html">← Página central</a></header>
+<main class="wrap">
+<section class="intro">
+<div class="panel"><div class="eyebrow">CAMPAÑA DE PREVENCIÓN · SUSTANCIAS PSICOACTIVAS</div><h1>Memorama: Decisiones que cuidan</h1><p>Encuentren parejas idénticas sobre decisiones seguras, presión de grupo y búsqueda de apoyo.</p><div class="roles"><span>Grupo: acuerda las coordenadas</span><span>Memoria: recuerda cartas vistas</span><span>Piloto: voltea las cartas</span><span>Roten quién propone en cada jugada</span></div></div>
+<div class="panel"><div class="stats"><div class="stat"><b id="round">1 / 3</b><small>RONDA</small></div><div class="stat"><b id="pairs">0 / 8</b><small>PAREJAS</small></div><div class="stat"><b id="moves">0</b><small>JUGADAS</small></div><div class="stat"><b id="clock">08:00</b><small>TIEMPO</small></div></div><div class="instructions" id="instruction">Digan una coordenada por carta: A1, C4, etc. Encuentren dos cartas idénticas.</div></div>
+</section>
+<section class="layout">
+<div class="panel board-panel"><div class="boardhead"><strong id="roundTitle">RONDA 1 · CALENTAMIENTO</strong><span id="status">LISTOS</span></div><div id="board" class="memory-grid" aria-label="Tablero de cartas de memoria"></div><div class="toast" id="toast" aria-live="polite"></div><div class="toolbar"><button class="primary" id="start">▶ EMPEZAR</button><button id="pause">Ⅱ PAUSA</button><button id="project">⛶ PROYECTAR</button></div></div>
+<aside class="side">
+<div class="panel"><h2>CÓMO JUGAR</h2><ul><li>Observen las cartas durante dos segundos; luego se ocultan.</li><li>Volteen dos: forman pareja si tienen el mismo mensaje y dibujo.</li><li>Si no coinciden, recuerden su ubicación.</li><li>En cada turno propone otro equipo. La ronda final tiene 36 cartas.</li></ul><p class="note">Mouse, pantalla táctil o teclado (Tab y Enter). Sin preguntas y sin contar experiencias personales.</p></div>
+<div class="panel"><h2>EQUIPO QUE PROPONE</h2><div id="team" class="active-team">Equipo 1</div><p class="note">Rótense como portavoz, memoria y piloto para que participe todo el salón.</p></div>
+<div class="panel"><h2>PAREJAS ENCONTRADAS</h2><div id="ledger" class="ledger"><span>Las coincidencias quedan visibles en el tablero.</span></div></div>
+</aside>
+</section></main>
+<div class="overlay" id="intro"><div class="dialog"><div class="eyebrow">MEMORAMA PREVENTIVO · UNA PANTALLA PARA TODO EL SALÓN</div><h2>¿Pueden encontrar las 18 parejas?</h2><p>Hay tres rondas: 16, 24 y 36 cartas. Observen las cartas durante dos segundos y encuentren las parejas idénticas.</p><p><b>Una persona maneja el PC; el salón recuerda y propone.</b></p><button class="action" id="go">EMPEZAR EL RETO</button><p class="tiny">El tiempo orienta la ronda; pueden terminar aunque llegue a cero.</p></div></div>
+<div class="overlay" id="ending" hidden><div class="dialog"><div class="eyebrow">RETO COMPLETADO</div><h2>¡La memoria del salón funcionó!</h2><p id="endText"></p><p><b>Para conversar:</b> ¿qué puede ayudar a alguien a tomar una decisión segura o pedir apoyo?</p><button class="action" id="again">JUGAR OTRA VEZ</button></div></div>
+<div class="overlay" id="roundEnd" hidden><div class="dialog"><div class="eyebrow">RONDA SUPERADA</div><h2 id="roundEndTitle">¡Buen trabajo!</h2><p id="roundEndText"></p><button class="action" id="nextRound">SIGUIENTE RONDA</button></div></div>
+<script>
+(function(){
+'use strict';
+const $=id=>document.getElementById(id),board=$('board');
+const pool=[
+{support:['Tu decisión de no consumir merece respeto','🛡️']},
+{support:['Un “no, gracias” claro es suficiente','✋']},
+{support:['Aléjate si alguien insiste después de tu no','🚪']},
+{support:['Acuerda con tus amistades cómo volver seguros','🤝']},
+{support:['Escribe a alguien de confianza si sientes presión','💬']},
+{support:['No subas a un vehículo con alguien bajo efectos','🚕']},
+{support:['Si alguien no despierta o respira mal, llama a emergencias','🚨']},
+{support:['Pide ayuda adulta urgente si alguien está en peligro','🧑‍🏫']},
+{support:['No dejes sola a una persona que necesita ayuda urgente','🫶']},
+{support:['Pedir ayuda pronto puede evitar daños graves','📞']},
+{support:['Habla con un adulto de confianza si algo te preocupa','🗣️']},
+{support:['Busca orientación de salud; no tienes que resolverlo solo','🩺']},
+{support:['Apoya sin burlas, etiquetas ni juicios','💛']},
+{support:['Pon límites a las invitaciones que te incomodan','🧭']},
+{support:['Elige planes y lugares donde te sientas seguro','🌟']},
+{support:['Pide compañía a una persona adulta de confianza','🧑‍🤝‍🧑']},
+{support:['Busca actividades que te conecten con lo que disfrutas','🎨']},
+{support:['Guarda contactos de personas a quienes puedes pedir ayuda','📲']}
+];
+const rounds=[{pairs:8,title:'CALENTAMIENTO',cols:4},{pairs:12,title:'RED EN CONSTRUCCIÓN',cols:6},{pairs:18,title:'RETO DEL SALÓN · 36 CARTAS',cols:6}];
+const teams=['Equipo 1','Equipo 2','Equipo 3','Equipo 4','Equipo 5','Equipo 6'];
+let s={round:0,deck:[],up:[],matched:new Set(),moves:0,started:false,paused:false,preview:false,locked:false,seconds:480,timer:null,team:0,turns:0,found:[]};
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function makeDeck(){
+ const n=rounds[s.round].pairs,items=[];
+ pool.slice(0,n).forEach((pair,i)=>{items.push({id:i,kind:'support',text:pair.support[0],icon:pair.support[1]},{id:i,kind:'support',text:pair.support[0],icon:pair.support[1]})});
+ s.deck=shuffle(items.map((item,index)=>({...item,index,coord:String.fromCharCode(65+Math.floor(index/rounds[s.round].cols))+(index%rounds[s.round].cols+1)})));
+ s.up=[];s.preview=false;s.matched=new Set();s.moves=0;s.found=[];render();hud()
+}
+function render(){
+ board.innerHTML='';board.style.setProperty('--cols',rounds[s.round].cols);board.style.gridTemplateColumns='repeat('+rounds[s.round].cols+',minmax(0,1fr))';
+ s.deck.forEach((c,i)=>{const b=document.createElement('button');b.className='tile';b.type='button';b.dataset.index=i;b.setAttribute('aria-label','Carta '+c.coord+(s.preview?', '+c.kind+': '+c.text:', oculta'));if(s.up.includes(i))b.classList.add('flipped',c.kind);if(s.preview){b.classList.add('face-up',c.kind);b.disabled=true}if(s.preview||s.matched.has(c.id))b.disabled=true;if(s.matched.has(c.id))b.classList.add('matched',c.kind)
+ b.innerHTML='<span class="back"><span class="coord">'+c.coord+'</span><i>✦</i><span>VOLTEAR</span></span><span class="front"><span class="kind">'+('APOYO')+'</span><span class="icon">'+c.icon+'</span><span class="faceText">'+c.text+'</span></span>';
+ b.onclick=()=>flip(i);board.appendChild(b)})
+}
+function flip(i){
+ if(!s.started||s.paused||s.preview||s.locked||s.matched.has(s.deck[i].id)||s.up.includes(i))return;
+ s.up.push(i);render();
+ if(s.up.length===2){
+  s.moves++;s.turns++;rotateTeam();const [a,b]=s.up.map(n=>s.deck[n]);
+  if(a.id===b.id){s.matched.add(a.id);const pair=pool[a.id];s.found.push(pair.support[0]);$('toast').textContent='¡Pareja idéntica encontrada! '+pair.support[0];s.up=[];render();hud();if(s.matched.size===rounds[s.round].pairs)setTimeout(roundComplete,850)}
+  else{s.locked=true;$('toast').textContent='No coinciden. Recuerden las coordenadas.';hud();setTimeout(()=>{s.up=[];s.locked=false;render();hud()},1050)}
+ }
+}
+function rotateTeam(){s.team=(s.team+1)%teams.length;$('team').textContent=teams[s.team]+' propone'}
+function hud(){
+ $('round').textContent=(s.round+1)+' / 3';$('pairs').textContent=s.matched.size+' / '+rounds[s.round].pairs;$('moves').textContent=s.moves;
+ $('clock').textContent=String(Math.floor(s.seconds/60)).padStart(2,'0')+':'+String(s.seconds%60).padStart(2,'0');
+ $('roundTitle').textContent='RONDA '+(s.round+1)+' · '+rounds[s.round].title;$('status').textContent=!s.started?'LISTOS':s.paused?'PARTIDA EN PAUSA':s.preview?'OBSERVEN · 2 SEGUNDOS':s.locked?'OBSERVEN Y RECUERDEN':'¡PROPONGAN COORDENADAS!';
+ $('ledger').innerHTML=s.found.length?s.found.map(x=>'<span>✓ '+x+'</span>').join(''):'<span>Las coincidencias quedan visibles en el tablero.</span>';
+ $('instruction').textContent=s.preview?'¡Memoricen ahora! Todas las cartas están abiertas durante 2 segundos.':'Digan dos coordenadas por jugada. Si las cartas son idénticas, encontraron una pareja; si no, memoricen dónde quedaron.'
+}
+function showPreview(){s.preview=true;s.up=[];render();$('toast').textContent='¡MEMORIZAR POSICIONES Y PAREJAS!';hud();setTimeout(()=>{if(!s.started||!s.preview)return;$('status').textContent='OBSERVEN · 1 SEGUNDO'},1000);setTimeout(()=>{if(!s.started||!s.preview)return;s.preview=false;render();$('toast').textContent='Cartas ocultas · empieza la búsqueda';hud()},2000)}
+function start(){if(s.started)return;s.started=true;s.paused=false;$('intro').hidden=true;$('toast').textContent='¡Comienza el reto! Observen todas las cartas durante 2 segundos.';$('team').textContent=teams[s.team]+' propone';showPreview();s.timer=setInterval(()=>{if(s.paused||s.preview)return;if(s.seconds>0)s.seconds--;else $('clock').style.color='#ff7c9e';hud()},1000)
+}
+function roundComplete(){
+ if(s.round===rounds.length-1){end();return}
+ $('roundEndTitle').textContent='Ronda '+(s.round+1)+' superada';
+ $('roundEndText').textContent='Encontraron '+rounds[s.round].pairs+' parejas en '+s.moves+' jugadas. El siguiente tablero tendrá más cartas.';
+ $('roundEnd').hidden=false
+}
+function nextRound(){s.round++;$('roundEnd').hidden=true;s.seconds=480;s.paused=false;makeDeck();$('toast').textContent='Tablero nuevo: observen las cartas durante 2 segundos y cambien de portavoz.';showPreview();hud()}
+function end(){
+ clearInterval(s.timer);$('ending').hidden=false;$('endText').textContent='El salón encontró las 18 parejas en '+s.moves+' jugadas finales. Mantengan el recuerdo clave: escuchar, creer y buscar apoyo con una persona adulta segura.'
+}
+function pause(){if(!s.started)return;s.paused=!s.paused;$('pause').textContent=s.paused?'▶ SEGUIR':'Ⅱ PAUSA';$('status').textContent=s.paused?'PARTIDA EN PAUSA':'¡PROPONGAN COORDENADAS!'}
+function reset(){clearInterval(s.timer);s={round:0,deck:[],up:[],matched:new Set(),moves:0,started:false,paused:false,preview:false,locked:false,seconds:480,timer:null,team:0,turns:0,found:[]};$('ending').hidden=true;$('roundEnd').hidden=true;$('intro').hidden=false;makeDeck()}
+$('start').onclick=start;$('go').onclick=()=>{makeDeck();start()};$('nextRound').onclick=nextRound;$('again').onclick=reset;$('pause').onclick=pause;
+$('project').onclick=()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.()};
+makeDeck();
+})();
+</script>
+</body></html>
