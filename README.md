@@ -80,4 +80,4 @@ Antes de probar el aula digital:
 
 ## Uso responsable
 
-El contenido es educativo y no reemplaza la atención de profesionales. En las actividades no se deben solicitar relatos personales ni datos que permitan identificar a estudiantes. Gemini puede tener límites de uso y sus respuestas deben ser revisadas por un docente antes de usarse como material de clase. Mantén `GEMINI_API_KEY` como secreto de Cloudflare: no la incluyas en HTML, JavaScript del navegador ni en el repositorio.
+El contenido es educativo y no reemplaza la atención de profesionales. En las actividades no se deben solicitar relatos personales ni datos que permitan identificar a estudiantes. Gemini puede tener límites de uso y sus respuestas deben ser revisadas por un docente antes de usarse como material de clase. 
