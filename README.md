@@ -1,6 +1,6 @@
 # Decido Cuidarme
 
-Plataforma educativa para apoyar campañas escolares de prevención y ofrecer recursos de orientación, motivación y preparación académica. Está pensada para usarse en clase, proyectarse en grupo y consultarse desde el navegador.
+Plataforma educativa para apoyar campañas escolares de prevención ofrecidas por la alcaldía de Puerto Escondido y ofrecer recursos de orientación, motivación y preparación académica. Está pensada para usarse en clase, proyectarse en grupo y consultarse desde el navegador.
 
 ## ¿Qué incluye?
 
