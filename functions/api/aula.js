@@ -109,11 +109,20 @@ export async function onRequestPost({ request, env }) {
     });
     const apiData = await response.json();
     if (!response.ok) {
-      console.error("Gemini API error", response.status, apiData?.error?.status || "unknown");
-      return json({ error: response.status === 429 ? "Se alcanzó el límite gratuito de Gemini. Intenta más tarde." : "Gemini no pudo responder. Revisa la clave y vuelve a intentar." }, response.status === 429 ? 429 : 502);
+      const providerStatus = apiData?.error?.status || "unknown";
+      const providerMessage = String(apiData?.error?.message || "Sin detalle del proveedor").slice(0, 500);
+      // Keep provider diagnostics in Cloudflare logs only; never return them to the browser.
+      console.error("Gemini API error", JSON.stringify({ httpStatus: response.status, providerStatus, providerMessage, model: GEMINI_MODEL, mode }));
+      if (response.status === 429) return json({ error: "Gemini alcanzó su límite de uso. Espera un momento y vuelve a intentarlo." }, 429);
+      if (response.status === 400) return json({ error: "Gemini rechazó el formato de la solicitud. Reintenta; si persiste, revisa los registros de Functions en Cloudflare." }, 400);
+      if (response.status === 401 || response.status === 403) return json({ error: "Google rechazó la clave de Gemini. Comprueba que el secreto GEMINI_API_KEY de Producción tenga una clave activa y vuelve a desplegar." }, 502);
+      return json({ error: "Gemini no está disponible ahora. Revisa los registros de Functions en Cloudflare para ver el detalle y vuelve a intentar." }, 502);
     }
     const output = (apiData.candidates?.[0]?.content?.parts || []).map(part => part.text || "").join("").trim();
-    if (!output) return json({ error: "Gemini no generó una respuesta. Intenta de nuevo." }, 502);
+    if (!output) {
+      console.error("Gemini returned no text", JSON.stringify({ mode, finishReason: apiData.candidates?.[0]?.finishReason || "unknown", promptFeedback: apiData.promptFeedback?.blockReason || null }));
+      return json({ error: "Gemini no generó texto para esta solicitud. Intenta de nuevo con una petición más breve." }, 502);
+    }
     if (textOnly) return json({ answer: output.slice(0, 4000) });
     const data = extractJSON(output);
     if (mode === "lesson") {
@@ -135,7 +144,7 @@ export async function onRequestPost({ request, env }) {
     if (questions.length < Math.min(3, count)) throw new Error("No llegaron suficientes preguntas válidas.");
     return json({ questions, official: false });
   } catch (error) {
-    console.error("Gemini response validation failed", error?.message || "unknown");
+    console.error("Gemini response validation failed", JSON.stringify({ mode, message: error?.message || "unknown" }));
     return json({ error: "No se pudo validar el material generado. Intenta de nuevo o usa el banco local." }, 502);
   }
 }
