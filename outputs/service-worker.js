@@ -1,5 +1,5 @@
-const CACHE = "villa-esther-static-v8";
-const CORE = ["./", "./instituciones/institucion-villa-esther.html", "./instituciones/oferta-educativa-cordoba.html", "./js/villa-firebase.js", "./js/firebase-config.js", "./manifest.webmanifest"];
+const CACHE = "villa-esther-static-v16";
+const CORE = ["./", "./instituciones/institucion-villa-esther.html", "./instituciones/villa-simulacro.html", "./instituciones/villa-proyecto-vida.html", "./instituciones/villa-explora-futuro.html", "./instituciones/villa-mundo-laboral.html", "./instituciones/villa-habilidades-digitales.html", "./instituciones/villa-ingles.html", "./instituciones/oferta-educativa-cordoba.html", "./js/villa-firebase.js", "./js/firebase-config.js", "./manifest.webmanifest"];
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(CORE)).then(() => self.skipWaiting()));
 });
