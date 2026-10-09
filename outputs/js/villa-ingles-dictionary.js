@@ -72,23 +72,35 @@
       if (cached) return cached;
     } catch { /* Continue if storage is unavailable. */ }
 
-    const endpoint = location.protocol === "file:"
-      ? `https://api.mymemory.translated.net/get?${new URLSearchParams({ q: text, langpair: `${source}|${target}`, mt: "1" })}`
-      : `/api/translate?text=${encodeURIComponent(text)}&source=${source}&target=${target}`;
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 12000);
-    let response;
-    try {
-      response = await fetch(endpoint, { headers: { Accept: "application/json" }, signal: controller.signal });
-    } finally {
-      clearTimeout(timeout);
+    const params = new URLSearchParams({ q: text, langpair: `${source}|${target}` });
+    const directUrl = `https://api.mymemory.translated.net/get?${params}`;
+    const endpoints = location.protocol === "file:"
+      ? [directUrl]
+      : [`/api/translate?text=${encodeURIComponent(text)}&source=${source}&target=${target}`, directUrl];
+    let lastError;
+    for (const endpoint of endpoints) {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 10000);
+      try {
+        const response = await fetch(endpoint, {
+          headers: { Accept: "application/json" },
+          signal: controller.signal
+        });
+        if (!response.ok) throw new Error(`translation-http-${response.status}`);
+        const payload = await response.json();
+        const translated = payload.translated || payload.responseData?.translatedText;
+        if (!translated || (payload.responseStatus && Number(payload.responseStatus) !== 200)) {
+          throw new Error("translation-empty");
+        }
+        try { window.sessionStorage.setItem(key, translated); } catch { /* Keep the result in this view. */ }
+        return translated;
+      } catch (error) {
+        lastError = error;
+      } finally {
+        clearTimeout(timeout);
+      }
     }
-    if (!response.ok) throw new Error("translation-failed");
-    const payload = await response.json();
-    const translated = payload.translated || payload.responseData?.translatedText;
-    if (!translated || payload.responseStatus && Number(payload.responseStatus) !== 200) throw new Error("translation-empty");
-    try { window.sessionStorage.setItem(key, translated); } catch { /* Keep the result in this view. */ }
-    return translated;
+    throw lastError || new Error("translation-failed");
   }
 
   function renderMatches(matches, maxResults = 25) {

@@ -16,7 +16,7 @@ export async function onRequestGet({ request }) {
     return json({ error: "La frase está vacía o supera el límite permitido." }, 400, "no-store");
   }
 
-  const params = new URLSearchParams({ q: text, langpair: `${source}|${target}`, mt: "1" });
+  const params = new URLSearchParams({ q: text, langpair: `${source}|${target}` });
   try {
     const upstream = await fetch(`https://api.mymemory.translated.net/get?${params}`, {
       headers: { Accept: "application/json" }
