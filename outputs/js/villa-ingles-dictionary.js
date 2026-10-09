@@ -1,9 +1,10 @@
 (() => {
   const form = document.getElementById("dictionary-form");
   const input = document.getElementById("dictionary-word");
+  const language = document.getElementById("dictionary-language");
   const status = document.getElementById("dictionary-status");
   const result = document.getElementById("dictionary-result");
-  if (!form || !input || !status || !result) return;
+  if (!form || !input || !language || !status || !result) return;
 
   const entries = Array.isArray(window.VILLA_ENGLISH_DICTIONARY)
     ? window.VILLA_ENGLISH_DICTIONARY
@@ -29,61 +30,68 @@
     .replace(/\s+/g, " ")
     .trim();
 
-  function addText(parent, tag, text, className = "") {
+  function addText(parent, tag, value, className = "") {
     const element = document.createElement(tag);
-    element.textContent = text;
+    element.textContent = value;
     if (className) element.className = className;
     parent.append(element);
     return element;
   }
 
-  function showGameWord(word) {
-    const entry = gameVocabulary[word];
-    if (!entry) return false;
+  function findMatches(query) {
+    const normalized = normalize(query);
+    if (!normalized) return [];
+    const exact = entries.filter(entry => normalize(entry.es) === normalized || normalize(entry.en) === normalized);
+    return exact.length ? exact : entries.filter(entry =>
+      normalize(entry.es).includes(normalized) || normalize(entry.en).includes(normalized)
+    );
+  }
+
+  function renderGameWord(query, sourceLanguage) {
+    const pair = Object.entries(gameVocabulary).find(([english, data]) =>
+      normalize(sourceLanguage === "es" ? data[0] : english) === normalize(query)
+    );
+    if (!pair) return false;
+    const [english, data] = pair;
     const card = document.createElement("article");
     card.className = "dictionary-meaning";
     addText(card, "h3", "Vocabulario del juego", "dictionary-result-word");
-    addText(card, "p", `Español: ${entry[0]}`, "translation");
-    addText(card, "p", `Inglés: ${word}`, "translation");
-    addText(card, "p", entry[1], "definition");
-    addText(card, "p", `Ejemplo: ${entry[2]}`, "example");
+    addText(card, "p", `Español: ${data[0]}`, "translation");
+    addText(card, "p", `Inglés: ${english}`, "translation");
+    addText(card, "p", data[1]);
+    addText(card, "p", `Ejemplo: ${data[2]}`, "example");
     result.append(card);
-    status.textContent = "Esta palabra pertenece al vocabulario del juego; la definición local está disponible sin internet.";
+    status.textContent = "Traducción y definición local; disponible sin conexión.";
     return true;
   }
 
-  function search(rawValue) {
-    const query = normalize(rawValue);
-    if (!query) {
-      status.textContent = "Escribe una palabra o expresión en español o inglés.";
-      input.focus();
-      return;
-    }
-    if (query.length > 80) {
-      status.textContent = "La búsqueda puede tener hasta 80 caracteres.";
-      return;
-    }
+  async function translateText(text, source, target) {
+    const key = `villa-ingles-mymemory:${source}-${target}:${text}`;
+    try {
+      const cached = window.sessionStorage.getItem(key);
+      if (cached) return cached;
+    } catch { /* Continue if storage is unavailable. */ }
 
-    input.value = rawValue.trim();
-    result.replaceChildren();
-    const button = form.querySelector("button[type=submit]");
-    button.disabled = true;
-    const exact = entries.filter(entry => normalize(entry.es) === query || normalize(entry.en) === query);
-    const matches = exact.length ? exact : entries.filter(entry =>
-      normalize(entry.es).includes(query) || normalize(entry.en).includes(query)
-    );
-
-    if (!matches.length) {
-      if (showGameWord(query)) {
-        button.disabled = false;
-        return;
-      }
-      status.textContent = "No encontramos ese término en el diccionario local. Prueba una palabra o expresión relacionada con salud.";
-      button.disabled = false;
-      return;
+    const endpoint = location.protocol === "file:"
+      ? `https://api.mymemory.translated.net/get?${new URLSearchParams({ q: text, langpair: `${source}|${target}`, mt: "1" })}`
+      : `/api/translate?text=${encodeURIComponent(text)}&source=${source}&target=${target}`;
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 12000);
+    let response;
+    try {
+      response = await fetch(endpoint, { headers: { Accept: "application/json" }, signal: controller.signal });
+    } finally {
+      clearTimeout(timeout);
     }
+    if (!response.ok) throw new Error("translation-failed");
+    const payload = await response.json();
+    const translated = payload.translated || payload.responseData?.translatedText;
+    if (!translated || payload.responseStatus && Number(payload.responseStatus) !== 200) throw new Error("translation-empty");
+    try { window.sessionStorage.setItem(key, translated); } catch { /* Keep the result in this view. */ }
+    return translated;
+  }
 
-    const maxResults = 25;
+  function renderMatches(matches, maxResults = 25) {
     for (const entry of matches.slice(0, maxResults)) {
       const card = document.createElement("article");
       card.className = "dictionary-meaning";
@@ -91,11 +99,61 @@
       addText(card, "p", `Inglés: ${entry.en}`, "translation");
       result.append(card);
     }
-    const capNote = matches.length > maxResults ? ` Se muestran los primeros ${maxResults}.` : "";
-    status.textContent = exact.length
-      ? `${matches.length} coincidencia${matches.length === 1 ? "" : "s"} exacta${matches.length === 1 ? "" : "s"}.${capNote}`
-      : `${matches.length} resultado${matches.length === 1 ? "" : "s"} relacionado${matches.length === 1 ? "" : "s"}.${capNote}`;
-    button.disabled = false;
+    return matches.length > maxResults ? ` Se muestran los primeros ${maxResults}.` : "";
+  }
+
+  async function search(rawValue) {
+    const query = rawValue.trim();
+    if (!query || query.length > 80) {
+      status.textContent = "Escribe una palabra o frase de hasta 80 caracteres.";
+      input.focus();
+      return;
+    }
+    if (!normalize(query)) {
+      status.textContent = "Escribe una palabra con letras para buscar o traducir.";
+      input.focus();
+      return;
+    }
+    input.value = query;
+    result.replaceChildren();
+    const button = form.querySelector("button[type=submit]");
+    button.disabled = true;
+    const sourceLanguage = language.value === "en" ? "en" : "es";
+    const targetLanguage = sourceLanguage === "es" ? "en" : "es";
+    try {
+      const matches = findMatches(query);
+      if (matches.length) {
+        const capNote = renderMatches(matches);
+        status.textContent = `${matches.length} resultado${matches.length === 1 ? "" : "s"} del diccionario local.${capNote}`;
+        return;
+      }
+      if (renderGameWord(query, sourceLanguage)) return;
+
+      status.textContent = sourceLanguage === "es" ? "Traduciendo al inglés…" : "Traduciendo al español…";
+      const translated = await translateText(query, sourceLanguage, targetLanguage);
+      const translation = document.createElement("article");
+      translation.className = "dictionary-meaning";
+      addText(translation, "h3", "Traducción automática", "dictionary-result-word");
+      addText(translation, "p", `${sourceLanguage === "es" ? "Español" : "Inglés"}: ${query}`, "translation");
+      addText(translation, "p", `${targetLanguage === "en" ? "Inglés" : "Español"}: ${translated}`, "translation");
+      addText(translation, "p", "Traducción de MyMemory; verifica el sentido según el contexto.", "note");
+      result.append(translation);
+
+      const related = findMatches(translated);
+      if (related.length) {
+        addText(result, "h3", "Términos relacionados del diccionario", "dictionary-result-word");
+        renderMatches(related, 10);
+        status.textContent = `Traducción lista. También encontramos ${related.length} término${related.length === 1 ? "" : "s"} relacionado${related.length === 1 ? "" : "s"}.`;
+      } else {
+        status.textContent = "Traducción lista. Las frases nuevas requieren conexión; las entradas del diccionario siguen disponibles sin internet.";
+      }
+    } catch (error) {
+      status.textContent = error?.name === "AbortError"
+        ? "La traducción tardó demasiado. Revisa la conexión e inténtalo de nuevo. El diccionario local sigue disponible sin internet."
+        : "No se pudo traducir ahora. Revisa la conexión; las entradas del diccionario local siguen disponibles sin internet.";
+    } finally {
+      button.disabled = false;
+    }
   }
 
   form.addEventListener("submit", event => {
@@ -105,11 +163,12 @@
   document.querySelectorAll("[data-dictionary-word]").forEach(button => {
     button.addEventListener("click", () => {
       input.value = button.dataset.dictionaryWord;
+      if (button.dataset.dictionaryLanguage) language.value = button.dataset.dictionaryLanguage;
       search(input.value);
     });
   });
 
   status.textContent = entries.length
-    ? `Diccionario local listo: ${entries.length.toLocaleString("es-CO")} términos. Funciona sin internet.`
+    ? `Diccionario local listo: ${entries.length.toLocaleString("es-CO")} términos. Busca en español o inglés.`
     : "No se pudo cargar el diccionario local. Recarga la página.";
 })();
