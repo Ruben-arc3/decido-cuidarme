@@ -39,7 +39,9 @@
         ? `https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word)}`
         : `/api/dictionary?word=${encodeURIComponent(word)}`;
       const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 12000);
+      // Dictionary API can respond slowly on a cold request. Give Pages Functions
+      // enough time to return its own timeout/error instead of aborting too early.
+      const timeout = setTimeout(() => controller.abort(), 22000);
       let response;
       try {
         response = await fetch(url, { headers: { Accept: "application/json" }, signal: controller.signal });
@@ -51,7 +53,12 @@
         status.textContent = "No encontramos esa palabra. Revisa la escritura o prueba otra.";
         return;
       }
-      if (!response.ok) throw new Error(`Dictionary request failed: ${response.status}`);
+      if (!response.ok) {
+        if (response.status === 502 || response.status === 504) {
+          throw new Error("dictionary-source-timeout");
+        }
+        throw new Error(`Dictionary request failed: ${response.status}`);
+      }
       if (!Array.isArray(data) || !data.length) {
         status.textContent = "No encontramos definiciones para esa palabra. Prueba otra.";
         return;
@@ -104,8 +111,8 @@
     } catch (error) {
       status.textContent = location.protocol === "file:"
         ? "El navegador bloqueó la consulta desde un archivo local o no hay conexión. El reto sigue disponible; para consultar el diccionario, abre la versión publicada en Cloudflare Pages."
-        : error?.name === "AbortError"
-          ? "La consulta tardó demasiado. Revisa tu conexión e inténtalo de nuevo."
+        : error?.name === "AbortError" || error?.message === "dictionary-source-timeout"
+          ? "El diccionario externo está tardando en responder. Espera unos segundos y vuelve a intentarlo."
           : "No se pudo conectar con el diccionario. Revisa tu conexión; el reto de vocabulario sigue disponible sin internet.";
     } finally {
       button.disabled = false;

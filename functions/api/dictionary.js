@@ -9,13 +9,23 @@ export async function onRequestGet({ request }) {
     return json({ error: "Escribe una sola palabra en inglés." }, 400, { "Cache-Control": "no-store" });
   }
 
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 18000);
   try {
     const upstream = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word)}`, {
-      headers: { Accept: "application/json" }
+      headers: { Accept: "application/json" },
+      signal: controller.signal
     });
     const body = await upstream.json();
     return json(body, upstream.status);
-  } catch {
-    return json({ error: "No fue posible consultar Dictionary API." }, 502, { "Cache-Control": "no-store" });
+  } catch (error) {
+    const timedOut = error?.name === "AbortError";
+    return json(
+      { error: timedOut ? "La consulta al diccionario agotó el tiempo de espera." : "No fue posible consultar Dictionary API." },
+      timedOut ? 504 : 502,
+      { "Cache-Control": "no-store" }
+    );
+  } finally {
+    clearTimeout(timeout);
   }
 }
