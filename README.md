@@ -10,6 +10,8 @@ Plataforma educativa para apoyar campañas escolares de prevención ofrecidas po
 - **Enfoque de Villa Esther:** proyecto de vida, motivación, práctica tipo Saber 11 y exploración de opciones de educación superior.
 - **Aula digital:** herramientas para estudiantes y docentes, grupos y seguimiento de resultados, sujeto a la configuración de Firebase.
 - **Orientación con Gemini:** tutoría, orientación vocacional y generación de materiales educativos a través de una función del servidor.
+- **Lecturas digitales:** los módulos pueden buscar artículos complementarios en Wikipedia en español mediante la API pública de MediaWiki y enlazan fuentes especializadas para contrastar.
+- **Diccionario de inglés:** consulta definiciones y pronunciación de palabras con Dictionary API; el juego base de vocabulario permanece disponible sin conexión.
 - **Uso local:** los juegos y recursos estáticos pueden abrirse desde un servidor local sin conexión a internet. El inicio de sesión, la sincronización y Gemini sí requieren conexión.
 
 ## Tecnologías
@@ -27,9 +29,10 @@ functions/                  Funciones de Cloudflare Pages; incluye /api/aula
 firebase-functions/         Funciones de Firebase
 outputs/
   index.html                Portal central
-  instituciones/            Páginas institucionales y recursos de Villa Esther
+  instituciones/            Páginas institucionales y lecciones por módulo
   juegos/                   Juegos educativos
-  js/                       Configuración y lógica del aula digital
+  css/                      Estilos compartidos de las lecciones digitales
+  js/                       Configuración del aula y actividades de los módulos
   recursos/                 Materiales de prevención
   service-worker.js         Caché de recursos para la PWA
   manifest.webmanifest      Datos de instalación de la PWA
