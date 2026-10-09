@@ -42,8 +42,9 @@
     if (!entry) return false;
     const card = document.createElement("article");
     card.className = "dictionary-meaning";
-    addText(card, "h3", word, "dictionary-result-word");
-    addText(card, "p", `Traducción orientativa: ${entry[0]}`, "translation");
+    addText(card, "h3", "Vocabulario del juego", "dictionary-result-word");
+    addText(card, "p", `Español: ${entry[0]}`, "translation");
+    addText(card, "p", `Inglés: ${word}`, "translation");
     addText(card, "p", entry[1], "definition");
     addText(card, "p", `Ejemplo: ${entry[2]}`, "example");
     result.append(card);
@@ -86,8 +87,8 @@
     for (const entry of matches.slice(0, maxResults)) {
       const card = document.createElement("article");
       card.className = "dictionary-meaning";
-      addText(card, "h3", entry.es, "dictionary-result-word");
-      addText(card, "p", entry.en, "translation");
+      addText(card, "p", `Español: ${entry.es}`, "translation");
+      addText(card, "p", `Inglés: ${entry.en}`, "translation");
       result.append(card);
     }
     const capNote = matches.length > maxResults ? ` Se muestran los primeros ${maxResults}.` : "";
