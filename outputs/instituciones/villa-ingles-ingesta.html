@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#12364d">
+  <title>Fuentes del tutor · Villa Esther</title>
+  <style>
+    :root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#15374d;background:#f1f7f4;--line:#d3e3dc;--teal:#176c71;--ink:#15374d;--muted:#526d78}*{box-sizing:border-box}body{margin:0}.top{background:#12364d;color:#fff}.shell{width:min(900px,calc(100% - 32px));margin:auto}.topline{display:flex;justify-content:space-between;align-items:center;padding:18px 0}.top a{color:#fff;text-decoration:none;font-weight:800}.back{font-size:13px}.hero{padding:26px 0 18px}.kicker{color:#176c71;font-size:12px;font-weight:850;letter-spacing:.09em;text-transform:uppercase}.hero h1{margin:5px 0;font-size:clamp(28px,5vw,40px)}.hero p{margin:0;color:#486472}.card{padding:22px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:0 12px 28px #173b4d0c;margin-bottom:30px}.card h2{font-size:19px;margin:0 0 7px}.intro,.hint{color:#526d78;font-size:14px;line-height:1.55}.form{display:grid;gap:13px;margin-top:18px}.field{display:grid;gap:6px}.field label{font-size:13px;font-weight:800}.field input{width:100%;padding:11px 12px;border:1px solid #cbdcd5;border-radius:10px;font:inherit}.actions{display:flex;flex-wrap:wrap;align-items:center;gap:9px}.button{border:0;border-radius:10px;padding:10px 15px;background:#176c71;color:white;font:800 13px system-ui;cursor:pointer}.button.secondary{border:1px solid var(--line);background:white;color:#176c71}.button.danger{background:#fff0ed;color:#9b3737;border:1px solid #f0c9c2}.button:disabled{opacity:.6;cursor:wait}.status{min-height:22px;color:#385b58;font-size:13px}.doc-list{display:grid;gap:9px;padding:0;list-style:none}.doc{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fbfdfc}.doc small{display:block;color:#617984;margin-top:3px}.empty{padding:14px;border-radius:10px;background:#f5f8f7;color:#617984;font-size:13px}.foot{font-size:12px;color:#617984;line-height:1.5;margin:16px 0 0}code{padding:2px 5px;border-radius:5px;background:#edf3f0}@media(max-width:540px){.topline{align-items:flex-start}.doc{align-items:flex-start;flex-direction:column}.doc .button{width:100%}.actions .button{width:100%}}
+  </style>
+</head>
+<body>
+  <header class="top"><div class="shell topline"><a href="institucion-villa-esther.html">VILLA ESTHER</a><a class="back" href="villa-ingles.html">← Volver a Inglés</a></div></header>
+  <main class="shell">
+    <section class="hero"><div class="kicker">Gestión docente</div><h1>Fuentes del tutor</h1><p>Incorpora guías y libros para que el tutor de gramática los consulte al responder.</p></section>
+    <section class="card" aria-labelledby="ingest-title">
+      <h2 id="ingest-title">Ingestar un PDF</h2>
+      <p class="intro">El navegador extrae el texto del archivo, lo divide por páginas y lo envía a la biblioteca privada del proyecto. Groq no recibe el PDF: solo los fragmentos relevantes cuando alguien pregunta.</p>
+      <p class="hint">Antes de usarla, configura en Cloudflare Pages el secreto <code>GRAMMAR_INGEST_KEY</code> y el binding R2 <code>GRAMMAR_KB</code>. La clave de gestión no se guarda en este navegador.</p>
+      <form id="ingest-form" class="form">
+        <div class="field"><label for="admin-key">Clave de gestión</label><input id="admin-key" type="password" autocomplete="off" required placeholder="Clave configurada por el administrador"></div>
+        <div class="field"><label for="pdf-title">Nombre para mostrar</label><input id="pdf-title" maxlength="120" required placeholder="Ej.: Guía de gramática inglesa"></div>
+        <div class="field"><label for="pdf-file">Archivo PDF</label><input id="pdf-file" type="file" accept="application/pdf,.pdf" required></div>
+        <div class="actions"><button id="ingest-button" class="button" type="submit">Procesar e ingresar PDF</button><button id="refresh-button" class="button secondary" type="button">Ver documentos ingresados</button></div>
+        <div id="ingest-status" class="status" role="status" aria-live="polite">La ingesta necesita conexión a internet.</div>
+      </form>
+      <p class="foot">Acepta PDF con texto seleccionable, hasta 20 MB y 500 páginas. Los PDF escaneados necesitan OCR antes de ingresarlos. El archivo original no se conserva; se guardan los fragmentos de texto extraídos en R2. No ingreses documentos con datos personales.</p>
+    </section>
+    <section class="card" aria-labelledby="library-title"><h2 id="library-title">Biblioteca de consulta</h2><ul id="document-list" class="doc-list"><li class="empty">Pulsa “Ver documentos ingresados” para consultar la biblioteca.</li></ul></section>
+  </main>
+  <script type="module" src="../js/villa-ingles-ingesta.js"></script>
+</body>
+</html>
