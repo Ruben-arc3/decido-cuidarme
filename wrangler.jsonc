@@ -2,5 +2,11 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "decido-cuidarme",
   "compatibility_date": "2026-10-07",
-  "pages_build_output_dir": "./outputs"
+  "pages_build_output_dir": "./outputs",
+  "r2_buckets": [
+    {
+      "binding": "GRAMMAR_KB",
+      "bucket_name": "decido-cuidarme-grammar-kb"
+    }
+  ]
 }
