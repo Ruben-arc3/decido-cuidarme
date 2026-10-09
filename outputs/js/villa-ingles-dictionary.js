@@ -10,6 +10,20 @@
     study: "estudiar", future: "futuro", work: "trabajo", learn: "aprender",
     community: "comunidad", practice: "práctica"
   };
+  // Definitions for the module's core vocabulary keep the activity useful when
+  // the third-party dictionary is unavailable or the page is used offline.
+  const localDefinitions = {
+    goal: ["Something you want to achieve.", "My goal is to finish school."],
+    skills: ["Abilities that help you do something well.", "Communication skills are useful in many jobs."],
+    scholarship: ["Money given to help someone pay for education.", "She applied for a university scholarship."],
+    career: ["A person's job or professional path over time.", "He is exploring a career in engineering."],
+    study: ["To learn about a subject by reading or practicing.", "We study English after class."],
+    future: ["The time that is still to come.", "She is planning for her future."],
+    work: ["An activity or job that uses effort to achieve something.", "They work together on a project."],
+    learn: ["To gain knowledge or a new ability.", "I learn new words every week."],
+    community: ["A group of people who live or work in the same area.", "Our community organized a science fair."],
+    practice: ["Repeated activity that helps improve a skill.", "Practice helps you speak with confidence."]
+  };
 
   function addText(parent, tag, text, className = "") {
     const element = document.createElement(tag);
@@ -109,10 +123,23 @@
       heading.tabIndex = -1;
       heading.focus({ preventScroll: true });
     } catch (error) {
+      const local = localDefinitions[word];
+      if (local) {
+        addText(result, "h3", word, "dictionary-result-word");
+        addText(result, "p", `Traducción orientativa: ${translations[word]}`, "translation");
+        const group = document.createElement("section");
+        group.className = "dictionary-meaning";
+        addText(group, "h4", "Definición en inglés · disponible sin conexión");
+        addText(group, "p", local[0]);
+        addText(group, "p", `Ejemplo: ${local[1]}`, "example");
+        result.append(group);
+        status.textContent = "La fuente externa no respondió. Mostramos una definición local para que puedas continuar.";
+        return;
+      }
       status.textContent = location.protocol === "file:"
         ? "El navegador bloqueó la consulta desde un archivo local o no hay conexión. El reto sigue disponible; para consultar el diccionario, abre la versión publicada en Cloudflare Pages."
         : error?.name === "AbortError" || error?.message === "dictionary-source-timeout"
-          ? "El diccionario externo está tardando en responder. Espera unos segundos y vuelve a intentarlo."
+          ? "El diccionario externo no respondió a tiempo. Prueba de nuevo más tarde; el juego de vocabulario sigue disponible."
           : "No se pudo conectar con el diccionario. Revisa tu conexión; el reto de vocabulario sigue disponible sin internet.";
     } finally {
       button.disabled = false;
