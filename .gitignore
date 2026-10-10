@@ -1,0 +1,21 @@
+# Dependencias y archivos locales
+node_modules/
+.firebase/
+.wrangler/
+.dev.vars
+.env
+.env.*
+!.env.example
+
+# Credenciales y llaves privadas
+serviceAccountKey.json
+*-service-account*.json
+firebase-adminsdk-*.json
+*.pem
+*.key
+
+# Registros y archivos del sistema
+firebase-debug.log
+firebase-debug.*.log
+.DS_Store
+Thumbs.db
