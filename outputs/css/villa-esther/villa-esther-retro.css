@@ -1,30 +1,32 @@
-/* Cassette futurism: limitado al banner y a la sección de juegos de Villa Esther. */
+/* Cassette futurism con la paleta original de Villa Esther. Solo banner y juegos. */
 .villa-retro-hero {
   isolation:isolate;
-  border:2px solid #91c85b;
-  border-radius:8px;
-  background:#252d2b;
-  box-shadow:8px 8px 0 #a56d28, 0 16px 34px #152d3a24;
+  border:2px solid #137d73;
+  border-radius:9px;
+  background:repeating-linear-gradient(to bottom,transparent 0 4px,#ffffff09 5px 6px),linear-gradient(118deg,#153149 0%,#176c71 72%,#258b7d 100%);
+  box-shadow:6px 6px 0 #ffd66d,0 16px 34px #173b4d20;
   font-family:"VT323","Courier New",monospace;
 }
 .villa-retro-hero::before {
   position:absolute;
   z-index:-1;
-  inset:0;
-  border:8px solid #ffffff08;
+  inset:9px;
+  border:1px solid #c8f1df55;
+  border-radius:4px;
   content:"";
   pointer-events:none;
 }
 .villa-retro-hero::after {
   position:absolute;
   z-index:-1;
-  inset:0;
-  width:auto;
-  height:auto;
-  border:0;
-  border-radius:0;
-  background:repeating-linear-gradient(to bottom,transparent 0 3px,#d7e3d008 4px 5px);
-  box-shadow:none;
+  right:24px;
+  bottom:-130px;
+  width:280px;
+  height:280px;
+  border:1px solid #c8f1df38;
+  border-radius:50%;
+  background:transparent;
+  box-shadow:0 0 0 24px #c8f1df09,0 0 0 52px #c8f1df08;
   content:"";
   pointer-events:none;
 }
@@ -32,30 +34,32 @@
   display:flex;
   align-items:center;
   gap:9px;
-  color:#d6b576;
+  color:#c8f1df;
   font-size:1rem;
   letter-spacing:.12em;
 }
 .villa-retro-hero .kicker::before {
   width:9px;
   height:9px;
-  border:2px solid #a8ce65;
-  background:#a8ce65;
-  box-shadow:0 0 10px #a8ce6570;
+  border:2px solid #ffd66d;
+  border-radius:2px;
+  background:#ffd66d;
+  box-shadow:0 0 9px #ffd66d70;
   content:"";
 }
 .villa-retro-hero h1 {
+  position:relative;
   max-width:800px;
   margin:12px 0;
-  color:#e4e8d9;
+  color:#fff;
   font-size:clamp(2.6rem,6vw,4.5rem);
   line-height:.92;
   letter-spacing:.015em;
-  text-shadow:3px 3px 0 #5c492d;
+  text-shadow:3px 3px 0 #124b50;
 }
 .villa-retro-hero p {
   max-width:680px;
-  color:#c8cfbf;
+  color:#e0efec;
   font-size:1.25rem;
   line-height:1.25;
 }
@@ -63,21 +67,19 @@
   position:relative;
   align-items:center;
   padding:15px 18px;
-  border:1px solid #687565;
-  border-bottom:3px solid #a8ce65;
-  border-radius:8px 8px 0 0;
-  background:#303936;
-  color:#e6e8da;
+  border:1px solid #176c71;
+  border-bottom:3px solid #ffd66d;
+  border-radius:9px 9px 0 0;
+  background:repeating-linear-gradient(to bottom,transparent 0 4px,#ffffff08 5px 6px),linear-gradient(110deg,#153149,#176c71);
+  color:#fff;
 }
 .villa-retro-games .sectionhead h2 {
-  color:#e6e8da;
+  color:#fff;
   font-family:"VT323","Courier New",monospace;
   font-size:2.2rem;
   letter-spacing:.025em;
 }
-.villa-retro-games .sectionhead p {
-  color:#c4cbbd;
-}
+.villa-retro-games .sectionhead p {color:#e0efec}
 .villa-retro-games .resource-grid.row {
   display:grid;
   grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);
@@ -85,72 +87,124 @@
   gap:14px;
   margin:0;
   padding:16px;
-  border:1px solid #c6bd9e;
+  border:1px solid #d9e5e0;
   border-top:0;
-  border-radius:0 0 8px 8px;
-  background:#e4dcc5;
+  border-radius:0 0 9px 9px;
+  background:#e9f3ef;
 }
 .villa-retro-games .resource.card {
+  position:relative;
   width:auto;
   max-width:none;
   min-height:168px;
   height:100%;
+  overflow:hidden;
   padding:18px;
-  border:2px solid #505b4d;
-  border-radius:7px;
-  background:#f2eddc;
-  box-shadow:4px 4px 0 #b9ad8d;
-  color:#28322d;
+  border:2px solid #d9e5e0;
+  border-radius:8px;
+  background:#fff;
+  box-shadow:4px 4px 0 #c9ddd4;
+  color:#142d45;
   transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
 }
-.villa-retro-games .resource.card:nth-child(1){grid-area:route;min-height:350px}
+.villa-retro-games .resource.card:nth-child(1){grid-area:route;min-height:350px;border-color:#137d73;background:linear-gradient(145deg,#fff 0%,#f1f8f4 100%)}
 .villa-retro-games .resource.card:nth-child(2){grid-area:campus}
 .villa-retro-games .resource.card:nth-child(3){grid-area:glyph}
+.villa-retro-games .resource.card:nth-child(1)::before,
+.villa-retro-games .resource.card:nth-child(2)::before,
+.villa-retro-games .resource.card:nth-child(3)::before {
+  position:absolute;
+  top:14px;
+  right:14px;
+  padding:5px 8px;
+  border:1px solid #d9e5e0;
+  border-radius:5px;
+  background:#f2f7f5;
+  color:#137d73;
+  font:700 .72rem/1.2 "VT323","Courier New",monospace;
+  letter-spacing:.06em;
+}
+.villa-retro-games .resource.card:nth-child(1)::before{content:"RETO 01 · META"}
+.villa-retro-games .resource.card:nth-child(2)::before{content:"RETO 02 · EXPLORA"}
+.villa-retro-games .resource.card:nth-child(3)::before{content:"RETO 03 · DESCIFRA"}
+.villa-retro-games .resource.card:nth-child(1)::after {
+  position:absolute;
+  right:22px;
+  bottom:56px;
+  width:142px;
+  height:92px;
+  border:2px solid #137d73;
+  border-radius:9px;
+  background:radial-gradient(circle at 33% 52%,#ffd66d 0 15px,#137d73 16px 18px,transparent 19px),radial-gradient(circle at 67% 52%,#ffd66d 0 15px,#137d73 16px 18px,transparent 19px),linear-gradient(#d9e5e0,#d9e5e0) center 19px/100% 2px no-repeat,#e7f3ed;
+  box-shadow:4px 4px 0 #c9ddd4;
+  content:"";
+  opacity:.9;
+  pointer-events:none;
+}
 .villa-retro-games .resource.card:hover {
   transform:translate(-2px,-2px);
-  border-color:#55773d;
-  box-shadow:7px 7px 0 #9b8e6e;
+  border-color:#137d73;
+  box-shadow:7px 7px 0 #b6d3c7;
 }
 .villa-retro-games .resource .icon {
   display:grid;
   width:42px;
   height:42px;
   place-items:center;
-  border:2px solid #59654f;
-  border-radius:5px;
-  background:#dbe3c5;
-  color:#374832;
+  border:2px solid #137d73;
+  border-radius:6px;
+  background:#e7f3ed;
+  color:#142d45;
   font-family:"VT323","Courier New",monospace;
   font-size:1.6rem;
   line-height:1;
 }
 .villa-retro-games .resource h3 {
+  position:relative;
+  z-index:1;
+  max-width:26ch;
   margin:12px 0 5px;
-  color:#252d2b;
+  color:#142d45;
   font-family:"VT323","Courier New",monospace;
   font-size:1.75rem;
   line-height:1;
 }
 .villa-retro-games .resource p {
-  color:#4b574c;
-  font-size:.9rem;
+  position:relative;
+  z-index:1;
+  max-width:42ch;
+  color:#536b78;
+  font-size:.92rem;
   line-height:1.5;
 }
 .villa-retro-games .resource a {
-  color:#4d681e;
-  font-size:.85rem;
+  position:relative;
+  z-index:1;
+  align-self:flex-start;
+  display:inline-flex;
+  align-items:center;
+  margin-top:auto;
+  padding:9px 12px;
+  border:1px solid #137d73;
+  border-radius:6px;
+  background:#137d73;
+  color:#fff;
+  font-size:.88rem;
   text-decoration:none;
+  transition:background .18s ease,transform .18s ease;
 }
-.villa-retro-games .resource a:hover {text-decoration:underline}
+.villa-retro-games .resource a:hover {transform:translateY(-1px);background:#106c65;color:#fff}
+.villa-retro-games .resource a:focus-visible {outline:3px solid #ffd66d;outline-offset:3px}
 @media(max-width:767.98px) {
   .villa-retro-games .resource-grid.row {
     grid-template-columns:minmax(0,1fr);
     grid-template-areas:"route" "campus" "glyph";
     padding:12px;
   }
-  .villa-retro-games .resource.card:nth-child(1) {min-height:220px}
+  .villa-retro-games .resource.card:nth-child(1) {min-height:250px}
   .villa-retro-games .resource.card {min-height:unset}
+  .villa-retro-games .resource.card:nth-child(1)::after {right:16px;bottom:48px;width:110px;height:72px}
 }
 @media(prefers-reduced-motion:reduce) {
-  .villa-retro-games .resource.card {transition:none}
+  .villa-retro-games .resource.card,.villa-retro-games .resource a {transition:none}
 }
