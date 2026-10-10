@@ -78,6 +78,24 @@ body{background:radial-gradient(ellipse at 82% 8%,#e1f1ed 0,transparent 29rem),#
 @media(max-width:991.98px){.topinner.container{padding-top:10px;padding-bottom:10px}.topinner .navbar-collapse{flex-basis:100%}.topinner .nav{width:100%;padding-top:10px;align-items:stretch;flex-direction:column;overflow:visible}.topinner .nav a{display:block}.topinner .nav .nav-cta{text-align:center}}
 @media(max-width:767.98px){.campaign-grid{row-gap:1rem}.campaign .campaign-link{padding-top:14px}}
 </style>
+<style>
+/* Detalle retro compacto para las tarjetas de juegos. */
+.game-group.substances{--accent:#148875;--game-wash:#e1f3ed}
+.game-group.family{--accent:#bd5b43;--game-wash:#fff0e9}
+.game-group.safety{--accent:#7160b1;--game-wash:#f0edfb}
+.game-grid{counter-reset:game-track}
+.game.card{position:relative;overflow:hidden;min-height:178px;padding:0;border:1px solid #dbe6e2;border-top:3px solid var(--accent);border-radius:13px;background:linear-gradient(145deg,#fff 0%,#fff 76%,var(--game-wash) 145%);box-shadow:3px 4px 0 color-mix(in srgb,var(--accent) 17%,white),0 7px 16px #15344d0a;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.game-grid .game{counter-increment:game-track}
+.game .card-body{position:relative;z-index:1;padding:15px 16px 14px}
+.game .card-body::before{display:block;margin-bottom:9px;color:var(--accent);content:"PLAY / " counter(game-track,decimal-leading-zero);font:800 .58rem/1.2 "Courier New",monospace;letter-spacing:.13em}
+.game .format{border:1px solid color-mix(in srgb,var(--accent) 20%,white);border-radius:5px;background:var(--game-wash);color:var(--accent);font:800 .58rem/1.2 "Courier New",monospace;letter-spacing:.06em}
+.game h4{margin:10px 0 5px;font-size:.94rem;line-height:1.25}
+.game p{font-size:.76rem;line-height:1.5}
+.game a{padding-top:12px;color:var(--accent);font-size:.7rem;letter-spacing:.01em}
+.game:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--accent) 35%,white);box-shadow:4px 6px 0 color-mix(in srgb,var(--accent) 22%,white),0 10px 18px #15344d12}
+.game:focus-within{border-color:var(--accent)}
+@media(max-width:560px){.game.card{min-height:160px}.game .card-body{padding:14px}}
+</style>
 </head>
 <body>
 <header class="topbar"><div class="container shell topinner navbar navbar-expand-lg">
