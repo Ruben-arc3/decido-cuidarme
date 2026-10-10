@@ -32,7 +32,7 @@
         <button class="filter active" data-filter="all">Todos</button><button class="filter" data-filter="health">Salud</button><button class="filter" data-filter="school">Escolar</button><button class="filter" data-filter="protection">Protección</button><button class="filter" data-filter="space">Espacios</button>
       </nav>
       <section class="places" id="places" aria-label="Lugares de apoyo"></section>
-      <div class="notice">⚠️ <strong>Demostración:</strong> estos puntos son referenciales. Confirma dirección, horario y responsable con las entidades locales antes de publicar.</div>
+      <div class="notice">⚠️ La dirección del CAMU aparece en directorios públicos; el pin es aproximado y debe confirmarse en terreno. Los demás puntos son demostrativos. Verifica horarios y teléfonos antes de acudir.</div>
       <div class="help" aria-label="Líneas de apoyo"><a href="tel:123">123<br>Emergencias</a><a href="tel:141">141<br>ICBF</a><a href="tel:155">155<br>Orientación</a></div>
     </aside>
     <div id="map" aria-label="Mapa de puntos de apoyo"></div>
@@ -43,6 +43,7 @@
     L.control.zoom({position:'bottomright'}).addTo(map);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(map);
     const points=[
+      {id:5,name:'CAMU Cornelio Valdelamar Peña',type:'health',icon:'🏥',lat:9.01811,lng:-76.26413,detail:'Centro de atención en salud de Puerto Escondido. Dirección reportada: Cra. 5 # 5-03, barrio La Plaza. El marcador es aproximado: confirma la ubicación exacta y la atención antes de desplazarte.',action:'Cra. 5 # 5-03 · La Plaza',locationNote:'Dirección reportada: Cra. 5 # 5-03 · marcador aproximado'},
       {id:1,name:'Punto de salud',type:'health',icon:'🏥',lat:9.0194,lng:-76.2628,detail:'Orientación en salud y bienestar emocional.',action:'Consultar horarios y ruta de atención.'},
       {id:2,name:'Orientación escolar',type:'school',icon:'🏫',lat:9.0169,lng:-76.2661,detail:'Espacio de escucha con docente u orientador.',action:'Pregunta por el equipo de orientación.'},
       {id:3,name:'Punto de protección',type:'protection',icon:'🛡️',lat:9.0175,lng:-76.2608,detail:'Apoyo institucional para protección de niñas, niños y adolescentes.',action:'Solicitar orientación acompañada por un adulto.'},
@@ -50,7 +51,7 @@
     ];
     const markers=new Map(), places=document.querySelector('#places');
     const pin=point=>L.divIcon({className:'',html:`<div class="pin ${point.type}"><span>${point.icon}</span></div>`,iconSize:[39,39],iconAnchor:[19,39],popupAnchor:[0,-38]});
-    function popup(point){return `<h3 class="popup-title">${point.icon} ${point.name}</h3><p class="popup-type">Punto referencial · validar antes de publicar</p><p>${point.detail}</p><a class="popup-button" href="https://www.openstreetmap.org/?mlat=${point.lat}&mlon=${point.lng}#map=17/${point.lat}/${point.lng}" target="_blank" rel="noopener">Ver ubicación aproximada</a>`}
+    function popup(point){const place=encodeURIComponent(point.name+' '+(point.locationNote||'Puerto Escondido, Córdoba'));return `<h3 class="popup-title">${point.icon} ${point.name}</h3><p class="popup-type">${point.locationNote||'Punto demostrativo · validar antes de publicar'}</p><p>${point.detail}</p><a class="popup-button" href="https://www.openstreetmap.org/search?query=${place}" target="_blank" rel="noopener">Buscar en OpenStreetMap</a>`}
     points.forEach(point=>{const marker=L.marker([point.lat,point.lng],{icon:pin(point)}).bindPopup(popup(point));markers.set(point.id,marker)});
     function show(filter='all'){
       places.replaceChildren(); markers.forEach(marker=>map.removeLayer(marker)); const visible=points.filter(point=>filter==='all'||point.type===filter);
