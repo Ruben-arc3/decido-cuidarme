@@ -29,10 +29,10 @@
       <p class="intro">Tres lugares de apoyo en Puerto Escondido. Selecciona uno para ver su ubicación en OpenStreetMap.</p>
       <h2>¿Qué apoyo buscas?</h2>
       <nav class="filters" aria-label="Filtrar apoyos">
-        <button class="filter active" data-filter="all">Todos</button><button class="filter" data-filter="health">Salud</button><button class="filter" data-filter="protection">Seguridad</button><button class="filter" data-filter="institution">Institucional</button>
+        <button class="filter active" data-filter="all">Todos</button><button class="filter" data-filter="health">Salud</button><button class="filter" data-filter="protection">Seguridad</button><button class="filter" data-filter="institution">Institucional</button><button class="filter" data-filter="school">Orientación escolar</button>
       </nav>
       <section class="places" id="places" aria-label="Lugares de apoyo"></section>
-      <div class="notice">Las ubicaciones corresponden a los puntos registrados en OpenStreetMap. Confirma horarios y disponibilidad de atención antes de desplazarte.</div>
+      <div class="notice">Los planteles se muestran como referencias para orientación escolar; consulta con cada institución la disponibilidad de acompañamiento. Confirma horarios antes de desplazarte.</div>
       <div class="help" aria-label="Líneas de apoyo"><a href="tel:123">123<br>Emergencias</a><a href="tel:141">141<br>ICBF</a><a href="tel:155">155<br>Orientación</a></div>
     </aside>
     <div id="map" aria-label="Mapa de puntos de apoyo"></div>
@@ -43,17 +43,19 @@
     L.control.zoom({position:'bottomright'}).addTo(map);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(map);
     const points=[
-      {id:'camu',name:'CAMU Cornelio Valdelamar Peña',type:'health',icon:'🏥',lat:9.0161341,lng:-76.2633445,detail:'Centro de atención en salud. Dirección reportada: Carrera 5 # 5-03, barrio La Plaza. Confirma horarios y servicios antes de acudir.',action:'Carrera 5 # 5-03 · La Plaza',osm:'node/14270905285'},
-      {id:'policia',name:'Estación de Policía Puerto Escondido',type:'protection',icon:'🛡️',lat:9.0193799,lng:-76.2609891,detail:'Estación de Policía de Puerto Escondido. Para conocer atención y canales vigentes, consulta directamente a la Policía Nacional.',action:'Punto de atención policial',osm:'node/14270905286'},
-      {id:'alcaldia',name:'Alcaldía Municipal de Puerto Escondido',type:'institution',icon:'🏛️',lat:9.0196018,lng:-76.2607578,detail:'Sede de la administración municipal. Verifica horarios y servicios antes de desplazarte.',action:'Administración municipal',osm:'node/14270905287'}
+      {id:'camu',name:'CAMU Cornelio Valdelamar Peña',type:'health',category:'Salud',icon:'🏥',lat:9.0161341,lng:-76.2633445,detail:'Centro de atención en salud. Dirección reportada: Carrera 5 # 5-03, barrio La Plaza. Confirma horarios y servicios antes de acudir.',action:'Carrera 5 # 5-03 · La Plaza',osm:'node/14270905285'},
+      {id:'policia',name:'Estación de Policía Puerto Escondido',type:'protection',category:'Seguridad',icon:'🛡️',lat:9.0193799,lng:-76.2609891,detail:'Estación de Policía de Puerto Escondido. Para conocer atención y canales vigentes, consulta directamente a la Policía Nacional.',action:'Punto de atención policial',osm:'node/14270905286'},
+      {id:'alcaldia',name:'Alcaldía Municipal de Puerto Escondido',type:'institution',category:'Institucional',icon:'🏛️',lat:9.0196018,lng:-76.2607578,detail:'Sede de la administración municipal. Verifica horarios y servicios antes de desplazarte.',action:'Administración municipal',osm:'node/14270905287'},
+      {id:'villa-esther',name:'Institución Educativa Villa Esther',type:'school',category:'Orientación escolar',icon:'🏫',lat:9.063099,lng:-76.124189,detail:'Plantel educativo de referencia para orientación escolar. Consulta con docentes o directivos la disponibilidad de acompañamiento. Coordenada referenciada en el listado geográfico de puestos de votación de la Registraduría.',action:'Corregimiento Villa Esther',mapZoom:16},
+      {id:'vicente-diaz',name:'Institución Educativa Vicente Díaz',type:'school',category:'Orientación escolar',icon:'🏫',lat:8.93114,lng:-76.18663,detail:'Plantel educativo de referencia para orientación escolar. Consulta con docentes o directivos la disponibilidad de acompañamiento. Coordenada referenciada en el listado geográfico de puestos de votación de la Registraduría.',action:'Corregimiento Las Mujeres',mapZoom:16}
     ];
     const markers=new Map(), places=document.querySelector('#places');
     const pin=point=>L.divIcon({className:'',html:`<div class="pin ${point.type}"><span>${point.icon}</span></div>`,iconSize:[39,39],iconAnchor:[19,39],popupAnchor:[0,-38]});
-    function popup(point){return `<h3 class="popup-title">${point.icon} ${point.name}</h3><p class="popup-type">Puerto Escondido · Córdoba</p><p>${point.detail}</p><a class="popup-button" href="https://www.openstreetmap.org/${point.osm}" target="_blank" rel="noopener">Ver punto en OpenStreetMap</a>`}
+    function popup(point){const mapUrl=point.osm?`https://www.openstreetmap.org/${point.osm}`:`https://www.openstreetmap.org/?mlat=${point.lat}&mlon=${point.lng}#map=${point.mapZoom||17}/${point.lat}/${point.lng}`;return `<h3 class="popup-title">${point.icon} ${point.name}</h3><p class="popup-type">${point.category} · Puerto Escondido, Córdoba</p><p>${point.detail}</p><a class="popup-button" href="${mapUrl}" target="_blank" rel="noopener">Ver ubicación en OpenStreetMap</a>`}
     points.forEach(point=>{const marker=L.marker([point.lat,point.lng],{icon:pin(point)}).bindPopup(popup(point));markers.set(point.id,marker)});
     function show(filter='all'){
       places.replaceChildren(); markers.forEach(marker=>map.removeLayer(marker)); const visible=points.filter(point=>filter==='all'||point.type===filter);
-      visible.forEach(point=>{const marker=markers.get(point.id);marker.addTo(map);const card=document.createElement('button');card.className='place';card.innerHTML=`<span class="place-icon">${point.icon}</span><span><strong>${point.name}</strong><small>${point.action}</small></span>`;card.onclick=()=>{map.flyTo([point.lat,point.lng],17,{duration:.55});marker.openPopup()};places.append(card)});
+      visible.forEach(point=>{const marker=markers.get(point.id);marker.addTo(map);const card=document.createElement('button');card.className='place';card.innerHTML=`<span class="place-icon">${point.icon}</span><span><strong>${point.name}</strong><small>${point.category} · ${point.action}</small></span>`;card.onclick=()=>{map.flyTo([point.lat,point.lng],point.mapZoom||17,{duration:.55});marker.openPopup()};places.append(card)});
       if(visible.length>1)map.fitBounds(L.featureGroup(visible.map(point=>markers.get(point.id))).getBounds().pad(.28));
     }
     document.querySelectorAll('.filter').forEach(button=>button.onclick=()=>{document.querySelector('.filter.active').classList.remove('active');button.classList.add('active');show(button.dataset.filter)});
