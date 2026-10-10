@@ -12,6 +12,35 @@
 @media(max-width:560px){.shell{width:calc(100% - 24px)}.topinner{gap:6px}.brand small{font-size:9px}.nav a{padding:8px 9px;font-size:11px}.hero{margin-top:13px;padding:27px 22px;border-radius:22px}.hero h1{font-size:42px}.section{padding-top:41px}.section-head{display:block}.section-head>p{margin-top:8px}.campaign-grid,.school-grid,.game-grid,.shared-grid{grid-template-columns:1fr}.campaign{min-height:unset}.campaign-link{padding-top:13px}.game-group{padding:14px}.game{min-height:165px}.footer-inner{display:block}.footer-inner span{display:block;margin-top:6px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
 .dialog-icon{display:none!important}
+/* Portada */
+body{background:radial-gradient(ellipse at 82% 8%,#e1f1ed 0,transparent 29rem),#f4f7f5}
+.topbar{background:#f7faf8eF;border-color:#d9e5e1}
+.mark{color:#12384b;background:linear-gradient(145deg,#ffe18a,#ffc94a);box-shadow:0 3px 0 #d8a536;font-weight:950}
+.nav a{transition:background .18s,color .18s,transform .18s}.nav a:hover{transform:translateY(-1px)}
+.nav .nav-cta{box-shadow:0 4px 12px #10243b20}.nav .nav-cta:hover{background:#1c5262;color:#fff}
+.hero{margin-top:22px;padding:clamp(28px,5vw,58px);border:1px solid #ffffff30;background:radial-gradient(circle at 82% 16%,#ffffff19 0 2px,transparent 3px) 0 0/22px 22px,linear-gradient(118deg,#10243b 0%,#164b5b 52%,#087e78 100%);box-shadow:0 24px 56px #153b4d25}
+.hero-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(240px,.7fr);align-items:center;gap:clamp(22px,5vw,58px)}
+.hero-content{max-width:760px}.hero h1{max-width:740px}.hero p{max-width:610px}.hero-note{padding-top:15px;border-top:1px solid #ffffff26}
+.hero-panel{padding:21px;border:1px solid #ffffff38;border-radius:20px;background:#ffffff12;box-shadow:inset 0 1px #ffffff20;backdrop-filter:blur(8px)}
+.hero-panel-title{display:flex;align-items:center;gap:9px;color:#d8efeb;font-size:10px;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
+.hero-panel-title:before{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px #ffd66d21;content:""}
+.hero-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:18px}
+.hero-stat{padding:13px;border:1px solid #ffffff21;border-radius:14px;background:#061d2c25}
+.hero-stat strong{display:block;color:#fff;font-size:27px;line-height:1;font-weight:900;letter-spacing:-.04em}
+.hero-stat span{display:block;margin-top:6px;color:#cee3e2;font-size:11px;font-weight:750}
+.hero-panel-link{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:13px;padding-top:13px;border-top:1px solid #ffffff28;color:#fff;text-decoration:none;font-size:12px;font-weight:850}
+.hero-panel-link span{color:var(--gold);font-size:18px;transition:transform .18s}.hero-panel-link:hover span{transform:translateX(4px)}
+.section{padding-top:62px}.section-head{margin-bottom:21px}.section-kicker{letter-spacing:.17em}
+.campaign-grid{gap:17px}.campaign{min-height:238px;padding:23px;transition:transform .2s,box-shadow .2s,border-color .2s}.campaign:hover{transform:translateY(-4px);border-color:#c5d9d3;box-shadow:0 20px 42px #15344d16}.campaign-icon{font-size:15px;font-weight:950;letter-spacing:.03em}.campaign h3{max-width:290px}.campaign-link{font-size:12px}
+.callout{align-items:center;margin-top:18px;padding:16px 19px;border-color:#efdfa9;background:linear-gradient(110deg,#fff9e8,#fffdf6)}
+.school-grid{gap:17px}.school-card{min-height:230px;padding:24px;transition:transform .2s,box-shadow .2s}.school-card:hover{transform:translateY(-3px);box-shadow:0 20px 42px #15344d16}.school-icon{font-size:14px;font-weight:950;letter-spacing:.04em}.school-card.vicente{border-top:3px solid #397ba6}.school-card.villa{border-top:3px solid #148875}
+.games{padding-top:64px}.games-by-campaign{gap:18px}.game-group{padding:22px;border-color:#dfe9e4;background:#eef4f1;scroll-margin-top:92px;transition:border-color .2s,box-shadow .2s}.game-group:target{border-color:#96c4b7;box-shadow:0 0 0 3px #14887512}.game-grid{gap:12px}.game{min-height:183px;border-color:#e4ece8;transition:transform .18s,box-shadow .18s,border-color .18s}.game:hover{transform:translateY(-3px);border-color:#c9ddd4;box-shadow:0 12px 24px #15344d10}.game a{transition:gap .18s}.game a:hover{gap:10px;text-decoration:none}
+.shared-card{position:relative;overflow:hidden;box-shadow:0 16px 34px #15344d15}.shared-card:after{position:absolute;right:-55px;bottom:-100px;width:240px;height:240px;border:1px solid #ffffff27;border-radius:50%;box-shadow:0 0 0 24px #ffffff0a,0 0 0 53px #ffffff08;content:"";pointer-events:none}.shared-card>*{position:relative;z-index:1}
+.care-card{box-shadow:var(--shadow)}.footer{margin-top:64px}
+@media(max-width:850px){.hero-layout{grid-template-columns:1fr 250px;gap:20px}.hero-panel{padding:17px}.hero-stat{padding:11px}}
+@media(max-width:700px){.hero-layout{grid-template-columns:1fr}.hero-panel{max-width:440px}.hero-stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.hero{margin-top:13px;padding:25px 20px;border-radius:22px}.hero h1{font-size:40px}.hero-panel{padding:15px}.hero-stat strong{font-size:23px}.section{padding-top:43px}.campaign-grid,.school-grid,.game-grid,.shared-grid{grid-template-columns:1fr}.campaign{min-height:unset}.campaign-link{padding-top:14px}.school-card{min-height:unset}.school-link{padding-top:14px}.games{padding-top:46px}.game-group{padding:14px}.game{min-height:160px}.footer{margin-top:45px}}
+@media(prefers-reduced-motion:reduce){.campaign,.school-card,.game,.nav a,.btn,.hero-panel-link span{transition:none!important}}
 </style>
 </head>
 <body>
@@ -21,13 +50,13 @@
 </div></header>
 <main>
   <div class="shell">
-    <section class="hero" id="inicio" aria-labelledby="hero-title"><div class="hero-content">
+    <section class="hero" id="inicio" aria-labelledby="hero-title"><div class="hero-layout"><div class="hero-content">
       <div class="eyebrow"><i></i> Bienestar, prevención y cuidado en comunidad</div>
       <h1 id="hero-title">Cuidarnos también se <em>aprende jugando.</em></h1>
       <p>Material para las campañas de prevención de ambos colegios, con actividades pensadas para cada contexto.</p>
       <div class="actions"><a class="btn btn-main" href="#campanas">Explorar las campañas <span aria-hidden="true">↓</span></a><a class="btn btn-ghost" href="#juegos">Ver todos los juegos <span aria-hidden="true">→</span></a></div>
-      <div class="hero-note"><span>👥</span> Diseñado para jugar en grupo, desde un computador y con proyector, en ambos colegios.</div>
-    </div></section>
+      <div class="hero-note">Actividades para jugar en grupo desde un computador y con proyector.</div>
+    </div><aside class="hero-panel" aria-label="Resumen del proyecto"><div class="hero-panel-title">Una iniciativa para crecer</div><div class="hero-stats"><div class="hero-stat"><strong>03</strong><span>campañas de prevención</span></div><div class="hero-stat"><strong>02</strong><span>instituciones educativas</span></div></div><a class="hero-panel-link" href="#instituciones">Conoce cada colegio <span aria-hidden="true">→</span></a></aside></div></section>
 
     <section class="section" id="campanas" aria-labelledby="campaign-title"><div class="section-head"><div><p class="section-kicker">Eje común en los dos colegios</p><h2 id="campaign-title">Tres campañas principales</h2></div><p>Elige un tema para ver sus juegos y materiales.</p></div>
       <div class="campaign-grid">
