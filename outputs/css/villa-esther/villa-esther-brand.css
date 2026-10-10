@@ -1,0 +1,11 @@
+/* Identidad visual compartida de la Institución Educativa Villa Esther */
+.villa-brand-banner{background:linear-gradient(112deg,#153149,#176c71);color:#fff;border-bottom:4px solid #efc747;box-shadow:0 5px 18px #15314920}
+.villa-brand-inner{width:min(1100px,calc(100% - 28px));min-height:82px;margin:auto;display:flex;align-items:center;gap:14px;padding:10px 0}
+.villa-brand-crest{width:60px;height:60px;flex:0 0 60px;object-fit:contain;padding:3px;border-radius:12px;background:#fff;box-shadow:0 2px 9px #071d2a55}
+.villa-brand-copy{display:grid;line-height:1.2}
+.villa-brand-kicker{font-size:9px;font-weight:850;letter-spacing:.12em;text-transform:uppercase;color:#c8f1df}
+.villa-brand-name{font-size:19px;font-weight:950;letter-spacing:.015em}
+.villa-brand-motto{margin-top:3px;font-size:10px;color:#e0efec}
+.villa-brand-home{margin-left:auto;padding:9px 12px;border:1px solid #ffffff60;border-radius:9px;color:#fff;text-decoration:none;font-size:11px;font-weight:850;white-space:nowrap}
+.villa-brand-home:hover{background:#ffffff18}
+@media(max-width:480px){.villa-brand-inner{width:calc(100% - 20px);gap:10px;min-height:70px}.villa-brand-crest{width:48px;height:48px;flex-basis:48px}.villa-brand-name{font-size:16px}.villa-brand-motto{font-size:9px}.villa-brand-home{padding:8px;font-size:10px}}
