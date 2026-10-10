@@ -1,0 +1,156 @@
+/* Cassette futurism: limitado al banner y a la sección de juegos de Villa Esther. */
+.villa-retro-hero {
+  isolation:isolate;
+  border:2px solid #91c85b;
+  border-radius:8px;
+  background:#252d2b;
+  box-shadow:8px 8px 0 #a56d28, 0 16px 34px #152d3a24;
+  font-family:"VT323","Courier New",monospace;
+}
+.villa-retro-hero::before {
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  border:8px solid #ffffff08;
+  content:"";
+  pointer-events:none;
+}
+.villa-retro-hero::after {
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  width:auto;
+  height:auto;
+  border:0;
+  border-radius:0;
+  background:repeating-linear-gradient(to bottom,transparent 0 3px,#d7e3d008 4px 5px);
+  box-shadow:none;
+  content:"";
+  pointer-events:none;
+}
+.villa-retro-hero .kicker {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  color:#d6b576;
+  font-size:1rem;
+  letter-spacing:.12em;
+}
+.villa-retro-hero .kicker::before {
+  width:9px;
+  height:9px;
+  border:2px solid #a8ce65;
+  background:#a8ce65;
+  box-shadow:0 0 10px #a8ce6570;
+  content:"";
+}
+.villa-retro-hero h1 {
+  max-width:800px;
+  margin:12px 0;
+  color:#e4e8d9;
+  font-size:clamp(2.6rem,6vw,4.5rem);
+  line-height:.92;
+  letter-spacing:.015em;
+  text-shadow:3px 3px 0 #5c492d;
+}
+.villa-retro-hero p {
+  max-width:680px;
+  color:#c8cfbf;
+  font-size:1.25rem;
+  line-height:1.25;
+}
+.villa-retro-games .sectionhead {
+  position:relative;
+  align-items:center;
+  padding:15px 18px;
+  border:1px solid #687565;
+  border-bottom:3px solid #a8ce65;
+  border-radius:8px 8px 0 0;
+  background:#303936;
+  color:#e6e8da;
+}
+.villa-retro-games .sectionhead h2 {
+  color:#e6e8da;
+  font-family:"VT323","Courier New",monospace;
+  font-size:2.2rem;
+  letter-spacing:.025em;
+}
+.villa-retro-games .sectionhead p {
+  color:#c4cbbd;
+}
+.villa-retro-games .resource-grid.row {
+  display:grid;
+  grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);
+  grid-template-areas:"route campus" "route glyph";
+  gap:14px;
+  margin:0;
+  padding:16px;
+  border:1px solid #c6bd9e;
+  border-top:0;
+  border-radius:0 0 8px 8px;
+  background:#e4dcc5;
+}
+.villa-retro-games .resource.card {
+  width:auto;
+  max-width:none;
+  min-height:168px;
+  height:100%;
+  padding:18px;
+  border:2px solid #505b4d;
+  border-radius:7px;
+  background:#f2eddc;
+  box-shadow:4px 4px 0 #b9ad8d;
+  color:#28322d;
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+}
+.villa-retro-games .resource.card:nth-child(1){grid-area:route;min-height:350px}
+.villa-retro-games .resource.card:nth-child(2){grid-area:campus}
+.villa-retro-games .resource.card:nth-child(3){grid-area:glyph}
+.villa-retro-games .resource.card:hover {
+  transform:translate(-2px,-2px);
+  border-color:#55773d;
+  box-shadow:7px 7px 0 #9b8e6e;
+}
+.villa-retro-games .resource .icon {
+  display:grid;
+  width:42px;
+  height:42px;
+  place-items:center;
+  border:2px solid #59654f;
+  border-radius:5px;
+  background:#dbe3c5;
+  color:#374832;
+  font-family:"VT323","Courier New",monospace;
+  font-size:1.6rem;
+  line-height:1;
+}
+.villa-retro-games .resource h3 {
+  margin:12px 0 5px;
+  color:#252d2b;
+  font-family:"VT323","Courier New",monospace;
+  font-size:1.75rem;
+  line-height:1;
+}
+.villa-retro-games .resource p {
+  color:#4b574c;
+  font-size:.9rem;
+  line-height:1.5;
+}
+.villa-retro-games .resource a {
+  color:#4d681e;
+  font-size:.85rem;
+  text-decoration:none;
+}
+.villa-retro-games .resource a:hover {text-decoration:underline}
+@media(max-width:767.98px) {
+  .villa-retro-games .resource-grid.row {
+    grid-template-columns:minmax(0,1fr);
+    grid-template-areas:"route" "campus" "glyph";
+    padding:12px;
+  }
+  .villa-retro-games .resource.card:nth-child(1) {min-height:220px}
+  .villa-retro-games .resource.card {min-height:unset}
+}
+@media(prefers-reduced-motion:reduce) {
+  .villa-retro-games .resource.card {transition:none}
+}
