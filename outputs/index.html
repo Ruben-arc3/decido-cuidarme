@@ -41,6 +41,40 @@ body{background:radial-gradient(ellipse at 82% 8%,#e1f1ed 0,transparent 29rem),#
 @media(max-width:700px){.hero-layout{grid-template-columns:1fr}.hero-panel{max-width:440px}.hero-stats{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.hero{margin-top:13px;padding:25px 20px;border-radius:22px}.hero h1{font-size:40px}.hero-panel{padding:15px}.hero-stat strong{font-size:23px}.section{padding-top:43px}.campaign-grid,.school-grid,.game-grid,.shared-grid{grid-template-columns:1fr}.campaign{min-height:unset}.campaign-link{padding-top:14px}.school-card{min-height:unset}.school-link{padding-top:14px}.games{padding-top:46px}.game-group{padding:14px}.game{min-height:160px}.footer{margin-top:45px}}
 @media(prefers-reduced-motion:reduce){.campaign,.school-card,.game,.nav a,.btn,.hero-panel-link span{transition:none!important}}
+/* Estilo central: contraste sobrio y acentos vivos */
+:root{--ink:#181a1c;--muted:#545a61;--paper:#f5f6f7;--white:#fff;--line:#e3e6e8;--navy:#181a1c;--teal:#2e51ed;--mint:#dce4ff;--gold:#16d9d9;--shadow:0 8px 24px #0000000c}
+body{background:#f5f6f7;color:#181a1c;font-family:"Figtree","Segoe UI",system-ui,sans-serif}
+.topbar{background:#ffffffed;border-color:#e5e7e9}
+.brand strong{letter-spacing:.015em}.brand small{color:#626970}
+.mark{color:#181a1c;background:#16d9d9;box-shadow:none;border-radius:8px}
+.nav a{color:#454b52;border-radius:6px}.nav a:hover{background:#eef1ff;color:#2e51ed}
+.nav .nav-cta{background:#2e51ed;color:#fff;box-shadow:none}.nav .nav-cta:hover{background:#203fd1;color:#fff}
+.hero{border:0;border-radius:10px;background:radial-gradient(circle at 87% 18%,#ffffff12 0 2px,transparent 3px) 0 0/24px 24px,#181a1c;box-shadow:0 18px 42px #181a1c20}
+.hero:before,.hero:after{border-color:#ffffff18}
+.eyebrow{color:#80eeee}.eyebrow i{background:#16d9d9;box-shadow:0 0 0 5px #16d9d920}
+.hero h1{font-weight:850;letter-spacing:-.035em}.hero h1 em{color:#16d9d9}
+.hero p{color:#e1e4e7}.hero-note{color:#c0c5ca}.hero-note span{color:#16d9d9}
+.hero-panel{border-radius:8px;background:#ffffff0d;box-shadow:none;backdrop-filter:none}
+.hero-panel-title{color:#d9dddf}.hero-panel-title:before{background:#16d9d9;box-shadow:0 0 0 4px #16d9d920}
+.hero-stat{border-radius:6px;background:#ffffff0a}.hero-stat strong{color:#16d9d9}.hero-stat span{color:#d3d7da}
+.hero-panel-link span{color:#16d9d9}
+.btn{border-radius:6px;min-height:44px}.btn-main{background:#16d9d9;color:#181a1c;box-shadow:none}.btn-main:hover{background:#35e4e4;box-shadow:0 4px 14px #16d9d940}
+.btn-ghost{border-color:#858b91;color:#fff;background:transparent}.btn-ghost:hover{background:#ffffff12}
+.section-kicker{color:#2e51ed}.section h2{font-weight:800;letter-spacing:-.025em}
+.campaign,.school-card{border-radius:8px;box-shadow:0 4px 16px #00000008}.campaign:after{opacity:.45}
+.campaign.substances{--accent:#176f68;--wash:#e4f5f2}.campaign.family{--accent:#9b4c3c;--wash:#fff0eb}.campaign.safety{--accent:#544397;--wash:#f0edff}
+.campaign h3,.school-card h3{font-weight:750}.campaign-link,.school-link{color:#2e51ed}.campaign:hover{transform:translateY(-3px);border-color:#cbd2ff;box-shadow:0 10px 26px #181a1c12}
+.school-card{border-top-width:2px}.school-card.vicente{--accent:#255d83;--wash:#eaf3f9}.school-card.villa{--accent:#176f68;--wash:#e7f5ee}
+.school-pills span{border-radius:5px;color:#343a40}
+.callout{border-radius:8px;border-color:#e6d9a9;background:#fffaf0}
+.game-group{border-radius:8px;background:#f0f1f3}.game-group:target{border-color:#8a9cf4;box-shadow:0 0 0 3px #2e51ed12}
+.game{border-radius:8px;box-shadow:none}.game:hover{border-color:#cbd2ff;box-shadow:0 8px 20px #181a1c10}
+.format{border-radius:4px;background:#eef1ff;color:#3549a3}
+.shared-card{border-radius:8px;background:#181a1c;box-shadow:none}.shared-card:after{border-color:#ffffff1a;box-shadow:0 0 0 24px #ffffff06,0 0 0 53px #ffffff05}.shared-card .btn{background:#16d9d9;color:#181a1c}.shared-card .btn:hover{background:#35e4e4}
+.care-card{border-radius:8px;box-shadow:none}
+.footer{border-color:#e1e4e6}.footer strong{color:#181a1c}
+:focus-visible{outline:3px solid #2e51ed;outline-offset:3px}
+@media(max-width:560px){.hero{border-radius:8px}.hero h1{font-size:40px}}
 </style>
 </head>
 <body>
