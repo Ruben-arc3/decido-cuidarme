@@ -41,40 +41,10 @@ body{background:radial-gradient(ellipse at 82% 8%,#e1f1ed 0,transparent 29rem),#
 @media(max-width:700px){.hero-layout{grid-template-columns:1fr}.hero-panel{max-width:440px}.hero-stats{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.hero{margin-top:13px;padding:25px 20px;border-radius:22px}.hero h1{font-size:40px}.hero-panel{padding:15px}.hero-stat strong{font-size:23px}.section{padding-top:43px}.campaign-grid,.school-grid,.game-grid,.shared-grid{grid-template-columns:1fr}.campaign{min-height:unset}.campaign-link{padding-top:14px}.school-card{min-height:unset}.school-link{padding-top:14px}.games{padding-top:46px}.game-group{padding:14px}.game{min-height:160px}.footer{margin-top:45px}}
 @media(prefers-reduced-motion:reduce){.campaign,.school-card,.game,.nav a,.btn,.hero-panel-link span{transition:none!important}}
-/* Estilo central: contraste sobrio y acentos vivos */
-:root{--ink:#181a1c;--muted:#545a61;--paper:#f5f6f7;--white:#fff;--line:#e3e6e8;--navy:#181a1c;--teal:#2e51ed;--mint:#dce4ff;--gold:#16d9d9;--shadow:0 8px 24px #0000000c}
-body{background:#f5f6f7;color:#181a1c;font-family:"Figtree","Segoe UI",system-ui,sans-serif}
-.topbar{background:#ffffffed;border-color:#e5e7e9}
-.brand strong{letter-spacing:.015em}.brand small{color:#626970}
-.mark{color:#181a1c;background:#16d9d9;box-shadow:none;border-radius:8px}
-.nav a{color:#454b52;border-radius:6px}.nav a:hover{background:#eef1ff;color:#2e51ed}
-.nav .nav-cta{background:#2e51ed;color:#fff;box-shadow:none}.nav .nav-cta:hover{background:#203fd1;color:#fff}
-.hero{border:0;border-radius:10px;background:radial-gradient(circle at 87% 18%,#ffffff12 0 2px,transparent 3px) 0 0/24px 24px,#181a1c;box-shadow:0 18px 42px #181a1c20}
-.hero:before,.hero:after{border-color:#ffffff18}
-.eyebrow{color:#80eeee}.eyebrow i{background:#16d9d9;box-shadow:0 0 0 5px #16d9d920}
-.hero h1{font-weight:850;letter-spacing:-.035em}.hero h1 em{color:#16d9d9}
-.hero p{color:#e1e4e7}.hero-note{color:#c0c5ca}.hero-note span{color:#16d9d9}
-.hero-panel{border-radius:8px;background:#ffffff0d;box-shadow:none;backdrop-filter:none}
-.hero-panel-title{color:#d9dddf}.hero-panel-title:before{background:#16d9d9;box-shadow:0 0 0 4px #16d9d920}
-.hero-stat{border-radius:6px;background:#ffffff0a}.hero-stat strong{color:#16d9d9}.hero-stat span{color:#d3d7da}
-.hero-panel-link span{color:#16d9d9}
-.btn{border-radius:6px;min-height:44px}.btn-main{background:#16d9d9;color:#181a1c;box-shadow:none}.btn-main:hover{background:#35e4e4;box-shadow:0 4px 14px #16d9d940}
-.btn-ghost{border-color:#858b91;color:#fff;background:transparent}.btn-ghost:hover{background:#ffffff12}
-.section-kicker{color:#2e51ed}.section h2{font-weight:800;letter-spacing:-.025em}
-.campaign,.school-card{border-radius:8px;box-shadow:0 4px 16px #00000008}.campaign:after{opacity:.45}
-.campaign.substances{--accent:#176f68;--wash:#e4f5f2}.campaign.family{--accent:#9b4c3c;--wash:#fff0eb}.campaign.safety{--accent:#544397;--wash:#f0edff}
-.campaign h3,.school-card h3{font-weight:750}.campaign-link,.school-link{color:#2e51ed}.campaign:hover{transform:translateY(-3px);border-color:#cbd2ff;box-shadow:0 10px 26px #181a1c12}
-.school-card{border-top-width:2px}.school-card.vicente{--accent:#255d83;--wash:#eaf3f9}.school-card.villa{--accent:#176f68;--wash:#e7f5ee}
-.school-pills span{border-radius:5px;color:#343a40}
-.callout{border-radius:8px;border-color:#e6d9a9;background:#fffaf0}
-.game-group{border-radius:8px;background:#f0f1f3}.game-group:target{border-color:#8a9cf4;box-shadow:0 0 0 3px #2e51ed12}
-.game{border-radius:8px;box-shadow:none}.game:hover{border-color:#cbd2ff;box-shadow:0 8px 20px #181a1c10}
-.format{border-radius:4px;background:#eef1ff;color:#3549a3}
-.shared-card{border-radius:8px;background:#181a1c;box-shadow:none}.shared-card:after{border-color:#ffffff1a;box-shadow:0 0 0 24px #ffffff06,0 0 0 53px #ffffff05}.shared-card .btn{background:#16d9d9;color:#181a1c}.shared-card .btn:hover{background:#35e4e4}
-.care-card{border-radius:8px;box-shadow:none}
-.footer{border-color:#e1e4e6}.footer strong{color:#181a1c}
-:focus-visible{outline:3px solid #2e51ed;outline-offset:3px}
-@media(max-width:560px){.hero{border-radius:8px}.hero h1{font-size:40px}}
+.hero-shortcuts{display:grid;gap:8px;margin-top:15px}
+.hero-shortcuts a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 12px;border:1px solid #ffffff2e;border-radius:10px;background:#ffffff0d;color:#fff;text-decoration:none;font-size:12px;font-weight:800;transition:background .18s,transform .18s}
+.hero-shortcuts a:hover{transform:translateX(3px);background:#ffffff1b}
+.hero-shortcuts a span{color:var(--gold);font-size:17px}
 </style>
 </head>
 <body>
@@ -90,7 +60,7 @@ body{background:#f5f6f7;color:#181a1c;font-family:"Figtree","Segoe UI",system-ui
       <p>Material para las campañas de prevención de ambos colegios, con actividades pensadas para cada contexto.</p>
       <div class="actions"><a class="btn btn-main" href="#campanas">Explorar las campañas <span aria-hidden="true">↓</span></a><a class="btn btn-ghost" href="#juegos">Ver todos los juegos <span aria-hidden="true">→</span></a></div>
       <div class="hero-note">Actividades para jugar en grupo desde un computador y con proyector.</div>
-    </div><aside class="hero-panel" aria-label="Resumen del proyecto"><div class="hero-panel-title">Una iniciativa para crecer</div><div class="hero-stats"><div class="hero-stat"><strong>03</strong><span>campañas de prevención</span></div><div class="hero-stat"><strong>02</strong><span>instituciones educativas</span></div></div><a class="hero-panel-link" href="#instituciones">Conoce cada colegio <span aria-hidden="true">→</span></a></aside></div></section>
+    </div><aside class="hero-panel" aria-label="Accesos rápidos"><div class="hero-panel-title">Empieza por aquí</div><nav class="hero-shortcuts" aria-label="Accesos principales"><a href="#campanas">Explorar las campañas <span aria-hidden="true">→</span></a><a href="#juegos">Elegir una actividad <span aria-hidden="true">→</span></a><a href="#instituciones">Entrar a mi institución <span aria-hidden="true">→</span></a></nav></aside></div></section>
 
     <section class="section" id="campanas" aria-labelledby="campaign-title"><div class="section-head"><div><p class="section-kicker">Eje común en los dos colegios</p><h2 id="campaign-title">Tres campañas principales</h2></div><p>Elige un tema para ver sus juegos y materiales.</p></div>
       <div class="campaign-grid">
@@ -100,11 +70,6 @@ body{background:#f5f6f7;color:#181a1c;font-family:"Figtree","Segoe UI",system-ui
       </div>
       <div class="callout"><div><b>Un espacio seguro para aprender:</b> las actividades usan situaciones ficticias. Nadie tiene que contar experiencias personales ni explicar por qué decide no participar.</div></div>
     </section>
-
-    <section class="section institutions" id="instituciones" aria-labelledby="institutions-title"><div class="section-head"><div><p class="section-kicker">Una base compartida, dos contextos</p><h2 id="institutions-title">Enfoque por institución</h2></div><p>Las campañas de consumo, violencia intrafamiliar y abuso sexual son el eje común. Aquí se muestra el énfasis adicional identificado para cada colegio.</p></div><div class="school-grid">
-      <article class="school-card vicente"><div class="school-top"><span class="school-icon">VD</span><span class="school-tag">Campañas compartidas</span></div><h3>Institución Educativa Vicente Díaz</h3><p>Las campañas de consumo, violencia intrafamiliar y abuso sexual son el eje de trabajo actual. Docentes pueden preparar exposiciones y estudiantes explorar los recursos disponibles.</p><a class="school-link" href="instituciones/institucion-vicente-diaz.html">Entrar al espacio del colegio <span aria-hidden="true">→</span></a></article>
-      <article class="school-card villa"><div class="school-top"><span class="school-icon">VE</span><span class="school-tag">Énfasis complementario</span></div><h3>Institución Educativa Villa Esther</h3><p>Además de las campañas compartidas, tiene un espacio para motivación, proyecto de vida, ICFES y exploración de opciones de educación superior, con herramientas para docentes y estudiantes.</p><div class="school-pills"><span>Motivación</span><span>Proyecto de vida</span><span>ICFES y educación superior</span></div><a class="school-link" href="instituciones/villa-esther/institucion-villa-esther.html">Entrar al espacio del colegio <span aria-hidden="true">→</span></a></article>
-    </div></section>
 
     <section class="section games" id="juegos" aria-labelledby="games-title"><div class="section-head"><div><p class="section-kicker">Listos para jugar, también sin internet</p><h2 id="games-title">Juegos para el salón</h2></div><p>Las actividades de las tres campañas están disponibles para ambos colegios. Proyecta la pantalla y roten quién maneja el computador y quién propone.</p></div>
       <div class="games-by-campaign">
@@ -129,6 +94,11 @@ body{background:#f5f6f7;color:#181a1c;font-family:"Figtree","Segoe UI",system-ui
         </div></section>
       </div>
     </section>
+
+    <section class="section institutions" id="instituciones" aria-labelledby="institutions-title"><div class="section-head"><div><p class="section-kicker">Una base compartida, dos contextos</p><h2 id="institutions-title">Enfoque por institución</h2></div><p>Las campañas de consumo, violencia intrafamiliar y abuso sexual son el eje común. Aquí se muestra el énfasis adicional identificado para cada colegio.</p></div><div class="school-grid">
+      <article class="school-card vicente"><div class="school-top"><span class="school-icon">VD</span><span class="school-tag">Campañas compartidas</span></div><h3>Institución Educativa Vicente Díaz</h3><p>Las campañas de consumo, violencia intrafamiliar y abuso sexual son el eje de trabajo actual. Docentes pueden preparar exposiciones y estudiantes explorar los recursos disponibles.</p><a class="school-link" href="instituciones/institucion-vicente-diaz.html">Entrar al espacio del colegio <span aria-hidden="true">→</span></a></article>
+      <article class="school-card villa"><div class="school-top"><span class="school-icon">VE</span><span class="school-tag">Énfasis complementario</span></div><h3>Institución Educativa Villa Esther</h3><p>Además de las campañas compartidas, tiene un espacio para motivación, proyecto de vida, ICFES y exploración de opciones de educación superior, con herramientas para docentes y estudiantes.</p><div class="school-pills"><span>Motivación</span><span>Proyecto de vida</span><span>ICFES y educación superior</span></div><a class="school-link" href="instituciones/villa-esther/institucion-villa-esther.html">Entrar al espacio del colegio <span aria-hidden="true">→</span></a></article>
+    </div></section>
 
     <section class="section shared" id="redes" aria-labelledby="support-title"><div class="section-head"><div><p class="section-kicker">Acompañar y conectar</p><h2 id="support-title">La prevención también es una red</h2></div><p>Escuchar con respeto y acercar a alguien a una persona de confianza puede ser un primer paso.</p></div><div class="shared-grid">
       <article class="shared-card"><h3>Mapa Seguro</h3><p>Explora espacios y rutas de apoyo. Antes de usarlo en una actividad, revisa que la información local esté actualizada y verificada.</p><div class="pill-row"><span class="pill">Orientación escolar</span><span class="pill">Salud</span><span class="pill">Protección</span><span class="pill">Personas adultas seguras</span></div><a class="btn" href="juegos/mapa-seguro.html">Abrir Mapa Seguro →</a></article>
