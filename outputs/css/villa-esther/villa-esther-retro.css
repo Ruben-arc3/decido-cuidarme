@@ -1,4 +1,12 @@
-/* Cassette futurism con la paleta original de Villa Esther. Solo banner y juegos. */
+/* Cassette futurism moderado y acentos de módulo con la paleta de Villa Esther. */
+.module-grid .module-card {
+  border-top:4px solid var(--accent,#137d73);
+  transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease;
+}
+.module-grid .module-card:hover,
+.module-grid .module-card:focus-visible {
+  border-top-color:var(--accent,#137d73);
+}
 .villa-retro-hero {
   isolation:isolate;
   border:2px solid #137d73;
