@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../css/prevencion-violencia-sexual.css" />
     <link rel="stylesheet" href="../css/prevencion-violencia-sexual-extra.css" />
     <link rel="stylesheet" href="../css/campanas-recursos.css" />
+    <link rel="stylesheet" href="../css/campaign-videos.css" />
     <link rel="stylesheet" href="../css/mobile-campaigns.css" />
   </head>
   <body class="campaign-detail">
@@ -202,91 +203,14 @@
             personales.
           </p>
         </div>
-        <div class="video-grid">
-          <article class="video-card">
-            <div class="video-frame">
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/I8Kopc3XbFg"
-                title="Violencias basadas en género, de Profamilia Colombia"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              ></iframe>
-            </div>
-            <div class="video-copy">
-              <span class="video-source">Profamilia Colombia</span>
-              <h3>Violencias basadas en género</h3>
-              <p>
-                Ayuda a identificar distintas formas de violencia, señales de alerta y la
-                importancia de buscar apoyo.
-              </p>
-              <a
-                href="https://www.youtube.com/watch?v=I8Kopc3XbFg"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Abrir en YouTube ↗</a
-              >
-            </div>
-          </article>
-          <article class="video-card">
-            <div class="video-frame">
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/nYefoHjuV78"
-                title="Cómo prevenir la violencia contra niñas, niños y adolescentes, del ICBF"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              ></iframe>
-            </div>
-            <div class="video-copy">
-              <span class="video-source">ICBF Institucional</span>
-              <h3>Prevenir la violencia contra niñas, niños y adolescentes</h3>
-              <p>
-                Material para conversar sobre prevención y cuidado con estudiantes, familias y
-                docentes.
-              </p>
-              <a
-                href="https://www.youtube.com/watch?v=nYefoHjuV78"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Abrir en YouTube ↗</a
-              >
-            </div>
-          </article>
-          <article class="video-card">
-            <div class="video-frame">
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/K-WGqnWuR18"
-                title="Prevención de violencias sexuales en la primera infancia, de Colombia Aprende"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              ></iframe>
-            </div>
-            <div class="video-copy">
-              <span class="video-source"
-                >Colombia Aprende · recomendado para docentes y familias</span
-              >
-              <h3>Prevención de violencias sexuales</h3>
-              <p>
-                Espacio de aprendizaje sobre prevención, identificación y atención, dirigido
-                principalmente a personas adultas cuidadoras y educadoras.
-              </p>
-              <a
-                href="https://www.youtube.com/watch?v=K-WGqnWuR18"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Abrir en YouTube ↗</a
-              >
-            </div>
-          </article>
+        <div class="video-grid" data-campaign-video-topic="abuso" aria-live="polite">
+          <p class="campaign-video-state" role="status">
+            Buscando videos educativos de hasta 5 minutos…
+          </p>
         </div>
         <p class="video-note">
-          Los videos pertenecen a sus respectivos canales. La reproducción requiere conexión a
-          internet; el resto de esta guía permanece disponible sin iniciar sesión.
+          Las duraciones se verifican con YouTube y solo se muestran videos de hasta 5 minutos. La
+          reproducción requiere conexión a internet.
         </p>
       </section>
 
@@ -394,5 +318,6 @@
         >
       </footer>
     </main>
+    <script src="../js/campaign-videos.js" defer></script>
   </body>
 </html>

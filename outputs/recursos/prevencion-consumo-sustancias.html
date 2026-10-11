@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../css/prevencion-violencia-sexual.css" />
     <link rel="stylesheet" href="../css/prevencion-violencia-sexual-extra.css" />
     <link rel="stylesheet" href="../css/campanas-recursos.css" />
+    <link rel="stylesheet" href="../css/campaign-videos.css" />
     <link rel="stylesheet" href="../css/mobile-campaigns.css" />
   </head>
   <body class="campaign-detail">
@@ -114,63 +115,14 @@
             personales.
           </p>
         </div>
-        <div class="video-grid">
-          <article class="video-card">
-            <div class="video-frame">
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/UQdxR0LLg2A"
-                title="La prevención del consumo de drogas es un trabajo de todos, Ministerio de Justicia de Colombia"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              ></iframe>
-            </div>
-            <div class="video-copy">
-              <span class="video-source">Ministerio de Justicia y del Derecho</span>
-              <h3>La prevención es un trabajo de todos</h3>
-              <p>
-                Invita a pensar cómo el acompañamiento y los entornos de apoyo pueden ayudar a
-                prevenir el consumo temprano.
-              </p>
-              <a
-                href="https://www.youtube.com/watch?v=UQdxR0LLg2A"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Abrir en YouTube ↗</a
-              >
-            </div>
-          </article>
-          <article class="video-card">
-            <div class="video-frame">
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/Q8HXn41Yyr4"
-                title="Cómo afectan las sustancias psicoactivas al cuerpo, ICBF"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              ></iframe>
-            </div>
-            <div class="video-copy">
-              <span class="video-source">ICBF</span>
-              <h3>¿Cómo afectan las SPA al cuerpo?</h3>
-              <p>
-                Un psicólogo explica efectos generales de sustancias legales e ilegales y recomienda
-                conversar con la familia o profesionales de salud.
-              </p>
-              <a
-                href="https://www.icbf.gov.co/mis-manos-te-ensenan/como-afecta-el-consumo-de-sustancias-psicoactivas-nuestro-cuerpo"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Ver el recurso del ICBF ↗</a
-              >
-            </div>
-          </article>
+        <div class="video-grid" data-campaign-video-topic="consumo" aria-live="polite">
+          <p class="campaign-video-state" role="status">
+            Buscando videos educativos de hasta 5 minutos…
+          </p>
         </div>
         <p class="video-note">
-          Los videos requieren conexión a internet. Se cargan de forma diferida al llegar a esta
-          sección.
+          Solo se muestran videos de hasta 5 minutos; sus duraciones se verifican con YouTube. La
+          reproducción requiere conexión a internet.
         </p>
       </section>
       <section class="resources">
@@ -244,5 +196,6 @@
         ><span>Material educativo preventivo; no reemplaza atención profesional.</span>
       </footer>
     </main>
+    <script src="../js/campaign-videos.js" defer></script>
   </body>
 </html>

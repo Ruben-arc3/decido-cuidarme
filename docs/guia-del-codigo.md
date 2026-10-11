@@ -39,6 +39,7 @@ En `outputs/recursos/`, `portal-prevencion.html` organiza los materiales y cada 
 
 ## JavaScript del sitio
 
+- `outputs/js/campaign-videos.js` carga los videos breves de las tres campañas y presenta sus duraciones verificadas.
 - `outputs/js/pages/` contiene la lógica específica extraída de cada HTML. La estructura de carpetas refleja la ubicación de las páginas: `juegos/`, `recursos/` e `instituciones/`.
 - `outputs/js/register-service-worker.js` registra el service worker compartido para habilitar la caché offline.
 
@@ -57,6 +58,7 @@ En `outputs/recursos/`, `portal-prevencion.html` organiza los materiales y cada 
 
 ## Estilos
 
+- `outputs/css/campaign-videos.css` presenta el estado de carga y la etiqueta de duración de los videos de campaña.
 - `outputs/css/pages/` contiene los estilos específicos de cada página, organizados con la misma estructura de carpetas que los HTML. Los sufijos `-02`, `-03` conservan el orden de bloques CSS que antes estaban separados en el documento.
 - `outputs/css/` contiene estilos compartidos, campañas, adaptación móvil e instalación PWA.
 - `outputs/css/villa-esther/` contiene la identidad visual, los módulos digitales, inglés y la biblioteca de videos de Villa Esther.
@@ -66,12 +68,12 @@ Los estilos y scripts nuevos deben guardarse como archivos externos. Evita agreg
 
 ## APIs y funciones de servidor
 
-| Archivo                      | Ruta HTTP            | Uso                                                                      |
-| ---------------------------- | -------------------- | ------------------------------------------------------------------------ |
-| `functions/api/aula.js`      | `POST /api/aula`     | Solicitudes educativas a Gemini con límites y validación en el servidor. |
-| `functions/api/youtube.js`   | `GET /api/youtube`   | Búsqueda de videos educativos permitidos por la aplicación.              |
-| `functions/api/phrases.js`   | `GET /api/phrases`   | Consulta de frases a Tatoeba.                                            |
-| `functions/api/translate.js` | `GET /api/translate` | Traducción con MyMemory.                                                 |
+| Archivo                      | Ruta HTTP            | Uso                                                                             |
+| ---------------------------- | -------------------- | ------------------------------------------------------------------------------- |
+| `functions/api/aula.js`      | `POST /api/aula`     | Solicitudes educativas a Gemini con límites y validación en el servidor.        |
+| `functions/api/youtube.js`   | `GET /api/youtube`   | Búsqueda educativa; las campañas verifican la duración máxima de cinco minutos. |
+| `functions/api/phrases.js`   | `GET /api/phrases`   | Consulta de frases a Tatoeba.                                                   |
+| `functions/api/translate.js` | `GET /api/translate` | Traducción con MyMemory.                                                        |
 
 Las claves `GEMINI_API_KEY` y `YOUTUBE_API_KEY` son secretos de Cloudflare. No se escriben en HTML ni en JavaScript que descarga el navegador. `.dev.vars.example` muestra los nombres de variables para el desarrollo local; `.dev.vars` contiene valores locales y no se sube a Git.
 

@@ -1,0 +1,31 @@
+.campaign-video-state {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 20px;
+  border: 1px dashed #c6d9d1;
+  border-radius: 14px;
+  background: #f8fbf9;
+  color: #536d7b;
+  text-align: center;
+}
+
+.campaign-video-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.campaign-video-duration {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border: 1px solid #cfe4da;
+  border-radius: 999px;
+  background: #eef7f2;
+  color: #176b60;
+  font-size: 0.78rem;
+  font-weight: 750;
+  white-space: nowrap;
+}

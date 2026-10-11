@@ -1,5 +1,5 @@
 // PWA offline layer: precaches local resources and falls back to cached copies when offline.
-const CACHE = "decido-cuidarme-offline-v52";
+const CACHE = "decido-cuidarme-offline-v53";
 const CORE = [
   "./css/pwa-install.css",
   "./assets/vicente-diaz/escudo-vicente-diaz.png",
@@ -162,6 +162,8 @@ const CORE = [
   "./js/pages/recursos/portal-prevencion-actions.js",
   "./js/pages/recursos/portal-prevencion.js",
   "./js/register-service-worker.js",
+  "./css/campaign-videos.css",
+  "./js/campaign-videos.js",
 ];
 
 const OPTIONAL_EXTERNAL = [

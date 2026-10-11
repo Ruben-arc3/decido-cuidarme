@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../css/prevencion-violencia-sexual.css" />
     <link rel="stylesheet" href="../css/prevencion-violencia-sexual-extra.css" />
     <link rel="stylesheet" href="../css/campanas-recursos.css" />
+    <link rel="stylesheet" href="../css/campaign-videos.css" />
     <link rel="stylesheet" href="../css/mobile-campaigns.css" />
   </head>
   <body class="campaign-detail">
@@ -131,63 +132,14 @@
             relatos personales.
           </p>
         </div>
-        <div class="video-grid">
-          <article class="video-card">
-            <div class="video-frame">
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/RYVzqD9_YiQ"
-                title="Cómo prevenir la violencia intrafamiliar, ICBF"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              ></iframe>
-            </div>
-            <div class="video-copy">
-              <span class="video-source">ICBF Institucional</span>
-              <h3>¿Cómo prevenir la violencia intrafamiliar?</h3>
-              <p>
-                Conversación sobre prevención y cuidado en la vida familiar, del programa Mi Familia
-                TV.
-              </p>
-              <a
-                href="https://www.youtube.com/watch?v=RYVzqD9_YiQ"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Abrir en YouTube ↗</a
-              >
-            </div>
-          </article>
-          <article class="video-card">
-            <div class="video-frame">
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/nYefoHjuV78"
-                title="Cómo prevenir la violencia contra niñas, niños y adolescentes, ICBF"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              ></iframe>
-            </div>
-            <div class="video-copy">
-              <span class="video-source">ICBF Institucional</span>
-              <h3>Prevenir la violencia contra niñas, niños y adolescentes</h3>
-              <p>
-                Material para conversar sobre la protección y el papel de las personas adultas y la
-                comunidad.
-              </p>
-              <a
-                href="https://www.youtube.com/watch?v=nYefoHjuV78"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Abrir en YouTube ↗</a
-              >
-            </div>
-          </article>
+        <div class="video-grid" data-campaign-video-topic="violencia-familiar" aria-live="polite">
+          <p class="campaign-video-state" role="status">
+            Buscando videos educativos de hasta 5 minutos…
+          </p>
         </div>
         <p class="video-note">
-          Los videos requieren conexión a internet. Se cargan de forma diferida al llegar a esta
-          sección.
+          Solo se muestran videos de hasta 5 minutos; sus duraciones se verifican con YouTube. La
+          reproducción requiere conexión a internet.
         </p>
       </section>
       <section class="resources">
@@ -256,5 +208,6 @@
         ><span>Material educativo preventivo; no reemplaza atención profesional.</span>
       </footer>
     </main>
+    <script src="../js/campaign-videos.js" defer></script>
   </body>
 </html>
