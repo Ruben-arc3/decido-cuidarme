@@ -1,1 +1,34 @@
-.pwa-install-button{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:10px 14px;border:1px solid #ffffff70;border-radius:12px;background:#fff;color:#12364d;font:800 13px/1.25 system-ui,-apple-system,"Segoe UI",sans-serif;cursor:pointer;box-shadow:0 5px 14px #10243b18}.pwa-install-button:hover{transform:translateY(-1px)}.pwa-install-button:focus-visible{outline:3px solid #ffd66d;outline-offset:3px}.pwa-install-status{display:block;flex-basis:100%;margin:0;color:inherit;font-size:12px;line-height:1.45}
+/* Shared install button and status styles for the three PWA entry points. */
+.pwa-install-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 10px 14px;
+  border: 1px solid #ffffff70;
+  border-radius: 12px;
+  background: #fff;
+  color: #12364d;
+  font:
+    800 13px/1.25 system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  cursor: pointer;
+  box-shadow: 0 5px 14px #10243b18;
+}
+.pwa-install-button:hover {
+  transform: translateY(-1px);
+}
+.pwa-install-button:focus-visible {
+  outline: 3px solid #ffd66d;
+  outline-offset: 3px;
+}
+.pwa-install-status {
+  display: block;
+  flex-basis: 100%;
+  margin: 0;
+  color: inherit;
+  font-size: 12px;
+  line-height: 1.45;
+}

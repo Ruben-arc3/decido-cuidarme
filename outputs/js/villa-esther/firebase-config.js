@@ -7,6 +7,6 @@ export const firebaseConfig = {
   appId: "1:105251165973:web:e5bbfb045b68b24d5e3b1c",
   messagingSenderId: "105251165973",
   storageBucket: "camp2-93288.firebasestorage.app",
-  measurementId: "G-ZBM5FJ4VG4"
+  measurementId: "G-ZBM5FJ4VG4",
 };
 export const recaptchaEnterpriseSiteKey = "REEMPLAZAR_SITE_KEY_RECAPTCHA_ENTERPRISE";

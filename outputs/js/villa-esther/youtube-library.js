@@ -1,3 +1,4 @@
+// Video library UI: searches module-specific educational videos and controls playback.
 (() => {
   const form = document.getElementById("villaVideoSearch");
   const topic = document.getElementById("villaVideoTopic");
@@ -21,7 +22,8 @@
     play.type = "button";
     play.className = "villa-video-play";
     play.setAttribute("aria-label", "Reproducir: " + video.title);
-    play.innerHTML = '<span aria-hidden="true">▶</span><span class="visually-hidden">Reproducir video</span>';
+    play.innerHTML =
+      '<span aria-hidden="true">▶</span><span class="visually-hidden">Reproducir video</span>';
     media.append(image, play);
     const body = document.createElement("div");
     body.className = "villa-video-body card-body";
@@ -39,7 +41,8 @@
       frame.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(video.id)}?autoplay=1&rel=0`;
       frame.title = video.title;
       frame.loading = "lazy";
-      frame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      frame.allow =
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
       frame.referrerPolicy = "strict-origin-when-cross-origin";
       frame.allowFullscreen = true;
       const player = document.createElement("div");
@@ -62,7 +65,7 @@
     return article;
   };
 
-  form.addEventListener("submit", async event => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const selectedTopic = topic?.value || form.dataset.videoTopic;
     if (!selectedTopic) {
@@ -77,7 +80,9 @@
     results.replaceChildren();
     status.textContent = "Buscando videos educativos…";
     try {
-      const response = await fetch(`/api/youtube?${params}`, { headers: { Accept: "application/json" } });
+      const response = await fetch(`/api/youtube?${params}`, {
+        headers: { Accept: "application/json" },
+      });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "No se pudo completar la búsqueda.");
       if (!data.videos?.length) {
@@ -86,13 +91,19 @@
       }
       const fragment = document.createDocumentFragment();
       const topicNames = {
-        proyecto: "Proyecto de vida", carreras: "Opciones de estudio", icfes: "Saber 11",
-        laboral: "Mundo laboral", digital: "Habilidades digitales", ingles: "Inglés",
-        consumo: "Prevención del consumo", violencia: "Prevención de la violencia",
-        abuso: "Prevención de la violencia sexual"
+        proyecto: "Proyecto de vida",
+        carreras: "Opciones de estudio",
+        icfes: "Saber 11",
+        laboral: "Mundo laboral",
+        digital: "Habilidades digitales",
+        ingles: "Inglés",
+        consumo: "Prevención del consumo",
+        violencia: "Prevención de la violencia",
+        abuso: "Prevención de la violencia sexual",
       };
-      const topicLabel = topic?.selectedOptions?.[0]?.textContent || topicNames[selectedTopic] || selectedTopic;
-      data.videos.forEach(video => fragment.append(card(video, topicLabel)));
+      const topicLabel =
+        topic?.selectedOptions?.[0]?.textContent || topicNames[selectedTopic] || selectedTopic;
+      data.videos.forEach((video) => fragment.append(card(video, topicLabel)));
       results.append(fragment);
       status.textContent = `${data.videos.length} videos encontrados. Revisa cada contenido antes de usarlo en clase.`;
     } catch (error) {

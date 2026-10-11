@@ -1,29 +1,36 @@
+// Sends learning and career-guidance prompts to the server-side Gemini endpoint.
 (() => {
-  window.aulaGemini = async payload => {
+  window.aulaGemini = async (payload) => {
     const response = await fetch("/api/aula", {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
     });
     const data = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(data.error || `Gemini respondió con error (${response.status}).`);
+    if (!response.ok)
+      throw new Error(data.error || `Gemini respondió con error (${response.status}).`);
     return data;
   };
 
-  const $ = id => document.getElementById(id);
-  const launcher = $("careerLauncher"), panel = $("careerPanel");
-  const form = $("careerChatForm"), log = $("careerChatLog");
+  const $ = (id) => document.getElementById(id);
+  const launcher = $("careerLauncher"),
+    panel = $("careerPanel");
+  const form = $("careerChatForm"),
+    log = $("careerChatLog");
   if (!launcher || !panel || !form || !log) return;
 
-  const input = $("careerChatInput"), status = $("careerChatStatus");
-  const send = $("careerChatSend"), clear = $("careerChatClear");
+  const input = $("careerChatInput"),
+    status = $("careerChatStatus");
+  const send = $("careerChatSend"),
+    clear = $("careerChatClear");
   const chat = { messages: [], busy: false };
   status.textContent = "Disponible sin cuenta. No escribas datos personales.";
 
   function showPanel(open) {
     panel.hidden = !open;
     launcher.setAttribute("aria-expanded", String(open));
-    if (open) input.focus(); else launcher.focus();
+    if (open) input.focus();
+    else launcher.focus();
   }
   function addMessage(role, text) {
     const message = document.createElement("div");
@@ -35,11 +42,11 @@
 
   launcher.addEventListener("click", () => showPanel(panel.hidden));
   $("careerClose")?.addEventListener("click", () => showPanel(false));
-  document.addEventListener("keydown", event => {
+  document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && !panel.hidden) showPanel(false);
   });
 
-  form.addEventListener("submit", async event => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
     if (chat.busy) return;
     const text = input.value.trim();
@@ -53,7 +60,10 @@
     addMessage("user", text);
     input.value = "";
     try {
-      const result = await window.aulaGemini({ mode: "vocational", messages: chat.messages.slice(-10) });
+      const result = await window.aulaGemini({
+        mode: "vocational",
+        messages: chat.messages.slice(-10),
+      });
       chat.messages.push({ role: "assistant", text: result.answer });
       addMessage("assistant", result.answer);
       chat.messages = chat.messages.slice(-10);
@@ -75,11 +85,17 @@
   clear?.addEventListener("click", () => {
     chat.messages = [];
     log.replaceChildren();
-    addMessage("assistant", "Conversación nueva. ¿Qué actividad, tema o problema te gusta explorar?");
+    addMessage(
+      "assistant",
+      "Conversación nueva. ¿Qué actividad, tema o problema te gusta explorar?",
+    );
     status.textContent = "Conversación borrada de esta página.";
   });
 
-  document.querySelectorAll("[data-career-prompt]").forEach(button => {
-    button.addEventListener("click", () => { input.value = button.dataset.careerPrompt; input.focus(); });
+  document.querySelectorAll("[data-career-prompt]").forEach((button) => {
+    button.addEventListener("click", () => {
+      input.value = button.dataset.careerPrompt;
+      input.focus();
+    });
   });
 })();

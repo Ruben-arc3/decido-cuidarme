@@ -1,14 +1,21 @@
-const json = (data, status = 200, cache = "public, max-age=86400") => Response.json(data, {
-  status,
-  headers: { "Cache-Control": cache }
-});
+// Cloudflare Pages proxy for Spanish-English translation requests to MyMemory.
+const json = (data, status = 200, cache = "public, max-age=86400") =>
+  Response.json(data, {
+    status,
+    headers: { "Cache-Control": cache },
+  });
 
 export async function onRequestGet({ request }) {
   const searchParams = new URL(request.url).searchParams;
   const text = searchParams.get("text")?.trim() || "";
   const source = searchParams.get("source") || "en";
   const target = searchParams.get("target") || "es";
-  if (![["en", "es"], ["es", "en"]].some(([from, to]) => source === from && target === to)) {
+  if (
+    ![
+      ["en", "es"],
+      ["es", "en"],
+    ].some(([from, to]) => source === from && target === to)
+  ) {
     return json({ error: "Par de idiomas no permitido." }, 400, "no-store");
   }
   const byteLength = new TextEncoder().encode(text).length;
@@ -19,12 +26,21 @@ export async function onRequestGet({ request }) {
   const params = new URLSearchParams({ q: text, langpair: `${source}|${target}` });
   try {
     const upstream = await fetch(`https://api.mymemory.translated.net/get?${params}`, {
-      headers: { Accept: "application/json" }
+      headers: { Accept: "application/json" },
     });
     const payload = await upstream.json();
     const translated = payload.responseData?.translatedText;
-    if (!upstream.ok || Number(payload.responseStatus) !== 200 || typeof translated !== "string" || !translated.trim()) {
-      return json({ error: "MyMemory no devolvió una traducción." }, upstream.ok ? 502 : upstream.status, "no-store");
+    if (
+      !upstream.ok ||
+      Number(payload.responseStatus) !== 200 ||
+      typeof translated !== "string" ||
+      !translated.trim()
+    ) {
+      return json(
+        { error: "MyMemory no devolvió una traducción." },
+        upstream.ok ? 502 : upstream.status,
+        "no-store",
+      );
     }
     return json({ translated: translated.trim(), source: "MyMemory" });
   } catch {

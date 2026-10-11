@@ -1,45 +1,53 @@
 # Arquitectura
 
-## Componentes
+## Recorrido de una solicitud
 
 ```mermaid
 flowchart TD
-    N[Estudiante o docente en el navegador] --> P[Cloudflare Pages: HTML, CSS, JavaScript y recursos]
-    P --> SW[Service worker: caché de páginas y materiales estáticos]
-    P --> CF[Pages Functions]
-    CF --> G[Gemini API]
-    CF --> T[Tatoeba API]
-    CF --> M[MyMemory API]
-    P --> FA[Firebase Authentication]
-    P --> FS[Firestore, con reglas de acceso]
-    P --> W[API pública de Wikimedia en los módulos digitales]
+    U[Estudiante o docente] --> WEB[Cloudflare Pages: HTML, CSS y JavaScript]
+    WEB --> SW[Service worker: caché estática y modo sin conexión]
+    WEB --> API[Pages Functions]
+    API --> GEM[Gemini]
+    API --> YT[YouTube Data API]
+    API --> TA[Tatoeba]
+    API --> MM[MyMemory]
+    WEB --> AUTH[Firebase Authentication]
+    WEB --> DB[Firestore con reglas de acceso]
+    WEB --> WIKI[API pública de Wikimedia]
 ```
 
-### Sitio estático
+## Sitio estático
 
-`wrangler.jsonc` publica `outputs/`. Allí están el portal, las páginas institucionales, los juegos, los recursos y el service worker. Las páginas Villa Esther están agrupadas en `outputs/instituciones/villa-esther/`; sus estilos, scripts e imágenes propios están en carpetas `villa-esther` bajo `css/`, `js/` y `assets/`. Vicente Díaz tiene sus recursos de identidad en carpetas `vicente-diaz`.
+`wrangler.jsonc` publica el directorio `outputs/`. Allí viven el portal, las páginas institucionales, los juegos, los recursos, los estilos, los scripts y el service worker. No se ejecuta una compilación para crear el sitio.
 
-### Funciones de Cloudflare
+Villa Esther está organizada dentro de `outputs/instituciones/villa-esther/`. Sus archivos propios también se agrupan en `outputs/css/villa-esther/`, `outputs/js/villa-esther/` y `outputs/assets/villa-esther/`. Vicente Díaz tiene su página en `outputs/instituciones/` y sus recursos de marca en carpetas `vicente-diaz` bajo `css/` y `assets/`.
 
-- `functions/api/aula.js` expone `POST /api/aula`. Comprueba la sesión de Firebase y utiliza el secreto `GEMINI_API_KEY` para solicitar contenido a Gemini.
-- `functions/api/phrases.js` expone `GET /api/phrases` y consulta frases de Tatoeba.
-- `functions/api/translate.js` expone `GET /api/translate` y consulta MyMemory para traducir de español a inglés y viceversa.
+## API y funciones de servidor
 
-Las claves de proveedor no pertenecen al JavaScript servido al navegador. La clave de Gemini se lee como variable secreta en Cloudflare.
+Cloudflare Pages detecta los endpoints de `functions/api/`:
 
-### Firebase
+- `aula.js` expone `POST /api/aula`, valida entradas y la sesión Firebase, aplica límites de uso y llama a Gemini.
+- `youtube.js` expone `GET /api/youtube` y busca videos de los temas educativos permitidos.
+- `phrases.js` expone `GET /api/phrases` y consulta frases de Tatoeba.
+- `translate.js` expone `GET /api/translate` y consulta MyMemory para traducir entre español e inglés.
 
-El navegador usa Firebase Authentication y Firestore en el aula digital. Las reglas están en `firestore.rules`; las funciones administrativas y callable están en `firebase-functions/`. Los roles docentes se asignan desde una herramienta de administración, no desde el formulario público.
+Las claves `GEMINI_API_KEY` y `YOUTUBE_API_KEY` se guardan como secretos de Cloudflare. No deben aparecer en archivos que descarga el navegador.
 
-### Funcionamiento sin conexión
+## Firebase
 
-El service worker almacena páginas y recursos estáticos seleccionados. El contenido ya descargado puede abrirse sin conexión. Inicio de sesión, sincronización, Gemini, Tatoeba y MyMemory necesitan internet. El servidor estático local no ejecuta Pages Functions.
+El cliente usa Firebase Authentication y Firestore para las cuentas, las clases y el progreso del aula de Villa Esther. `firestore.rules` controla cada lectura y escritura. `firebase-functions/` contiene funciones de servidor; `set-teacher-role.js` es una herramienta administrativa que asigna claims docentes.
+
+La configuración Firebase del navegador está en `outputs/js/villa-esther/firebase-config.js`. Identifica la app web y no reemplaza las reglas de Firestore ni debe contener secretos de proveedor.
+
+## Modo sin conexión y aplicaciones instalables
+
+`outputs/service-worker.js` almacena páginas y recursos estáticos listados en `CORE`. Los manifiestos `manifest.webmanifest`, `manifest-villa-esther.webmanifest` y `manifest-vicente-diaz.webmanifest` identifican las instalaciones independientes de la plataforma general y de cada institución.
+
+El contenido local precargado puede abrirse sin conexión después de visitar el sitio con internet. Gemini, YouTube, traducciones externas, autenticación y sincronización requieren internet. El servidor estático local no ejecuta Pages Functions.
 
 ## Decisiones de diseño
 
-- Sitio sin un paso de compilación para simplificar el despliegue y poder inspeccionar cada HTML.
-- Recursos institucionales aislados por carpeta para facilitar mantenimiento y branding.
-- Pages Functions como capa intermediaria para APIs que requieren secretos o manejo del servidor.
-- Contenido generado por IA y traducciones automáticas tratados como material de apoyo que requiere revisión.
-
-- `functions/api/youtube.js` expone `GET /api/youtube` para buscar videos de temas educativos predeterminados de Villa Esther. Aplica idioma español, región Colombia, contenido restringido y videos insertables; la clave `YOUTUBE_API_KEY` permanece como secreto de Cloudflare.
+- Mantener el sitio estático para facilitar su inspección y publicación.
+- Separar los recursos institucionales para conservar su identidad y facilitar cambios por colegio.
+- Usar Pages Functions para servicios externos que requieren claves o validación de servidor.
+- Tratar las respuestas de IA y traducción automática como material de apoyo sujeto a revisión.

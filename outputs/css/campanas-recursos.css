@@ -1,13 +1,93 @@
-.campaign-games{margin-top:34px;padding:24px;border:1px solid #dce7e6;border-radius:18px;background:#edf4f1}
-.campaign-games h2{margin:0;font-size:clamp(23px,3.5vw,32px);line-height:1.15;letter-spacing:-.03em}
-.campaign-games>div:first-child>p:not(.eyebrow){max-width:650px;margin:7px 0 16px;color:#587086;font-size:13px}
-.mini-game-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.mini-game-card{min-height:138px;display:flex;flex-direction:column;align-items:flex-start;padding:16px;border:1px solid #d8e4df;border-top:3px solid #148875;border-radius:13px;background:#fff;text-decoration:none;box-shadow:0 5px 15px #15344d08;transition:transform .16s,border-color .16s,box-shadow .16s}
-.mini-game-card:hover{transform:translateY(-2px);border-color:#a6c9bc;box-shadow:0 10px 22px #15344d12}
-.mini-game-card span{color:#087e78;font-size:9px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
-.mini-game-card strong{margin-top:9px;font-size:15px;line-height:1.3}
-.mini-game-card small{margin-top:auto;padding-top:10px;color:#587086;font-size:11px}
-.all-games-link{display:inline-flex;margin-top:13px;color:#087e78;font-size:11px;font-weight:900;text-decoration:none}
-.single-game{grid-template-columns:minmax(220px,320px)}
-@media(max-width:760px){.mini-game-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:500px){.campaign-games{padding:18px}.mini-game-grid,.single-game{grid-template-columns:1fr}.mini-game-card{min-height:120px}}
+/* Shared presentation for campaign and resource cards. */
+.campaign-games {
+  margin-top: 34px;
+  padding: 24px;
+  border: 1px solid #dce7e6;
+  border-radius: 18px;
+  background: #edf4f1;
+}
+.campaign-games h2 {
+  margin: 0;
+  font-size: clamp(23px, 3.5vw, 32px);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+.campaign-games > div:first-child > p:not(.eyebrow) {
+  max-width: 650px;
+  margin: 7px 0 16px;
+  color: #587086;
+  font-size: 13px;
+}
+.mini-game-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.mini-game-card {
+  min-height: 138px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  border: 1px solid #d8e4df;
+  border-top: 3px solid #148875;
+  border-radius: 13px;
+  background: #fff;
+  text-decoration: none;
+  box-shadow: 0 5px 15px #15344d08;
+  transition:
+    transform 0.16s,
+    border-color 0.16s,
+    box-shadow 0.16s;
+}
+.mini-game-card:hover {
+  transform: translateY(-2px);
+  border-color: #a6c9bc;
+  box-shadow: 0 10px 22px #15344d12;
+}
+.mini-game-card span {
+  color: #087e78;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.mini-game-card strong {
+  margin-top: 9px;
+  font-size: 15px;
+  line-height: 1.3;
+}
+.mini-game-card small {
+  margin-top: auto;
+  padding-top: 10px;
+  color: #587086;
+  font-size: 11px;
+}
+.all-games-link {
+  display: inline-flex;
+  margin-top: 13px;
+  color: #087e78;
+  font-size: 11px;
+  font-weight: 900;
+  text-decoration: none;
+}
+.single-game {
+  grid-template-columns: minmax(220px, 320px);
+}
+@media (max-width: 760px) {
+  .mini-game-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 500px) {
+  .campaign-games {
+    padding: 18px;
+  }
+  .mini-game-grid,
+  .single-game {
+    grid-template-columns: 1fr;
+  }
+  .mini-game-card {
+    min-height: 120px;
+  }
+}

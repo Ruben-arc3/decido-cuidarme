@@ -8,142 +8,502 @@
     padding: 9px 12px;
   }
 
-  body.campaign-detail .brand { min-width: 0; gap: 8px; }
-  body.campaign-detail .brand-mark { width: 35px; height: 35px; flex: 0 0 35px; border-radius: 10px; }
-  body.campaign-detail .brand strong { font-size: 12px; }
-  body.campaign-detail .brand small { overflow: hidden; max-width: 175px; font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
-  body.campaign-detail .topbar nav { justify-content: flex-end; gap: 2px; }
-  body.campaign-detail .topbar nav a { padding: 8px 9px; font-size: 10px; white-space: nowrap; }
+  body.campaign-detail .brand {
+    min-width: 0;
+    gap: 8px;
+  }
+  body.campaign-detail .brand-mark {
+    width: 35px;
+    height: 35px;
+    flex: 0 0 35px;
+    border-radius: 10px;
+  }
+  body.campaign-detail .brand strong {
+    font-size: 12px;
+  }
+  body.campaign-detail .brand small {
+    overflow: hidden;
+    max-width: 175px;
+    font-size: 9px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  body.campaign-detail .topbar nav {
+    justify-content: flex-end;
+    gap: 2px;
+  }
+  body.campaign-detail .topbar nav a {
+    padding: 8px 9px;
+    font-size: 10px;
+    white-space: nowrap;
+  }
 
-  body.campaign-detail .page-shell { width: calc(100% - 24px); margin: 13px auto 28px; }
-  body.campaign-detail .back-link { min-height: 38px; display: inline-flex; align-items: center; margin-bottom: 9px; font-size: 11px; }
-  body.campaign-detail .hero { padding: 23px 19px; border-radius: 19px; }
-  body.campaign-detail .hero h1 { max-width: 100%; font-size: clamp(31px, 9vw, 42px); line-height: 1.04; }
-  body.campaign-detail .hero > p:not(.eyebrow) { font-size: 14px; line-height: 1.5; }
-  body.campaign-detail .hero .button { min-height: 42px; margin-top: 16px; padding: 10px 13px; font-size: 11px; }
+  body.campaign-detail .page-shell {
+    width: calc(100% - 24px);
+    margin: 13px auto 28px;
+  }
+  body.campaign-detail .back-link {
+    min-height: 38px;
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 9px;
+    font-size: 11px;
+  }
+  body.campaign-detail .hero {
+    padding: 23px 19px;
+    border-radius: 19px;
+  }
+  body.campaign-detail .hero h1 {
+    max-width: 100%;
+    font-size: clamp(31px, 9vw, 42px);
+    line-height: 1.04;
+  }
+  body.campaign-detail .hero > p:not(.eyebrow) {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  body.campaign-detail .hero .button {
+    min-height: 42px;
+    margin-top: 16px;
+    padding: 10px 13px;
+    font-size: 11px;
+  }
 
-  body.campaign-detail .content-section { padding-top: 34px; }
-  body.campaign-detail .section-heading { display: block; margin-bottom: 13px; }
+  body.campaign-detail .content-section {
+    padding-top: 34px;
+  }
+  body.campaign-detail .section-heading {
+    display: block;
+    margin-bottom: 13px;
+  }
   body.campaign-detail .section-heading h2,
   body.campaign-detail .response h2,
   body.campaign-detail .resources h2,
-  body.campaign-detail .campaign-games h2 { font-size: 25px; line-height: 1.12; }
-  body.campaign-detail .section-heading > p { margin-top: 7px; font-size: 12px; }
-  body.campaign-detail .learning-grid { grid-template-columns: minmax(0, 1fr); gap: 9px; }
-  body.campaign-detail .learning-card { min-height: 0; padding: 16px; border-radius: 13px; }
-  body.campaign-detail .learning-card h3 { margin: 9px 0 4px; font-size: 16px; }
-  body.campaign-detail .learning-card p { font-size: 12px; line-height: 1.5; }
+  body.campaign-detail .campaign-games h2 {
+    font-size: 25px;
+    line-height: 1.12;
+  }
+  body.campaign-detail .section-heading > p {
+    margin-top: 7px;
+    font-size: 12px;
+  }
+  body.campaign-detail .learning-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 9px;
+  }
+  body.campaign-detail .learning-card {
+    min-height: 0;
+    padding: 16px;
+    border-radius: 13px;
+  }
+  body.campaign-detail .learning-card h3 {
+    margin: 9px 0 4px;
+    font-size: 16px;
+  }
+  body.campaign-detail .learning-card p {
+    font-size: 12px;
+    line-height: 1.5;
+  }
 
-  body.campaign-detail .response { grid-template-columns: minmax(0, 1fr); gap: 13px; margin-top: 14px; padding: 17px; border-radius: 15px; }
-  body.campaign-detail .response p { font-size: 12px; line-height: 1.5; }
-  body.campaign-detail .help-box { padding: 15px; }
-  body.campaign-detail .help-box strong { font-size: 18px; }
-  body.campaign-detail .help-box a { display: inline-block; min-height: 36px; padding-top: 9px; }
+  body.campaign-detail .response {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 13px;
+    margin-top: 14px;
+    padding: 17px;
+    border-radius: 15px;
+  }
+  body.campaign-detail .response p {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  body.campaign-detail .help-box {
+    padding: 15px;
+  }
+  body.campaign-detail .help-box strong {
+    font-size: 18px;
+  }
+  body.campaign-detail .help-box a {
+    display: inline-block;
+    min-height: 36px;
+    padding-top: 9px;
+  }
 
-  body.campaign-detail .myth-grid { grid-template-columns: minmax(0, 1fr); gap: 9px; }
-  body.campaign-detail .myth-card { padding: 15px; }
+  body.campaign-detail .myth-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 9px;
+  }
+  body.campaign-detail .myth-card {
+    padding: 15px;
+  }
   body.campaign-detail .digital-guide,
-  body.campaign-detail .teaching-tools { grid-template-columns: minmax(0, 1fr); gap: 12px; margin-top: 14px; padding: 17px; border-radius: 15px; }
+  body.campaign-detail .teaching-tools {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    margin-top: 14px;
+    padding: 17px;
+    border-radius: 15px;
+  }
   body.campaign-detail .digital-guide h2,
-  body.campaign-detail .teaching-tools h2 { font-size: 23px; }
-  body.campaign-detail .digital-guide ol { padding-left: 19px; font-size: 12px; }
-  body.campaign-detail .teaching-steps { grid-template-columns: minmax(0, 1fr); gap: 8px; margin-top: 12px; }
-  body.campaign-detail .teaching-steps article { padding: 11px; }
-  body.campaign-detail .teaching-reminder { margin-bottom: 0; }
+  body.campaign-detail .teaching-tools h2 {
+    font-size: 23px;
+  }
+  body.campaign-detail .digital-guide ol {
+    padding-left: 19px;
+    font-size: 12px;
+  }
+  body.campaign-detail .teaching-steps {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+    margin-top: 12px;
+  }
+  body.campaign-detail .teaching-steps article {
+    padding: 11px;
+  }
+  body.campaign-detail .teaching-reminder {
+    margin-bottom: 0;
+  }
 
-  body.campaign-detail .video-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
-  body.campaign-detail .video-card { border-radius: 13px; }
-  body.campaign-detail .video-frame { aspect-ratio: 16 / 9; }
-  body.campaign-detail .video-copy { padding: 14px; }
-  body.campaign-detail .video-copy h3 { font-size: 16px; }
-  body.campaign-detail .video-copy p { font-size: 12px; line-height: 1.5; }
-  body.campaign-detail .video-copy > a { display: inline-flex; min-height: 36px; align-items: center; }
+  body.campaign-detail .video-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+  body.campaign-detail .video-card {
+    border-radius: 13px;
+  }
+  body.campaign-detail .video-frame {
+    aspect-ratio: 16 / 9;
+  }
+  body.campaign-detail .video-copy {
+    padding: 14px;
+  }
+  body.campaign-detail .video-copy h3 {
+    font-size: 16px;
+  }
+  body.campaign-detail .video-copy p {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  body.campaign-detail .video-copy > a {
+    display: inline-flex;
+    min-height: 36px;
+    align-items: center;
+  }
 
-  body.campaign-detail .resources { grid-template-columns: minmax(0, 1fr); gap: 12px; margin-top: 25px; padding: 17px; border-radius: 15px; }
-  body.campaign-detail .resource-links { grid-template-columns: minmax(0, 1fr); gap: 8px; }
-  body.campaign-detail .resource-links a { padding: 12px; }
-  body.campaign-detail .resource-links strong { font-size: 12px; }
-  body.campaign-detail .campaign-games { margin-top: 25px; padding: 17px; border-radius: 15px; }
-  body.campaign-detail .campaign-games > div:first-child > p:not(.eyebrow) { margin: 6px 0 12px; font-size: 12px; }
+  body.campaign-detail .resources {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    margin-top: 25px;
+    padding: 17px;
+    border-radius: 15px;
+  }
+  body.campaign-detail .resource-links {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+  body.campaign-detail .resource-links a {
+    padding: 12px;
+  }
+  body.campaign-detail .resource-links strong {
+    font-size: 12px;
+  }
+  body.campaign-detail .campaign-games {
+    margin-top: 25px;
+    padding: 17px;
+    border-radius: 15px;
+  }
+  body.campaign-detail .campaign-games > div:first-child > p:not(.eyebrow) {
+    margin: 6px 0 12px;
+    font-size: 12px;
+  }
   body.campaign-detail .mini-game-grid,
-  body.campaign-detail .mini-game-grid.single-game { grid-template-columns: minmax(0, 1fr); gap: 8px; }
-  body.campaign-detail .mini-game-card { min-height: 0; padding: 14px; border-radius: 12px; }
-  body.campaign-detail .mini-game-card strong { margin-top: 6px; font-size: 14px; }
-  body.campaign-detail .mini-game-card small { padding-top: 6px; font-size: 11px; }
-  body.campaign-detail .all-games-link { min-height: 38px; align-items: center; }
+  body.campaign-detail .mini-game-grid.single-game {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+  body.campaign-detail .mini-game-card {
+    min-height: 0;
+    padding: 14px;
+    border-radius: 12px;
+  }
+  body.campaign-detail .mini-game-card strong {
+    margin-top: 6px;
+    font-size: 14px;
+  }
+  body.campaign-detail .mini-game-card small {
+    padding-top: 6px;
+    font-size: 11px;
+  }
+  body.campaign-detail .all-games-link {
+    min-height: 38px;
+    align-items: center;
+  }
 
-  body.campaign-detail .classroom-note { margin-top: 13px; padding: 14px; font-size: 11px; line-height: 1.5; }
-  body.campaign-detail footer { display: grid; gap: 5px; margin-top: 22px; font-size: 10px; }
+  body.campaign-detail .classroom-note {
+    margin-top: 13px;
+    padding: 14px;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  body.campaign-detail footer {
+    display: grid;
+    gap: 5px;
+    margin-top: 22px;
+    font-size: 10px;
+  }
 }
 
 @media (max-width: 380px) {
-  body.campaign-detail .topbar { grid-template-columns: minmax(0, 1fr); }
-  body.campaign-detail .topbar nav { justify-content: flex-start; }
-  body.campaign-detail .hero h1 { font-size: 32px; }
+  body.campaign-detail .topbar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  body.campaign-detail .topbar nav {
+    justify-content: flex-start;
+  }
+  body.campaign-detail .hero h1 {
+    font-size: 32px;
+  }
 
-  body > header.topbar .topinner.container { width: 100%; }
+  body > header.topbar .topinner.container {
+    width: 100%;
+  }
 }
 
 @media (max-width: 600px) {
-  body:not(.campaign-detail) .shell { width: calc(100% - 24px); }
-  body:not(.campaign-detail) .topinner.container { width: 100%; padding-inline: 12px; }
-  body:not(.campaign-detail) .brand { gap: 8px; }
-  body:not(.campaign-detail) .brand strong { font-size: 12px; }
-  body:not(.campaign-detail) .brand small { font-size: 9px; }
-  body:not(.campaign-detail) .mark { width: 35px; height: 35px; flex: 0 0 35px; border-radius: 10px; font-size: 18px; }
-  body:not(.campaign-detail) .topinner .navbar-toggler { min-width: 42px; min-height: 42px; padding: 8px; }
-  body:not(.campaign-detail) .topinner .navbar-collapse { margin-top: 8px; padding: 6px 0 2px; border-top: 1px solid #dce7e6; }
-  body:not(.campaign-detail) .topinner .nav { gap: 3px; padding-top: 5px; }
-  body:not(.campaign-detail) .topinner .nav a { min-height: 42px; display: flex; align-items: center; padding: 9px 11px; border-radius: 10px; font-size: 12px; }
-  body:not(.campaign-detail) .topinner .nav .nav-cta { justify-content: center; margin-top: 3px; }
-  body:not(.campaign-detail) .hero { margin-top: 12px; padding: 23px 18px; border-radius: 19px; }
-  body:not(.campaign-detail) .hero-layout { grid-template-columns: minmax(0, 1fr); gap: 16px; }
-  body:not(.campaign-detail) .hero h1 { font-size: clamp(34px, 10vw, 42px); line-height: 1.04; }
-  body:not(.campaign-detail) .hero p { font-size: 14px; line-height: 1.5; }
-  body:not(.campaign-detail) .hero-panel { padding: 15px; border-radius: 15px; }
-  body:not(.campaign-detail) .hero-shortcuts { display: grid; gap: 5px; }
-  body:not(.campaign-detail) .hero-shortcuts a { min-height: 40px; display: flex; align-items: center; justify-content: space-between; padding: 8px 10px; border-radius: 9px; font-size: 11px; }
-  body:not(.campaign-detail) .actions { gap: 8px; margin-top: 18px; }
-  body:not(.campaign-detail) .actions .btn { min-height: 42px; padding: 10px 12px; font-size: 11px; }
-  body:not(.campaign-detail) .section { padding-top: 40px; }
-  body:not(.campaign-detail) .section-head { margin-bottom: 13px; }
-  body:not(.campaign-detail) .section h2 { font-size: 26px; }
-  body:not(.campaign-detail) .section-head > p { font-size: 12px; }
+  body:not(.campaign-detail) .shell {
+    width: calc(100% - 24px);
+  }
+  body:not(.campaign-detail) .topinner.container {
+    width: 100%;
+    padding-inline: 12px;
+  }
+  body:not(.campaign-detail) .brand {
+    gap: 8px;
+  }
+  body:not(.campaign-detail) .brand strong {
+    font-size: 12px;
+  }
+  body:not(.campaign-detail) .brand small {
+    font-size: 9px;
+  }
+  body:not(.campaign-detail) .mark {
+    width: 35px;
+    height: 35px;
+    flex: 0 0 35px;
+    border-radius: 10px;
+    font-size: 18px;
+  }
+  body:not(.campaign-detail) .topinner .navbar-toggler {
+    min-width: 42px;
+    min-height: 42px;
+    padding: 8px;
+  }
+  body:not(.campaign-detail) .topinner .navbar-collapse {
+    margin-top: 8px;
+    padding: 6px 0 2px;
+    border-top: 1px solid #dce7e6;
+  }
+  body:not(.campaign-detail) .topinner .nav {
+    gap: 3px;
+    padding-top: 5px;
+  }
+  body:not(.campaign-detail) .topinner .nav a {
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    padding: 9px 11px;
+    border-radius: 10px;
+    font-size: 12px;
+  }
+  body:not(.campaign-detail) .topinner .nav .nav-cta {
+    justify-content: center;
+    margin-top: 3px;
+  }
+  body:not(.campaign-detail) .hero {
+    margin-top: 12px;
+    padding: 23px 18px;
+    border-radius: 19px;
+  }
+  body:not(.campaign-detail) .hero-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+  body:not(.campaign-detail) .hero h1 {
+    font-size: clamp(34px, 10vw, 42px);
+    line-height: 1.04;
+  }
+  body:not(.campaign-detail) .hero p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  body:not(.campaign-detail) .hero-panel {
+    padding: 15px;
+    border-radius: 15px;
+  }
+  body:not(.campaign-detail) .hero-shortcuts {
+    display: grid;
+    gap: 5px;
+  }
+  body:not(.campaign-detail) .hero-shortcuts a {
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px;
+    border-radius: 9px;
+    font-size: 11px;
+  }
+  body:not(.campaign-detail) .actions {
+    gap: 8px;
+    margin-top: 18px;
+  }
+  body:not(.campaign-detail) .actions .btn {
+    min-height: 42px;
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+  body:not(.campaign-detail) .section {
+    padding-top: 40px;
+  }
+  body:not(.campaign-detail) .section-head {
+    margin-bottom: 13px;
+  }
+  body:not(.campaign-detail) .section h2 {
+    font-size: 26px;
+  }
+  body:not(.campaign-detail) .section-head > p {
+    font-size: 12px;
+  }
   body:not(.campaign-detail) .campaign-grid,
-  body:not(.campaign-detail) .school-grid { grid-template-columns: minmax(0, 1fr); gap: 10px; }
-  body:not(.campaign-detail) .campaign { min-height: 0; padding: 18px; border-radius: 15px; }
-  body:not(.campaign-detail) .campaign h3 { margin: 12px 0 6px; font-size: 17px; }
-  body:not(.campaign-detail) .campaign p { font-size: 12px; }
-  body:not(.campaign-detail) .campaign-link { min-height: 35px; padding-top: 9px; font-size: 11px; }
-  body:not(.campaign-detail) .campaign .campaign-link.campaign-secondary { min-height: 30px; padding-top: 3px; font-size: 10px; }
-  body:not(.campaign-detail) .callout { margin-top: 12px; padding: 13px; border-radius: 12px; font-size: 11px; line-height: 1.5; }
-  body:not(.campaign-detail) .games { padding-top: 42px; }
-  body:not(.campaign-detail) .games-by-campaign { gap: 12px; }
-  body:not(.campaign-detail) .game-group { padding: 14px; border-radius: 15px; }
-  body:not(.campaign-detail) .group-head { align-items: flex-start; gap: 9px; margin-bottom: 11px; }
-  body:not(.campaign-detail) .group-head h3 { font-size: 16px; }
-  body:not(.campaign-detail) .group-head p { font-size: 11px; }
-  body:not(.campaign-detail) .game-grid.row { margin: 0; row-gap: 9px; }
-  body:not(.campaign-detail) .game-grid.row > [class*="col-"] { width: 100%; padding: 0; }
-  body:not(.campaign-detail) .game.card { min-height: 0; aspect-ratio: 1 / 1; border-radius: 12px; }
-  body:not(.campaign-detail) .game .card-body { padding: 14px; }
-  body:not(.campaign-detail) .game h4 { max-width: 86%; font-size: 15px; }
-  body:not(.campaign-detail) .game p { max-width: 95%; font-size: 11px; }
-  body:not(.campaign-detail) .game a { min-height: 34px; padding-top: 7px; font-size: 10px; }
-  body:not(.campaign-detail) .school-card { min-height: 0; padding: 18px; border-radius: 15px; }
-  body:not(.campaign-detail) .school-card h3 { font-size: 17px; }
-  body:not(.campaign-detail) .school-card p { font-size: 12px; }
-  body:not(.campaign-detail) .shared-grid { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  body:not(.campaign-detail) .school-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+  body:not(.campaign-detail) .campaign {
+    min-height: 0;
+    padding: 18px;
+    border-radius: 15px;
+  }
+  body:not(.campaign-detail) .campaign h3 {
+    margin: 12px 0 6px;
+    font-size: 17px;
+  }
+  body:not(.campaign-detail) .campaign p {
+    font-size: 12px;
+  }
+  body:not(.campaign-detail) .campaign-link {
+    min-height: 35px;
+    padding-top: 9px;
+    font-size: 11px;
+  }
+  body:not(.campaign-detail) .campaign .campaign-link.campaign-secondary {
+    min-height: 30px;
+    padding-top: 3px;
+    font-size: 10px;
+  }
+  body:not(.campaign-detail) .callout {
+    margin-top: 12px;
+    padding: 13px;
+    border-radius: 12px;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  body:not(.campaign-detail) .games {
+    padding-top: 42px;
+  }
+  body:not(.campaign-detail) .games-by-campaign {
+    gap: 12px;
+  }
+  body:not(.campaign-detail) .game-group {
+    padding: 14px;
+    border-radius: 15px;
+  }
+  body:not(.campaign-detail) .group-head {
+    align-items: flex-start;
+    gap: 9px;
+    margin-bottom: 11px;
+  }
+  body:not(.campaign-detail) .group-head h3 {
+    font-size: 16px;
+  }
+  body:not(.campaign-detail) .group-head p {
+    font-size: 11px;
+  }
+  body:not(.campaign-detail) .game-grid.row {
+    margin: 0;
+    row-gap: 9px;
+  }
+  body:not(.campaign-detail) .game-grid.row > [class*="col-"] {
+    width: 100%;
+    padding: 0;
+  }
+  body:not(.campaign-detail) .game.card {
+    min-height: 0;
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+  }
+  body:not(.campaign-detail) .game .card-body {
+    padding: 14px;
+  }
+  body:not(.campaign-detail) .game h4 {
+    max-width: 86%;
+    font-size: 15px;
+  }
+  body:not(.campaign-detail) .game p {
+    max-width: 95%;
+    font-size: 11px;
+  }
+  body:not(.campaign-detail) .game a {
+    min-height: 34px;
+    padding-top: 7px;
+    font-size: 10px;
+  }
+  body:not(.campaign-detail) .school-card {
+    min-height: 0;
+    padding: 18px;
+    border-radius: 15px;
+  }
+  body:not(.campaign-detail) .school-card h3 {
+    font-size: 17px;
+  }
+  body:not(.campaign-detail) .school-card p {
+    font-size: 12px;
+  }
+  body:not(.campaign-detail) .shared-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
   body:not(.campaign-detail) .shared-card.card,
-  body:not(.campaign-detail) .care-card.card { padding: 18px; border-radius: 15px; }
-  body:not(.campaign-detail) .shared-card h3 { font-size: 19px; }
+  body:not(.campaign-detail) .care-card.card {
+    padding: 18px;
+    border-radius: 15px;
+  }
+  body:not(.campaign-detail) .shared-card h3 {
+    font-size: 19px;
+  }
   body:not(.campaign-detail) .shared-card p,
-  body:not(.campaign-detail) .care-card p { font-size: 12px; }
-  body:not(.campaign-detail) .footer { margin-top: 35px; padding-bottom: 20px; }
-  body:not(.campaign-detail) .footer-inner { display: grid; gap: 6px; font-size: 10px; line-height: 1.5; }
+  body:not(.campaign-detail) .care-card p {
+    font-size: 12px;
+  }
+  body:not(.campaign-detail) .footer {
+    margin-top: 35px;
+    padding-bottom: 20px;
+  }
+  body:not(.campaign-detail) .footer-inner {
+    display: grid;
+    gap: 6px;
+    font-size: 10px;
+    line-height: 1.5;
+  }
 }
 
 @media (max-width: 380px) {
-  body:not(.campaign-detail) .brand small { max-width: 185px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  body:not(.campaign-detail) .game .card-body { padding: 12px; }
+  body:not(.campaign-detail) .brand small {
+    max-width: 185px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  body:not(.campaign-detail) .game .card-body {
+    padding: 12px;
+  }
 }

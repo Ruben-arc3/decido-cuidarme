@@ -1,7 +1,9 @@
 {
   "name": "villa-esther-functions",
   "private": true,
-  "engines": { "node": "22" },
+  "engines": {
+    "node": "22"
+  },
   "main": "index.js",
   "dependencies": {
     "@google/genai": "^2.27.0",

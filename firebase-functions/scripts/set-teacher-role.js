@@ -1,3 +1,4 @@
+// Admin utility: adds the Villa Esther teacher claim to an existing Firebase Auth user.
 const { initializeApp, applicationDefault } = require("firebase-admin/app");
 const { getAuth } = require("firebase-admin/auth");
 
@@ -10,6 +11,13 @@ initializeApp({ credential: applicationDefault() });
 (async () => {
   const auth = getAuth();
   const user = await auth.getUser(uid);
-  await auth.setCustomUserClaims(uid, { ...user.customClaims, role: "teacher", school: "villa-esther" });
+  await auth.setCustomUserClaims(uid, {
+    ...user.customClaims,
+    role: "teacher",
+    school: "villa-esther",
+  });
   console.log(`Rol docente asignado a ${user.email || uid}. Cierra y vuelve a iniciar sesión.`);
-})().catch(error => { console.error(error.message); process.exit(1); });
+})().catch((error) => {
+  console.error(error.message);
+  process.exit(1);
+});

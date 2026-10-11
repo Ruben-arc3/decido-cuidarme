@@ -4,11 +4,11 @@ Describe brevemente el cambio y el problema que resuelve.
 
 ## Páginas o recursos afectados
 
-- 
+-
 
 ## Cómo revisar
 
-1. 
+1.
 
 ## Capturas
 

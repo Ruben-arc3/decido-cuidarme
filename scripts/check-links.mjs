@@ -1,3 +1,4 @@
+// CI utility that checks local links, assets, redirects, PWA metadata, and offline-cache paths.
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -8,7 +9,7 @@ const errors = [];
 
 function listFiles(directory) {
   if (!fs.existsSync(directory)) return [];
-  return fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
+  return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
     const item = path.join(directory, entry.name);
     return entry.isDirectory() ? listFiles(item) : [item];
   });
@@ -38,15 +39,18 @@ function checkReference(rawValue, sourceFile, description) {
     return;
   }
 
-  const candidates = pathname.endsWith("/") || (fs.existsSync(resolved) && fs.statSync(resolved).isDirectory())
-    ? [path.join(resolved, "index.html")]
-    : [resolved];
-  if (!candidates.some(candidate => fs.existsSync(candidate) && fs.statSync(candidate).isFile())) {
+  const candidates =
+    pathname.endsWith("/") || (fs.existsSync(resolved) && fs.statSync(resolved).isDirectory())
+      ? [path.join(resolved, "index.html")]
+      : [resolved];
+  if (
+    !candidates.some((candidate) => fs.existsSync(candidate) && fs.statSync(candidate).isFile())
+  ) {
     errors.push(`${description}: no existe ${value}`);
   }
 }
 
-const htmlFiles = listFiles(siteRoot).filter(file => file.toLowerCase().endsWith(".html"));
+const htmlFiles = listFiles(siteRoot).filter((file) => file.toLowerCase().endsWith(".html"));
 if (!htmlFiles.length) {
   console.error("No se encontraron páginas HTML dentro de outputs/.");
   process.exit(1);

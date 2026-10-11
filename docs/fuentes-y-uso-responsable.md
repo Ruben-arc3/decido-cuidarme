@@ -10,7 +10,7 @@
 
 ## Diccionario de inglés
 
-El archivo `outputs/js/villa-esther/villa-ingles-dictionary-data.js` contiene vocabulario del *Diccionario de Términos de Salud: Español–Inglés*, 4.ª edición (2012), de la Iniciativa de Salud de las Américas, UC Berkeley y entidades colaboradoras de California. La página del módulo conserva la cita bibliográfica. El dataset incluye términos complementarios elaborados para la plataforma.
+El archivo `outputs/js/villa-esther/villa-ingles-dictionary-data.js` contiene vocabulario del _Diccionario de Términos de Salud: Español–Inglés_, 4.ª edición (2012), de la Iniciativa de Salud de las Américas, UC Berkeley y entidades colaboradoras de California. La página del módulo conserva la cita bibliográfica. El dataset incluye términos complementarios elaborados para la plataforma.
 
 Al ampliar o actualizar el dataset, conserva la atribución y revisa los términos, las licencias y las condiciones de redistribución de la fuente original. No añadas archivos completos de terceros sin comprobar sus permisos.
 

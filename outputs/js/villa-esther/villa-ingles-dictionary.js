@@ -1,3 +1,4 @@
+// Dictionary interface: searches local entries first and uses the translation endpoint as fallback.
 (() => {
   const form = document.getElementById("dictionary-form");
   const input = document.getElementById("dictionary-word");
@@ -11,24 +12,53 @@
     : [];
   const gameVocabulary = {
     goal: ["meta", "Something you want to achieve.", "My goal is to finish school."],
-    skills: ["habilidades", "Abilities that help you do something well.", "Communication skills are useful in many jobs."],
-    scholarship: ["beca", "Money given to help someone pay for education.", "She applied for a university scholarship."],
-    career: ["carrera", "A person's job or professional path over time.", "He is exploring a career in engineering."],
-    study: ["estudiar", "To learn about a subject by reading or practicing.", "We study English after class."],
+    skills: [
+      "habilidades",
+      "Abilities that help you do something well.",
+      "Communication skills are useful in many jobs.",
+    ],
+    scholarship: [
+      "beca",
+      "Money given to help someone pay for education.",
+      "She applied for a university scholarship.",
+    ],
+    career: [
+      "carrera",
+      "A person's job or professional path over time.",
+      "He is exploring a career in engineering.",
+    ],
+    study: [
+      "estudiar",
+      "To learn about a subject by reading or practicing.",
+      "We study English after class.",
+    ],
     future: ["futuro", "The time that is still to come.", "She is planning for her future."],
-    work: ["trabajo", "An activity or job that uses effort to achieve something.", "They work together on a project."],
+    work: [
+      "trabajo",
+      "An activity or job that uses effort to achieve something.",
+      "They work together on a project.",
+    ],
     learn: ["aprender", "To gain knowledge or a new ability.", "I learn new words every week."],
-    community: ["comunidad", "A group of people who live or work in the same area.", "Our community organized a science fair."],
-    practice: ["práctica", "Repeated activity that helps improve a skill.", "Practice helps you speak with confidence."]
+    community: [
+      "comunidad",
+      "A group of people who live or work in the same area.",
+      "Our community organized a science fair.",
+    ],
+    practice: [
+      "práctica",
+      "Repeated activity that helps improve a skill.",
+      "Practice helps you speak with confidence.",
+    ],
   };
 
-  const normalize = value => value
-    .toLocaleLowerCase("es")
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9\s'-]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
+  const normalize = (value) =>
+    value
+      .toLocaleLowerCase("es")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9\s'-]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
 
   function addText(parent, tag, value, className = "") {
     const element = document.createElement(tag);
@@ -41,15 +71,21 @@
   function findMatches(query) {
     const normalized = normalize(query);
     if (!normalized) return [];
-    const exact = entries.filter(entry => normalize(entry.es) === normalized || normalize(entry.en) === normalized);
-    return exact.length ? exact : entries.filter(entry =>
-      normalize(entry.es).includes(normalized) || normalize(entry.en).includes(normalized)
+    const exact = entries.filter(
+      (entry) => normalize(entry.es) === normalized || normalize(entry.en) === normalized,
     );
+    return exact.length
+      ? exact
+      : entries.filter(
+          (entry) =>
+            normalize(entry.es).includes(normalized) || normalize(entry.en).includes(normalized),
+        );
   }
 
   function renderGameWord(query, sourceLanguage) {
-    const pair = Object.entries(gameVocabulary).find(([english, data]) =>
-      normalize(sourceLanguage === "es" ? data[0] : english) === normalize(query)
+    const pair = Object.entries(gameVocabulary).find(
+      ([english, data]) =>
+        normalize(sourceLanguage === "es" ? data[0] : english) === normalize(query),
     );
     if (!pair) return false;
     const [english, data] = pair;
@@ -70,13 +106,19 @@
     try {
       const cached = window.sessionStorage.getItem(key);
       if (cached) return cached;
-    } catch { /* Continue if storage is unavailable. */ }
+    } catch {
+      /* Continue if storage is unavailable. */
+    }
 
     const params = new URLSearchParams({ q: text, langpair: `${source}|${target}` });
     const directUrl = `https://api.mymemory.translated.net/get?${params}`;
-    const endpoints = location.protocol === "file:"
-      ? [directUrl]
-      : [`/api/translate?text=${encodeURIComponent(text)}&source=${source}&target=${target}`, directUrl];
+    const endpoints =
+      location.protocol === "file:"
+        ? [directUrl]
+        : [
+            `/api/translate?text=${encodeURIComponent(text)}&source=${source}&target=${target}`,
+            directUrl,
+          ];
     let lastError;
     for (const endpoint of endpoints) {
       const controller = new AbortController();
@@ -84,7 +126,7 @@
       try {
         const response = await fetch(endpoint, {
           headers: { Accept: "application/json" },
-          signal: controller.signal
+          signal: controller.signal,
         });
         if (!response.ok) throw new Error(`translation-http-${response.status}`);
         const payload = await response.json();
@@ -92,7 +134,11 @@
         if (!translated || (payload.responseStatus && Number(payload.responseStatus) !== 200)) {
           throw new Error("translation-empty");
         }
-        try { window.sessionStorage.setItem(key, translated); } catch { /* Keep the result in this view. */ }
+        try {
+          window.sessionStorage.setItem(key, translated);
+        } catch {
+          /* Keep the result in this view. */
+        }
         return translated;
       } catch (error) {
         lastError = error;
@@ -141,14 +187,30 @@
       }
       if (renderGameWord(query, sourceLanguage)) return;
 
-      status.textContent = sourceLanguage === "es" ? "Traduciendo al inglés…" : "Traduciendo al español…";
+      status.textContent =
+        sourceLanguage === "es" ? "Traduciendo al inglés…" : "Traduciendo al español…";
       const translated = await translateText(query, sourceLanguage, targetLanguage);
       const translation = document.createElement("article");
       translation.className = "dictionary-meaning";
       addText(translation, "h3", "Traducción automática", "dictionary-result-word");
-      addText(translation, "p", `${sourceLanguage === "es" ? "Español" : "Inglés"}: ${query}`, "translation");
-      addText(translation, "p", `${targetLanguage === "en" ? "Inglés" : "Español"}: ${translated}`, "translation");
-      addText(translation, "p", "Traducción de MyMemory; verifica el sentido según el contexto.", "note");
+      addText(
+        translation,
+        "p",
+        `${sourceLanguage === "es" ? "Español" : "Inglés"}: ${query}`,
+        "translation",
+      );
+      addText(
+        translation,
+        "p",
+        `${targetLanguage === "en" ? "Inglés" : "Español"}: ${translated}`,
+        "translation",
+      );
+      addText(
+        translation,
+        "p",
+        "Traducción de MyMemory; verifica el sentido según el contexto.",
+        "note",
+      );
       result.append(translation);
 
       const related = findMatches(translated);
@@ -157,22 +219,24 @@
         renderMatches(related, 10);
         status.textContent = `Traducción lista. También encontramos ${related.length} término${related.length === 1 ? "" : "s"} relacionado${related.length === 1 ? "" : "s"}.`;
       } else {
-        status.textContent = "Traducción lista. Las frases nuevas requieren conexión; las entradas del diccionario siguen disponibles sin internet.";
+        status.textContent =
+          "Traducción lista. Las frases nuevas requieren conexión; las entradas del diccionario siguen disponibles sin internet.";
       }
     } catch (error) {
-      status.textContent = error?.name === "AbortError"
-        ? "La traducción tardó demasiado. Revisa la conexión e inténtalo de nuevo. El diccionario local sigue disponible sin internet."
-        : "No se pudo traducir ahora. Revisa la conexión; las entradas del diccionario local siguen disponibles sin internet.";
+      status.textContent =
+        error?.name === "AbortError"
+          ? "La traducción tardó demasiado. Revisa la conexión e inténtalo de nuevo. El diccionario local sigue disponible sin internet."
+          : "No se pudo traducir ahora. Revisa la conexión; las entradas del diccionario local siguen disponibles sin internet.";
     } finally {
       button.disabled = false;
     }
   }
 
-  form.addEventListener("submit", event => {
+  form.addEventListener("submit", (event) => {
     event.preventDefault();
     search(input.value);
   });
-  document.querySelectorAll("[data-dictionary-word]").forEach(button => {
+  document.querySelectorAll("[data-dictionary-word]").forEach((button) => {
     button.addEventListener("click", () => {
       input.value = button.dataset.dictionaryWord;
       if (button.dataset.dictionaryLanguage) language.value = button.dataset.dictionaryLanguage;

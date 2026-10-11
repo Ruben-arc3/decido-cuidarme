@@ -1,959 +1,845 @@
 <!doctype html>
 <html lang="es">
-<head><link rel="icon" href="../favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="512x512" href="../favicon.png">
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mi Ruta, Mi Decisión · Juego de prevención</title>
+  <head>
+    <link rel="icon" href="../favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="512x512" href="../favicon.png" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mi Ruta, Mi Decisión · Juego de prevención</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
 
-  <style>
-    :root {
-      --ink:#092943;
-      --blue:#1379b9;
-      --sky:#58c9ee;
-      --yellow:#ffcf4d;
-      --coral:#ff7467;
-      --mint:#65d2ad;
-    }
+    <style>
+      :root {
+        --ink: #092943;
+        --blue: #1379b9;
+        --sky: #58c9ee;
+        --yellow: #ffcf4d;
+        --coral: #ff7467;
+        --mint: #65d2ad;
+      }
 
-    * {
-      box-sizing:border-box;
-    }
-
-    body {
-      margin:0;
-      min-height:100vh;
-      color:var(--ink);
-      font-family:Nunito,system-ui,sans-serif;
-      background:linear-gradient(145deg,#c9f4ff 0%,#aee8fa 48%,#d9f5e8 100%);
-      overflow-x:hidden;
-    }
-
-    .shell {
-      width:min(1060px,100%);
-      margin:auto;
-      padding:22px clamp(14px,3vw,32px) 30px;
-    }
-
-    header {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom:15px;
-    }
-
-    .brand {
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-
-    .badge {
-      width:55px;
-      height:55px;
-      display:grid;
-      place-items:center;
-      border-radius:19px;
-      background:var(--yellow);
-      font-size:30px;
-      box-shadow:0 5px 0 #e5ab28;
-    }
-
-    h1 {
-      font:800 clamp(23px,4vw,37px)/.9 "Baloo 2",sans-serif;
-      margin:0;
-      letter-spacing:-.5px;
-    }
-
-    .sub {
-      margin:3px 0 0;
-      font-size:13px;
-      font-weight:800;
-      color:#236087;
-    }
-
-    .scoreboard {
-      display:flex;
-      align-items:center;
-      gap:9px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-
-    .pill {
-      padding:9px 13px;
-      border-radius:999px;
-      color:#fff;
-      font-weight:900;
-      background:#1478b6;
-      box-shadow:0 3px 0 #075888;
-      white-space:nowrap;
-    }
-
-    .pill.energy {
-      background:#ef5c67;
-      box-shadow:0 3px 0 #bd3e4a;
-    }
-
-    .pill.timer {
-      background:#754ec4;
-      box-shadow:0 3px 0 #4e2d95;
-    }
-
-    .game-card {
-      position:relative;
-      overflow:hidden;
-      border:7px solid #fff;
-      border-radius:27px;
-      box-shadow:0 12px 0 #6eafd0,0 20px 35px #397c9b55;
-      background:#d9f6ff;
-    }
-
-    #game {
-      display:block;
-      width:100%;
-      height:auto;
-      aspect-ratio:16/9;
-      touch-action:none;
-      cursor:crosshair;
-    }
-
-    .overlay {
-      position:absolute;
-      inset:0;
-      display:grid;
-      place-items:center;
-      padding:22px;
-      text-align:center;
-      background:linear-gradient(#0d6695cc,#063653df);
-      transition:.25s;
-    }
-
-    .overlay.hidden {
-      opacity:0;
-      pointer-events:none;
-    }
-
-    .panel {
-      max-width:510px;
-      padding:28px clamp(20px,5vw,43px);
-      border-radius:24px;
-      color:#fff;
-      background:#0b4568e8;
-      border:3px solid #8cdbef;
-      box-shadow:0 8px 0 #07334e;
-    }
-
-    .panel .hero {
-      font-size:48px;
-      display:block;
-      margin-bottom:5px;
-    }
-
-    h2 {
-      font:800 clamp(28px,5vw,42px)/.95 "Baloo 2",sans-serif;
-      margin:0 0 10px;
-    }
-
-    .panel p {
-      margin:0 auto 20px;
-      font-size:17px;
-      line-height:1.35;
-      font-weight:700;
-    }
-
-    button {
-      border:0;
-      border-radius:15px;
-      padding:13px 22px;
-      cursor:pointer;
-      font:900 18px Nunito,sans-serif;
-      color:#173b52;
-      background:var(--yellow);
-      box-shadow:0 5px 0 #d6981a;
-      transition:transform .12s;
-    }
-
-    button:hover {
-      transform:translateY(-2px);
-    }
-
-    button:active {
-      transform:translateY(3px);
-      box-shadow:0 2px 0 #d6981a;
-    }
-
-    .touch-controls {
-      display:none;
-    }
-
-    .how {
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:12px;
-      margin-top:23px;
-    }
-
-    .tip {
-      padding:13px;
-      min-height:112px;
-      text-align:center;
-      border-radius:17px;
-      background:#fff;
-      box-shadow:0 4px 0 #8dcee8;
-      font-size:13px;
-      font-weight:800;
-    }
-
-    .tip b {
-      display:block;
-      font-size:27px;
-      margin-bottom:2px;
-    }
-
-    .footer {
-      margin:17px auto 0;
-      max-width:850px;
-      text-align:center;
-      color:#155276;
-      font-size:13px;
-      font-weight:800;
-    }
-
-    .footer strong {
-      color:#0c4162;
-    }
-
-    .ranking {
-      max-width:620px;
-      margin:20px auto 0;
-      padding:15px 20px 12px;
-      background:#fff;
-      border-radius:20px;
-      box-shadow:0 5px 0 #8dcee8;
-    }
-
-    .ranking h3 {
-      margin:0 0 8px;
-      text-align:center;
-      font:800 22px/1 "Baloo 2",sans-serif;
-      color:#145a83;
-    }
-
-    .ranking-tools {
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      margin:0 0 8px;
-    }
-
-    .reset-button {
-      padding:5px 9px;
-      border-radius:9px;
-      color:#8e3c38;
-      background:#ffedea;
-      box-shadow:0 2px 0 #efbbb3;
-      font-size:10px;
-    }
-
-    .reset-button:active {
-      box-shadow:0 1px 0 #efbbb3;
-    }
-
-    .connection {
-      display:inline-block;
-      padding:3px 7px;
-      border-radius:999px;
-      background:#e5f5ed;
-      color:#23815b;
-      font:800 10px Nunito,sans-serif;
-      vertical-align:middle;
-    }
-
-    .connection.offline {
-      background:#ffebdf;
-      color:#ad563c;
-    }
-
-    #ranking-list {
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:5px 19px;
-      margin:0;
-      padding-left:27px;
-      color:#17506f;
-      font-size:13px;
-      font-weight:900;
-    }
-
-    #ranking-list li {
-      padding:3px 0;
-      border-bottom:1px dashed #c9e7f2;
-    }
-
-    .rank-points {
-      float:right;
-      color:#e24e58;
-    }
-
-    .name-field {
-      width:100%;
-      margin:0 0 13px;
-      padding:11px 13px;
-      border:2px solid #8cdbef;
-      border-radius:12px;
-      outline:0;
-      font:800 16px Nunito,sans-serif;
-      text-align:center;
-      color:#0b4568;
-    }
-
-    .name-field:focus {
-      border-color:#ffcf4d;
-      box-shadow:0 0 0 3px #ffcf4d55;
-    }
-
-    @media (max-width:620px) {
+      * {
+        box-sizing: border-box;
+      }
 
       body {
-        background:linear-gradient(165deg,#bff2ff 0%,#e2fbff 52%,#dff7df 100%);
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        font-family: Nunito, system-ui, sans-serif;
+        background: linear-gradient(145deg, #c9f4ff 0%, #aee8fa 48%, #d9f5e8 100%);
+        overflow-x: hidden;
       }
 
       .shell {
-        padding:12px 10px 24px;
+        width: min(1060px, 100%);
+        margin: auto;
+        padding: 22px clamp(14px, 3vw, 32px) 30px;
       }
 
       header {
-        display:block;
-        margin:0 2px 11px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 15px;
       }
 
       .brand {
-        gap:9px;
-        padding:0 3px 10px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
       }
 
       .badge {
-        width:44px;
-        height:44px;
-        border-radius:15px;
-        font-size:24px;
-        box-shadow:0 3px 0 #e5ab28;
+        width: 55px;
+        height: 55px;
+        display: grid;
+        place-items: center;
+        border-radius: 19px;
+        background: var(--yellow);
+        font-size: 30px;
+        box-shadow: 0 5px 0 #e5ab28;
       }
 
       h1 {
-        font-size:26px;
-        letter-spacing:-.7px;
+        font:
+          800 clamp(23px, 4vw, 37px) / 0.9 "Baloo 2",
+          sans-serif;
+        margin: 0;
+        letter-spacing: -0.5px;
       }
 
       .sub {
-        font-size:11px;
+        margin: 3px 0 0;
+        font-size: 13px;
+        font-weight: 800;
+        color: #236087;
       }
 
       .scoreboard {
-        display:grid;
-        grid-template-columns:repeat(2,1fr);
-        gap:6px;
-        width:100%;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
       }
 
       .pill {
-        padding:8px 4px;
-        text-align:center;
-        font-size:12px;
-        box-shadow:0 3px 0 #075888;
+        padding: 9px 13px;
+        border-radius: 999px;
+        color: #fff;
+        font-weight: 900;
+        background: #1478b6;
+        box-shadow: 0 3px 0 #075888;
+        white-space: nowrap;
       }
 
       .pill.energy {
-        box-shadow:0 3px 0 #bd3e4a;
+        background: #ef5c67;
+        box-shadow: 0 3px 0 #bd3e4a;
       }
 
       .pill.timer {
-        box-shadow:0 3px 0 #4e2d95;
+        background: #754ec4;
+        box-shadow: 0 3px 0 #4e2d95;
       }
 
       .game-card {
-        border-width:4px;
-        border-radius:22px;
-        box-shadow:0 8px 0 #6eafd0,0 15px 27px #397c9b55;
+        position: relative;
+        overflow: hidden;
+        border: 7px solid #fff;
+        border-radius: 27px;
+        box-shadow:
+          0 12px 0 #6eafd0,
+          0 20px 35px #397c9b55;
+        background: #d9f6ff;
       }
 
       #game {
-        aspect-ratio:9/13;
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16/9;
+        touch-action: none;
+        cursor: crosshair;
       }
 
       .overlay {
-        padding:13px;
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        padding: 22px;
+        text-align: center;
+        background: linear-gradient(#0d6695cc, #063653df);
+        transition: 0.25s;
+      }
+
+      .overlay.hidden {
+        opacity: 0;
+        pointer-events: none;
       }
 
       .panel {
-        width:100%;
-        padding:20px 17px;
-        border-radius:19px;
+        max-width: 510px;
+        padding: 28px clamp(20px, 5vw, 43px);
+        border-radius: 24px;
+        color: #fff;
+        background: #0b4568e8;
+        border: 3px solid #8cdbef;
+        box-shadow: 0 8px 0 #07334e;
       }
 
       .panel .hero {
-        font-size:35px;
+        font-size: 48px;
+        display: block;
+        margin-bottom: 5px;
       }
 
       h2 {
-        font-size:31px;
+        font:
+          800 clamp(28px, 5vw, 42px) / 0.95 "Baloo 2",
+          sans-serif;
+        margin: 0 0 10px;
       }
 
       .panel p {
-        font-size:14px;
-        margin-bottom:14px;
+        margin: 0 auto 20px;
+        font-size: 17px;
+        line-height: 1.35;
+        font-weight: 700;
       }
 
-      .name-field {
-        margin-bottom:10px;
-        padding:10px;
-        font-size:15px;
+      button {
+        border: 0;
+        border-radius: 15px;
+        padding: 13px 22px;
+        cursor: pointer;
+        font:
+          900 18px Nunito,
+          sans-serif;
+        color: #173b52;
+        background: var(--yellow);
+        box-shadow: 0 5px 0 #d6981a;
+        transition: transform 0.12s;
       }
 
-      .panel button {
-        width:100%;
-        font-size:16px;
-        padding:11px 16px;
+      button:hover {
+        transform: translateY(-2px);
+      }
+
+      button:active {
+        transform: translateY(3px);
+        box-shadow: 0 2px 0 #d6981a;
       }
 
       .touch-controls {
-        display:grid;
-        grid-template-columns:64px 1fr 64px;
-        align-items:center;
-        gap:10px;
-        margin:14px 4px 4px;
-        padding:7px;
-        border-radius:19px;
-        background:#ffffffa8;
-        box-shadow:0 4px 13px #3b89a422;
-      }
-
-      .touch-controls p {
-        margin:0;
-        font-size:12px;
-        color:#155276;
-        font-weight:900;
-        text-align:center;
-        line-height:1.15;
-      }
-
-      .move-button {
-        width:60px;
-        height:52px;
-        padding:0;
-        border-radius:16px;
-        font-size:29px;
-        line-height:1;
-        background:#60cbed;
-        box-shadow:0 4px 0 #2589b0;
-        color:#073f60;
-      }
-
-      .move-button:active {
-        box-shadow:0 1px 0 #2589b0;
+        display: none;
       }
 
       .how {
-        gap:6px;
-        margin-top:16px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-top: 23px;
       }
 
       .tip {
-        font-size:10px;
-        padding:8px 5px;
-        min-height:79px;
-        border-radius:13px;
-        box-shadow:0 3px 0 #8dcee8;
+        padding: 13px;
+        min-height: 112px;
+        text-align: center;
+        border-radius: 17px;
+        background: #fff;
+        box-shadow: 0 4px 0 #8dcee8;
+        font-size: 13px;
+        font-weight: 800;
       }
 
       .tip b {
-        font-size:19px;
-      }
-
-      .ranking {
-        margin-top:15px;
-        padding:13px 13px 11px;
-        border-radius:18px;
-        box-shadow:0 4px 0 #8dcee8;
-      }
-
-      .ranking h3 {
-        font-size:19px;
-      }
-
-      #ranking-list {
-        gap:3px 14px;
-        padding-left:22px;
-        font-size:11px;
+        display: block;
+        font-size: 27px;
+        margin-bottom: 2px;
       }
 
       .footer {
-        margin:14px 6px 0;
-        font-size:11px;
-        line-height:1.35;
+        margin: 17px auto 0;
+        max-width: 850px;
+        text-align: center;
+        color: #155276;
+        font-size: 13px;
+        font-weight: 800;
       }
-    }
-  .dialog-icon{display:none!important}
-</style>
-</head>
 
-<body>
+      .footer strong {
+        color: #0c4162;
+      }
 
-<main class="shell">
+      .ranking {
+        max-width: 620px;
+        margin: 20px auto 0;
+        padding: 15px 20px 12px;
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 5px 0 #8dcee8;
+      }
 
-  <header>
+      .ranking h3 {
+        margin: 0 0 8px;
+        text-align: center;
+        font:
+          800 22px/1 "Baloo 2",
+          sans-serif;
+        color: #145a83;
+      }
 
-    <div class="brand">
-      <div class="badge">MR</div>
+      .ranking-tools {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin: 0 0 8px;
+      }
 
-      <div>
-        <h1>Mi Ruta, Mi Decisión</h1>
-        <p class="sub">Puerto Escondido · Córdoba</p>
-      </div>
-    </div>
+      .reset-button {
+        padding: 5px 9px;
+        border-radius: 9px;
+        color: #8e3c38;
+        background: #ffedea;
+        box-shadow: 0 2px 0 #efbbb3;
+        font-size: 10px;
+      }
 
-    <div class="scoreboard">
+      .reset-button:active {
+        box-shadow: 0 1px 0 #efbbb3;
+      }
 
-      <div class="pill timer">
-        ♾️ <span id="timer">∞</span>
-      </div>
+      .connection {
+        display: inline-block;
+        padding: 3px 7px;
+        border-radius: 999px;
+        background: #e5f5ed;
+        color: #23815b;
+        font:
+          800 10px Nunito,
+          sans-serif;
+        vertical-align: middle;
+      }
 
-      <div class="pill">
-        ⭐ <span id="score">0</span>
-      </div>
+      .connection.offline {
+        background: #ffebdf;
+        color: #ad563c;
+      }
 
-      <div class="pill energy">
-        ❤️ <span id="lives">3</span>
-      </div>
+      #ranking-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px 19px;
+        margin: 0;
+        padding-left: 27px;
+        color: #17506f;
+        font-size: 13px;
+        font-weight: 900;
+      }
 
-    </div>
+      #ranking-list li {
+        padding: 3px 0;
+        border-bottom: 1px dashed #c9e7f2;
+      }
 
-  </header>
+      .rank-points {
+        float: right;
+        color: #e24e58;
+      }
 
-  <section class="game-card" aria-label="Videojuego de prevención">
+      .name-field {
+        width: 100%;
+        margin: 0 0 13px;
+        padding: 11px 13px;
+        border: 2px solid #8cdbef;
+        border-radius: 12px;
+        outline: 0;
+        font:
+          800 16px Nunito,
+          sans-serif;
+        text-align: center;
+        color: #0b4568;
+      }
 
-    <canvas id="game" width="960" height="540"></canvas>
+      .name-field:focus {
+        border-color: #ffcf4d;
+        box-shadow: 0 0 0 3px #ffcf4d55;
+      }
 
-    <div class="overlay" id="overlay">
+      @media (max-width: 620px) {
+        body {
+          background: linear-gradient(165deg, #bff2ff 0%, #e2fbff 52%, #dff7df 100%);
+        }
 
-      <div class="panel">
+        .shell {
+          padding: 12px 10px 24px;
+        }
 
-        <span class="hero"></span>
+        header {
+          display: block;
+          margin: 0 2px 11px;
+        }
 
-        <h2>Reto: protege tu ruta</h2>
+        .brand {
+          gap: 9px;
+          padding: 0 3px 10px;
+        }
+
+        .badge {
+          width: 44px;
+          height: 44px;
+          border-radius: 15px;
+          font-size: 24px;
+          box-shadow: 0 3px 0 #e5ab28;
+        }
+
+        h1 {
+          font-size: 26px;
+          letter-spacing: -0.7px;
+        }
+
+        .sub {
+          font-size: 11px;
+        }
+
+        .scoreboard {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 6px;
+          width: 100%;
+        }
+
+        .pill {
+          padding: 8px 4px;
+          text-align: center;
+          font-size: 12px;
+          box-shadow: 0 3px 0 #075888;
+        }
+
+        .pill.energy {
+          box-shadow: 0 3px 0 #bd3e4a;
+        }
+
+        .pill.timer {
+          box-shadow: 0 3px 0 #4e2d95;
+        }
+
+        .game-card {
+          border-width: 4px;
+          border-radius: 22px;
+          box-shadow:
+            0 8px 0 #6eafd0,
+            0 15px 27px #397c9b55;
+        }
+
+        #game {
+          aspect-ratio: 9/13;
+        }
+
+        .overlay {
+          padding: 13px;
+        }
+
+        .panel {
+          width: 100%;
+          padding: 20px 17px;
+          border-radius: 19px;
+        }
+
+        .panel .hero {
+          font-size: 35px;
+        }
+
+        h2 {
+          font-size: 31px;
+        }
+
+        .panel p {
+          font-size: 14px;
+          margin-bottom: 14px;
+        }
+
+        .name-field {
+          margin-bottom: 10px;
+          padding: 10px;
+          font-size: 15px;
+        }
+
+        .panel button {
+          width: 100%;
+          font-size: 16px;
+          padding: 11px 16px;
+        }
+
+        .touch-controls {
+          display: grid;
+          grid-template-columns: 64px 1fr 64px;
+          align-items: center;
+          gap: 10px;
+          margin: 14px 4px 4px;
+          padding: 7px;
+          border-radius: 19px;
+          background: #ffffffa8;
+          box-shadow: 0 4px 13px #3b89a422;
+        }
+
+        .touch-controls p {
+          margin: 0;
+          font-size: 12px;
+          color: #155276;
+          font-weight: 900;
+          text-align: center;
+          line-height: 1.15;
+        }
+
+        .move-button {
+          width: 60px;
+          height: 52px;
+          padding: 0;
+          border-radius: 16px;
+          font-size: 29px;
+          line-height: 1;
+          background: #60cbed;
+          box-shadow: 0 4px 0 #2589b0;
+          color: #073f60;
+        }
+
+        .move-button:active {
+          box-shadow: 0 1px 0 #2589b0;
+        }
+
+        .how {
+          gap: 6px;
+          margin-top: 16px;
+        }
+
+        .tip {
+          font-size: 10px;
+          padding: 8px 5px;
+          min-height: 79px;
+          border-radius: 13px;
+          box-shadow: 0 3px 0 #8dcee8;
+        }
+
+        .tip b {
+          font-size: 19px;
+        }
+
+        .ranking {
+          margin-top: 15px;
+          padding: 13px 13px 11px;
+          border-radius: 18px;
+          box-shadow: 0 4px 0 #8dcee8;
+        }
+
+        .ranking h3 {
+          font-size: 19px;
+        }
+
+        #ranking-list {
+          gap: 3px 14px;
+          padding-left: 22px;
+          font-size: 11px;
+        }
+
+        .footer {
+          margin: 14px 6px 0;
+          font-size: 11px;
+          line-height: 1.35;
+        }
+      }
+      .dialog-icon {
+        display: none !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="shell">
+      <header>
+        <div class="brand">
+          <div class="badge">MR</div>
+
+          <div>
+            <h1>Mi Ruta, Mi Decisión</h1>
+            <p class="sub">Puerto Escondido · Córdoba</p>
+          </div>
+        </div>
+
+        <div class="scoreboard">
+          <div class="pill timer">♾️ <span id="timer">∞</span></div>
+
+          <div class="pill">⭐ <span id="score">0</span></div>
+
+          <div class="pill energy">❤️ <span id="lives">3</span></div>
+        </div>
+      </header>
+
+      <section class="game-card" aria-label="Videojuego de prevención">
+        <canvas id="game" width="960" height="540"></canvas>
+
+        <div class="overlay" id="overlay">
+          <div class="panel">
+            <span class="hero"></span>
+
+            <h2>Reto: protege tu ruta</h2>
+
+            <p>
+              Juega sin límite de tiempo. Las presiones aumentan: reúne apoyos, conserva tus vidas y
+              consigue la mayor cantidad de puntos.
+            </p>
+
+            <input
+              class="name-field"
+              id="player-name"
+              maxlength="14"
+              autocomplete="nickname"
+              placeholder="Escribe tu nombre"
+              aria-label="Nombre del jugador"
+            />
+
+            <button id="start">¡Comenzar el reto!</button>
+          </div>
+        </div>
+      </section>
+
+      <nav class="touch-controls" aria-label="Controles para celular">
+        <button class="move-button" id="move-left" aria-label="Mover a la izquierda">←</button>
 
         <p>
-          Juega sin límite de tiempo. Las presiones aumentan:
-          reúne apoyos, conserva tus vidas y consigue la mayor cantidad de puntos.
+          Usa los botones<br />
+          o desliza sobre el juego
         </p>
 
-        <input
-          class="name-field"
-          id="player-name"
-          maxlength="14"
-          autocomplete="nickname"
-          placeholder="Escribe tu nombre"
-          aria-label="Nombre del jugador"
-        >
+        <button class="move-button" id="move-right" aria-label="Mover a la derecha">→</button>
+      </nav>
 
-        <button id="start">
-          ¡Comenzar el reto!
-        </button>
+      <section class="how" aria-label="Cómo jugar">
+        <div class="tip">
+          <b>↔️</b>
+          Usa flechas, A/D o toca la pantalla para moverte.
+        </div>
 
-      </div>
+        <div class="tip">
+          <b>🤝</b>
+          Recoge personas y lugares que te apoyan.
+        </div>
 
-    </div>
+        <div class="tip">
+          <b>🚫</b>
+          Esquiva las presiones. Decir “no” es cuidarte.
+        </div>
+      </section>
 
-  </section>
+      <section class="ranking" aria-label="Ranking de mejores jugadores">
+        <div class="ranking-tools">
+          <span class="connection" id="connection"> Conectando… </span>
 
-  <nav class="touch-controls" aria-label="Controles para celular">
+          <button class="reset-button" id="reset-ranking" type="button">
+            🔒 Reiniciar concurso
+          </button>
+        </div>
 
-    <button
-      class="move-button"
-      id="move-left"
-      aria-label="Mover a la izquierda"
-    >
-      ←
-    </button>
+        <h3>🏆 Top 10 de la costa</h3>
 
-    <p>
-      Usa los botones<br>
-      o desliza sobre el juego
-    </p>
+        <ol id="ranking-list"></ol>
+      </section>
 
-    <button
-      class="move-button"
-      id="move-right"
-      aria-label="Mover a la derecha"
-    >
-      →
-    </button>
+      <p class="footer">
+        <strong>Mensaje de prevención:</strong>
+        hablar con alguien de confianza y elegir espacios seguros te ayuda a cuidar tus sueños. En
+        una situación de riesgo, busca apoyo de un adulto, familia, docente o servicio de salud.
+      </p>
+    </main>
 
-  </nav>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-  <section class="how" aria-label="Cómo jugar">
+      import {
+        getDatabase,
+        ref,
+        push,
+        onValue,
+        query,
+        orderByChild,
+        limitToLast,
+        set,
+      } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
 
-    <div class="tip">
-      <b>↔️</b>
-      Usa flechas, A/D o toca la pantalla para moverte.
-    </div>
-
-    <div class="tip">
-      <b>🤝</b>
-      Recoge personas y lugares que te apoyan.
-    </div>
-
-    <div class="tip">
-      <b>🚫</b>
-      Esquiva las presiones. Decir “no” es cuidarte.
-    </div>
-
-  </section>
-
-  <section class="ranking" aria-label="Ranking de mejores jugadores">
-
-    <div class="ranking-tools">
-
-      <span class="connection" id="connection">
-        Conectando…
-      </span>
-
-      <button
-        class="reset-button"
-        id="reset-ranking"
-        type="button"
-      >
-        🔒 Reiniciar concurso
-      </button>
-
-    </div>
-
-    <h3>🏆 Top 10 de la costa</h3>
-
-    <ol id="ranking-list"></ol>
-
-  </section>
-
-  <p class="footer">
-    <strong>Mensaje de prevención:</strong>
-    hablar con alguien de confianza y elegir espacios seguros te ayuda a cuidar tus sueños.
-    En una situación de riesgo, busca apoyo de un adulto, familia, docente o servicio de salud.
-  </p>
-
-</main>
-
-
-<script type="module">
-
-import { initializeApp }
-  from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-
-import {
-  getDatabase,
-  ref,
-  push,
-  onValue,
-  query,
-  orderByChild,
-  limitToLast,
-  set
-}
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
-
-
-/* =========================================================
+      /* =========================================================
    FIREBASE
 ========================================================= */
 
-const firebaseConfig = {
+      const firebaseConfig = {
+        apiKey: "AIzaSyAZ3bUuIFUo8k-tLhQJxN59Quvhr0zDBiw",
 
-  apiKey: "AIzaSyAZ3bUuIFUo8k-tLhQJxN59Quvhr0zDBiw",
+        authDomain: "camp-9675e.firebaseapp.com",
 
-  authDomain: "camp-9675e.firebaseapp.com",
+        databaseURL: "https://camp-9675e-default-rtdb.firebaseio.com",
 
-  databaseURL:
-    "https://camp-9675e-default-rtdb.firebaseio.com",
+        projectId: "camp-9675e",
 
-  projectId: "camp-9675e",
+        storageBucket: "camp-9675e.firebasestorage.app",
 
-  storageBucket:
-    "camp-9675e.firebasestorage.app",
+        messagingSenderId: "1076768786050",
 
-  messagingSenderId:
-    "1076768786050",
+        appId: "1:1076768786050:web:115de8d38d95401338169b",
+      };
 
-  appId:
-    "1:1076768786050:web:115de8d38d95401338169b"
+      const firebaseApp = initializeApp(firebaseConfig);
 
-};
+      const database = getDatabase(firebaseApp);
 
+      const scoresRef = ref(database, "mi-ruta-mi-decision/ranking");
 
-const firebaseApp = initializeApp(firebaseConfig);
+      const gameStateRef = ref(database, "mi-ruta-mi-decision/gameState");
 
-const database = getDatabase(firebaseApp);
-
-const scoresRef =
-  ref(database, "mi-ruta-mi-decision/ranking");
-
-const gameStateRef =
-  ref(database, "mi-ruta-mi-decision/gameState");
-
-
-/* =========================================================
+      /* =========================================================
    ELEMENTOS
 ========================================================= */
 
-const canvas =
-  document.querySelector("#game");
+      const canvas = document.querySelector("#game");
 
-const ctx =
-  canvas.getContext("2d");
+      const ctx = canvas.getContext("2d");
 
-const overlay =
-  document.querySelector("#overlay");
+      const overlay = document.querySelector("#overlay");
 
-const start =
-  document.querySelector("#start");
+      const start = document.querySelector("#start");
 
-const leftButton =
-  document.querySelector("#move-left");
+      const leftButton = document.querySelector("#move-left");
 
-const rightButton =
-  document.querySelector("#move-right");
+      const rightButton = document.querySelector("#move-right");
 
-const resetButton =
-  document.querySelector("#reset-ranking");
+      const resetButton = document.querySelector("#reset-ranking");
 
-const scoreEl =
-  document.querySelector("#score");
+      const scoreEl = document.querySelector("#score");
 
-const livesEl =
-  document.querySelector("#lives");
+      const livesEl = document.querySelector("#lives");
 
-const timerEl =
-  document.querySelector("#timer");
+      const timerEl = document.querySelector("#timer");
 
-const rankingEl =
-  document.querySelector("#ranking-list");
+      const rankingEl = document.querySelector("#ranking-list");
 
-const connectionEl =
-  document.querySelector("#connection");
+      const connectionEl = document.querySelector("#connection");
 
-
-/* =========================================================
+      /* =========================================================
    VARIABLES DEL JUEGO
 ========================================================= */
 
-const playedPrefix =
-  "miRutaJugoEnConcurso:";
+      const playedPrefix = "miRutaJugoEnConcurso:";
 
-let running = false;
+      let running = false;
 
-let score = 0;
+      let score = 0;
 
-let lives = 3;
+      let lives = 3;
 
-let time = 0;
+      let time = 0;
 
-let last = 0;
+      let last = 0;
 
-let combo = 0;
+      let combo = 0;
 
-let contestId =
-  "concurso-inicial";
+      let contestId = "concurso-inicial";
 
-let items = [];
+      let items = [];
 
-let particles = [];
+      let particles = [];
 
-
-/*
+      /*
   El jugador permanece en la parte inferior
   y se mueve horizontalmente.
 */
 
-let player = {
+      let player = {
+        x: 480,
 
-  x:480,
+        y: 444,
 
-  y:444,
+        w: 58,
 
-  w:58,
+        h: 66,
 
-  h:66,
+        target: 480,
 
-  target:480,
+        bob: 0,
+      };
 
-  bob:0
-
-};
-
-
-/* =========================================================
+      /* =========================================================
    OBJETOS DEL JUEGO
 ========================================================= */
 
-const supports = [
+      const supports = [
+        ["🤝", "Amistad"],
 
-  ["🤝","Amistad"],
+        ["🏠", "Hogar"],
 
-  ["🏠","Hogar"],
+        ["🏫", "Escuela"],
 
-  ["🏫","Escuela"],
+        ["💬", "Hablar"],
 
-  ["💬","Hablar"],
+        ["⚽", "Deporte"],
 
-  ["⚽","Deporte"],
+        ["🎨", "Talento"],
+      ];
 
-  ["🎨","Talento"]
+      const pressures = [
+        ["🚫", "Presión"],
 
-];
+        ["🍺", "Alcohol"],
 
+        ["🚬", "Vape"],
 
-const pressures = [
+        ["💊", "Sustancia"],
+      ];
 
-  ["🚫","Presión"],
-
-  ["🍺","Alcohol"],
-
-  ["🚬","Vape"],
-
-  ["💊","Sustancia"]
-
-];
-
-
-/* =========================================================
+      /* =========================================================
    RANKING
 ========================================================= */
 
-function renderRanking(entries = []) {
+      function renderRanking(entries = []) {
+        rankingEl.replaceChildren();
 
-  rankingEl.replaceChildren();
+        if (!entries.length) {
+          const item = document.createElement("li");
 
-  if (!entries.length) {
+          item.textContent = "Aún no hay puntajes";
 
-    const item =
-      document.createElement("li");
+          rankingEl.append(item);
 
-    item.textContent =
-      "Aún no hay puntajes";
+          return;
+        }
 
-    rankingEl.append(item);
+        entries
 
-    return;
-  }
+          .sort((a, b) => b.points - a.points || a.stamp - b.stamp)
 
+          .slice(0, 10)
 
-  entries
+          .forEach((entry, i) => {
+            const item = document.createElement("li");
 
-    .sort(
-      (a,b) =>
-        b.points - a.points ||
-        a.stamp - b.stamp
-    )
+            const points = document.createElement("span");
 
-    .slice(0,10)
+            item.append(`${i + 1}. ${entry.name || "Navegante"}`);
 
-    .forEach((entry,i) => {
+            points.className = "rank-points";
 
-      const item =
-        document.createElement("li");
+            points.textContent = entry.points || 0;
 
-      const points =
-        document.createElement("span");
+            item.append(points);
 
-      item.append(
-        `${i + 1}. ${entry.name || "Navegante"}`
-      );
+            rankingEl.append(item);
+          });
+      }
 
-      points.className =
-        "rank-points";
+      function connectRanking() {
+        const bestScores = query(scoresRef, orderByChild("points"), limitToLast(10));
 
-      points.textContent =
-        entry.points || 0;
+        onValue(
+          bestScores,
 
-      item.append(points);
+          (snapshot) => {
+            renderRanking(Object.values(snapshot.val() || {}));
 
-      rankingEl.append(item);
+            connectionEl.textContent = "● En vivo";
 
-    });
+            connectionEl.classList.remove("offline");
+          },
 
-}
+          () => {
+            connectionEl.textContent = "Sin conexión";
 
+            connectionEl.classList.add("offline");
 
-function connectRanking() {
+            renderRanking();
+          },
+        );
+      }
 
-  const bestScores =
-    query(
-      scoresRef,
-      orderByChild("points"),
-      limitToLast(10)
-    );
-
-
-  onValue(
-    bestScores,
-
-    snapshot => {
-
-      renderRanking(
-        Object.values(
-          snapshot.val() || {}
-        )
-      );
-
-      connectionEl.textContent =
-        "● En vivo";
-
-      connectionEl.classList.remove(
-        "offline"
-      );
-
-    },
-
-    () => {
-
-      connectionEl.textContent =
-        "Sin conexión";
-
-      connectionEl.classList.add(
-        "offline"
-      );
-
-      renderRanking();
-
-    }
-
-  );
-
-}
-
-
-/* =========================================================
+      /* =========================================================
    CONTROL DE PARTIDA
 ========================================================= */
 
-function alreadyPlayed() {
+      function alreadyPlayed() {
+        return localStorage.getItem(playedPrefix + contestId) === "si";
+      }
 
-  return localStorage.getItem(
-    playedPrefix + contestId
-  ) === "si";
+      function showAlreadyPlayed() {
+        overlay.classList.remove("hidden");
 
-}
-
-
-function showAlreadyPlayed() {
-
-  overlay.classList.remove("hidden");
-
-  overlay.querySelector(".panel").innerHTML = `
+        overlay.querySelector(".panel").innerHTML = `
 
     <span class="hero">✅</span>
 
@@ -966,1147 +852,602 @@ function showAlreadyPlayed() {
     </p>
 
   `;
-
-}
-
-
-function connectContest() {
-
-  onValue(
-
-    gameStateRef,
-
-    snapshot => {
-
-      const state =
-        snapshot.val() || {};
-
-      contestId =
-        state.contestId ||
-        "concurso-inicial";
-
-
-      if (
-        !running &&
-        alreadyPlayed()
-      ) {
-
-        showAlreadyPlayed();
-
       }
 
-    },
+      function connectContest() {
+        onValue(
+          gameStateRef,
 
-    () => {
+          (snapshot) => {
+            const state = snapshot.val() || {};
 
-      connectionEl.textContent =
-        "Sin conexión";
+            contestId = state.contestId || "concurso-inicial";
 
-      connectionEl.classList.add(
-        "offline"
-      );
+            if (!running && alreadyPlayed()) {
+              showAlreadyPlayed();
+            }
+          },
 
-    }
+          () => {
+            connectionEl.textContent = "Sin conexión";
 
-  );
+            connectionEl.classList.add("offline");
+          },
+        );
+      }
 
-}
-
-
-/* =========================================================
+      /* =========================================================
    GUARDAR RESULTADO
 ========================================================= */
 
-function saveScore() {
+      function saveScore() {
+        push(
+          scoresRef,
 
-  push(
+          {
+            name: playerName,
 
-    scoresRef,
+            points: score,
 
-    {
+            stamp: Date.now(),
+          },
+        ).catch(() => {
+          connectionEl.textContent = "No se pudo guardar";
 
-      name:playerName,
+          connectionEl.classList.add("offline");
+        });
+      }
 
-      points:score,
-
-      stamp:Date.now()
-
-    }
-
-  ).catch(() => {
-
-    connectionEl.textContent =
-      "No se pudo guardar";
-
-    connectionEl.classList.add(
-      "offline"
-    );
-
-  });
-
-}
-
-
-/* =========================================================
+      /* =========================================================
    DIMENSIONES
 ========================================================= */
 
-function resize() {
+      function resize() {
+        const ratio = Math.min(window.devicePixelRatio || 1, 2);
 
-  const ratio =
-    Math.min(
-      window.devicePixelRatio || 1,
-      2
-    );
+        const rect = canvas.getBoundingClientRect();
 
-  const rect =
-    canvas.getBoundingClientRect();
+        canvas.width = Math.round(rect.width * ratio);
 
-  canvas.width =
-    Math.round(rect.width * ratio);
+        canvas.height = Math.round(rect.height * ratio);
 
-  canvas.height =
-    Math.round(rect.height * ratio);
+        ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
 
-  ctx.setTransform(
-    ratio,
-    0,
-    0,
-    ratio,
-    0,
-    0
-  );
+        if (running) {
+          const d = dims();
 
+          player.y = d.h - 82;
 
-  if (running) {
+          player.x = Math.max(32, Math.min(d.w - 32, player.x));
 
-    const d = dims();
+          player.target = Math.max(32, Math.min(d.w - 32, player.target));
+        }
+      }
 
-    player.y =
-      d.h - 82;
+      function dims() {
+        return {
+          w: canvas.clientWidth,
 
-    player.x =
-      Math.max(
-        32,
-        Math.min(
-          d.w - 32,
-          player.x
-        )
-      );
+          h: canvas.clientHeight,
 
-    player.target =
-      Math.max(
-        32,
-        Math.min(
-          d.w - 32,
-          player.target
-        )
-      );
+          scale: canvas.clientWidth / 960,
+        };
+      }
 
-  }
+      window.addEventListener("resize", resize);
 
-}
+      resize();
 
-
-function dims() {
-
-  return {
-
-    w:canvas.clientWidth,
-
-    h:canvas.clientHeight,
-
-    scale:
-      canvas.clientWidth / 960
-
-  };
-
-}
-
-
-window.addEventListener(
-  "resize",
-  resize
-);
-
-resize();
-
-
-/* =========================================================
+      /* =========================================================
    GENERAR OBJETOS
 ========================================================= */
 
-function spawn() {
+      function spawn() {
+        const d = dims();
 
-  const d = dims();
-
-  /*
+        /*
     La dificultad aumenta con el tiempo.
     Ya no depende de un contador de 45 segundos.
   */
 
-  const difficulty =
-    Math.min(
-      1,
-      0.52 +
-      time * 0.0025 +
-      score * 0.0015
-    );
+        const difficulty = Math.min(1, 0.52 + time * 0.0025 + score * 0.0015);
 
+        const bad = Math.random() < Math.min(0.82, difficulty);
 
-  const bad =
-    Math.random() <
-    Math.min(0.82,difficulty);
+        const data = bad ? pressures : supports;
 
+        const selected = data[Math.floor(Math.random() * data.length)];
 
-  const data =
-    bad
-      ? pressures
-      : supports;
+        const speedIncrease = Math.min(190, time * 1.6);
 
+        items.push({
+          x: 45 + Math.random() * (d.w - 90),
 
-  const selected =
-    data[
-      Math.floor(
-        Math.random() * data.length
-      )
-    ];
+          y: -35,
 
+          vy: (bad ? 145 : 112) + speedIncrease + Math.min(score, 100) * 1.5,
 
-  const speedIncrease =
-    Math.min(
-      190,
-      time * 1.6
-    );
+          bad,
 
+          icon: selected[0],
 
-  items.push({
+          label: selected[1],
 
-    x:
-      45 +
-      Math.random() *
-      (d.w - 90),
+          r: bad ? 29 : 27,
 
-    y:-35,
+          wave: Math.random() * 6.28,
+        });
+      }
 
-    vy:
-      (bad ? 145 : 112) +
-      speedIncrease +
-      Math.min(score,100) * 1.5,
-
-    bad,
-
-    icon:selected[0],
-
-    label:selected[1],
-
-    r:bad ? 29 : 27,
-
-    wave:
-      Math.random() * 6.28
-
-  });
-
-}
-
-
-/* =========================================================
+      /* =========================================================
    PARTICULAS
 ========================================================= */
 
-function burst(
-  x,
-  y,
-  color,
-  n = 14
-) {
+      function burst(x, y, color, n = 14) {
+        for (let i = 0; i < n; i++) {
+          particles.push({
+            x,
 
-  for (
-    let i = 0;
-    i < n;
-    i++
-  ) {
+            y,
 
-    particles.push({
+            vx: (Math.random() - 0.5) * 170,
 
-      x,
+            vy: (Math.random() - 0.7) * 170,
 
-      y,
+            life: 0.65 + Math.random() * 0.4,
 
-      vx:
-        (Math.random() - .5) * 170,
+            color,
+          });
+        }
+      }
 
-      vy:
-        (Math.random() - .7) * 170,
-
-      life:
-        .65 +
-        Math.random() * .4,
-
-      color
-
-    });
-
-  }
-
-}
-
-
-/* =========================================================
+      /* =========================================================
    FONDO
 ========================================================= */
 
-function drawBackground(d) {
+      function drawBackground(d) {
+        const sky = ctx.createLinearGradient(0, 0, 0, d.h);
 
-  const sky =
-    ctx.createLinearGradient(
-      0,
-      0,
-      0,
-      d.h
-    );
+        sky.addColorStop(0, "#77d9f2");
 
+        sky.addColorStop(0.54, "#c4f1ef");
 
-  sky.addColorStop(
-    0,
-    "#77d9f2"
-  );
+        sky.addColorStop(0.55, "#2faec9");
 
-  sky.addColorStop(
-    .54,
-    "#c4f1ef"
-  );
+        sky.addColorStop(1, "#126f9e");
 
-  sky.addColorStop(
-    .55,
-    "#2faec9"
-  );
+        ctx.fillStyle = sky;
 
-  sky.addColorStop(
-    1,
-    "#126f9e"
-  );
+        ctx.fillRect(0, 0, d.w, d.h);
 
+        /* Sol */
 
-  ctx.fillStyle = sky;
+        ctx.fillStyle = "#fff4c7";
 
-  ctx.fillRect(
-    0,
-    0,
-    d.w,
-    d.h
-  );
+        ctx.beginPath();
 
+        ctx.arc(d.w * 0.81, d.h * 0.16, 40, 0, 7);
 
-  /* Sol */
+        ctx.fill();
 
-  ctx.fillStyle =
-    "#fff4c7";
+        /* Montañas */
 
-  ctx.beginPath();
+        ctx.fillStyle = "#78c874";
 
-  ctx.arc(
-    d.w * .81,
-    d.h * .16,
-    40,
-    0,
-    7
-  );
+        ctx.beginPath();
 
-  ctx.fill();
+        ctx.moveTo(0, d.h * 0.48);
 
+        for (let x = 0; x <= d.w; x += 70) {
+          ctx.quadraticCurveTo(x + 35, d.h * 0.41 + (x % 140 ? 9 : 0), x + 70, d.h * 0.48);
+        }
 
-  /* Montañas */
+        ctx.lineTo(d.w, d.h * 0.55);
 
-  ctx.fillStyle =
-    "#78c874";
+        ctx.lineTo(0, d.h * 0.55);
 
-  ctx.beginPath();
+        ctx.fill();
 
-  ctx.moveTo(
-    0,
-    d.h * .48
-  );
+        /* Agua */
 
+        for (let y = d.h * 0.59; y < d.h; y += 32) {
+          ctx.strokeStyle = "rgba(255,255,255,.18)";
 
-  for (
-    let x = 0;
-    x <= d.w;
-    x += 70
-  ) {
+          ctx.lineWidth = 2;
 
-    ctx.quadraticCurveTo(
-      x + 35,
-      d.h * .41 +
-        (x % 140 ? 9 : 0),
-      x + 70,
-      d.h * .48
-    );
+          ctx.beginPath();
 
-  }
+          for (let x = 0; x < d.w; x += 35) {
+            ctx.quadraticCurveTo(
+              x + 17,
 
+              y - 5 + Math.sin((x + y + time * 80) / 40) * 3,
 
-  ctx.lineTo(
-    d.w,
-    d.h * .55
-  );
+              x + 35,
 
-  ctx.lineTo(
-    0,
-    d.h * .55
-  );
+              y,
+            );
+          }
 
-  ctx.fill();
+          ctx.stroke();
+        }
 
+        /* Palmeras */
 
-  /* Agua */
+        ctx.fillStyle = "#1d925f";
 
-  for (
-    let y = d.h * .59;
-    y < d.h;
-    y += 32
-  ) {
+        [
+          [d.w * 0.09, d.h * 0.43],
+          [d.w * 0.93, d.h * 0.45],
+        ].forEach(([x, y]) => {
+          ctx.fillRect(x - 3, y, 6, 52);
 
-    ctx.strokeStyle =
-      "rgba(255,255,255,.18)";
+          ctx.beginPath();
 
-    ctx.lineWidth = 2;
+          ctx.arc(x, y - 4, 24, 0, 7);
 
-    ctx.beginPath();
+          ctx.fill();
+        });
+      }
 
-
-    for (
-      let x = 0;
-      x < d.w;
-      x += 35
-    ) {
-
-      ctx.quadraticCurveTo(
-
-        x + 17,
-
-        y -
-        5 +
-        Math.sin(
-          (x + y + time * 80) / 40
-        ) * 3,
-
-        x + 35,
-
-        y
-
-      );
-
-    }
-
-    ctx.stroke();
-
-  }
-
-
-  /* Palmeras */
-
-  ctx.fillStyle =
-    "#1d925f";
-
-
-  [
-    [d.w * .09,d.h * .43],
-    [d.w * .93,d.h * .45]
-  ]
-
-  .forEach(([x,y]) => {
-
-    ctx.fillRect(
-      x - 3,
-      y,
-      6,
-      52
-    );
-
-    ctx.beginPath();
-
-    ctx.arc(
-      x,
-      y - 4,
-      24,
-      0,
-      7
-    );
-
-    ctx.fill();
-
-  });
-
-}
-
-
-/* =========================================================
+      /* =========================================================
    JUGADOR
 ========================================================= */
 
-function drawPlayer(d) {
+      function drawPlayer(d) {
+        const x = player.x;
 
-  const x =
-    player.x;
+        const y = player.y + Math.sin(time * 5) * 3;
 
-  const y =
-    player.y +
-    Math.sin(time * 5) * 3;
+        ctx.save();
 
+        ctx.translate(x, y);
 
-  ctx.save();
+        /* Canoa */
 
-  ctx.translate(
-    x,
-    y
-  );
+        ctx.fillStyle = "#713e1e";
 
+        ctx.beginPath();
 
-  /* Canoa */
+        ctx.ellipse(0, 12, 30, 12, 0, 0, 7);
 
-  ctx.fillStyle =
-    "#713e1e";
+        ctx.fill();
 
-  ctx.beginPath();
+        /* Cuerpo */
 
-  ctx.ellipse(
-    0,
-    12,
-    30,
-    12,
-    0,
-    0,
-    7
-  );
+        ctx.fillStyle = "#ed9a39";
 
-  ctx.fill();
+        ctx.beginPath();
 
+        ctx.moveTo(-27, 7);
 
-  /* Cuerpo */
+        ctx.lineTo(27, 7);
 
-  ctx.fillStyle =
-    "#ed9a39";
+        ctx.lineTo(14, 30);
 
-  ctx.beginPath();
+        ctx.lineTo(-14, 30);
 
-  ctx.moveTo(
-    -27,
-    7
-  );
+        ctx.fill();
 
-  ctx.lineTo(
-    27,
-    7
-  );
+        /* Camisa */
 
-  ctx.lineTo(
-    14,
-    30
-  );
+        ctx.fillStyle = "#ef6f53";
 
-  ctx.lineTo(
-    -14,
-    30
-  );
+        ctx.fillRect(-16, -19, 32, 26);
 
-  ctx.fill();
+        /* Cabello */
 
+        ctx.fillStyle = "#6d3b22";
 
-  /* Camisa */
+        ctx.beginPath();
 
-  ctx.fillStyle =
-    "#ef6f53";
+        ctx.arc(0, -31, 13, 0, 7);
 
-  ctx.fillRect(
-    -16,
-    -19,
-    32,
-    26
-  );
+        ctx.fill();
 
+        /* Cara */
 
-  /* Cabello */
+        ctx.fillStyle = "#ffd2a3";
 
-  ctx.fillStyle =
-    "#6d3b22";
+        ctx.beginPath();
 
-  ctx.beginPath();
+        ctx.arc(0, -31, 10, 0, 7);
 
-  ctx.arc(
-    0,
-    -31,
-    13,
-    0,
-    7
-  );
+        ctx.fill();
 
-  ctx.fill();
+        /* Visera */
 
+        ctx.fillStyle = "#172e4a";
 
-  /* Cara */
+        ctx.fillRect(-13, -23, 26, 3);
 
-  ctx.fillStyle =
-    "#ffd2a3";
+        ctx.restore();
+      }
 
-  ctx.beginPath();
-
-  ctx.arc(
-    0,
-    -31,
-    10,
-    0,
-    7
-  );
-
-  ctx.fill();
-
-
-  /* Visera */
-
-  ctx.fillStyle =
-    "#172e4a";
-
-  ctx.fillRect(
-    -13,
-    -23,
-    26,
-    3
-  );
-
-
-  ctx.restore();
-
-}
-
-
-/* =========================================================
+      /* =========================================================
    OBJETOS
 ========================================================= */
 
-function drawItem(it) {
+      function drawItem(it) {
+        ctx.save();
 
-  ctx.save();
+        ctx.translate(it.x, it.y);
 
-  ctx.translate(
-    it.x,
-    it.y
-  );
+        ctx.fillStyle = it.bad ? "#ff8178" : "#fff";
 
+        ctx.beginPath();
 
-  ctx.fillStyle =
-    it.bad
-      ? "#ff8178"
-      : "#fff";
+        ctx.arc(0, 0, it.r + 6, 0, 7);
 
+        ctx.fill();
 
-  ctx.beginPath();
+        ctx.font = `${it.bad ? 29 : 27}px sans-serif`;
 
-  ctx.arc(
-    0,
-    0,
-    it.r + 6,
-    0,
-    7
-  );
+        ctx.textAlign = "center";
 
-  ctx.fill();
+        ctx.textBaseline = "middle";
 
+        ctx.fillText(it.icon, 0, 1);
 
-  ctx.font =
-    `${it.bad ? 29 : 27}px sans-serif`;
+        ctx.font = "800 10px Nunito";
 
-  ctx.textAlign =
-    "center";
+        ctx.fillStyle = it.bad ? "#8a2931" : "#176083";
 
-  ctx.textBaseline =
-    "middle";
+        ctx.fillText(it.label, 0, it.r + 17);
 
+        ctx.restore();
+      }
 
-  ctx.fillText(
-    it.icon,
-    0,
-    1
-  );
-
-
-  ctx.font =
-    "800 10px Nunito";
-
-
-  ctx.fillStyle =
-    it.bad
-      ? "#8a2931"
-      : "#176083";
-
-
-  ctx.fillText(
-    it.label,
-    0,
-    it.r + 17
-  );
-
-
-  ctx.restore();
-
-}
-
-
-/* =========================================================
+      /* =========================================================
    ACTUALIZAR JUEGO
 ========================================================= */
 
-function update(dt) {
+      function update(dt) {
+        const d = dims();
 
-  const d =
-    dims();
-
-
-  /*
+        /*
     El tiempo aumenta indefinidamente.
     No existe un límite de 45 segundos.
   */
 
-  time += dt;
+        time += dt;
 
-
-  /*
+        /*
     El marcador superior permanece
     mostrando infinito.
   */
 
-  timerEl.textContent =
-    "∞";
+        timerEl.textContent = "∞";
 
-
-  /*
+        /*
     Movimiento del jugador
   */
 
-  player.x +=
+        player.x += Math.max(-460, Math.min(460, player.target - player.x)) * Math.min(1, dt * 8);
 
-    Math.max(
-      -460,
-      Math.min(
-        460,
-        player.target - player.x
-      )
-    ) *
-
-    Math.min(
-      1,
-      dt * 8
-    );
-
-
-  /*
+        /*
     Generación progresiva de objetos.
 
     Conforme aumenta time y score,
     aparecen más objetos.
   */
 
-  const spawnRate =
+        const spawnRate = 2.1 + Math.min(2.8, time * 0.025) + Math.min(2, score * 0.015);
 
-    2.1 +
+        if (Math.random() < dt * spawnRate) {
+          spawn();
+        }
 
-    Math.min(
-      2.8,
-      time * 0.025
-    ) +
-
-    Math.min(
-      2,
-      score * 0.015
-    );
-
-
-  if (
-    Math.random() <
-    dt * spawnRate
-  ) {
-
-    spawn();
-
-  }
-
-
-  /*
+        /*
     Movimiento y colisiones
   */
 
-  items.forEach(it => {
+        items.forEach((it) => {
+          it.y += it.vy * dt;
 
-    it.y +=
-      it.vy * dt;
+          it.x += Math.sin(time * 2 + it.wave) * 15 * dt;
 
+          const dx = it.x - player.x;
 
-    it.x +=
-      Math.sin(
-        time * 2 +
-        it.wave
-      ) *
-      15 *
-      dt;
+          const dy = it.y - player.y;
 
+          if (Math.hypot(dx, dy) < it.r + 31) {
+            it.hit = true;
 
-    const dx =
-      it.x - player.x;
-
-    const dy =
-      it.y - player.y;
-
-
-    if (
-      Math.hypot(dx,dy) <
-      it.r + 31
-    ) {
-
-      it.hit = true;
-
-
-      if (it.bad) {
-
-        /*
+            if (it.bad) {
+              /*
           Presión:
           pierde una vida.
         */
 
-        lives--;
+              lives--;
 
-        combo = 0;
+              combo = 0;
 
-        livesEl.textContent =
-          lives;
+              livesEl.textContent = lives;
 
+              burst(it.x, it.y, "#ff7770");
 
-        burst(
-          it.x,
-          it.y,
-          "#ff7770"
-        );
-
-
-        /*
+              /*
           La única forma de terminar
           la partida es quedarse sin vidas.
         */
 
-        if (lives <= 0) {
-
-          end(false);
-
-        }
-
-      }
-
-      else {
-
-        /*
+              if (lives <= 0) {
+                end(false);
+              }
+            } else {
+              /*
           Apoyo:
           suma puntos.
         */
 
-        combo++;
+              combo++;
 
-        score +=
-          1 +
-          Math.floor(
-            combo / 4
-          );
+              score += 1 + Math.floor(combo / 4);
 
-        scoreEl.textContent =
-          score;
+              scoreEl.textContent = score;
 
+              burst(it.x, it.y, "#ffe467");
+            }
+          }
+        });
 
-        burst(
-          it.x,
-          it.y,
-          "#ffe467"
-        );
+        items = items.filter((it) => !it.hit && it.y < d.h + 60);
 
-      }
-
-    }
-
-  });
-
-
-  items =
-    items.filter(
-      it =>
-        !it.hit &&
-        it.y < d.h + 60
-    );
-
-
-  /*
+        /*
     Partículas
   */
 
-  particles.forEach(p => {
+        particles.forEach((p) => {
+          p.x += p.vx * dt;
 
-    p.x +=
-      p.vx * dt;
+          p.y += p.vy * dt;
 
-    p.y +=
-      p.vy * dt;
+          p.vy += 250 * dt;
 
-    p.vy +=
-      250 * dt;
+          p.life -= dt;
+        });
 
-    p.life -=
-      dt;
+        particles = particles.filter((p) => p.life > 0);
+      }
 
-  });
-
-
-  particles =
-    particles.filter(
-      p => p.life > 0
-    );
-
-}
-
-
-/* =========================================================
+      /* =========================================================
    DIBUJAR
 ========================================================= */
 
-function draw() {
+      function draw() {
+        const d = dims();
 
-  const d =
-    dims();
+        ctx.clearRect(0, 0, d.w, d.h);
 
+        drawBackground(d);
 
-  ctx.clearRect(
-    0,
-    0,
-    d.w,
-    d.h
-  );
+        items.forEach(drawItem);
 
+        drawPlayer(d);
 
-  drawBackground(d);
+        particles.forEach((p) => {
+          ctx.globalAlpha = Math.max(0, p.life);
 
+          ctx.fillStyle = p.color;
 
-  items.forEach(
-    drawItem
-  );
+          ctx.beginPath();
 
+          ctx.arc(p.x, p.y, 4, 0, 7);
 
-  drawPlayer(d);
+          ctx.fill();
+        });
 
+        ctx.globalAlpha = 1;
+      }
 
-  particles.forEach(p => {
-
-    ctx.globalAlpha =
-      Math.max(
-        0,
-        p.life
-      );
-
-    ctx.fillStyle =
-      p.color;
-
-    ctx.beginPath();
-
-    ctx.arc(
-      p.x,
-      p.y,
-      4,
-      0,
-      7
-    );
-
-    ctx.fill();
-
-  });
-
-
-  ctx.globalAlpha = 1;
-
-}
-
-
-/* =========================================================
+      /* =========================================================
    BUCLE PRINCIPAL
 ========================================================= */
 
-function loop(now) {
+      function loop(now) {
+        if (!running) {
+          return;
+        }
 
-  if (!running) {
+        const dt = Math.min(0.035, (now - last) / 1000 || 0);
 
-    return;
+        last = now;
 
-  }
+        update(dt);
 
+        draw();
 
-  const dt =
-    Math.min(
-      .035,
-      (now - last) / 1000 || 0
-    );
+        if (running) {
+          requestAnimationFrame(loop);
+        }
+      }
 
-
-  last = now;
-
-
-  update(dt);
-
-  draw();
-
-
-  if (running) {
-
-    requestAnimationFrame(
-      loop
-    );
-
-  }
-
-}
-
-
-/* =========================================================
+      /* =========================================================
    COMENZAR
 ========================================================= */
 
-let playerName =
-  "Navegante";
+      let playerName = "Navegante";
 
+      function begin() {
+        if (alreadyPlayed()) {
+          showAlreadyPlayed();
 
-function begin() {
+          return;
+        }
 
-  if (alreadyPlayed()) {
+        playerName =
+          (document.querySelector("#player-name")?.value || "Navegante")
 
-    showAlreadyPlayed();
+            .trim()
 
-    return;
+            .replace(/[^a-zA-ZÀ-ÿ0-9 .\_-]/g, "")
 
-  }
+            .slice(0, 14) || "Navegante";
 
+        running = true;
 
-  playerName =
+        score = 0;
 
-    (
-      document.querySelector(
-        "#player-name"
-      )?.value ||
-      "Navegante"
-    )
+        lives = 3;
 
-    .trim()
+        time = 0;
 
-    .replace(
-      /[^a-zA-ZÀ-ÿ0-9 .\_-]/g,
-      ""
-    )
+        combo = 0;
 
-    .slice(
-      0,
-      14
-    ) ||
+        items = [];
 
-    "Navegante";
+        particles = [];
 
+        player.x = player.target = dims().w / 2;
 
-  running = true;
+        player.y = dims().h - 82;
 
-  score = 0;
+        scoreEl.textContent = "0";
 
-  lives = 3;
+        livesEl.textContent = "3";
 
-  time = 0;
+        timerEl.textContent = "∞";
 
-  combo = 0;
+        overlay.classList.add("hidden");
 
-  items = [];
+        last = performance.now();
 
-  particles = [];
+        requestAnimationFrame(loop);
+      }
 
-
-  player.x =
-    player.target =
-    dims().w / 2;
-
-
-  player.y =
-    dims().h - 82;
-
-
-  scoreEl.textContent =
-    "0";
-
-  livesEl.textContent =
-    "3";
-
-  timerEl.textContent =
-    "∞";
-
-
-  overlay.classList.add(
-    "hidden"
-  );
-
-
-  last =
-    performance.now();
-
-
-  requestAnimationFrame(
-    loop
-  );
-
-}
-
-
-/* =========================================================
+      /* =========================================================
    FINAL DE PARTIDA
 ========================================================= */
 
-function end() {
+      function end() {
+        if (!running) {
+          return;
+        }
 
-  if (!running) {
+        running = false;
 
-    return;
-
-  }
-
-
-  running = false;
-
-
-  /*
+        /*
     Se registra que el dispositivo
     ya jugó este concurso.
   */
 
-  localStorage.setItem(
-    playedPrefix + contestId,
-    "si"
-  );
+        localStorage.setItem(playedPrefix + contestId, "si");
 
-
-  /*
+        /*
     Guardar resultado en Firebase.
   */
 
-  saveScore();
+        saveScore();
 
-
-  /*
+        /*
     Mostrar resultado.
   */
 
-  overlay.classList.remove(
-    "hidden"
-  );
+        overlay.classList.remove("hidden");
 
-
-  overlay.querySelector(
-    ".panel"
-  ).innerHTML = `
+        overlay.querySelector(".panel").innerHTML = `
 
     <span class="hero">💙</span>
 
@@ -2135,265 +1476,140 @@ function end() {
     </p>
 
   `;
+      }
 
-}
-
-
-/* =========================================================
+      /* =========================================================
    REINICIAR CONCURSO
 ========================================================= */
 
-async function resetContest() {
+      async function resetContest() {
+        const password = window.prompt(
+          "Clave de administrador para borrar el ranking y reiniciar el concurso:",
+        );
 
-  const password =
-    window.prompt(
-      "Clave de administrador para borrar el ranking y reiniciar el concurso:"
-    );
+        if (password === null) {
+          return;
+        }
 
+        if (password !== "2460") {
+          window.alert("Clave incorrecta. El concurso no fue modificado.");
 
-  if (password === null) {
+          return;
+        }
 
-    return;
+        const accepted = window.confirm(
+          "Se eliminarán TODOS los puntajes y se habilitará una nueva partida en todos los dispositivos. ¿Continuar?",
+        );
 
-  }
+        if (!accepted) {
+          return;
+        }
 
+        try {
+          const newContestId = "concurso-" + Date.now();
 
-  if (password !== "2460") {
+          await set(scoresRef, null);
 
-    window.alert(
-      "Clave incorrecta. El concurso no fue modificado."
-    );
+          await set(gameStateRef, {
+            contestId: newContestId,
+            resetAt: Date.now(),
+          });
 
-    return;
+          localStorage.removeItem(playedPrefix + contestId);
 
-  }
+          contestId = newContestId;
 
+          window.alert(
+            "Concurso reiniciado. El ranking está vacío y los dispositivos pueden volver a participar.",
+          );
 
-  const accepted =
-    window.confirm(
-      "Se eliminarán TODOS los puntajes y se habilitará una nueva partida en todos los dispositivos. ¿Continuar?"
-    );
+          window.location.reload();
+        } catch (error) {
+          console.error(error);
 
-
-  if (!accepted) {
-
-    return;
-
-  }
-
-
-  try {
-
-    const newContestId =
-      "concurso-" +
-      Date.now();
-
-
-    await set(
-      scoresRef,
-      null
-    );
-
-
-    await set(
-      gameStateRef,
-      {
-        contestId:newContestId,
-        resetAt:Date.now()
+          window.alert(
+            "No fue posible reiniciar. Revisa las reglas de Firebase indicadas por el administrador.",
+          );
+        }
       }
-    );
 
-
-    localStorage.removeItem(
-      playedPrefix + contestId
-    );
-
-
-    contestId =
-      newContestId;
-
-
-    window.alert(
-      "Concurso reiniciado. El ranking está vacío y los dispositivos pueden volver a participar."
-    );
-
-
-    window.location.reload();
-
-  }
-
-  catch(error) {
-
-    console.error(error);
-
-    window.alert(
-      "No fue posible reiniciar. Revisa las reglas de Firebase indicadas por el administrador."
-    );
-
-  }
-
-}
-
-
-/* =========================================================
+      /* =========================================================
    CONTROLES
 ========================================================= */
 
-function setTarget(clientX) {
+      function setTarget(clientX) {
+        const r = canvas.getBoundingClientRect();
 
-  const r =
-    canvas.getBoundingClientRect();
+        player.target = Math.max(
+          32,
 
+          Math.min(r.width - 32, clientX - r.left),
+        );
+      }
 
-  player.target =
+      function nudge(amount) {
+        const d = dims();
 
-    Math.max(
-      32,
+        player.target = Math.max(
+          32,
 
-      Math.min(
-        r.width - 32,
-        clientX - r.left
-      )
+          Math.min(d.w - 32, player.target + amount),
+        );
+      }
 
-    );
+      /* Teclado */
 
-}
+      window.addEventListener("keydown", (e) => {
+        if (["ArrowLeft", "a", "A"].includes(e.key)) {
+          nudge(-55);
+        }
 
+        if (["ArrowRight", "d", "D"].includes(e.key)) {
+          nudge(55);
+        }
+      });
 
-function nudge(amount) {
+      /* Mouse / pantalla táctil */
 
-  const d =
-    dims();
+      canvas.addEventListener("pointerdown", (e) => {
+        setTarget(e.clientX);
+      });
 
+      canvas.addEventListener("pointermove", (e) => {
+        if (e.buttons) {
+          setTarget(e.clientX);
+        }
+      });
 
-  player.target =
+      /* Botones móviles */
 
-    Math.max(
+      start.onclick = begin;
 
-      32,
+      leftButton.addEventListener("pointerdown", (e) => {
+        e.preventDefault();
 
-      Math.min(
-        d.w - 32,
-        player.target + amount
-      )
+        nudge(-90);
+      });
 
-    );
+      rightButton.addEventListener("pointerdown", (e) => {
+        e.preventDefault();
 
-}
+        nudge(90);
+      });
 
+      /* Reiniciar concurso */
 
-/* Teclado */
+      resetButton.onclick = resetContest;
 
-window.addEventListener(
-  "keydown",
-  e => {
-
-    if (
-      [
-        "ArrowLeft",
-        "a",
-        "A"
-      ].includes(e.key)
-    ) {
-
-      nudge(-55);
-
-    }
-
-
-    if (
-      [
-        "ArrowRight",
-        "d",
-        "D"
-      ].includes(e.key)
-    ) {
-
-      nudge(55);
-
-    }
-
-  }
-);
-
-
-/* Mouse / pantalla táctil */
-
-canvas.addEventListener(
-  "pointerdown",
-  e => {
-
-    setTarget(
-      e.clientX
-    );
-
-  }
-);
-
-
-canvas.addEventListener(
-  "pointermove",
-  e => {
-
-    if (e.buttons) {
-
-      setTarget(
-        e.clientX
-      );
-
-    }
-
-  }
-);
-
-
-/* Botones móviles */
-
-start.onclick =
-  begin;
-
-
-leftButton.addEventListener(
-  "pointerdown",
-  e => {
-
-    e.preventDefault();
-
-    nudge(-90);
-
-  }
-);
-
-
-rightButton.addEventListener(
-  "pointerdown",
-  e => {
-
-    e.preventDefault();
-
-    nudge(90);
-
-  }
-);
-
-
-/* Reiniciar concurso */
-
-resetButton.onclick =
-  resetContest;
-
-
-/* =========================================================
+      /* =========================================================
    INICIALIZAR
 ========================================================= */
 
-connectRanking();
+      connectRanking();
 
-connectContest();
+      connectContest();
 
-draw();
-
-</script>
-
-</body>
+      draw();
+    </script>
+  </body>
 </html>

@@ -4,7 +4,7 @@ La página ya contiene práctica local sin conexión. Firebase se usa para cuent
 
 ## 1. Crear la app web
 
-El proyecto `camp2-93288` y su app web ya están escritos en `.firebaserc` y `outputs/js/firebase-config.js`. En Firebase Console, abre **Authentication**, pulsa **Comenzar**, habilita **Sign-in method → correo y contraseña** y agrega el dominio donde publicarás la página en **Settings → Authorized domains**. Para probar localmente, sírvela desde `localhost`; abrirla como `file://` no es adecuado para el inicio de sesión. También crea la base en **Firestore Database**. La configuración web identifica el proyecto; nunca pongas allí la clave de Gemini.
+El proyecto `camp2-93288` y su app web ya están escritos en `.firebaserc` y `outputs/js/villa-esther/firebase-config.js`. En Firebase Console, abre **Authentication**, pulsa **Comenzar**, habilita **Sign-in method → correo y contraseña** y agrega el dominio donde publicarás la página en **Settings → Authorized domains**. Para probar localmente, sírvela desde `localhost`; abrirla como `file://` no es adecuado para el inicio de sesión. También crea la base en **Firestore Database**. La configuración web identifica el proyecto; nunca pongas allí la clave de Gemini.
 
 ## 2. Configurar Gemini en Cloudflare
 
@@ -20,7 +20,7 @@ Si el repositorio está conectado con **Pages → Connect to Git**, basta con ha
 
 ## 3. App Check y rol docente
 
-En Firebase Console → **App Check**, registra los dominios reales de Firebase Hosting y Cloudflare Pages con reCAPTCHA Enterprise. Pon la clave de sitio en `recaptchaEnterpriseSiteKey` de `outputs/js/firebase-config.js`. App Check protege las funciones Firebase que gestionan grupos; la función de Gemini valida el token de inicio de sesión Firebase en Cloudflare. No uses tokens de depuración en producción.
+En Firebase Console → **App Check**, registra los dominios reales de Firebase Hosting y Cloudflare Pages con reCAPTCHA Enterprise. Pon la clave de sitio en `recaptchaEnterpriseSiteKey` de `outputs/js/villa-esther/firebase-config.js`. App Check protege las funciones Firebase que gestionan grupos; la función de Gemini valida el token de inicio de sesión Firebase en Cloudflare. No uses tokens de depuración en producción.
 
 Las cuentas nuevas son estudiantes. Nadie puede asignarse el rol docente desde la página. El administrador del proyecto debe asignar los claims `role: "teacher"` y `school: "villa-esther"` a las cuentas docentes. Con credenciales de administrador configuradas en la máquina autorizada, ejecuta:
 

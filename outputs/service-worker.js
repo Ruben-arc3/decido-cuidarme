@@ -1,3 +1,4 @@
+// PWA offline layer: precaches local resources and falls back to cached copies when offline.
 const CACHE = "decido-cuidarme-offline-v51";
 const CORE = [
   "./css/pwa-install.css",
@@ -78,37 +79,52 @@ const CORE = [
   "./recursos/prevencion-consumo-sustancias.html",
   "./recursos/prevencion-violencia-intrafamiliar.html",
   "./recursos/prevencion-violencia-sexual.html",
-  "./service-worker.js"
+  "./service-worker.js",
 ];
 
 const OPTIONAL_EXTERNAL = [
   "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css",
-  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js",
 ];
-const CACHEABLE_EXTERNAL_HOSTS = new Set(["cdn.jsdelivr.net", "fonts.googleapis.com", "fonts.gstatic.com"]);
+const CACHEABLE_EXTERNAL_HOSTS = new Set([
+  "cdn.jsdelivr.net",
+  "fonts.googleapis.com",
+  "fonts.gstatic.com",
+]);
 
-self.addEventListener("install", event => {
-  event.waitUntil((async () => {
-    const cache = await caches.open(CACHE);
-    await cache.addAll(CORE);
-    await Promise.all(OPTIONAL_EXTERNAL.map(async url => {
-      try {
-        const request = new Request(url, { mode: "cors" });
-        const response = await fetch(request);
-        if (response.ok) await cache.put(request, response);
-      } catch { /* Los recursos opcionales no deben impedir el modo offline local. */ }
-    }));
-    await self.skipWaiting();
-  })());
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    (async () => {
+      const cache = await caches.open(CACHE);
+      await cache.addAll(CORE);
+      await Promise.all(
+        OPTIONAL_EXTERNAL.map(async (url) => {
+          try {
+            const request = new Request(url, { mode: "cors" });
+            const response = await fetch(request);
+            if (response.ok) await cache.put(request, response);
+          } catch {
+            /* Los recursos opcionales no deben impedir el modo offline local. */
+          }
+        }),
+      );
+      await self.skipWaiting();
+    })(),
+  );
 });
 
-self.addEventListener("activate", event => {
-  event.waitUntil(caches.keys()
-    .then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key))))
-    .then(() => self.clients.claim()));
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    caches
+      .keys()
+      .then((keys) =>
+        Promise.all(keys.filter((key) => key !== CACHE).map((key) => caches.delete(key))),
+      )
+      .then(() => self.clients.claim()),
+  );
 });
 
-self.addEventListener("fetch", event => {
+self.addEventListener("fetch", (event) => {
   const request = event.request;
   if (request.method !== "GET") return;
   const url = new URL(request.url);
@@ -116,19 +132,25 @@ self.addEventListener("fetch", event => {
   if (sameOrigin && url.pathname.includes("/api/")) return;
   if (!sameOrigin && !CACHEABLE_EXTERNAL_HOSTS.has(url.hostname)) return;
 
-  event.respondWith(fetch(request).then(response => {
-    if (response.ok) {
-      const copy = response.clone();
-      caches.open(CACHE).then(cache => cache.put(request, copy));
-    }
-    return response;
-  }).catch(async () => {
-    const cached = await caches.match(request, { ignoreSearch: true });
-    if (cached) return cached;
-    if (request.mode === "navigate") {
-      const home = await caches.match("./instituciones/villa-esther/institucion-villa-esther.html");
-      if (home) return home;
-    }
-    return Response.error();
-  }));
+  event.respondWith(
+    fetch(request)
+      .then((response) => {
+        if (response.ok) {
+          const copy = response.clone();
+          caches.open(CACHE).then((cache) => cache.put(request, copy));
+        }
+        return response;
+      })
+      .catch(async () => {
+        const cached = await caches.match(request, { ignoreSearch: true });
+        if (cached) return cached;
+        if (request.mode === "navigate") {
+          const home = await caches.match(
+            "./instituciones/villa-esther/institucion-villa-esther.html",
+          );
+          if (home) return home;
+        }
+        return Response.error();
+      }),
+  );
 });

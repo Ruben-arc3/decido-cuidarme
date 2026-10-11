@@ -45,7 +45,7 @@ HTML, CSS y JavaScript; Cloudflare Pages y Pages Functions; Firebase Authenticat
 
 La oferta educativa de Córdoba se conserva en `outputs/instituciones/` porque es un recurso compartido. Los enlaces antiguos a páginas de Villa Esther redirigen a la nueva carpeta.
 
-Más detalle: [arquitectura](docs/arquitectura.md), [despliegue](docs/despliegue.md), [fuentes y uso responsable](docs/fuentes-y-uso-responsable.md), [contribuir](CONTRIBUTING.md).
+Más detalle: [guía para leer el código](docs/guia-del-codigo.md), [arquitectura](docs/arquitectura.md), [despliegue](docs/despliegue.md), [fuentes y uso responsable](docs/fuentes-y-uso-responsable.md), [contribuir](CONTRIBUTING.md).
 
 ## Ejecutar en local
 

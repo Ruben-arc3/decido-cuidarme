@@ -1,0 +1,534 @@
+/* Villa Esther · tema Cassette Futurism
+   Cargar DESPUÉS de los <style> existentes. No cambia el HTML ni los IDs del JS. */
+:root {
+  --crt: #33ff00;
+  --beige: #d2b48c;
+  --char: #2a2d2f;
+  --char-2: #1f2224;
+  --navy: #1b2838;
+  --amber: #ffb000;
+  --tape: #cc0000;
+  --static: #999;
+  --offw: #e8e0d0;
+  --ink: var(--offw);
+  --muted: var(--static);
+  --bg: var(--char-2);
+  --line: #4a5054;
+  --teal: var(--crt);
+  --gold: var(--amber);
+  --glow: 0 0 6px #33ff0088, 0 0 18px #33ff0033;
+  --bs-body-bg: var(--char-2);
+  --bs-body-color: var(--offw);
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background: var(--char-2) !important;
+  color: var(--offw);
+  font:
+    20px/1.5 "VT323",
+    "JetBrains Mono",
+    monospace;
+  letter-spacing: 0.02em;
+}
+/* Capa CRT: líneas de barrido + viñeta */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, #0000 0 2px, #00000030 2px 3px),
+    radial-gradient(ellipse at center, #0000 60%, #00000066 100%);
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: "VT323", monospace;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+}
+a {
+  color: var(--amber);
+}
+
+/* Texto pequeño: VT323 necesita más tamaño */
+.hero p,
+.sectionhead p,
+.panel > p,
+.feature > p,
+.resource p,
+.module-card p,
+.slide p,
+.tip,
+.smallnote,
+.story blockquote,
+.field label,
+.field input,
+.field select,
+.field textarea,
+.btn,
+.module-go,
+.resource a,
+.footer,
+.career-intro,
+.career-message,
+.career-form textarea,
+.question-feedback,
+.answer-option,
+.checkrow,
+.filters select,
+.guide-step p,
+.career-meta,
+.career-login-link {
+  font-size: 18px !important;
+  line-height: 1.35 !important;
+}
+.field label,
+.module-kicker,
+.kicker,
+.villa-brand-kicker,
+.story b {
+  font-size: 16px !important;
+  letter-spacing: 0.08em;
+}
+
+/* Cabecera */
+.villa-brand-banner {
+  background: var(--navy) !important;
+  border-bottom: 4px solid var(--crt) !important;
+  box-shadow: 0 4px 0 #33ff0033 !important;
+}
+.villa-brand-name {
+  font-size: 30px !important;
+  font-weight: 400 !important;
+  color: var(--crt) !important;
+  text-shadow: var(--glow);
+}
+.villa-brand-motto,
+.villa-brand-kicker {
+  color: var(--beige) !important;
+  font-size: 16px !important;
+}
+.villa-brand-crest {
+  border-radius: 4px !important;
+  border: 3px solid var(--beige);
+  background: var(--offw) !important;
+}
+.villa-nav .nav-link {
+  font-size: 19px !important;
+  font-weight: 400 !important;
+  border-radius: 4px !important;
+  color: var(--offw) !important;
+  border: 2px solid transparent;
+}
+.villa-nav .nav-link:hover,
+.villa-nav .nav-link:focus-visible {
+  background: var(--char) !important;
+  border-color: var(--crt);
+  color: var(--crt) !important;
+}
+.villa-nav .villa-platform-link {
+  border: 2px solid var(--amber) !important;
+  color: var(--amber) !important;
+}
+
+/* Hero: pantalla fosforescente con carrete de cinta */
+.hero {
+  background: var(--navy) !important;
+  border: 4px solid var(--beige) !important;
+  border-radius: 8px !important;
+  box-shadow:
+    inset 0 0 60px #33ff0018,
+    8px 8px 0 #000000aa !important;
+  position: relative;
+  overflow: hidden;
+}
+.hero h1 {
+  color: var(--crt);
+  text-shadow: var(--glow);
+  font-size: clamp(2.6rem, 6vw, 4.4rem) !important;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+.hero h1::after {
+  content: "_";
+  margin-left: 0.1em;
+  animation: blink 1s steps(1) infinite;
+}
+.hero p {
+  color: var(--beige) !important;
+  font-size: 22px !important;
+}
+.kicker {
+  color: var(--amber) !important;
+}
+.kicker::before {
+  content: "> ";
+}
+.hero:after {
+  width: 260px !important;
+  height: 260px !important;
+  right: -70px !important;
+  bottom: -90px !important;
+  border: 10px double var(--beige) !important;
+  box-shadow:
+    inset 0 0 0 28px #1b2838,
+    inset 0 0 0 34px #d2b48c55 !important;
+  opacity: 0.45;
+  animation: reel 14s linear infinite;
+}
+@keyframes reel {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Secciones */
+.section {
+  padding-top: 44px !important;
+}
+.sectionhead {
+  border-bottom: 3px double var(--line) !important;
+}
+.sectionhead h2 {
+  color: var(--crt);
+  font-size: clamp(2rem, 3.4vw, 2.8rem) !important;
+  text-shadow: var(--glow);
+}
+.sectionhead h2::before {
+  content: "> ";
+  color: var(--amber);
+}
+.sectionhead p {
+  color: var(--static) !important;
+}
+
+/* Superficies: paneles de consola con borde grueso */
+.panel,
+.feature,
+.feature.card,
+.resource,
+.resource.card,
+.story,
+.story.card,
+.module-card,
+.module-card.card,
+.career-panel,
+.exam-game,
+.ai-review,
+.study-card,
+.career-log,
+details.feature {
+  --bs-card-bg: var(--char);
+  --bs-card-color: var(--offw);
+  --bs-card-border-color: var(--beige);
+  background: var(--char) !important;
+  color: var(--offw) !important;
+  border: 3px solid var(--beige) !important;
+  border-radius: 6px !important;
+  box-shadow: 6px 6px 0 #000000aa !important;
+}
+.feature h3,
+.panel h3,
+.resource h3,
+.module-card h3 {
+  color: var(--beige);
+  font-size: 26px !important;
+}
+.feature h3::before {
+  content: "[ ";
+  color: var(--amber);
+}
+.feature h3::after {
+  content: " ]";
+  color: var(--amber);
+}
+.resource:hover,
+.story:hover,
+.module-card:hover {
+  transform: translateY(-3px) scale(1.02) !important;
+  border-color: var(--crt) !important;
+  box-shadow: 6px 6px 0 #33ff0066 !important;
+}
+
+/* Módulos y juegos: sin emojis, índice tipo canal de cinta */
+.module-grid {
+  counter-reset: canal;
+}
+.resource-grid {
+  counter-reset: juego;
+}
+.module-icon,
+.resource .icon {
+  font-size: 0 !important;
+  display: block;
+}
+.module-icon::before {
+  counter-increment: canal;
+  content: "CH-" counter(canal, decimal-leading-zero);
+  font-size: 24px;
+  color: var(--amber);
+  text-shadow: 0 0 6px #ffb00088;
+}
+.resource .icon::before {
+  counter-increment: juego;
+  content: "PISTA " counter(juego);
+  font-size: 22px;
+  color: var(--amber);
+}
+.module-card:before {
+  background: none !important;
+}
+.module-kicker {
+  color: var(--crt) !important;
+}
+.module-card p,
+.resource p {
+  color: var(--offw) !important;
+  opacity: 0.85;
+}
+.module-go,
+.resource a {
+  color: var(--amber) !important;
+  font-weight: 400 !important;
+}
+.module-go::before,
+.resource a::before {
+  content: "▶ ";
+}
+
+/* Formularios */
+.field label {
+  color: var(--beige) !important;
+}
+.field input,
+.field select,
+.field textarea,
+.form-control,
+.form-select,
+.exam-settings select,
+.filters select,
+.career-form textarea {
+  background-color: var(--char-2) !important;
+  color: var(--crt) !important;
+  border: 2px solid var(--static) !important;
+  border-radius: 4px !important;
+  caret-color: var(--crt);
+  font-family: inherit !important;
+}
+.form-control::placeholder {
+  color: #99999988;
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--crt) !important;
+  box-shadow:
+    0 0 0 2px var(--char-2),
+    0 0 0 4px var(--crt) !important;
+}
+
+/* Botones: teclas con recorrido */
+.btn {
+  background: var(--crt) !important;
+  color: var(--char-2) !important;
+  border: 2px solid #000 !important;
+  border-radius: 4px !important;
+  font-weight: 400 !important;
+  font-size: 20px !important;
+  box-shadow: 0 4px 0 #1a8a00;
+  transition:
+    transform 0.12s,
+    box-shadow 0.12s;
+}
+.btn:hover {
+  filter: brightness(0.92);
+  transform: translateY(-1px);
+}
+.btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #1a8a00;
+}
+.btn.secondary {
+  background: transparent !important;
+  color: var(--beige) !important;
+  border: 2px solid var(--beige) !important;
+  box-shadow: 0 4px 0 #000;
+}
+.btn.secondary:hover {
+  background: #d2b48c22 !important;
+}
+
+/* Mensajes y estados */
+.tip {
+  background: #ffb00018 !important;
+  border: 2px dashed var(--amber) !important;
+  color: var(--amber) !important;
+}
+.question-feedback {
+  background: #33ff0014 !important;
+  color: var(--crt) !important;
+  border: 2px solid var(--crt);
+}
+.question-feedback.wrong {
+  background: #cc000022 !important;
+  color: #ff7a7a !important;
+  border-color: var(--tape);
+}
+.answer-option {
+  background: var(--char-2) !important;
+  border: 2px solid var(--line) !important;
+  border-radius: 4px !important;
+}
+.answer-option:has(input:checked) {
+  border-color: var(--crt) !important;
+  box-shadow: var(--glow) !important;
+}
+.smallnote,
+.career-meta {
+  color: var(--static) !important;
+}
+#firebaseStatus::before {
+  content: "● ";
+  color: var(--amber);
+  animation: blink 1.6s steps(1) infinite;
+}
+.story blockquote {
+  color: var(--offw);
+}
+.story b {
+  color: var(--amber) !important;
+}
+
+/* Orientador vocacional (widget IA) */
+.career-launcher {
+  background: var(--amber) !important;
+  color: var(--char-2) !important;
+  border: 3px solid #000;
+  border-radius: 6px !important;
+  font-family: inherit !important;
+  font-size: 21px !important;
+  font-weight: 400 !important;
+  box-shadow: 5px 5px 0 #000;
+}
+.career-launcher-icon,
+.career-ai-tag {
+  background: #00000025 !important;
+  border-radius: 4px !important;
+}
+.career-panel {
+  border-color: var(--crt) !important;
+  box-shadow:
+    6px 6px 0 #000,
+    0 0 24px #33ff0044 !important;
+}
+.career-header {
+  background: var(--navy) !important;
+  border-bottom: 3px solid var(--crt);
+}
+.career-heading h2 {
+  font-size: 26px !important;
+  color: var(--crt);
+  text-shadow: var(--glow);
+}
+.career-heading p {
+  font-size: 16px !important;
+  color: var(--beige) !important;
+}
+.career-avatar,
+.career-close {
+  border-radius: 4px !important;
+  border: 2px solid var(--beige) !important;
+  color: var(--beige) !important;
+}
+.career-prompt {
+  background: var(--char-2) !important;
+  color: var(--beige) !important;
+  border: 2px solid var(--static) !important;
+  border-radius: 4px !important;
+  font:
+    18px/1.1 "VT323",
+    monospace !important;
+}
+.career-prompt:hover {
+  border-color: var(--crt) !important;
+  color: var(--crt) !important;
+}
+.career-log {
+  background: var(--char-2) !important;
+  box-shadow: none !important;
+}
+.career-message {
+  background: var(--char) !important;
+  color: var(--offw) !important;
+  border: 2px solid var(--line) !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+}
+.career-message.user {
+  background: #33ff0014 !important;
+  color: var(--crt) !important;
+  border-color: var(--crt) !important;
+}
+.career-message.system {
+  background: transparent !important;
+  border: 0 !important;
+  color: var(--static) !important;
+}
+.career-login-link {
+  color: var(--amber) !important;
+}
+
+/* Pie y foco */
+.footer {
+  border-top: 3px double var(--line) !important;
+  color: var(--static) !important;
+}
+.footer a {
+  color: var(--amber) !important;
+}
+:focus-visible {
+  outline: 3px solid var(--amber) !important;
+  outline-offset: 3px;
+}
+::selection {
+  background: var(--crt);
+  color: var(--char-2);
+}
+
+/* Impresión: quitar efectos */
+@media print {
+  body::after {
+    display: none;
+  }
+  body,
+  .slide {
+    background: #fff !important;
+    color: #000 !important;
+  }
+}
+/* Movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+@media (max-width: 560px) {
+  body {
+    font-size: 19px;
+  }
+  .hero:after {
+    display: none;
+  }
+}
