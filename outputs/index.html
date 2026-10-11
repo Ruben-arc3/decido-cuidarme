@@ -3,7 +3,7 @@
 <head><link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#10243b">
+<meta name="theme-color" content="#10243b"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-192.png"><link rel="stylesheet" href="css/pwa-install.css">
 <meta name="description" content="Campañas escolares de prevención para Vicente Díaz y Villa Esther, con un enfoque complementario de motivación, proyecto de vida e ICFES en Villa Esther.">
 <title>Decido Cuidarme · Campañas de prevención</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -122,7 +122,7 @@ body{background:radial-gradient(ellipse at 82% 8%,#e1f1ed 0,transparent 29rem),#
       <div class="eyebrow"><i></i> Bienestar, prevención y cuidado en comunidad</div>
       <h1 id="hero-title">Cuidarnos también se <em>aprende jugando.</em></h1>
       <p>Material para las campañas de prevención de ambos colegios, con actividades pensadas para cada contexto.</p>
-      <div class="actions"><a class="btn btn-main" href="#campanas">Explorar las campañas <span aria-hidden="true">↓</span></a><a class="btn btn-ghost" href="#juegos">Ver todos los juegos <span aria-hidden="true">→</span></a></div>
+      <div class="actions"><a class="btn btn-main" href="#campanas">Explorar las campañas <span aria-hidden="true">↓</span></a><button class="pwa-install-button" type="button" data-pwa-install>Instalar plataforma</button><span class="pwa-install-status" data-pwa-install-status role="status" aria-live="polite"></span><a class="btn btn-ghost" href="#juegos">Ver todos los juegos <span aria-hidden="true">→</span></a></div>
       <div class="hero-note">Actividades para jugar en grupo desde un computador y con proyector.</div>
     </div><aside class="hero-panel" aria-label="Accesos rápidos"><div class="hero-panel-title">Empieza por aquí</div><nav class="hero-shortcuts" aria-label="Accesos principales"><a href="#campanas">Explorar las campañas <span aria-hidden="true">→</span></a><a href="#juegos">Elegir una actividad <span aria-hidden="true">→</span></a><a href="#instituciones">Entrar a mi institución <span aria-hidden="true">→</span></a></nav></aside></div></section>
 
@@ -160,8 +160,8 @@ body{background:radial-gradient(ellipse at 82% 8%,#e1f1ed 0,transparent 29rem),#
     </section>
 
     <section class="section institutions" id="instituciones" aria-labelledby="institutions-title"><div class="section-head"><div><p class="section-kicker">Una base compartida, dos contextos</p><h2 id="institutions-title">Enfoque por institución</h2></div><p>Las campañas de consumo, violencia intrafamiliar y abuso sexual son el eje común. Aquí se muestra el énfasis adicional identificado para cada colegio.</p></div><div class="row g-4 school-grid">
-      <article class="col-lg-6"><div class="school-card vicente card h-100"><div class="card-body d-flex flex-column"><div class="school-top"><span class="school-icon">VD</span><span class="school-tag">Campañas compartidas</span></div><h3>Institución Educativa Vicente Díaz</h3><p>Las campañas de consumo, violencia intrafamiliar y abuso sexual son el eje de trabajo actual. Docentes pueden preparar exposiciones y estudiantes explorar los recursos disponibles.</p><a class="school-link" href="instituciones/institucion-vicente-diaz.html">Entrar al espacio del colegio <span aria-hidden="true">→</span></a></div></div></article>
-      <article class="col-lg-6"><div class="school-card villa card h-100"><div class="card-body d-flex flex-column"><div class="school-top"><span class="school-icon">VE</span><span class="school-tag">Énfasis complementario</span></div><h3>Institución Educativa Villa Esther</h3><p>Además de las campañas compartidas, tiene un espacio para motivación, proyecto de vida, ICFES y exploración de opciones de educación superior, con herramientas para docentes y estudiantes.</p><div class="school-pills"><span>Motivación</span><span>Proyecto de vida</span><span>ICFES y educación superior</span></div><a class="school-link" href="instituciones/villa-esther/institucion-villa-esther.html">Entrar al espacio del colegio <span aria-hidden="true">→</span></a></div></div></article>
+      <article class="col-lg-6"><div class="school-card vicente card h-100"><div class="card-body d-flex flex-column"><div class="school-top"><span class="school-icon">VD</span><span class="school-tag">Campañas compartidas</span></div><h3>Institución Educativa Vicente Díaz</h3><p>Las campañas de consumo, violencia intrafamiliar y abuso sexual son el eje de trabajo actual. Docentes pueden preparar exposiciones y estudiantes explorar los recursos disponibles.</p><a class="school-link" href="instituciones/institucion-vicente-diaz.html">Abrir la página para instalar la app <span aria-hidden="true">→</span></a></div></div></article>
+      <article class="col-lg-6"><div class="school-card villa card h-100"><div class="card-body d-flex flex-column"><div class="school-top"><span class="school-icon">VE</span><span class="school-tag">Énfasis complementario</span></div><h3>Institución Educativa Villa Esther</h3><p>Además de las campañas compartidas, tiene un espacio para motivación, proyecto de vida, ICFES y exploración de opciones de educación superior, con herramientas para docentes y estudiantes.</p><div class="school-pills"><span>Motivación</span><span>Proyecto de vida</span><span>ICFES y educación superior</span></div><a class="school-link" href="instituciones/villa-esther/institucion-villa-esther.html">Abrir la página para instalar la app <span aria-hidden="true">→</span></a></div></div></article>
     </div></section>
 
     <section class="section shared" id="redes" aria-labelledby="support-title"><div class="section-head"><div><p class="section-kicker">Acompañar y conectar</p><h2 id="support-title">La prevención también es una red</h2></div><p>Escuchar con respeto y acercar a alguien a una persona de confianza puede ser un primer paso.</p></div><div class="row g-3 shared-grid">
@@ -172,6 +172,7 @@ body{background:radial-gradient(ellipse at 82% 8%,#e1f1ed 0,transparent 29rem),#
   </div>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="js/pwa-install.js" defer></script><script>if("serviceWorker" in navigator && location.protocol.startsWith("http"))window.addEventListener("load",()=>navigator.serviceWorker.register("service-worker.js").catch(()=>{}));</script>
 </body>
 </html>
 

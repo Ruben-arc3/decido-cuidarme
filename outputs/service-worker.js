@@ -1,5 +1,6 @@
-const CACHE = "decido-cuidarme-offline-v50";
+const CACHE = "decido-cuidarme-offline-v51";
 const CORE = [
+  "./css/pwa-install.css",
   "./assets/vicente-diaz/escudo-vicente-diaz.png",
   "./assets/vicente-diaz/favicon-vicente-diaz.ico",
   "./assets/vicente-diaz/icon-192.png",
@@ -42,6 +43,7 @@ const CORE = [
   "./instituciones/villa-esther/villa-mundo-laboral.html",
   "./instituciones/villa-esther/villa-proyecto-vida.html",
   "./instituciones/villa-esther/villa-simulacro.html",
+  "./js/pwa-install.js",
   "./js/villa-esther/firebase-config.js",
   "./js/villa-esther/habilidades-digitales.js",
   "./js/villa-esther/villa-firebase.js",
@@ -69,6 +71,8 @@ const CORE = [
   "./juegos/ruta-al-futuro.html",
   "./juegos/rutas-de-luz.html",
   "./juegos/una-red-de-apoyo.html",
+  "./manifest-vicente-diaz.webmanifest",
+  "./manifest-villa-esther.webmanifest",
   "./manifest.webmanifest",
   "./recursos/portal-prevencion.html",
   "./recursos/prevencion-consumo-sustancias.html",
