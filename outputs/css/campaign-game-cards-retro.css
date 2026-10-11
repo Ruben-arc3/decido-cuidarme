@@ -1,0 +1,156 @@
+/* Cartas retro compactas para los juegos enlazados desde las tres campañas. */
+.campaign-games--retro {
+  --game-accent: #0d8178;
+  --game-accent-soft: #d8f0e8;
+}
+
+.campaign-games--retro.campaign-games--sexual {
+  --game-accent: #cf5c4a;
+  --game-accent-soft: #ffe3da;
+}
+
+.campaign-games--retro.campaign-games--family {
+  --game-accent: #278878;
+  --game-accent-soft: #d9f0e7;
+}
+
+.campaign-games--retro.campaign-games--consumo {
+  --game-accent: #bd7914;
+  --game-accent-soft: #ffedc2;
+}
+
+body.campaign-detail .campaign-games--retro .mini-game-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
+  gap: 12px;
+}
+
+body.campaign-detail .campaign-games--retro .mini-game-grid.single-game {
+  grid-template-columns: minmax(0, 300px);
+}
+
+body.campaign-detail .campaign-games--retro .mini-game-card {
+  position: relative;
+  isolation: isolate;
+  min-height: 158px;
+  overflow: hidden;
+  padding: 17px 17px 15px;
+  border: 2px solid #193c50;
+  border-bottom: 5px solid var(--game-accent);
+  border-radius: 9px;
+  background:
+    linear-gradient(0deg, #16374a08 1px, transparent 1px) 0 0 / 100% 5px,
+    linear-gradient(90deg, #16374a05 1px, transparent 1px) 0 0 / 5px 100%,
+    #fff;
+  box-shadow: 4px 4px 0 #17354b22;
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease,
+    border-color 150ms ease;
+}
+
+body.campaign-detail .campaign-games--retro .mini-game-card::after {
+  position: absolute;
+  z-index: 0;
+  top: -17px;
+  right: -17px;
+  width: 66px;
+  height: 66px;
+  border: 8px solid var(--game-accent-soft);
+  border-radius: 8px;
+  content: "";
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+body.campaign-detail .campaign-games--retro .mini-game-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+body.campaign-detail .campaign-games--retro .mini-game-card:hover,
+body.campaign-detail .campaign-games--retro .mini-game-card:focus-visible {
+  transform: translate(-2px, -2px);
+  border-color: var(--game-accent);
+  box-shadow: 6px 6px 0 #17354b2e;
+}
+
+body.campaign-detail .campaign-games--retro .mini-game-card:focus-visible {
+  outline: 3px solid var(--game-accent-soft);
+  outline-offset: 3px;
+}
+
+body.campaign-detail .campaign-games--retro .mini-game-card span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 4px 7px;
+  border: 1px solid var(--game-accent);
+  border-radius: 4px;
+  background: var(--game-accent-soft);
+  color: #17354b;
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  letter-spacing: 0.07em;
+}
+
+body.campaign-detail .campaign-games--retro .mini-game-card strong {
+  max-width: 24ch;
+  margin-top: 10px;
+  color: #17354b;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+body.campaign-detail .campaign-games--retro .mini-game-card small {
+  margin-top: auto;
+  padding-top: 12px;
+  color: #476477;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  body.campaign-detail .campaign-games--retro .mini-game-grid,
+  body.campaign-detail .campaign-games--retro .mini-game-grid:not(.single-game) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  body.campaign-detail .campaign-games--retro .mini-game-grid.single-game {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  body.campaign-detail .campaign-games--retro .mini-game-card {
+    min-height: 146px;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 3px 3px 0 #17354b22;
+  }
+
+  body.campaign-detail .campaign-games--retro .mini-game-card strong {
+    margin-top: 8px;
+    font-size: 14px;
+  }
+
+  body.campaign-detail .campaign-games--retro .mini-game-card small {
+    padding-top: 9px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  body.campaign-detail .campaign-games--retro .mini-game-grid,
+  body.campaign-detail .campaign-games--retro .mini-game-grid.single-game {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.campaign-detail .campaign-games--retro .mini-game-card {
+    transition: none;
+  }
+
+  body.campaign-detail .campaign-games--retro .mini-game-card:hover {
+    transform: none;
+  }
+}

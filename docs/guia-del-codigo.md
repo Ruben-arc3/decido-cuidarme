@@ -59,6 +59,7 @@ En `outputs/recursos/`, `portal-prevencion.html` organiza los materiales y cada 
 ## Estilos
 
 - `outputs/css/campaign-videos.css` presenta el estado de carga y la etiqueta de duración de los videos de campaña.
+- `outputs/css/campaign-game-cards-retro.css` aplica el estilo retro adaptable a las tarjetas de juegos de las tres campañas principales.
 - `outputs/css/pages/` contiene los estilos específicos de cada página, organizados con la misma estructura de carpetas que los HTML. Los sufijos `-02`, `-03` conservan el orden de bloques CSS que antes estaban separados en el documento.
 - `outputs/css/` contiene estilos compartidos, campañas, adaptación móvil e instalación PWA.
 - `outputs/css/villa-esther/` contiene la identidad visual, los módulos digitales, inglés y la biblioteca de videos de Villa Esther.
