@@ -487,3 +487,88 @@ body{background:radial-gradient(ellipse at 10% 0,#d9efe8,transparent 38%),#f2f7f
   .villa-retro-games .resource h3 {font-size:1rem}
   .villa-retro-games .resource.card::before {font-size:.5rem}
 }
+/* Sugerencias de orientación: opciones tipo tarjeta, fáciles de leer y tocar. */
+.career-widget .career-panel-body {
+  grid-template-rows:auto auto auto minmax(130px,1fr) auto auto;
+}
+.career-widget .career-prompts-heading {
+  margin:0 0 -3px;
+  color:#243f50;
+  font-size:.76rem;
+  font-weight:850;
+  letter-spacing:.01em;
+}
+.career-widget .career-prompts {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+  max-height:154px;
+  overflow-x:hidden;
+  overflow-y:auto;
+  padding:1px 2px 4px;
+}
+.career-widget .career-prompt {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 16px;
+  grid-template-rows:auto auto;
+  align-content:center;
+  gap:3px 6px;
+  min-width:0;
+  min-height:62px;
+  padding:9px 10px;
+  border:1px solid #d8e6df;
+  border-radius:12px;
+  background:linear-gradient(145deg,#fff,#f5faf7);
+  color:#1c3c4d;
+  font:inherit;
+  text-align:left;
+  white-space:normal;
+  box-shadow:0 2px 7px #193d4e08;
+  transition:transform .16s ease,border-color .16s ease,background .16s ease,box-shadow .16s ease;
+}
+.career-widget .career-prompt:nth-child(2){background:linear-gradient(145deg,#fff,#f1f7fb)}
+.career-widget .career-prompt:nth-child(3){background:linear-gradient(145deg,#fff,#f5f3fc)}
+.career-widget .career-prompt:nth-child(4){background:linear-gradient(145deg,#fff,#fff9e9)}
+.career-widget .career-prompt-main {
+  grid-column:1;
+  grid-row:1;
+  font-size:.72rem;
+  font-weight:850;
+  line-height:1.25;
+}
+.career-widget .career-prompt-hint {
+  grid-column:1;
+  grid-row:2;
+  color:#647985;
+  font-size:.62rem;
+  line-height:1.25;
+}
+.career-widget .career-prompt::after {
+  grid-column:2;
+  grid-row:1 / span 2;
+  align-self:center;
+  color:#137d73;
+  content:"→";
+  font-size:1rem;
+  font-weight:900;
+}
+.career-widget .career-prompt:hover {
+  transform:translateY(-1px);
+  border-color:#81b7a1;
+  background:#edf7f1;
+  box-shadow:0 5px 12px #193d4e12;
+}
+.career-widget .career-prompt:focus-visible {
+  outline:3px solid #e6b840;
+  outline-offset:2px;
+}
+@media(max-width:560px) {
+  .career-widget .career-panel-body {gap:8px;padding:10px}
+  .career-widget .career-prompts {gap:6px;max-height:148px}
+  .career-widget .career-prompt {min-height:58px;padding:8px;border-radius:10px}
+  .career-widget .career-prompt-main {font-size:.68rem}
+  .career-widget .career-prompt-hint {font-size:.58rem}
+}
+@media(max-width:350px) {
+  .career-widget .career-prompts {grid-template-columns:minmax(0,1fr);max-height:132px}
+}
