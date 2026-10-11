@@ -40,6 +40,7 @@ En `outputs/recursos/`, `portal-prevencion.html` organiza los materiales y cada 
 ## JavaScript del sitio
 
 - `outputs/js/campaign-videos.js` carga los videos breves de las tres campañas y presenta sus duraciones verificadas.
+- `outputs/js/pages/juegos/memorama-limites-y-redes-seguras.js` administra las dos rondas del memorama preventivo y su modo de proyección.
 - `outputs/js/pages/` contiene la lógica específica extraída de cada HTML. La estructura de carpetas refleja la ubicación de las páginas: `juegos/`, `recursos/` e `instituciones/`.
 - `outputs/js/register-service-worker.js` registra el service worker compartido para habilitar la caché offline.
 

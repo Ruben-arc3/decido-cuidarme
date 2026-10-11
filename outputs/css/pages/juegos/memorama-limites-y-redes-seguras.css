@@ -447,3 +447,249 @@ p {
 .dialog-icon {
   display: none !important;
 }
+
+/* Acabado retro de alto contraste para salón y proyector. */
+:root {
+  --bg: #101e2b;
+  --panel: #163448;
+  --panel2: #20485a;
+  --ink: #f5f4e9;
+  --muted: #c1d0d1;
+  --gold: #ffdc70;
+  --cyan: #81e5d4;
+  --pink: #ff9b91;
+  --line: #547b87;
+}
+
+body {
+  background:
+    linear-gradient(#81e5d408 1px, transparent 1px) 0 0 / 100% 6px,
+    linear-gradient(90deg, #81e5d405 1px, transparent 1px) 0 0 / 6px 100%,
+    radial-gradient(ellipse at 50% -20%, #316178 0, transparent 60%),
+    var(--bg);
+}
+
+.panel,
+.dialog {
+  border: 2px solid #547b87;
+  border-radius: 8px;
+  box-shadow: 5px 5px 0 #07131c88;
+}
+
+.brand,
+.eyebrow,
+.boardhead strong,
+.boardhead span,
+.stat small,
+.toolbar button,
+.action,
+.side h2 {
+  font-family: "Courier New", monospace;
+  letter-spacing: 0.055em;
+}
+
+.tile {
+  min-height: 70px;
+  border: 2px solid #8fb4b3;
+  border-radius: 6px;
+  background:
+    linear-gradient(0deg, #ffffff0a 1px, transparent 1px) 0 0 / 100% 5px,
+    linear-gradient(145deg, #276176, #1a3e53);
+  box-shadow: 3px 4px 0 #081722;
+}
+
+.tile .back {
+  font-family: "Courier New", monospace;
+  font-size: clamp(0.72rem, 1vw, 0.9rem);
+  letter-spacing: 0.06em;
+}
+
+.tile .back i {
+  font-size: clamp(1.4rem, 2.3vw, 2rem);
+}
+
+.tile.flipped.support,
+.tile.matched.support {
+  background: #fff1b8;
+  border: 3px solid #2b765f;
+}
+
+.faceText {
+  font-size: clamp(0.78rem, 1.05vw, 1rem);
+  line-height: 1.2;
+  font-weight: 900;
+}
+
+.stat {
+  border: 2px solid #547b87;
+  border-radius: 6px;
+  background: #102a3a;
+}
+
+.stat b {
+  font-size: clamp(1rem, 1.5vw, 1.35rem);
+}
+
+.stat small {
+  font-size: 0.68rem;
+}
+
+.toolbar button,
+.action {
+  border: 2px solid #7da9ac;
+  border-radius: 6px;
+  box-shadow: 3px 3px 0 #081722;
+}
+
+.toolbar .primary,
+.dialog .action {
+  border-color: #ffe59b;
+}
+
+.projector-mode {
+  overflow: hidden;
+}
+
+.projector-mode .top,
+.projector-mode .intro > .panel:first-child,
+.projector-mode .side {
+  display: none;
+}
+
+.projector-mode .wrap {
+  width: min(100%, 1680px);
+  max-width: 1680px;
+  margin: 0 auto;
+  padding: 10px 18px;
+}
+
+.projector-mode .intro {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.projector-mode .intro > .panel:last-child {
+  padding: 10px 14px;
+}
+
+.projector-mode .stats {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.projector-mode .stat {
+  padding: 8px;
+}
+
+.projector-mode .stat b {
+  font-size: clamp(1.1rem, 2vw, 1.7rem);
+}
+
+.projector-mode .instructions {
+  margin-top: 5px;
+  font-size: clamp(0.8rem, 1.25vw, 1.05rem);
+}
+
+.projector-mode .layout {
+  display: block;
+}
+
+.projector-mode .board-panel {
+  padding: 14px;
+}
+
+.projector-mode .boardhead {
+  margin-bottom: 12px;
+}
+
+.projector-mode .boardhead strong,
+.projector-mode .boardhead span {
+  font-size: clamp(1rem, 1.8vw, 1.5rem);
+}
+
+.projector-mode .memory-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  max-width: 1500px;
+  gap: clamp(8px, 1.3vw, 16px);
+}
+
+.projector-mode .tile {
+  height: clamp(92px, 15vh, 150px);
+  min-height: 92px;
+  padding: 9px;
+}
+
+.projector-mode .tile .coord {
+  top: 7px;
+  left: 8px;
+  font-size: clamp(0.7rem, 1vw, 0.95rem);
+}
+
+.projector-mode .tile .back {
+  font-size: clamp(0.9rem, 1.4vw, 1.25rem);
+}
+
+.projector-mode .tile .back i {
+  font-size: clamp(2rem, 4vh, 3rem);
+}
+
+.projector-mode .kind {
+  font-size: 0.72rem;
+}
+
+.projector-mode .icon {
+  font-size: clamp(1.5rem, 3.5vh, 2.5rem);
+}
+
+.projector-mode .faceText {
+  max-width: 96%;
+  font-size: clamp(1rem, 1.7vw, 1.55rem);
+  line-height: 1.2;
+}
+
+.projector-mode .toast {
+  height: auto;
+  min-height: 30px;
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+}
+
+.projector-mode .toolbar {
+  margin-top: 12px;
+}
+
+.projector-mode .toolbar button {
+  min-height: 46px;
+  padding: 10px 17px;
+  font-size: clamp(0.82rem, 1.1vw, 1rem);
+}
+
+@media (max-height: 700px) {
+  .projector-mode .wrap {
+    padding-top: 5px;
+  }
+
+  .projector-mode .intro {
+    margin-bottom: 5px;
+  }
+
+  .projector-mode .boardhead {
+    margin-bottom: 5px;
+  }
+
+  .projector-mode .tile {
+    height: clamp(78px, 13vh, 120px);
+    min-height: 78px;
+  }
+
+  .projector-mode .toolbar {
+    margin-top: 5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
