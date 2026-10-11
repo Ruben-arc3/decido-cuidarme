@@ -4,7 +4,7 @@
   const query = document.getElementById("villaVideoQuery");
   const results = document.getElementById("villaVideoResults");
   const status = document.getElementById("villaVideoStatus");
-  if (!form || !topic || !query || !results || !status) return;
+  if (!form || !query || !results || !status) return;
 
   const card = video => {
     const article = document.createElement("article");
@@ -56,7 +56,11 @@
 
   form.addEventListener("submit", async event => {
     event.preventDefault();
-    const selectedTopic = topic.value;
+    const selectedTopic = topic?.value || form.dataset.videoTopic;
+    if (!selectedTopic) {
+      status.textContent = "No se pudo identificar el tema de este módulo.";
+      return;
+    }
     const search = query.value.trim();
     const params = new URLSearchParams({ tema: selectedTopic });
     if (search) params.set("q", search);
@@ -82,4 +86,6 @@
       button.disabled = false;
     }
   });
+
+  if (form.dataset.autoSearch === "true") form.requestSubmit();
 })();
