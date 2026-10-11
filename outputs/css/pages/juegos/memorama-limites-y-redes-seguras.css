@@ -192,6 +192,7 @@ p {
 .tile:disabled {
   cursor: default;
 }
+
 .tile .back {
   display: flex;
   height: 100%;
@@ -708,6 +709,21 @@ body {
   .faceText {
     font-size: clamp(0.68rem, 2.4vw, 0.82rem);
   }
+}
+
+.tile.face-up,
+.tile.flipped.support,
+.tile.matched.support {
+  background: #fff;
+  color: #172b3c;
+  border: 3px solid #f3d66b;
+  box-shadow: 0 4px #82713d;
+}
+
+.tile.face-up .faceText,
+.tile.flipped .faceText,
+.tile.matched .faceText {
+  color: #172b3c;
 }
 
 @media (max-height: 700px) {

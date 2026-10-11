@@ -17,10 +17,24 @@
     { support: ["Ante peligro, busca un lugar seguro y ayuda.", "🚨"] },
     { support: ["No tienes que enviar imágenes privadas.", "📵"] },
     { support: ["Si te presionan en línea, avisa a una persona adulta.", "📲"] },
+    { support: ["Puedes pedir ayuda sin contar todos los detalles.", "🗣️"] },
+    { support: ["Acompañar no significa resolverlo todo a solas.", "🧩"] },
+    { support: ["Una persona adulta segura puede buscar apoyo profesional.", "🧑‍⚕️"] },
+    { support: ["Si no te ayudan, intenta con otra persona de confianza.", "🔁"] },
   ];
   const rounds = [
-    { pairs: 6, poolStart: 0, title: "LÍMITES Y CONSENTIMIENTO", focus: "LÍMITES", cols: 4 },
-    { pairs: 8, poolStart: 6, title: "CÓMO BUSCAR Y DAR APOYO", focus: "APOYO", cols: 4 },
+    {
+      pairIds: [6, 7, 8, 9, 10, 11, 12, 13],
+      title: "CÓMO BUSCAR Y DAR APOYO",
+      focus: "APOYO",
+      cols: 4,
+    },
+    {
+      pairIds: [0, 1, 2, 3, 4, 5, 14, 15, 16, 17],
+      title: "DECISIONES Y REDES DE APOYO",
+      focus: "DECISIONES",
+      cols: 5,
+    },
   ];
   const teams = ["Equipo 1", "Equipo 2", "Equipo 3", "Equipo 4", "Equipo 5", "Equipo 6"];
   let s = {
@@ -49,8 +63,8 @@
   function makeDeck() {
     const round = rounds[s.round],
       items = [];
-    pool.slice(round.poolStart, round.poolStart + round.pairs).forEach((pair, i) => {
-      const id = round.poolStart + i;
+    round.pairIds.forEach((id) => {
+      const pair = pool[id];
       items.push(
         { id, kind: "support", text: pair.support[0], icon: pair.support[1] },
         { id, kind: "support", text: pair.support[0], icon: pair.support[1] },
@@ -133,7 +147,7 @@
         s.up = [];
         render();
         hud();
-        if (s.matched.size === rounds[s.round].pairs) setTimeout(roundComplete, 850);
+        if (s.matched.size === rounds[s.round].pairIds.length) setTimeout(roundComplete, 850);
       } else {
         s.locked = true;
         $("toast").textContent = "No coinciden. Recuerden las coordenadas.";
@@ -153,7 +167,7 @@
   }
   function hud() {
     $("round").textContent = s.round + 1 + " / " + rounds.length;
-    $("pairs").textContent = s.matched.size + " / " + rounds[s.round].pairs;
+    $("pairs").textContent = s.matched.size + " / " + rounds[s.round].pairIds.length;
     $("moves").textContent = s.moves;
     $("focus").textContent = rounds[s.round].focus;
     $("roundTitle").textContent = "RONDA " + (s.round + 1) + " · " + rounds[s.round].title;
@@ -232,7 +246,7 @@
     $("roundEndTitle").textContent = "Ronda " + (s.round + 1) + " superada";
     $("roundEndText").textContent =
       "Encontraron " +
-      rounds[s.round].pairs +
+      rounds[s.round].pairIds.length +
       " parejas en " +
       s.moves +
       " jugadas. En la siguiente ronda aparecerán conceptos distintos sobre cómo acompañar y buscar apoyo.";
