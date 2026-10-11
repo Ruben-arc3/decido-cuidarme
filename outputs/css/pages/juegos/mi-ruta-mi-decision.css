@@ -1,0 +1,507 @@
+:root {
+  --ink: #092943;
+  --blue: #1379b9;
+  --sky: #58c9ee;
+  --yellow: #ffcf4d;
+  --coral: #ff7467;
+  --mint: #65d2ad;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: Nunito, system-ui, sans-serif;
+  background: linear-gradient(145deg, #c9f4ff 0%, #aee8fa 48%, #d9f5e8 100%);
+  overflow-x: hidden;
+}
+
+.shell {
+  width: min(1060px, 100%);
+  margin: auto;
+  padding: 22px clamp(14px, 3vw, 32px) 30px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 15px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.badge {
+  width: 55px;
+  height: 55px;
+  display: grid;
+  place-items: center;
+  border-radius: 19px;
+  background: var(--yellow);
+  font-size: 30px;
+  box-shadow: 0 5px 0 #e5ab28;
+}
+
+h1 {
+  font:
+    800 clamp(23px, 4vw, 37px) / 0.9 "Baloo 2",
+    sans-serif;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.sub {
+  margin: 3px 0 0;
+  font-size: 13px;
+  font-weight: 800;
+  color: #236087;
+}
+
+.scoreboard {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.pill {
+  padding: 9px 13px;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 900;
+  background: #1478b6;
+  box-shadow: 0 3px 0 #075888;
+  white-space: nowrap;
+}
+
+.pill.energy {
+  background: #ef5c67;
+  box-shadow: 0 3px 0 #bd3e4a;
+}
+
+.pill.timer {
+  background: #754ec4;
+  box-shadow: 0 3px 0 #4e2d95;
+}
+
+.game-card {
+  position: relative;
+  overflow: hidden;
+  border: 7px solid #fff;
+  border-radius: 27px;
+  box-shadow:
+    0 12px 0 #6eafd0,
+    0 20px 35px #397c9b55;
+  background: #d9f6ff;
+}
+
+#game {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  text-align: center;
+  background: linear-gradient(#0d6695cc, #063653df);
+  transition: 0.25s;
+}
+
+.overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.panel {
+  max-width: 510px;
+  padding: 28px clamp(20px, 5vw, 43px);
+  border-radius: 24px;
+  color: #fff;
+  background: #0b4568e8;
+  border: 3px solid #8cdbef;
+  box-shadow: 0 8px 0 #07334e;
+}
+
+.panel .hero {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+h2 {
+  font:
+    800 clamp(28px, 5vw, 42px) / 0.95 "Baloo 2",
+    sans-serif;
+  margin: 0 0 10px;
+}
+
+.panel p {
+  margin: 0 auto 20px;
+  font-size: 17px;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+button {
+  border: 0;
+  border-radius: 15px;
+  padding: 13px 22px;
+  cursor: pointer;
+  font:
+    900 18px Nunito,
+    sans-serif;
+  color: #173b52;
+  background: var(--yellow);
+  box-shadow: 0 5px 0 #d6981a;
+  transition: transform 0.12s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 #d6981a;
+}
+
+.touch-controls {
+  display: none;
+}
+
+.how {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 23px;
+}
+
+.tip {
+  padding: 13px;
+  min-height: 112px;
+  text-align: center;
+  border-radius: 17px;
+  background: #fff;
+  box-shadow: 0 4px 0 #8dcee8;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.tip b {
+  display: block;
+  font-size: 27px;
+  margin-bottom: 2px;
+}
+
+.footer {
+  margin: 17px auto 0;
+  max-width: 850px;
+  text-align: center;
+  color: #155276;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.footer strong {
+  color: #0c4162;
+}
+
+.ranking {
+  max-width: 620px;
+  margin: 20px auto 0;
+  padding: 15px 20px 12px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 5px 0 #8dcee8;
+}
+
+.ranking h3 {
+  margin: 0 0 8px;
+  text-align: center;
+  font:
+    800 22px/1 "Baloo 2",
+    sans-serif;
+  color: #145a83;
+}
+
+.ranking-tools {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 0 8px;
+}
+
+.reset-button {
+  padding: 5px 9px;
+  border-radius: 9px;
+  color: #8e3c38;
+  background: #ffedea;
+  box-shadow: 0 2px 0 #efbbb3;
+  font-size: 10px;
+}
+
+.reset-button:active {
+  box-shadow: 0 1px 0 #efbbb3;
+}
+
+.connection {
+  display: inline-block;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: #e5f5ed;
+  color: #23815b;
+  font:
+    800 10px Nunito,
+    sans-serif;
+  vertical-align: middle;
+}
+
+.connection.offline {
+  background: #ffebdf;
+  color: #ad563c;
+}
+
+#ranking-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px 19px;
+  margin: 0;
+  padding-left: 27px;
+  color: #17506f;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+#ranking-list li {
+  padding: 3px 0;
+  border-bottom: 1px dashed #c9e7f2;
+}
+
+.rank-points {
+  float: right;
+  color: #e24e58;
+}
+
+.name-field {
+  width: 100%;
+  margin: 0 0 13px;
+  padding: 11px 13px;
+  border: 2px solid #8cdbef;
+  border-radius: 12px;
+  outline: 0;
+  font:
+    800 16px Nunito,
+    sans-serif;
+  text-align: center;
+  color: #0b4568;
+}
+
+.name-field:focus {
+  border-color: #ffcf4d;
+  box-shadow: 0 0 0 3px #ffcf4d55;
+}
+
+@media (max-width: 620px) {
+  body {
+    background: linear-gradient(165deg, #bff2ff 0%, #e2fbff 52%, #dff7df 100%);
+  }
+
+  .shell {
+    padding: 12px 10px 24px;
+  }
+
+  header {
+    display: block;
+    margin: 0 2px 11px;
+  }
+
+  .brand {
+    gap: 9px;
+    padding: 0 3px 10px;
+  }
+
+  .badge {
+    width: 44px;
+    height: 44px;
+    border-radius: 15px;
+    font-size: 24px;
+    box-shadow: 0 3px 0 #e5ab28;
+  }
+
+  h1 {
+    font-size: 26px;
+    letter-spacing: -0.7px;
+  }
+
+  .sub {
+    font-size: 11px;
+  }
+
+  .scoreboard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    width: 100%;
+  }
+
+  .pill {
+    padding: 8px 4px;
+    text-align: center;
+    font-size: 12px;
+    box-shadow: 0 3px 0 #075888;
+  }
+
+  .pill.energy {
+    box-shadow: 0 3px 0 #bd3e4a;
+  }
+
+  .pill.timer {
+    box-shadow: 0 3px 0 #4e2d95;
+  }
+
+  .game-card {
+    border-width: 4px;
+    border-radius: 22px;
+    box-shadow:
+      0 8px 0 #6eafd0,
+      0 15px 27px #397c9b55;
+  }
+
+  #game {
+    aspect-ratio: 9/13;
+  }
+
+  .overlay {
+    padding: 13px;
+  }
+
+  .panel {
+    width: 100%;
+    padding: 20px 17px;
+    border-radius: 19px;
+  }
+
+  .panel .hero {
+    font-size: 35px;
+  }
+
+  h2 {
+    font-size: 31px;
+  }
+
+  .panel p {
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  .name-field {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 15px;
+  }
+
+  .panel button {
+    width: 100%;
+    font-size: 16px;
+    padding: 11px 16px;
+  }
+
+  .touch-controls {
+    display: grid;
+    grid-template-columns: 64px 1fr 64px;
+    align-items: center;
+    gap: 10px;
+    margin: 14px 4px 4px;
+    padding: 7px;
+    border-radius: 19px;
+    background: #ffffffa8;
+    box-shadow: 0 4px 13px #3b89a422;
+  }
+
+  .touch-controls p {
+    margin: 0;
+    font-size: 12px;
+    color: #155276;
+    font-weight: 900;
+    text-align: center;
+    line-height: 1.15;
+  }
+
+  .move-button {
+    width: 60px;
+    height: 52px;
+    padding: 0;
+    border-radius: 16px;
+    font-size: 29px;
+    line-height: 1;
+    background: #60cbed;
+    box-shadow: 0 4px 0 #2589b0;
+    color: #073f60;
+  }
+
+  .move-button:active {
+    box-shadow: 0 1px 0 #2589b0;
+  }
+
+  .how {
+    gap: 6px;
+    margin-top: 16px;
+  }
+
+  .tip {
+    font-size: 10px;
+    padding: 8px 5px;
+    min-height: 79px;
+    border-radius: 13px;
+    box-shadow: 0 3px 0 #8dcee8;
+  }
+
+  .tip b {
+    font-size: 19px;
+  }
+
+  .ranking {
+    margin-top: 15px;
+    padding: 13px 13px 11px;
+    border-radius: 18px;
+    box-shadow: 0 4px 0 #8dcee8;
+  }
+
+  .ranking h3 {
+    font-size: 19px;
+  }
+
+  #ranking-list {
+    gap: 3px 14px;
+    padding-left: 22px;
+    font-size: 11px;
+  }
+
+  .footer {
+    margin: 14px 6px 0;
+    font-size: 11px;
+    line-height: 1.35;
+  }
+}
+.dialog-icon {
+  display: none !important;
+}

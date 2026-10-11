@@ -1,0 +1,8 @@
+/* Reemplaza estilos que estaban en atributos HTML. */
+section.page-inline-style-1 {
+  margin-top: 14px;
+}
+h2.page-inline-style-2 {
+  margin: 0;
+  font-size: 19px;
+}

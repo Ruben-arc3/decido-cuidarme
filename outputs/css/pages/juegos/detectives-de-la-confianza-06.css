@@ -1,0 +1,19 @@
+.dialog {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.choices {
+  grid-template-columns: 1fr 1fr;
+}
+.room-clue span {
+  white-space: normal;
+  max-width: min(74vw, 360px);
+}
+@media (max-width: 820px) {
+  .dialog {
+    max-height: 88vh;
+  }
+  .choices {
+    grid-template-columns: 1fr;
+  }
+}

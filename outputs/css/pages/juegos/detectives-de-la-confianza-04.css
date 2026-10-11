@@ -1,0 +1,168 @@
+.appearance {
+  margin-top: 15px;
+}
+.appearance > strong {
+  display: block;
+  color: #d9e5dc;
+  font-size: 12px;
+  margin-bottom: 7px;
+}
+.looks {
+  display: flex;
+  gap: 8px;
+}
+.look-button {
+  width: 56px;
+  height: 74px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #ffffff0b;
+  color: white;
+  cursor: pointer;
+  position: relative;
+}
+.look-button.selected {
+  border: 2px solid var(--gold);
+  background: #ffffff18;
+}
+.preview {
+  position: absolute;
+  width: 46px;
+  height: 55px;
+  top: 2px;
+  left: 4px;
+  display: block;
+}
+.preview:before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 15px;
+  width: 17px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--skin);
+}
+.preview:after {
+  content: "";
+  position: absolute;
+  top: 26px;
+  left: 9px;
+  width: 30px;
+  height: 19px;
+  border-radius: 8px 8px 3px 3px;
+  background: var(--shirt);
+}
+.preview b {
+  position: absolute;
+  top: 2px;
+  left: 14px;
+  width: 19px;
+  height: 8px;
+  border-radius: 10px 10px 2px 2px;
+  background: var(--hair);
+  z-index: 1;
+}
+.preview em {
+  position: absolute;
+  top: 44px;
+  left: 14px;
+  width: 8px;
+  height: 10px;
+  background: var(--pants);
+  box-shadow: 11px 0 var(--pants);
+}
+.preview.look1,
+.sprite.look1 {
+  --skin: #bd8d6d;
+  --shirt: #277c70;
+  --pants: #344c68;
+  --hair: #332a2c;
+}
+.preview.look2,
+.sprite.look2 {
+  --skin: #e0b18d;
+  --shirt: #bb714f;
+  --pants: #465b70;
+  --hair: #49362d;
+}
+.preview.look3,
+.sprite.look3 {
+  --skin: #8b5d45;
+  --shirt: #70619a;
+  --pants: #324d53;
+  --hair: #282323;
+}
+.preview.look4,
+.sprite.look4 {
+  --skin: #d09b72;
+  --shirt: #bd9a3c;
+  --pants: #405168;
+  --hair: #252222;
+}
+.look-button span {
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+  right: 0;
+  font-size: 9px;
+  color: #c4d8cd;
+}
+.brief h2 {
+  font-size: 23px;
+  line-height: 1.2;
+  margin: 12px 0;
+  color: #fff;
+}
+.brief p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #d2ded5;
+}
+.speaker-sub {
+  display: block;
+  margin-top: 3px;
+  color: #c5d4ca;
+  font-size: 9px;
+  font-weight: normal;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+.sprite .head:after {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: 5px;
+  width: 2px;
+  height: 2px;
+  background: #332a28;
+  box-shadow: 8px 0 #332a28;
+}
+.sprite .head:before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 8px;
+  width: 5px;
+  height: 2px;
+  border-bottom: 1px solid #704b41;
+  border-radius: 50%;
+}
+.sprite.orientation {
+  --skin: #98694c;
+  --shirt: #518b7a;
+  --pants: #354c60;
+  --hair: #302727;
+}
+.sprite.lia {
+  --skin: #c98f6c;
+  --shirt: #8b6cac;
+  --pants: #394c5f;
+  --hair: #302a2a;
+}
+.sprite.teacher {
+  --skin: #81563e;
+  --shirt: #d49a4f;
+  --pants: #374654;
+  --hair: #33282a;
+}

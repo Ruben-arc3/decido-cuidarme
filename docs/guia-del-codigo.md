@@ -20,7 +20,7 @@ Esta guía sirve como mapa del repositorio. El sitio se publica como archivos es
 | `outputs/juegos/`                                     | Actividades interactivas de las campañas y del portal escolar.  |
 | `outputs/recursos/`                                   | Material informativo sobre las campañas de prevención.          |
 
-Las páginas HTML contienen la estructura y, en algunos casos, scripts específicos de esa actividad. Los estilos reutilizables y scripts compartidos se mantienen en archivos externos para que puedan encontrarse y editarse por separado.
+Las páginas HTML contienen la estructura y el contenido. Los estilos y scripts están separados en archivos externos para que puedan encontrarse y editarse por separado.
 
 ### Páginas de Villa Esther
 
@@ -39,6 +39,9 @@ En `outputs/recursos/`, `portal-prevencion.html` organiza los materiales y cada 
 
 ## JavaScript del sitio
 
+- `outputs/js/pages/` contiene la lógica específica extraída de cada HTML. La estructura de carpetas refleja la ubicación de las páginas: `juegos/`, `recursos/` e `instituciones/`.
+- `outputs/js/register-service-worker.js` registra el service worker compartido para habilitar la caché offline.
+
 | Ruta                                                      | Qué hace                                                                                |
 | --------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | `outputs/js/pwa-install.js`                               | Controla el botón de instalación de la plataforma o de una institución.                 |
@@ -54,11 +57,12 @@ En `outputs/recursos/`, `portal-prevencion.html` organiza los materiales y cada 
 
 ## Estilos
 
+- `outputs/css/pages/` contiene los estilos específicos de cada página, organizados con la misma estructura de carpetas que los HTML. Los sufijos `-02`, `-03` conservan el orden de bloques CSS que antes estaban separados en el documento.
 - `outputs/css/` contiene estilos compartidos, campañas, adaptación móvil e instalación PWA.
 - `outputs/css/villa-esther/` contiene la identidad visual, los módulos digitales, inglés y la biblioteca de videos de Villa Esther.
 - `outputs/css/vicente-diaz/` contiene el estilo institucional de Vicente Díaz.
 
-Los estilos específicos de una página pueden permanecer junto a su HTML cuando solo se usan allí. Si un estilo se necesita en varias páginas, conviene moverlo a un archivo CSS compartido y enlazarlo desde cada página.
+Los estilos y scripts nuevos deben guardarse como archivos externos. Evita agregar bloques `<style>`, scripts inline o atributos `style`/`onclick` a los HTML; usa `outputs/css/pages/` y `outputs/js/pages/` para lógica o presentación exclusiva de una página, y las carpetas compartidas cuando se reutilice en varias.
 
 ## APIs y funciones de servidor
 

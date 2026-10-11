@@ -1,0 +1,118 @@
+body > header.top,
+body > nav.modulebar {
+  display: none !important;
+}
+main.shell > * {
+  display: none !important;
+}
+main.shell > .hero,
+main.shell > #estudiantes,
+main.shell > .footer {
+  display: block !important;
+}
+#estudiantes > * {
+  display: none !important;
+}
+#estudiantes > #simulacro {
+  display: block !important;
+}
+#simulacro {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+main.shell {
+  width: min(1000px, calc(100% - 32px));
+}
+.hero {
+  margin: 25px 0 18px;
+  padding: clamp(28px, 6vw, 56px);
+}
+#simulacro {
+  padding: 10px 0 28px;
+  scroll-margin-top: 18px;
+}
+.sectionhead {
+  display: block;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.sectionhead h2 {
+  margin: 0;
+  font-size: clamp(24px, 4vw, 34px);
+}
+.sectionhead p {
+  max-width: 720px;
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.feature {
+  padding: clamp(16px, 3vw, 28px);
+  border-radius: 20px;
+  box-shadow: 0 12px 30px #193d4e0c;
+}
+.exam-settings {
+  gap: 14px;
+}
+.exam-settings label:not(.timer-choice) {
+  min-width: 200px;
+}
+.exam-settings select {
+  min-width: 210px;
+  padding: 11px;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 13px;
+}
+.timer-choice {
+  padding: 11px 13px;
+}
+.exam-actions {
+  gap: 10px;
+}
+.exam-actions .btn {
+  padding: 12px 16px;
+  font-size: 12px;
+}
+.exam-game {
+  padding: clamp(18px, 4vw, 30px);
+  border-radius: 18px;
+}
+.exam-top {
+  font-size: 14px;
+}
+.exam-game h3 {
+  font-size: clamp(20px, 3vw, 27px);
+}
+.answer-option {
+  padding: 14px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.question-stimulus {
+  font-size: 14px;
+}
+.ai-review {
+  padding: 18px;
+}
+.exam-result {
+  padding: 20px;
+  font-size: 15px;
+}
+.footer {
+  margin-top: 15px;
+}
+@media (max-width: 650px) {
+  .exam-settings {
+    align-items: stretch;
+  }
+  .exam-settings label:not(.timer-choice),
+  .exam-settings select {
+    width: 100%;
+  }
+  .hero {
+    margin-top: 14px;
+  }
+}

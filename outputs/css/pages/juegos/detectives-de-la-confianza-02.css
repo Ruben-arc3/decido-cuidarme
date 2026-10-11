@@ -1,0 +1,11 @@
+body.project .top,
+body.project .foot {
+  display: none;
+}
+body.project .wrap {
+  width: 97vw;
+}
+body.project .stage {
+  height: min(68vw, 680px);
+  max-height: 680px;
+}

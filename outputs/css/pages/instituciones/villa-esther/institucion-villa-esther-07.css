@@ -1,0 +1,138 @@
+/* Cabecera unificada: escudo, identidad y navegación en una sola fila. */
+.villa-brand-banner {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(112deg, #153149, #176c71);
+  border-bottom: 3px solid #efc747;
+  box-shadow: 0 5px 18px #15314920;
+}
+.villa-brand-inner.container {
+  width: min(1160px, calc(100% - 32px));
+  max-width: 1160px;
+  min-height: 86px;
+  margin: auto;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.villa-identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 0 0 auto;
+  color: #fff;
+  text-decoration: none;
+}
+.villa-identity:hover {
+  color: #fff;
+}
+.villa-brand-crest {
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
+  object-fit: contain;
+  padding: 3px;
+  border-radius: 11px;
+  background: #fff;
+  box-shadow: 0 2px 9px #071d2a55;
+}
+.villa-brand-copy {
+  display: grid;
+  line-height: 1.2;
+}
+.villa-brand-kicker {
+  color: #c8f1df;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.villa-brand-name {
+  color: #fff;
+  font-size: 19px;
+  font-weight: 950;
+  letter-spacing: 0.015em;
+}
+.villa-brand-motto {
+  margin-top: 3px;
+  color: #e0efec;
+  font-size: 10px;
+}
+.villa-nav-collapse {
+  justify-content: flex-end;
+}
+.villa-nav {
+  gap: 3px;
+}
+.villa-nav .nav-link {
+  padding: 9px 11px;
+  border-radius: 8px;
+  color: #eff8f5;
+  font-size: 12px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+.villa-nav .nav-link:hover,
+.villa-nav .nav-link:focus-visible {
+  background: #ffffff18;
+  color: #fff;
+}
+.villa-nav .villa-platform-link {
+  margin-left: 4px;
+  border: 1px solid #ffffff66;
+}
+.villa-nav .villa-platform-link:hover {
+  background: #ffffff18;
+}
+.villa-brand-banner .navbar-toggler {
+  padding: 7px 9px;
+  border-color: #ffffff77;
+  border-radius: 8px;
+}
+.villa-brand-banner .navbar-toggler:focus {
+  box-shadow: 0 0 0 0.2rem #ffffff35;
+}
+@media (max-width: 991.98px) {
+  .villa-brand-inner.container {
+    min-height: 74px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .villa-brand-banner .navbar-toggler {
+    margin-left: auto;
+  }
+  .villa-nav-collapse {
+    flex-basis: 100%;
+    width: 100%;
+  }
+  .villa-nav {
+    align-items: stretch !important;
+    gap: 3px;
+    padding: 8px 0 5px;
+  }
+  .villa-nav .nav-link {
+    padding: 10px 12px;
+  }
+  .villa-nav .villa-platform-link {
+    margin: 3px 0 0;
+    text-align: center;
+  }
+}
+@media (max-width: 420px) {
+  .villa-brand-inner.container {
+    width: calc(100% - 20px);
+  }
+  .villa-brand-crest {
+    width: 48px;
+    height: 48px;
+    flex-basis: 48px;
+  }
+  .villa-brand-name {
+    font-size: 16px;
+  }
+  .villa-brand-motto {
+    font-size: 9px;
+  }
+}

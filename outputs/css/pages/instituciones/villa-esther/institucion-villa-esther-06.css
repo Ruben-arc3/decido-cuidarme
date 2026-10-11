@@ -1,0 +1,78 @@
+/* Bootstrap en la página de Villa Esther: grillas adaptables y superficies uniformes. */
+.shell.container {
+  width: min(1160px, calc(100% - 36px));
+  max-width: 1160px;
+  padding-right: 0;
+  padding-left: 0;
+}
+.feature-grid.row,
+.module-grid.row,
+.resource-grid.row,
+.story-grid.row {
+  display: flex;
+  grid-template-columns: none;
+  gap: 0;
+  margin-top: 0;
+}
+.feature-grid.row > [class*="col-"],
+.module-grid.row > [class*="col-"],
+.resource-grid.row > [class*="col-"],
+.story-grid.row > [class*="col-"] {
+  display: flex;
+}
+.feature.card {
+  height: 100%;
+  padding: 18px;
+  border-color: var(--line);
+  border-radius: 14px;
+  box-shadow: 0 7px 20px #193d4e0b;
+}
+.module-card.card {
+  height: 100%;
+  text-decoration: none;
+}
+.resource.card,
+.story.card {
+  height: 100%;
+  border-color: var(--line);
+  border-radius: 14px;
+}
+.resource.card {
+  min-height: 175px;
+  padding: 18px;
+}
+.resource.card {
+  box-shadow: 0 8px 24px #193d4e0a;
+}
+.resource.card .icon,
+.resource.card h3,
+.resource.card p,
+.resource.card a,
+.story.card blockquote,
+.story.card b {
+  margin-left: 0;
+  margin-right: 0;
+}
+.story.card {
+  padding: 16px;
+}
+.field input,
+.field select,
+.field textarea,
+.exam-settings select,
+.filters select,
+.career-form textarea {
+  border-radius: 8px;
+}
+.btn {
+  min-height: 40px;
+  border-radius: 8px;
+}
+@media (max-width: 575.98px) {
+  .shell.container {
+    width: calc(100% - 24px);
+  }
+  .module-card.card {
+    min-height: unset;
+  }
+}

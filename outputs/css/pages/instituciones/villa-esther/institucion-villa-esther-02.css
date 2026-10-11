@@ -1,0 +1,8 @@
+.slide [contenteditable="true"] {
+  cursor: text;
+  border-radius: 4px;
+}
+.slide [contenteditable="true"]:focus {
+  outline: 2px dashed var(--teal);
+  outline-offset: 3px;
+}

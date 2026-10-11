@@ -1,0 +1,28 @@
+.overlay {
+  position: fixed;
+  z-index: 30;
+  inset: 0;
+  background: #071821dd;
+  display: none;
+  place-items: center;
+  padding: 18px;
+}
+.overlay.show {
+  display: grid;
+}
+.safety-card {
+  width: min(550px, 100%);
+  padding: 24px;
+  border: 1px solid #7af0c666;
+  border-radius: 18px;
+  background: #183b43;
+}
+.safety-card h2 {
+  margin: 8px 0;
+  color: var(--cream);
+}
+.safety-card p {
+  color: #d2dfd7;
+  font-size: 13px;
+  line-height: 1.6;
+}
