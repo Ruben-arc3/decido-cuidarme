@@ -1,0 +1,23 @@
+.myth-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.myth-card{padding:19px;border:1px solid var(--line);border-radius:15px;background:#fff;box-shadow:var(--shadow)}
+.myth-label,.fact-label{display:inline-block;padding:4px 8px;border-radius:99px;background:#fff0e9;color:#b34e3e;font-size:9px;font-weight:950;letter-spacing:.1em}
+.fact-label{background:#e4f3ed;color:#087e78}
+.myth-card h3{margin:11px 0 6px;font-size:16px;line-height:1.3}
+.myth-card p{margin:0;color:var(--muted);font-size:12px}
+.source-line{margin:11px 0 0;color:var(--muted);font-size:11px}
+.source-line a{color:#087e78;font-weight:850}
+.digital-guide{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;align-items:center;margin-top:18px;padding:24px;border:1px solid #cbded7;border-radius:18px;background:#eaf3ef}
+.digital-guide h2,.teaching-tools h2{margin:0 0 8px;font-size:clamp(22px,3vw,29px);line-height:1.18;letter-spacing:-.03em}
+.digital-guide>div>p:not(.eyebrow){margin:0;color:var(--muted);font-size:13px}
+.digital-guide ol{margin:0;padding-left:22px;color:#334f5a;font-size:12px}
+.digital-guide li+li{margin-top:7px}
+.digital-guide>a{grid-column:1/-1;color:#087e78;font-size:11px;font-weight:900;text-decoration:none}
+.teaching-tools{margin-top:18px;padding:24px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow)}
+.teaching-tools>div:first-child>p:not(.eyebrow){margin:0;color:var(--muted);font-size:13px}
+.teaching-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
+.teaching-steps article{display:flex;align-items:flex-start;gap:10px;padding:13px;border:1px solid var(--line);border-radius:12px;background:#f8faf9}
+.teaching-steps article>span{flex:0 0 25px;display:grid;width:25px;height:25px;place-items:center;border-radius:8px;background:#dff4ec;color:#087e78;font-size:11px;font-weight:950}
+.teaching-steps p{margin:0;color:#405b6c;font-size:12px}
+.teaching-reminder{margin:12px 0 0;padding:10px 12px;border-radius:10px;background:#fff8e6;color:#624e22;font-size:11px}
+@media(max-width:700px){.myth-grid,.teaching-steps{grid-template-columns:1fr}.digital-guide{grid-template-columns:1fr}.digital-guide>a{grid-column:auto}}
+@media(max-width:500px){.digital-guide,.teaching-tools{padding:18px}}
