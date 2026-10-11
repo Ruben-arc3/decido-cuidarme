@@ -45,6 +45,7 @@
       const player = document.createElement("div");
       player.className = "villa-video-player ratio ratio-16x9";
       player.append(frame);
+      article.classList.add("is-playing");
       media.replaceChildren(player);
       play.removeEventListener("click", startPlayback);
     };
