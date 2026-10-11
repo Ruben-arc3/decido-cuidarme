@@ -1,38 +1,10 @@
-const PROJECT_ID = "camp2-93288";
-const FIREBASE_KEYS_URL = "https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com";
 const GEMINI_MODEL = "gemini-3.8-flash";
 const AREAS = { lectura: "Lectura Crítica", matematicas: "Matemáticas", sociales: "Sociales y Ciudadanas", ciencias: "Ciencias Naturales", ingles: "Inglés" };
 const TOPICS = ["Proyecto de vida y motivación", "Preparación para el ICFES", "Prevención del consumo de sustancias psicoactivas", "Prevención de la violencia intrafamiliar", "Prevención del abuso sexual", "Convivencia y bienestar", "Otro tema"];
 const json = (data, status = 200) => Response.json(data, { status, headers: { "Cache-Control": "no-store" } });
-
-function decodeBase64Url(value) {
-  const base64 = value.replace(/-/g, "+").replace(/_/g, "/");
-  return Uint8Array.from(atob(base64.padEnd(Math.ceil(base64.length / 4) * 4, "=")), c => c.charCodeAt(0));
-}
-function decodePart(value) { return JSON.parse(new TextDecoder().decode(decodeBase64Url(value))); }
-
-async function verifyFirebaseToken(request) {
-  const token = (request.headers.get("Authorization") || "").match(/^Bearer\s+(.+)$/i)?.[1];
-  if (!token) return null;
-  const parts = token.split(".");
-  if (parts.length !== 3) return null;
-  try {
-    const header = decodePart(parts[0]);
-    const claims = decodePart(parts[1]);
-    const now = Math.floor(Date.now() / 1000);
-    if (header.alg !== "RS256" || !header.kid || claims.aud !== PROJECT_ID || claims.iss !== `https://securetoken.google.com/${PROJECT_ID}` ||
-        typeof claims.sub !== "string" || !claims.sub || claims.sub.length > 128 || claims.exp <= now || claims.iat > now + 60) return null;
-    const response = await fetch(FIREBASE_KEYS_URL, { cf: { cacheTtl: 3600, cacheEverything: true } });
-    if (!response.ok) return null;
-    const { keys = [] } = await response.json();
-    const jwk = keys.find(key => key.kid === header.kid && key.kty === "RSA");
-    if (!jwk) return null;
-    const publicKey = await crypto.subtle.importKey("jwk", jwk, { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" }, false, ["verify"]);
-    const signed = new TextEncoder().encode(`${parts[0]}.${parts[1]}`);
-    const valid = await crypto.subtle.verify("RSASSA-PKCS1-v1_5", publicKey, decodeBase64Url(parts[2]), signed);
-    return valid ? claims : null;
-  } catch { return null; }
-}
+const requestBuckets = new Map();
+const RATE_WINDOW_MS = 10 * 60 * 1000;
+const RATE_LIMIT = 40;
 
 function text(value, max, label) {
   if (typeof value !== "string" || !value.trim() || value.length > max) throw new Error(`${label} no es válido.`);
@@ -49,9 +21,17 @@ function extractJSON(raw) {
 export async function onRequestPost({ request, env }) {
   const origin = request.headers.get("Origin");
   if (origin && new URL(origin).origin !== new URL(request.url).origin) return json({ error: "Origen no permitido." }, 403);
-  const claims = await verifyFirebaseToken(request);
-  if (!claims) return json({ error: "Inicia sesión de nuevo para usar Gemini." }, 401);
   if (!env.GEMINI_API_KEY) return json({ error: "Falta configurar el secreto GEMINI_API_KEY en Cloudflare." }, 503);
+  const now = Date.now();
+  const ip = request.headers.get("CF-Connecting-IP") || "local";
+  let bucket = requestBuckets.get(ip);
+  if (!bucket || bucket.resetAt <= now) bucket = { count: 0, resetAt: now + RATE_WINDOW_MS };
+  if (bucket.count >= RATE_LIMIT) return json({ error: "Se alcanzó el límite temporal de consultas desde esta conexión. Espera unos minutos e inténtalo de nuevo." }, 429);
+  bucket.count += 1;
+  requestBuckets.set(ip, bucket);
+  if (requestBuckets.size > 5000) {
+    for (const [key, value] of requestBuckets) if (value.resetAt <= now) requestBuckets.delete(key);
+  }
   const size = Number(request.headers.get("Content-Length") || 0);
   if (size > 20000) return json({ error: "La solicitud supera el tamaño permitido." }, 413);
   let body;
