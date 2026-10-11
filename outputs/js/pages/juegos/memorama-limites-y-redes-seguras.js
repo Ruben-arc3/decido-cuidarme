@@ -3,20 +3,20 @@
   const $ = (id) => document.getElementById(id),
     board = $("board");
   const pool = [
-    { support: ["Tu cuerpo y tus límites merecen respeto", "🛡️"] },
-    { support: ["Puedes decir “no” y alejarte si algo te incomoda", "✋"] },
-    { support: ["El consentimiento debe ser libre y puede cambiar", "🧭"] },
-    { support: ["Nadie debe presionarte para guardar un secreto que te asusta", "🔒"] },
-    { support: ["Pedir ayuda no es meterse en problemas", "📞"] },
-    { support: ["No es tu culpa si alguien cruza tus límites", "💛"] },
-    { support: ["Si no te escuchan, busca otra persona adulta segura", "🤝"] },
-    { support: ["Escucha y cree; no interrogues ni culpes", "👂"] },
+    { support: ["Tu cuerpo merece respeto.", "🛡️"] },
+    { support: ["Puedes decir “no” y alejarte.", "✋"] },
+    { support: ["El consentimiento es libre y puede cambiar.", "🧭"] },
+    { support: ["Nadie debe imponerte secretos que te asustan.", "🔒"] },
+    { support: ["Pedir ayuda no te mete en problemas.", "📞"] },
+    { support: ["No es tu culpa si cruzan tus límites.", "💛"] },
+    { support: ["Si no te escuchan, busca otra persona segura.", "🤝"] },
+    { support: ["Escucha y cree; no culpes ni interrogues.", "👂"] },
     { support: ["Agradece que te lo haya contado", "✨"] },
-    { support: ["No prometas guardar secretos que ponen a alguien en riesgo", "🫶"] },
-    { support: ["Busca apoyo de orientación escolar o profesional", "🏫"] },
-    { support: ["Si hay peligro inmediato, ve a un lugar seguro y pide ayuda urgente", "🚨"] },
-    { support: ["No tienes que enviar imágenes privadas por internet", "📵"] },
-    { support: ["Ante presión o amenazas en línea, pide ayuda a una persona adulta", "📲"] },
+    { support: ["No guardes secretos si hay riesgo.", "🫶"] },
+    { support: ["Orientación escolar también puede ayudar.", "🏫"] },
+    { support: ["Ante peligro, busca un lugar seguro y ayuda.", "🚨"] },
+    { support: ["No tienes que enviar imágenes privadas.", "📵"] },
+    { support: ["Si te presionan en línea, avisa a una persona adulta.", "📲"] },
   ];
   const rounds = [
     { pairs: 6, poolStart: 0, title: "LÍMITES Y CONSENTIMIENTO", focus: "LÍMITES", cols: 4 },
@@ -32,6 +32,7 @@
     started: false,
     paused: false,
     preview: false,
+    previewTimer: null,
     locked: false,
     team: 0,
     turns: 0,
@@ -149,7 +150,7 @@
     $("team").textContent = teams[s.team] + " propone";
   }
   function hud() {
-    $("round").textContent = s.round + 1 + " / 3";
+    $("round").textContent = s.round + 1 + " / " + rounds.length;
     $("pairs").textContent = s.matched.size + " / " + rounds[s.round].pairs;
     $("moves").textContent = s.moves;
     $("focus").textContent = rounds[s.round].focus;
@@ -159,7 +160,7 @@
       : s.paused
         ? "PARTIDA EN PAUSA"
         : s.preview
-          ? "OBSERVEN · 2 SEGUNDOS"
+          ? "OBSERVEN · 7 SEGUNDOS"
           : s.locked
             ? "OBSERVEN Y RECUERDEN"
             : "¡PROPONGAN COORDENADAS!";
@@ -167,33 +168,34 @@
       ? s.found.map((x) => "<span>✓ " + x + "</span>").join("")
       : "<span>Las coincidencias quedan visibles en el tablero.</span>";
     $("instruction").textContent = s.preview
-      ? "¡Memoricen ahora! Todas las cartas están abiertas durante 2 segundos."
+      ? "¡Memoricen ahora! Todas las cartas están abiertas durante 7 segundos."
       : "Digan dos coordenadas por jugada. Si las cartas son idénticas, encontraron una pareja; si no, memoricen dónde quedaron.";
   }
   function showPreview() {
+    if (!s.started || s.paused || s.preview) return;
+    clearTimeout(s.previewTimer);
     s.preview = true;
     s.up = [];
+    $("reveal").disabled = true;
     render();
-    $("toast").textContent = "¡MEMORIZAR POSICIONES Y PAREJAS!";
+    $("toast").textContent = "Tablero abierto durante 7 segundos. Memoriza las posiciones.";
     hud();
-    setTimeout(() => {
-      if (!s.started || !s.preview) return;
-      $("status").textContent = "OBSERVEN · 1 SEGUNDO";
-    }, 1000);
-    setTimeout(() => {
+    s.previewTimer = setTimeout(() => {
       if (!s.started || !s.preview) return;
       s.preview = false;
+      s.previewTimer = null;
+      $("reveal").disabled = false;
       render();
       $("toast").textContent = "Cartas ocultas · empieza la búsqueda";
       hud();
-    }, 2000);
+    }, 7000);
   }
   function start() {
     if (s.started) return;
     s.started = true;
     s.paused = false;
     $("intro").hidden = true;
-    $("toast").textContent = "¡Comienza el reto! Observen todas las cartas durante 2 segundos.";
+    $("toast").textContent = "¡Comienza el reto! Observen todas las cartas durante 7 segundos.";
     $("team").textContent = teams[s.team] + " propone";
     showPreview();
   }
@@ -217,7 +219,7 @@
     s.paused = false;
     makeDeck();
     $("toast").textContent =
-      "Tablero nuevo: observen las cartas durante 2 segundos y cambien de portavoz.";
+      "Tablero nuevo: observen las cartas durante 7 segundos y cambien de portavoz.";
     showPreview();
     hud();
   }
@@ -233,6 +235,7 @@
     $("status").textContent = s.paused ? "PARTIDA EN PAUSA" : "¡PROPONGAN COORDENADAS!";
   }
   function reset() {
+    clearTimeout(s.previewTimer);
     s = {
       round: 0,
       deck: [],
@@ -242,6 +245,7 @@
       started: false,
       paused: false,
       preview: false,
+      previewTimer: null,
       locked: false,
       team: 0,
       turns: 0,
@@ -260,6 +264,7 @@
   $("nextRound").onclick = nextRound;
   $("again").onclick = reset;
   $("pause").onclick = pause;
+  $("reveal").onclick = showPreview;
   $("project").onclick = () => {
     const enable = !document.body.classList.contains("projector-mode");
     document.body.classList.toggle("projector-mode", enable);

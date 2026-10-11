@@ -662,6 +662,49 @@ body {
   font-size: clamp(0.82rem, 1.1vw, 1rem);
 }
 
+/* Larger cards keep the complete learning message visible during play. */
+.tile {
+  height: clamp(104px, 13vh, 132px);
+  min-height: 104px;
+}
+
+.tile .front {
+  gap: 3px;
+  padding: 5px 3px;
+}
+
+.faceText {
+  max-width: 100%;
+  font-size: clamp(0.76rem, 0.95vw, 0.94rem);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.toolbar button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.projector-mode .tile {
+  height: clamp(105px, 16vh, 165px);
+  min-height: 105px;
+}
+
+.projector-mode .faceText {
+  font-size: clamp(0.96rem, 1.5vw, 1.35rem);
+}
+
+@media (max-width: 560px) {
+  .tile {
+    height: clamp(88px, 15vh, 112px);
+    min-height: 88px;
+  }
+
+  .faceText {
+    font-size: clamp(0.68rem, 2.4vw, 0.82rem);
+  }
+}
+
 @media (max-height: 700px) {
   .projector-mode .wrap {
     padding-top: 5px;
