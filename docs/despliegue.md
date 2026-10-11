@@ -22,6 +22,7 @@ Para usar Gemini localmente, crea `.dev.vars` en la raíz del repositorio:
 
 ```dotenv
 GEMINI_API_KEY=pega_aqui_una_clave_de_desarrollo
+YOUTUBE_API_KEY=pega_aqui_una_clave_de_youtube
 ```
 
 `.dev.vars` está ignorado por Git. No pegues claves reales en ejemplos, issues, capturas ni commits. El endpoint también valida sesiones Firebase; configura Authentication para el dominio de prueba si vas a probar esa parte.
@@ -31,7 +32,7 @@ GEMINI_API_KEY=pega_aqui_una_clave_de_desarrollo
 1. Conecta `Ruben-arc3/decido-cuidarme` como proyecto Pages.
 2. Usa la raíz del repositorio como raíz del proyecto.
 3. Deja vacío el comando de compilación y configura `outputs` como directorio de salida. `wrangler.jsonc` ya declara ese directorio.
-4. En Variables and Secrets, agrega `GEMINI_API_KEY` como secreto para Production. Crea otro valor en Preview si vas a usar esos despliegues.
+4. En Variables and Secrets, agrega `GEMINI_API_KEY` y `YOUTUBE_API_KEY` como secretos para Production. Crea otro valor en Preview si vas a usar esos despliegues.
 5. Confirma que `functions/` se detecta durante el despliegue.
 6. Haz push a `main`; Cloudflare desplegará automáticamente si la integración Git está activa.
 

@@ -41,3 +41,5 @@ El service worker almacena páginas y recursos estáticos seleccionados. El cont
 - Recursos institucionales aislados por carpeta para facilitar mantenimiento y branding.
 - Pages Functions como capa intermediaria para APIs que requieren secretos o manejo del servidor.
 - Contenido generado por IA y traducciones automáticas tratados como material de apoyo que requiere revisión.
+
+- `functions/api/youtube.js` expone `GET /api/youtube` para buscar videos de temas educativos predeterminados de Villa Esther. Aplica idioma español, región Colombia, contenido restringido y videos insertables; la clave `YOUTUBE_API_KEY` permanece como secreto de Cloudflare.

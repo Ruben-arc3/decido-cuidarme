@@ -1,3 +1,4 @@
 # Copia este archivo como .dev.vars y reemplaza el valor localmente.
 # Nunca agregues una clave real al repositorio.
 GEMINI_API_KEY=REEMPLAZA_CON_TU_CLAVE_LOCAL
+YOUTUBE_API_KEY=REEMPLAZA_CON_TU_CLAVE_DE_YOUTUBE

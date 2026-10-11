@@ -63,11 +63,11 @@ Para ejecutar Pages Functions en local con Wrangler:
 npx wrangler pages dev outputs
 ```
 
-Si necesitas Gemini localmente, crea `.dev.vars` en la raíz con `GEMINI_API_KEY=tu_clave`. El archivo está excluido de Git. Firebase Authentication requiere `localhost` en los dominios autorizados de Firebase. Las APIs externas necesitan conexión.
+Para probar las APIs localmente, crea `.dev.vars` en la raíz con `GEMINI_API_KEY=tu_clave` y `YOUTUBE_API_KEY=tu_clave`. El archivo está excluido de Git. Firebase Authentication requiere `localhost` en los dominios autorizados de Firebase. Las APIs externas necesitan conexión.
 
 ## Despliegue
 
-Cloudflare Pages usa `outputs` como directorio de publicación y detecta `functions/` automáticamente. Conecta el repositorio en Pages, deja vacío el comando de compilación y configura el secreto `GEMINI_API_KEY` en Production (y en Preview si lo utilizas). Al enviar cambios a `main`, Pages publica automáticamente si Git está conectado.
+Cloudflare Pages usa `outputs` como directorio de publicación y detecta `functions/` automáticamente. Conecta el repositorio en Pages, deja vacío el comando de compilación y configura los secretos `GEMINI_API_KEY` y `YOUTUBE_API_KEY` en Production (y en Preview si lo utilizas). Al enviar cambios a `main`, Pages publica automáticamente si Git está conectado.
 
 El despliegue manual desde la raíz es:
 
