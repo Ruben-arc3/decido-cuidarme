@@ -58,9 +58,36 @@ if (!htmlFiles.length) {
 
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, "utf8");
-  const attributePattern = /\b(href|src|poster|action)\s*=\s*(["'])(.*?)\2/gi;
+  const attributePattern = /\b(href|src|poster)\s*=\s*(["'])(.*?)\2/gi;
   for (const match of html.matchAll(attributePattern)) {
     checkReference(match[3], file, `${path.relative(siteRoot, file)} (${match[1]})`);
+  }
+
+  // Las acciones interactivas pueden delegarse desde el HTML a scripts externos.
+  const scriptSources = [...html.matchAll(/<script\b[^>]*\bsrc\s*=\s*(["'])(.*?)\1[^>]*>/gi)].map(
+    (match) => match[2],
+  );
+  const pageScripts = scriptSources
+    .filter((source) => !/^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(source))
+    .map((source) => {
+      const pathname = source.split(/[?#]/, 1)[0];
+      const scriptPath = pathname.startsWith("/")
+        ? path.resolve(siteRoot, pathname.replace(/^[/\\]+/, ""))
+        : path.resolve(path.dirname(file), pathname);
+      return fs.existsSync(scriptPath) ? fs.readFileSync(scriptPath, "utf8") : "";
+    })
+    .join("\n");
+  for (const match of html.matchAll(/\bdata-page-action\s*=\s*(["'])(.*?)\1/gi)) {
+    const action = match[2];
+    const declared = new RegExp(
+      `(?:function\\s+${action}\\s*\\(|(?:const|let|var)\\s+${action}\\s*=|(?:window|globalThis)\\.${action}\\s*=)`,
+    ).test(pageScripts);
+    const handledByDispatcher = new RegExp(`action\\s*===\\s*["']${action}["']`).test(pageScripts);
+    if (!declared && !handledByDispatcher) {
+      errors.push(
+        `${path.relative(siteRoot, file)} (action): no se encontró ${action} en los scripts enlazados`,
+      );
+    }
   }
 }
 
@@ -85,7 +112,9 @@ if (fs.existsSync(workerFile)) {
     errors.push("service-worker.js: no se encontró el arreglo CORE.");
   } else {
     try {
-      for (const asset of JSON.parse(coreMatch[1])) {
+      // CORE es un arreglo JavaScript y puede llevar coma final según Prettier.
+      const coreJson = coreMatch[1].replace(/,\s*([\]}])/g, "$1");
+      for (const asset of JSON.parse(coreJson)) {
         checkReference(asset, workerFile, "service-worker CORE");
       }
     } catch (error) {
