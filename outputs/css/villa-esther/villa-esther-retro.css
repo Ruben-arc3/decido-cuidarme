@@ -363,3 +363,127 @@ body{background:radial-gradient(ellipse at 10% 0,#d9efe8,transparent 38%),#f2f7f
   .module-grid .module-card .module-kicker { font-size:.46rem }
   .module-grid .module-card h3 { font-size:.8rem }
 }
+/* Acabado de las zonas audiovisuales y de juegos del portal Villa Esther. */
+.villa-video-library {
+  margin-block:1.8rem;
+  padding:clamp(16px,2.5vw,26px);
+  border:1px solid #d7e6df;
+  border-radius:18px;
+  background:linear-gradient(145deg,#f8fcfa 0%,#edf6f1 100%);
+  box-shadow:0 9px 24px #193d4e0a;
+}
+.villa-video-library .sectionhead {
+  margin-bottom:16px;
+  padding-bottom:12px;
+  border-bottom:1px solid #d5e4dd;
+}
+.villa-video-library .sectionhead h2 {color:#153149}
+.villa-video-library .sectionhead p {max-width:58ch}
+.villa-video-library .villa-video-status {
+  display:inline-flex;
+  align-items:center;
+  min-height:30px;
+  padding:5px 10px;
+  border:1px solid #d7e6df;
+  border-radius:999px;
+  background:#fff;
+  font-size:.78rem;
+}
+.villa-video-library .villa-video-note {font-size:.75rem}
+.villa-retro-games .resource-grid.row {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-areas:none;
+  gap:14px;
+  padding:14px;
+  border-radius:0 0 13px 13px;
+  background:linear-gradient(145deg,#eaf3ef,#f4f8f6);
+}
+.villa-retro-games .resource.card,
+.villa-retro-games .resource.card:nth-child(1),
+.villa-retro-games .resource.card:nth-child(2),
+.villa-retro-games .resource.card:nth-child(3) {
+  grid-area:auto;
+  width:auto;
+  min-width:0;
+  min-height:218px;
+  height:100%;
+  padding:18px;
+  border:1px solid #d7e4de;
+  border-top:4px solid #137d73;
+  border-radius:13px;
+  background:#fff;
+  box-shadow:0 7px 18px #193d4e0d;
+}
+.villa-retro-games .resource.card:nth-child(2) {border-top-color:#397ba6}
+.villa-retro-games .resource.card:nth-child(3) {border-top-color:#7160b1}
+.villa-retro-games .resource.card:nth-child(1)::after {display:none}
+.villa-retro-games .resource .icon {
+  width:46px;
+  height:46px;
+  border-color:#c8e6d7;
+  border-radius:12px;
+  background:#e7f4ed;
+  color:#137d73;
+  font-size:1.8rem;
+}
+.villa-retro-games .resource.card:nth-child(2) .icon {border-color:#d4e5f2;background:#edf5fb;color:#397ba6}
+.villa-retro-games .resource.card:nth-child(3) .icon {border-color:#ded7f4;background:#f2efff;color:#7160b1}
+.villa-retro-games .resource.card::before {
+  top:20px;
+  right:18px;
+  border-color:#e1e9e5;
+  border-radius:999px;
+  color:#58716f;
+  font-size:.67rem;
+}
+.villa-retro-games .resource h3 {
+  margin:13px 0 6px;
+  font-size:1.45rem;
+  line-height:1.08;
+}
+.villa-retro-games .resource p {
+  margin:0;
+  font-size:.84rem;
+  line-height:1.5;
+}
+.villa-retro-games .resource a {
+  min-height:40px;
+  margin-top:auto;
+  padding:8px 11px;
+  border-radius:8px;
+  font-size:.78rem;
+}
+@media(max-width:767.98px) {
+  .villa-video-library {margin-block:1.2rem;padding:14px;border-radius:15px}
+  .villa-video-library .sectionhead {margin-bottom:12px;padding-bottom:9px}
+  .villa-retro-games .resource-grid.row {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-areas:none;
+    gap:10px;
+    padding:10px;
+  }
+  .villa-retro-games .resource.card,
+  .villa-retro-games .resource.card:nth-child(1),
+  .villa-retro-games .resource.card:nth-child(2),
+  .villa-retro-games .resource.card:nth-child(3) {
+    grid-area:auto;
+    min-height:170px;
+    padding:12px;
+    border-radius:11px;
+  }
+  .villa-retro-games .resource.card:nth-child(3) {grid-column:1/-1;min-height:146px}
+  .villa-retro-games .resource .icon {width:38px;height:38px;font-size:1.5rem}
+  .villa-retro-games .resource.card::before {top:16px;right:10px;padding:4px 6px;font-size:.56rem}
+  .villa-retro-games .resource h3 {margin:10px 0 5px;font-size:1.1rem}
+  .villa-retro-games .resource p {font-size:.74rem;line-height:1.38}
+  .villa-retro-games .resource a {min-height:36px;padding:7px 8px;font-size:.69rem}
+}
+@media(max-width:360px) {
+  .villa-retro-games .resource-grid.row {gap:8px;padding:8px}
+  .villa-retro-games .resource.card,
+  .villa-retro-games .resource.card:nth-child(1),
+  .villa-retro-games .resource.card:nth-child(2) {min-height:164px;padding:10px}
+  .villa-retro-games .resource h3 {font-size:1rem}
+  .villa-retro-games .resource.card::before {font-size:.5rem}
+}
