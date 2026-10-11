@@ -1,9 +1,9 @@
 {
-  "name": "Aula digital Villa Esther",
-  "short_name": "Aula VE",
-  "description": "Práctica Saber 11, recursos y seguimiento de estudio.",
+  "name": "Decido Cuidarme · Villa Esther",
+  "short_name": "Villa Esther",
+  "description": "Módulos de estudio, habilidades digitales, juegos y orientación vocacional.",
   "lang": "es-CO",
-  "start_url": "./instituciones/villa-esther/institucion-villa-esther.html#aula-digital",
+  "start_url": "./instituciones/villa-esther/institucion-villa-esther.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#f2f7f5",
