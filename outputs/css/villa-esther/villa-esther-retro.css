@@ -270,3 +270,96 @@ body{background:radial-gradient(ellipse at 10% 0,#d9efe8,transparent 38%),#f2f7f
 @media(prefers-reduced-motion:reduce) {
   .villa-retro-games .resource.card,.villa-retro-games .resource a {transition:none}
 }
+/* Tarjetas compactas: priorizan icono, nombre y acción sin grandes espacios vacíos. */
+.module-grid > .module-card.card {
+  display:grid;
+  grid-template-columns:46px minmax(0,1fr);
+  grid-template-rows:auto auto minmax(2.6em,auto) auto;
+  align-content:start;
+  gap:6px 12px;
+  min-height:196px;
+  padding:16px;
+  border-left:3px solid var(--accent,#137d73);
+  border-top-width:3px;
+  border-radius:14px;
+  box-shadow:0 5px 16px #193d4e0c;
+}
+.module-grid > .module-card.card::before {
+  top:-45px;
+  right:-36px;
+  width:104px;
+  height:104px;
+  opacity:.5;
+}
+.module-grid > .module-card.card::after {
+  right:16px;
+  left:16px;
+  height:3px;
+}
+.module-grid .module-card .module-icon {
+  grid-column:1;
+  grid-row:1 / span 2;
+  width:44px;
+  height:44px;
+  border-radius:13px;
+  font-size:22px;
+}
+.module-grid .module-card .module-kicker {
+  grid-column:2;
+  grid-row:1;
+  align-self:center;
+  max-width:100%;
+  overflow:hidden;
+  margin:0;
+  padding:4px 8px;
+  font-size:.59rem;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.module-grid .module-card h3 {
+  grid-column:2;
+  grid-row:2;
+  align-self:center;
+  margin:0;
+  font-size:1rem;
+  line-height:1.2;
+}
+.module-grid .module-card p {
+  grid-column:1 / -1;
+  grid-row:3;
+  display:-webkit-box;
+  overflow:hidden;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  font-size:.8rem;
+  line-height:1.4;
+}
+.module-grid .module-card .module-go {
+  grid-column:1 / -1;
+  grid-row:4;
+  align-self:end;
+  margin-top:auto;
+  padding:9px 0 0;
+  border-top:1px solid color-mix(in srgb,var(--accent,#137d73) 20%,white);
+  font-size:.75rem;
+}
+@media(max-width:575.98px){
+  .module-grid > .module-card.card {
+    grid-template-columns:36px minmax(0,1fr);
+    grid-template-rows:auto auto 1fr auto;
+    min-height:154px;
+    padding:11px;
+    gap:6px 8px;
+    border-radius:12px;
+  }
+  .module-grid .module-card .module-icon { width:34px;height:34px;border-radius:10px;font-size:18px }
+  .module-grid .module-card .module-kicker { padding:3px 6px;font-size:.5rem;letter-spacing:.035em }
+  .module-grid .module-card h3 { font-size:.86rem;line-height:1.16 }
+  .module-grid .module-card p { display:none }
+  .module-grid .module-card .module-go { padding-top:7px;font-size:.67rem }
+}
+@media(max-width:360px){
+  .module-grid > .module-card.card { min-height:148px;padding:9px;gap:5px 6px }
+  .module-grid .module-card .module-kicker { font-size:.46rem }
+  .module-grid .module-card h3 { font-size:.8rem }
+}
