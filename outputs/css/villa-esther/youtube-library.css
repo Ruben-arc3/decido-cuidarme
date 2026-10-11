@@ -1,1 +1,46 @@
-.villa-video-library{margin-block:1.5rem}.villa-video-search{display:flex;align-items:end;gap:.75rem;flex-wrap:wrap}.villa-video-search .field{flex:1 1 220px;min-width:0}.villa-video-search .field label{display:block;margin-bottom:.35rem;font-weight:750}.villa-video-search input,.villa-video-search select{width:100%;min-height:42px;padding:.6rem .75rem;border:1px solid #d5e1dc;border-radius:.65rem}.villa-video-search button{min-height:42px}.villa-video-results{margin-top:.75rem}.villa-video-card{height:100%;overflow:hidden;border:1px solid #d9e5e0;border-radius:.9rem;background:#fff;box-shadow:0 6px 18px #193d4e0b}.villa-video-card>img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#e7efeb}.villa-video-body{display:flex;flex-direction:column;align-items:flex-start;gap:.45rem;padding:.9rem}.villa-video-body h3{margin:0;font-size:1rem;line-height:1.3}.villa-video-body p{margin:0;color:#617887;font-size:.82rem}.villa-video-actions{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;margin-top:auto;padding-top:.25rem}.villa-video-play{border:0;border-radius:.6rem;background:#ffd66d;color:#23384a;font-weight:800}.villa-video-open{color:#137d73;font-size:.85rem;font-weight:750;text-decoration:none}.villa-video-player iframe{width:100%;height:100%;border:0}.villa-video-status{margin:.7rem 0;color:#617887;font-size:.85rem}.villa-video-note{margin:.7rem 0 0;color:#617887;font-size:.78rem}@media(max-width:600px){.villa-video-search{display:grid;grid-template-columns:1fr;gap:.6rem}.villa-video-search .field,.villa-video-search button{width:100%}.villa-video-results.row{--bs-gutter-x:.6rem;--bs-gutter-y:.6rem}.villa-video-results.row>.villa-video-card{flex:0 0 auto;width:50%}.villa-video-body{padding:.65rem}.villa-video-body h3{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;font-size:.82rem}.villa-video-body p,.villa-video-open{font-size:.7rem}.villa-video-play{padding:.45rem .6rem;font-size:.72rem}}
+/* Biblioteca audiovisual: tarjetas con jerarquía clara y controles accesibles. */
+.villa-video-library{margin-block:1.5rem}
+.villa-video-search{display:flex;align-items:end;gap:.75rem;flex-wrap:wrap}
+.villa-video-search .field{flex:1 1 220px;min-width:0}
+.villa-video-search .field label{display:block;margin-bottom:.4rem;font-weight:750;color:#385464}
+.villa-video-search input,.villa-video-search select{width:100%;min-height:44px;padding:.65rem .8rem;border:1px solid #d5e1dc;border-radius:.75rem}
+.villa-video-search button{min-height:44px}
+.villa-video-results{margin-top:.85rem}
+.villa-video-card{height:100%;overflow:hidden;border:1px solid #d9e5e0;border-radius:1rem;background:#fff;box-shadow:0 8px 24px #193d4e0d;transition:transform .2s ease,box-shadow .2s ease}
+.villa-video-card:hover{transform:translateY(-3px);box-shadow:0 16px 34px #193d4e18}
+.villa-video-media{position:relative;overflow:hidden;aspect-ratio:16/9;background:#e7efeb}
+.villa-video-media>img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
+.villa-video-card:hover .villa-video-media>img{transform:scale(1.035)}
+.villa-video-play{position:absolute;left:50%;top:50%;display:grid;width:54px;height:54px;place-items:center;transform:translate(-50%,-50%);border:1px solid #ffffffbb;border-radius:50%;background:#12364dde;color:#fff;font-size:20px;box-shadow:0 4px 16px #102b3950;transition:background .18s ease,scale .18s ease}
+.villa-video-play:hover{background:#137d73;scale:1.08}
+.villa-video-body{display:flex;min-height:164px;flex-direction:column;align-items:flex-start;gap:.5rem;padding:1rem}
+.villa-video-topic{display:inline-flex;max-width:100%;overflow:hidden;padding:.28rem .55rem;border-radius:999px;background:#e7f4ed;color:#137d73;font-size:.68rem;font-weight:850;text-overflow:ellipsis;white-space:nowrap}
+.villa-video-body h3{display:-webkit-box;margin:0;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:3;color:#142d45;font-size:1rem;font-weight:750;line-height:1.35}
+.villa-video-body p{margin:0;color:#617887;font-size:.8rem}
+.villa-video-actions{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;margin-top:auto;padding-top:.25rem}
+.villa-video-open{display:inline-flex;min-height:38px;align-items:center;color:#137d73;font-size:.82rem;font-weight:800;text-decoration:none}
+.villa-video-open:hover{text-decoration:underline}
+.villa-video-player iframe{width:100%;height:100%;border:0}
+.villa-video-status{margin:.75rem 0;color:#526c78;font-size:.88rem}
+.villa-video-note{margin:.7rem 0 0;color:#617887;font-size:.8rem}
+@media(max-width:767.98px){
+ .villa-video-search{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.65rem}
+ .villa-video-search .field{min-width:0}
+ .villa-video-search .villa-video-query{grid-column:1/-1}
+ .villa-video-search button{grid-column:1/-1;width:100%}
+ .villa-video-results.row{--bs-gutter-x:.65rem;--bs-gutter-y:.65rem}
+ .villa-video-results.row>.villa-video-card{flex:0 0 auto;width:100%}
+ .villa-video-card{display:grid;grid-template-columns:minmax(112px,38%) minmax(0,1fr);min-height:142px;border-radius:.9rem}
+ .villa-video-media{height:100%;min-height:142px;aspect-ratio:auto}
+ .villa-video-play{width:42px;height:42px;font-size:16px}
+ .villa-video-body{min-height:0;justify-content:center;gap:.4rem;padding:.8rem}
+ .villa-video-body h3{-webkit-line-clamp:3;font-size:.9rem}
+ .villa-video-body p,.villa-video-open{font-size:.75rem}
+}
+@media(max-width:380px){
+ .villa-video-card{grid-template-columns:108px minmax(0,1fr)}
+ .villa-video-body{padding:.65rem}
+ .villa-video-body h3{font-size:.82rem}
+ .villa-video-topic{font-size:.6rem}
+}
+@media(prefers-reduced-motion:reduce){.villa-video-card,.villa-video-media>img,.villa-video-play{transition:none}}
