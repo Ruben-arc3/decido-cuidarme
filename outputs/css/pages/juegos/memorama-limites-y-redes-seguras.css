@@ -685,6 +685,11 @@ body {
   opacity: 0.58;
 }
 
+#reveal {
+  touch-action: none;
+  user-select: none;
+}
+
 .projector-mode .tile {
   height: clamp(105px, 16vh, 165px);
   min-height: 105px;

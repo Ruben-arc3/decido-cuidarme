@@ -33,6 +33,7 @@
     paused: false,
     preview: false,
     previewTimer: null,
+    previewMode: null,
     locked: false,
     team: 0,
     turns: 0,
@@ -66,6 +67,7 @@
     );
     s.up = [];
     s.preview = false;
+    s.previewMode = null;
     s.matched = new Set();
     s.moves = 0;
     s.found = [];
@@ -160,7 +162,9 @@
       : s.paused
         ? "PARTIDA EN PAUSA"
         : s.preview
-          ? "OBSERVEN · 7 SEGUNDOS"
+          ? s.previewMode === "hold"
+            ? "CARTAS VISIBLES · MANTÉN PRESIONADO"
+            : "OBSERVEN · 3 SEGUNDOS"
           : s.locked
             ? "OBSERVEN Y RECUERDEN"
             : "¡PROPONGAN COORDENADAS!";
@@ -168,34 +172,55 @@
       ? s.found.map((x) => "<span>✓ " + x + "</span>").join("")
       : "<span>Las coincidencias quedan visibles en el tablero.</span>";
     $("instruction").textContent = s.preview
-      ? "¡Memoricen ahora! Todas las cartas están abiertas durante 7 segundos."
+      ? s.previewMode === "hold"
+        ? "Mantén presionado el botón para consultar las cartas; al soltarlo se ocultan."
+        : "¡Memoricen ahora! Todas las cartas están abiertas durante 3 segundos."
       : "Digan dos coordenadas por jugada. Si las cartas son idénticas, encontraron una pareja; si no, memoricen dónde quedaron.";
   }
   function showPreview() {
     if (!s.started || s.paused || s.preview) return;
     clearTimeout(s.previewTimer);
     s.preview = true;
+    s.previewMode = "timer";
     s.up = [];
-    $("reveal").disabled = true;
     render();
-    $("toast").textContent = "Tablero abierto durante 7 segundos. Memoriza las posiciones.";
+    $("toast").textContent = "Tablero abierto durante 3 segundos. Memoriza las posiciones.";
     hud();
     s.previewTimer = setTimeout(() => {
-      if (!s.started || !s.preview) return;
+      if (!s.started || !s.preview || s.previewMode !== "timer") return;
       s.preview = false;
       s.previewTimer = null;
-      $("reveal").disabled = false;
+      s.previewMode = null;
       render();
       $("toast").textContent = "Cartas ocultas · empieza la búsqueda";
       hud();
-    }, 7000);
+    }, 3000);
+  }
+  function beginHeldPreview() {
+    if (!s.started || s.paused || s.previewMode === "hold") return;
+    clearTimeout(s.previewTimer);
+    s.previewTimer = null;
+    s.preview = true;
+    s.previewMode = "hold";
+    s.up = [];
+    render();
+    hud();
+  }
+  function endHeldPreview() {
+    if (s.previewMode !== "hold") return;
+    s.preview = false;
+    s.previewMode = null;
+    render();
+    $("toast").textContent = "Cartas ocultas · continúa la búsqueda";
+    hud();
   }
   function start() {
     if (s.started) return;
     s.started = true;
     s.paused = false;
     $("intro").hidden = true;
-    $("toast").textContent = "¡Comienza el reto! Observen todas las cartas durante 7 segundos.";
+    $("reveal").disabled = false;
+    $("toast").textContent = "¡Comienza el reto! Observen todas las cartas durante 3 segundos.";
     $("team").textContent = teams[s.team] + " propone";
     showPreview();
   }
@@ -219,7 +244,7 @@
     s.paused = false;
     makeDeck();
     $("toast").textContent =
-      "Tablero nuevo: observen las cartas durante 7 segundos y cambien de portavoz.";
+      "Tablero nuevo: observen las cartas durante 3 segundos y cambien de portavoz.";
     showPreview();
     hud();
   }
@@ -246,6 +271,7 @@
       paused: false,
       preview: false,
       previewTimer: null,
+      previewMode: null,
       locked: false,
       team: 0,
       turns: 0,
@@ -254,6 +280,7 @@
     $("ending").hidden = true;
     $("roundEnd").hidden = true;
     $("intro").hidden = false;
+    $("reveal").disabled = true;
     makeDeck();
   }
   $("start").onclick = start;
@@ -264,7 +291,26 @@
   $("nextRound").onclick = nextRound;
   $("again").onclick = reset;
   $("pause").onclick = pause;
-  $("reveal").onclick = showPreview;
+  const revealButton = $("reveal");
+  revealButton.addEventListener("pointerdown", (event) => {
+    if (!s.started || s.paused) return;
+    event.preventDefault();
+    revealButton.setPointerCapture?.(event.pointerId);
+    beginHeldPreview();
+  });
+  revealButton.addEventListener("pointerup", endHeldPreview);
+  revealButton.addEventListener("pointercancel", endHeldPreview);
+  revealButton.addEventListener("lostpointercapture", endHeldPreview);
+  revealButton.addEventListener("keydown", (event) => {
+    if ((event.code === "Space" || event.code === "Enter") && !event.repeat) {
+      event.preventDefault();
+      beginHeldPreview();
+    }
+  });
+  revealButton.addEventListener("keyup", (event) => {
+    if (event.code === "Space" || event.code === "Enter") endHeldPreview();
+  });
+  revealButton.addEventListener("blur", endHeldPreview);
   $("project").onclick = () => {
     const enable = !document.body.classList.contains("projector-mode");
     document.body.classList.toggle("projector-mode", enable);
