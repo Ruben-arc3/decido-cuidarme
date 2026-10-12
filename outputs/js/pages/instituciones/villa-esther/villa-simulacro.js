@@ -479,9 +479,9 @@
       area = $("examArea").value,
       count = Number($("examCount").value);
     btn.disabled = true;
-    $("apiStatus").textContent = "Solicitando preguntas nuevas a Gemini…";
+    $("apiStatus").textContent = "Solicitando preguntas nuevas a Groq…";
     try {
-      const data = await window.aulaGemini({ mode: "exam", area, count });
+      const data = await window.villaGroqExam({ mode: "exam", area, count });
       if (!Array.isArray(data.questions) || data.questions.length < Math.min(3, count))
         throw new Error("No llegaron suficientes preguntas válidas.");
       generatedBank = area === "all" ? { all: data.questions } : { [area]: data.questions };

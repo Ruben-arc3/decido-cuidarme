@@ -1,4 +1,4 @@
-// Sends ICFES practice generation to Gemini and tutoring chats to GroqCloud.
+// Sends ICFES generation and tutoring chats to GroqCloud; other lesson requests use Gemini.
 (() => {
   window.aulaGemini = async (payload) => {
     const response = await fetch("/api/aula", {
@@ -22,10 +22,20 @@
       throw new Error(data.error || `Groq respondió con error (${response.status}).`);
     return data;
   };
+  window.villaGroqExam = async (payload) => {
+    const response = await fetch("/api/groq-exam", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok)
+      throw new Error(data.error || `Groq respondió con error (${response.status}).`);
+    return data;
+  };
 
   const $ = (id) => document.getElementById(id);
-  // En Vicente Díaz, la orientación vocacional usa Groq; aulaGemini permanece
-  // disponible para el simulacro ICFES de esta misma página.
+  // En Vicente Díaz, los chats y el simulacro ICFES se sirven con Groq.
   if (document.documentElement.dataset.careerProvider === "groq") return;
   const launcher = $("careerLauncher"),
     panel = $("careerPanel");
