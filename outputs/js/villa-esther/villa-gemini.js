@@ -13,6 +13,9 @@
   };
 
   const $ = (id) => document.getElementById(id);
+  // En Vicente Díaz, la orientación vocacional usa Groq; aulaGemini permanece
+  // disponible para el simulacro ICFES de esta misma página.
+  if (document.documentElement.dataset.careerProvider === "groq") return;
   const launcher = $("careerLauncher"),
     panel = $("careerPanel");
   const form = $("careerChatForm"),
