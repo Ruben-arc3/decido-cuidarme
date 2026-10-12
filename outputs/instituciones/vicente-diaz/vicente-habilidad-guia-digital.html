@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <link rel="icon" href="../../assets/vicente-diaz/favicon-vicente-diaz.ico" sizes="any" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="../../assets/vicente-diaz/icon-512.png"
+    />
+    <link rel="stylesheet" href="../../css/villa-esther/villa-esther-brand.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#12364d" />
+    <meta name="description" content="Diseña y descarga una guía digital clara y accesible." />
+    <title>Diseña una guía digital · Habilidades digitales</title>
+    <link rel="stylesheet" href="../../css/villa-esther/habilidades-digitales.css" />
+    <script src="../../js/villa-esther/habilidades-digitales.js" defer></script>
+    <link rel="stylesheet" href="../../css/villa-esther/youtube-library.css?v=20261015" />
+      <link rel="stylesheet" href="../../css/vicente-diaz/vicente-diaz-module-brand.css" />
+  </head>
+  <body data-skill="guia-digital">
+    <header class="villa-brand-banner">
+      <div class="villa-brand-inner">
+        <img
+          class="villa-brand-crest"
+          src="../../assets/vicente-diaz/escudo-vicente-diaz.png"
+          alt="Escudo de la Institución Educativa Vicente Díaz"
+        />
+        <div class="villa-brand-copy">
+          <span class="villa-brand-kicker">Institución Educativa</span
+          ><span class="villa-brand-name">Vicente Díaz</span
+          ><span class="villa-brand-motto">Esfuerzo · Respeto · Amor</span>
+        </div>
+        <a class="villa-brand-home" href="../institucion-vicente-diaz.html">Inicio Vicente Díaz</a>
+      </div>
+    </header>
+    <div id="skill-app"></div>
+    <section
+      class="shell villa-video-library"
+      id="videos-educativos"
+      aria-labelledby="villaVideoHeading"
+    >
+      <div class="sectionhead">
+        <h2 id="villaVideoHeading">Videos para este módulo</h2>
+        <p>Material de YouTube sobre diseño de guías digitales y comunicación.</p>
+      </div>
+      <form
+        id="villaVideoSearch"
+        class="villa-video-search"
+        role="search"
+        data-video-topic="guia"
+        data-auto-search="true"
+      >
+        <div class="field">
+          <label for="villaVideoQuery">Buscar un subtema (opcional)</label
+          ><input
+            id="villaVideoQuery"
+            type="search"
+            maxlength="60"
+            placeholder="Ej.: hacer una guía clara y accesible"
+          />
+        </div>
+        <button class="btn" type="submit">Buscar videos</button>
+      </form>
+      <p id="villaVideoStatus" class="villa-video-status" role="status" aria-live="polite">
+        Cargando videos del módulo…
+      </p>
+      <div
+        id="villaVideoResults"
+        class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3 villa-video-results"
+      ></div>
+      <p class="villa-video-note">
+        Los resultados vienen de YouTube. El docente debe revisar cada video antes de proyectarlo en
+        el salón.
+      </p>
+    </section>
+    <script src="../../js/villa-esther/youtube-library.js?v=20261012" defer></script>
+  </body>
+</html>

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../css/pwa-install.css" />
     <title>Institución Educativa Vicente Díaz · Decido Cuidarme</title>
     <link rel="stylesheet" href="../css/pages/instituciones/institucion-vicente-diaz.css" />
+    <link rel="stylesheet" href="../css/vicente-diaz/vicente-diaz-learning.css" />
   </head>
   <body>
     <header class="vicente-brand-banner">
@@ -34,8 +35,16 @@
         ><a class="back" href="../index.html#instituciones">← Instituciones</a>
       </div>
     </header>
+    <nav class="vicente-section-nav" aria-label="Secciones de Vicente Díaz">
+      <div class="vicente-section-nav-inner">
+        <a class="vicente-nav-home" href="#inicio">VICENTE DÍAZ</a>
+        <a href="#modulos">Módulos</a>
+        <a href="#estudiantes">Campañas</a>
+        <a href="#docentes">Docentes</a>
+      </div>
+    </nav>
     <main class="shell">
-      <section class="hero">
+      <section class="hero" id="inicio">
         <div class="kicker">Espacio institucional · campañas de prevención</div>
         <h1>Institución Educativa Vicente Díaz</h1>
         <p>
@@ -54,6 +63,51 @@
             aria-live="polite"
           ></span>
         </div>
+      </section>
+      <section class="section vicente-modules" id="modulos">
+        <div class="sectionhead">
+          <h2>Explora tus módulos</h2>
+          <p>Herramientas para prepararte, aprender y explorar opciones a tu ritmo.</p>
+        </div>
+        <div class="vicente-module-grid">
+          <a class="vicente-module-card icfes" href="vicente-diaz/vicente-simulacro.html">
+            <span class="vicente-module-icon">📝</span><span class="vicente-module-label">Saber 11</span>
+            <h3>Simulacro ICFES</h3><p>Practica por áreas y revisa explicaciones para aprender de cada respuesta.</p>
+            <span class="vicente-module-link">Empezar práctica →</span>
+          </a>
+          <a class="vicente-module-card careers" href="oferta-educativa-cordoba.html">
+            <span class="vicente-module-icon">🎓</span><span class="vicente-module-label">Opciones de estudio</span>
+            <h3>Carreras e instituciones</h3><p>Explora programas disponibles en Córdoba y compara alternativas.</p>
+            <span class="vicente-module-link">Abrir catálogo →</span>
+          </a>
+          <a class="vicente-module-card digital" href="vicente-diaz/vicente-habilidades-digitales.html">
+            <span class="vicente-module-icon">💻</span><span class="vicente-module-label">Aprende haciendo</span>
+            <h3>Habilidades digitales</h3><p>Retos de programación, inteligencia artificial, seguridad y verificación.</p>
+            <span class="vicente-module-link">Ver retos →</span>
+          </a>
+          <a class="vicente-module-card orientation" href="#orientacion">
+            <span class="vicente-module-icon">🧭</span><span class="vicente-module-label">Mi camino</span>
+            <h3>Orientación vocacional</h3><p>Reconoce intereses, fortalezas y pasos concretos para explorar.</p>
+            <span class="vicente-module-link">Explorar mi ruta →</span>
+          </a>
+          <a class="vicente-module-card english" href="vicente-diaz/vicente-ingles.html">
+            <span class="vicente-module-icon">🇬🇧</span><span class="vicente-module-label">Práctica interactiva</span>
+            <h3>Inglés</h3><p>Practica vocabulario y actividades para estudiar y hablar de tu futuro.</p>
+            <span class="vicente-module-link">Empezar práctica →</span>
+          </a>
+        </div>
+      </section>
+      <section class="section vicente-orientation" id="orientacion">
+        <div class="sectionhead">
+          <h2>Explora tu orientación vocacional</h2>
+          <p>No necesitas elegir una carrera hoy. Empieza por conocerte y probar.</p>
+        </div>
+        <div class="vicente-orientation-grid">
+          <article><span>01</span><h3>Lo que disfrutas</h3><p>¿Qué actividades hacen que quieras seguir aprendiendo?</p></article>
+          <article><span>02</span><h3>Lo que se te facilita</h3><p>¿En qué tareas suelen pedirte ayuda tus compañeros?</p></article>
+          <article><span>03</span><h3>Lo que puedes explorar</h3><p>Prueba una actividad nueva y conversa con alguien que conozca esa área.</p></article>
+        </div>
+        <p class="vicente-orientation-note">Anota tus ideas y luego compáralas con las opciones del <a href="oferta-educativa-cordoba.html">catálogo de carreras de Córdoba</a>.</p>
       </section>
       <section class="section" id="docentes">
         <div class="sectionhead">
@@ -124,7 +178,7 @@ Analicen una situación ficticia y propongan una respuesta segura.</textarea
         <div class="sectionhead">
           <h2>Para estudiantes</h2>
           <p>
-            Explora las tres campañas. Puedes jugar individualmente o resolver retos con tu salón.
+            Explora campañas, juegos y recursos para aprender en grupo.
           </p>
         </div>
         <div class="resource-grid">

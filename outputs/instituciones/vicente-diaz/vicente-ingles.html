@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <link rel="icon" href="../../assets/vicente-diaz/favicon-vicente-diaz.ico" sizes="any" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="../../assets/vicente-diaz/icon-512.png"
+    />
+    <link rel="stylesheet" href="../../css/villa-esther/villa-esther-brand.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#12364d" />
+    <title>Inglés · Vicente Díaz</title>
+    <link rel="stylesheet" href="../../css/pages/instituciones/villa-esther/villa-ingles.css" />
+    <link rel="stylesheet" href="../../css/villa-esther/youtube-library.css?v=20261014" />
+      <link rel="stylesheet" href="../../css/vicente-diaz/vicente-diaz-module-brand.css" />
+  </head>
+  <body>
+    <header class="villa-brand-banner">
+      <div class="villa-brand-inner">
+        <img
+          class="villa-brand-crest"
+          src="../../assets/vicente-diaz/escudo-vicente-diaz.png"
+          alt="Escudo de la Institución Educativa Vicente Díaz"
+        />
+        <div class="villa-brand-copy">
+          <span class="villa-brand-kicker">Institución Educativa</span
+          ><span class="villa-brand-name">Vicente Díaz</span
+          ><span class="villa-brand-motto">Esfuerzo · Respeto · Amor</span>
+        </div>
+        <a class="villa-brand-home" href="../institucion-vicente-diaz.html">Inicio Vicente Díaz</a>
+      </div>
+    </header>
+    <header class="top">
+      <div class="shell topline">
+        <a class="brand" href="../institucion-vicente-diaz.html">VICENTE DÍAZ</a
+        ><a class="back" href="../institucion-vicente-diaz.html#modulos">← Todos los módulos</a>
+      </div>
+    </header>
+    <main class="shell">
+      <section class="hero">
+        <div class="kicker">Práctica breve · vocabulario</div>
+        <h1>Inglés</h1>
+        <p>Relaciona palabras útiles para estudiar y explorar tu futuro.</p>
+      </section>
+      <nav class="module-tabs" role="tablist" aria-label="Actividades de inglés">
+        <button
+          class="module-tab active"
+          type="button"
+          role="tab"
+          aria-selected="true"
+          aria-controls="panel-vocab"
+          data-module-tab="vocab"
+        >
+          Vocabulario</button
+        ><button
+          class="module-tab"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="panel-phrases"
+          data-module-tab="phrases"
+        >
+          Frases</button
+        ><button
+          class="module-tab"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="panel-grammar"
+          data-module-tab="grammar"
+        >
+          Gramática
+        </button>
+      </nav>
+      <div class="module-panel" id="panel-vocab" role="tabpanel" data-module-panel="vocab">
+        <section class="card">
+          <p class="prompt">Elige la traducción correcta:</p>
+          <span class="word" id="word">goal</span>
+          <div class="choices" id="choices"></div>
+          <p class="feedback" id="feedback" aria-live="polite">Selecciona una opción.</p>
+          <button class="btn main" id="next" type="button">Siguiente palabra →</button>
+          <p class="note">
+            Practica en voz alta: di la palabra en inglés y úsala en una frase corta.
+          </p>
+        </section>
+        <section class="card dictionary" aria-labelledby="dictionary-title">
+          <h2 id="dictionary-title">Diccionario bilingüe de salud</h2>
+          <p class="prompt">
+            Busca términos en español o inglés entre más de 3.700 entradas del diccionario. El
+            diccionario local funciona sin internet; las frases nuevas se traducen con MyMemory.
+          </p>
+          <form id="dictionary-form" class="dictionary-form">
+            <label for="dictionary-word">Escribe una palabra o frase</label>
+            <div class="dictionary-search">
+              <select
+                id="dictionary-language"
+                class="phrases-language"
+                aria-label="Idioma de lo que escribes"
+              >
+                <option value="es">Español</option>
+                <option value="en">English</option></select
+              ><input
+                id="dictionary-word"
+                type="search"
+                maxlength="80"
+                autocomplete="off"
+                autocapitalize="none"
+                spellcheck="false"
+                placeholder="Ej.: future, meta, me gusta aprender"
+                required
+              /><button class="btn main" type="submit">Buscar palabra</button>
+            </div>
+          </form>
+          <div class="quick-words" aria-label="Búsquedas sugeridas">
+            <span>Prueba con:</span
+            ><button class="quick-word" type="button" data-dictionary-word="meta">meta</button
+            ><button class="quick-word" type="button" data-dictionary-word="beca">beca</button
+            ><button class="quick-word" type="button" data-dictionary-word="estudiar">
+              estudiar</button
+            ><button class="quick-word" type="button" data-dictionary-word="trabajo">
+              trabajo
+            </button>
+          </div>
+          <p id="dictionary-status" class="dictionary-status" role="status" aria-live="polite">
+            Cargando diccionario local…
+          </p>
+          <div id="dictionary-result" class="dictionary-result" aria-live="polite"></div>
+          <p class="note">
+            Fuente: <cite>Diccionario de Términos de Salud: Español–Inglés</cite>, 4.ª edición
+            (2012), Iniciativa de Salud de las Américas, UC Berkeley; UC Regents y Departamento de
+            Salud Pública de California. La publicación permite reproducir el material citando la
+            fuente (p. 4). El vocabulario complementario fue elaborado para esta plataforma. Las
+            traducciones automáticas pueden requerir revisión.
+          </p>
+        </section>
+      </div>
+      <div
+        class="module-panel"
+        id="panel-phrases"
+        role="tabpanel"
+        data-module-panel="phrases"
+        hidden
+      >
+        <section class="card phrase-section" aria-labelledby="phrases-title">
+          <h2 id="phrases-title">Frases comunes en inglés</h2>
+          <p class="prompt">
+            Busca por tema en inglés o español. Si eliges español, MyMemory traducirá la consulta al
+            inglés antes de buscar frases.
+          </p>
+          <form id="phrases-form" class="phrase-form">
+            <label for="phrases-query">Palabra o tema</label>
+            <div class="dictionary-search">
+              <select
+                id="phrases-language"
+                class="phrases-language"
+                aria-label="Idioma de la búsqueda"
+              >
+                <option value="en">English</option>
+                <option value="es">Español</option></select
+              ><input
+                id="phrases-query"
+                type="search"
+                maxlength="60"
+                value="thank you"
+                placeholder="Ej.: school, help, good morning"
+                required
+              /><button class="btn main" type="submit">Buscar frases</button>
+            </div>
+          </form>
+          <div class="quick-words" aria-label="Búsquedas sugeridas">
+            <span>Temas:</span
+            ><button class="quick-word" type="button" data-phrase-query="good morning">
+              Saludos</button
+            ><button class="quick-word" type="button" data-phrase-query="school">Colegio</button
+            ><button class="quick-word" type="button" data-phrase-query="help">Pedir ayuda</button
+            ><button class="quick-word" type="button" data-phrase-query="future">Futuro</button>
+          </div>
+          <p id="phrases-status" class="dictionary-status" role="status" aria-live="polite">
+            Elige un tema y pulsa “Buscar frases”.
+          </p>
+          <div id="phrases-results" class="phrase-results" aria-live="polite"></div>
+          <button id="phrases-more" class="btn phrase-more" type="button" hidden>
+            Ver más frases
+          </button>
+          <p class="note">
+            Las traducciones de Tatoeba aparecen cuando existen; MyMemory traduce las frases
+            restantes. La traducción automática puede requerir revisión. Sin internet, hay ejemplos
+            guardados.
+          </p>
+        </section>
+      </div>
+      <div
+        class="module-panel"
+        id="panel-grammar"
+        role="tabpanel"
+        data-module-panel="grammar"
+        hidden
+      >
+        <section class="card grammar-card" aria-labelledby="grammar-title">
+          <h2 id="grammar-title">Gramática en contexto</h2>
+          <p class="prompt">
+            Cada día hay un tema distinto y tres retos breves. Lean la regla, conversen en grupo y
+            expliquen por qué eligen cada respuesta.
+          </p>
+          <div class="grammar-controls">
+            <label for="grammar-topic">Tema de hoy (puedes elegir otro)</label
+            ><select id="grammar-topic">
+              <option value="present">Presente simple</option>
+              <option value="continuous">Presente continuo</option>
+              <option value="past">Pasado simple</option>
+              <option value="future">Planes con going to</option>
+            </select>
+          </div>
+          <article id="grammar-lesson" class="grammar-lesson"></article>
+          <section class="grammar-challenge" aria-labelledby="grammar-challenge-title">
+            <h3 id="grammar-challenge-title">Reto en equipo</h3>
+            <p id="grammar-question" class="phrase-english"></p>
+            <div id="grammar-options" class="choices"></div>
+            <p id="grammar-feedback" class="feedback" role="status" aria-live="polite"></p>
+            <button id="grammar-next" class="btn main" type="button">Otro reto →</button>
+          </section>
+        </section>
+      </div>
+      <section
+        class="villa-video-library"
+        id="videos-educativos"
+        aria-labelledby="villaVideoHeading"
+      >
+        <div class="sectionhead">
+          <h2 id="villaVideoHeading">Videos para este módulo</h2>
+          <p>Material de YouTube sobre inglés y gramática.</p>
+        </div>
+        <form
+          id="villaVideoSearch"
+          class="villa-video-search"
+          role="search"
+          data-video-topic="ingles"
+          data-auto-search="true"
+        >
+          <div class="field">
+            <label for="villaVideoQuery">Buscar un subtema (opcional)</label
+            ><input
+              id="villaVideoQuery"
+              type="search"
+              maxlength="60"
+              placeholder="Ej.: metas a corto plazo"
+            />
+          </div>
+          <button class="btn" type="submit">Buscar videos</button>
+        </form>
+        <p id="villaVideoStatus" class="villa-video-status" role="status" aria-live="polite">
+          Cargando videos del módulo…
+        </p>
+        <div
+          id="villaVideoResults"
+          class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3 villa-video-results"
+        ></div>
+        <p class="villa-video-note">
+          Los resultados vienen de YouTube. El docente debe revisar cada video antes de proyectarlo
+          en el salón.
+        </p>
+      </section>
+    </main>
+    <script src="../../js/pages/instituciones/villa-esther/villa-ingles.js"></script>
+    <script src="../../js/pages/instituciones/villa-esther/villa-ingles-02.js"></script>
+    <script src="../../js/villa-esther/villa-ingles-dictionary-data.js" defer></script>
+    <script src="../../js/villa-esther/villa-ingles-dictionary.js" defer></script>
+    <script src="../../js/villa-esther/villa-ingles-phrases.js" defer></script>
+    <script src="../../js/villa-esther/villa-ingles-grammar.js" defer></script>
+    <script src="../../js/villa-esther/youtube-library.js?v=20261012" defer></script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+/* Ajustes de marca para las páginas de módulos de Vicente Díaz. */
+:root{--teal:#26377b;--gold:#4fc3d0;--bg:#f2f5fb;--line:#dbe1f0}
+.villa-brand-banner{background:linear-gradient(112deg,#1d205f,#303c84);border-bottom:4px solid #1697b4}
+.villa-brand-kicker{color:#d7efff}.villa-brand-name{color:#fff}.villa-brand-motto{color:#e7e9ff}
+.villa-brand-home{border-color:#ffffff70;color:#fff}.villa-brand-home:hover{background:#ffffff18}
+.hero{background:linear-gradient(118deg,#1b245e,#303d85 72%,#187d91)}.kicker{color:#bceef1}
+.btn,.pilllink{background:#4fc3d0;color:#14244c}.module-home{background:#26377b!important}
+:focus-visible{outline-color:#4fc3d0}
