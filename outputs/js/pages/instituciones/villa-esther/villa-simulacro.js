@@ -315,7 +315,7 @@
     $("examGame").hidden = false;
     $("apiStatus").textContent =
       (origin === "ai"
-        ? "Preguntas nuevas generadas con Gemini."
+        ? "Preguntas nuevas generadas con Groq."
         : "Modo local: preguntas guardadas en esta página.") +
       " · " +
       activeQuestions.length +
@@ -439,6 +439,10 @@
   function showAIReview(questions) {
     const list = $("aiReviewList");
     list.replaceChildren();
+    const note = document.createElement("p");
+    note.className = "smallnote";
+    note.textContent = "Las respuestas y explicaciones aparecerán después de responder cada pregunta.";
+    list.append(note);
     questions.forEach((q, i) => {
       const item = document.createElement("article");
       item.className = "ai-review-item";
@@ -448,15 +452,7 @@
       options.textContent = q.options
         .map((x, j) => String.fromCharCode(65 + j) + ". " + x)
         .join(" · ");
-      const key = document.createElement("small");
-      key.textContent =
-        "Clave sugerida: " +
-        String.fromCharCode(65 + q.answer) +
-        " · " +
-        (q.areaName || "Pregunta de práctica");
-      const explanation = document.createElement("p");
-      explanation.textContent = q.explanation;
-      item.append(title, options, key, explanation);
+      item.append(title, options);
       list.append(item);
     });
     $("examGame").hidden = true;
@@ -485,7 +481,7 @@
       if (!Array.isArray(data.questions) || data.questions.length < Math.min(3, count))
         throw new Error("No llegaron suficientes preguntas válidas.");
       generatedBank = area === "all" ? { all: data.questions } : { [area]: data.questions };
-      $("apiStatus").textContent = "Revisa las preguntas y respuestas antes de empezar.";
+      $("apiStatus").textContent = "Preguntas listas. Puedes empezar cuando quieras.";
       showAIReview(data.questions);
     } catch (err) {
       generatedBank = null;
