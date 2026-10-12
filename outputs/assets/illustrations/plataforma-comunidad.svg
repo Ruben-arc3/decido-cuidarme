@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 360" fill="none">
+  <title>Estudiantes aprendiendo y cuidándose en comunidad</title>
+  <circle cx="270" cy="180" r="154" fill="#B8F1E3" opacity=".2"/>
+  <circle cx="83" cy="90" r="23" fill="#FFD66D"/><path d="m83 52 5 19 18-9-10 17 19 5-19 5 10 17-18-9-5 19-5-19-18 9 10-17-19-5 19-5-10-17 18 9 5-19Z" fill="#FFD66D"/>
+  <path d="M112 284c4-61 31-97 70-97s65 36 69 97" fill="#F47769"/><circle cx="182" cy="151" r="43" fill="#D89465"/><path d="M140 150c-3-36 15-59 44-59 25 0 43 20 42 50-12-5-22-15-29-28-12 19-32 30-57 37Z" fill="#233B54"/><path d="M164 157h3m29 0h3" stroke="#233B54" stroke-width="5" stroke-linecap="round"/><path d="M171 175c7 6 16 6 23 0" stroke="#9B5146" stroke-width="4" stroke-linecap="round"/>
+  <path d="M278 284c3-61 29-97 69-97s67 36 70 97" fill="#4F9C8D"/><circle cx="347" cy="151" r="43" fill="#E9B783"/><path d="M304 148c-1-35 15-58 44-58 30 0 47 24 42 61-18-8-31-21-39-39-10 19-25 31-47 36Z" fill="#4D3541"/><path d="M329 157h3m29 0h3" stroke="#233B54" stroke-width="5" stroke-linecap="round"/><path d="M336 175c7 6 16 6 23 0" stroke="#9B5146" stroke-width="4" stroke-linecap="round"/>
+  <path d="M180 232c23-18 49-18 73 0l19 48H161l19-48Z" fill="#FFF4D6" stroke="#D9E7DD" stroke-width="4"/><path d="M271 231c24-18 50-18 73 0l20 49h-111l18-49Z" fill="#FFF4D6" stroke="#D9E7DD" stroke-width="4"/><path d="M270 235v44" stroke="#D3B86E" stroke-width="4"/><path d="M196 255h52m43 0h51" stroke="#74B7A6" stroke-width="4" stroke-linecap="round"/><path d="M82 285h356" stroke="#B5E3D7" stroke-width="8" stroke-linecap="round"/>
+  <path d="M437 120c0-18 14-32 32-32s32 14 32 32c0 27-32 49-32 49s-32-22-32-49Z" fill="#FFD66D"/><path d="M456 120h26m-13-13v26" stroke="#23465B" stroke-width="5" stroke-linecap="round"/>
+</svg>
