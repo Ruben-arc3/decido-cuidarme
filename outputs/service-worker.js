@@ -1,5 +1,5 @@
 // PWA offline layer: precaches local resources and falls back to cached copies when offline.
-const CACHE = "decido-cuidarme-offline-v63";
+const CACHE = "decido-cuidarme-offline-v64";
 const CORE = [
   "./css/vicente-diaz/vicente-diaz-chat.css",
   "./instituciones/vicente-diaz/vicente-habilidad-verificar-informacion.html",
@@ -29,6 +29,7 @@ const CORE = [
   "./css/prevencion-violencia-sexual.css",
   "./css/vicente-diaz/vicente-diaz-brand.css",
   "./css/villa-esther/habilidades-digitales.css",
+  "./css/villa-esther/villa-icfes-tutor.css",
   "./css/villa-esther/villa-esther-brand.css",
   "./css/villa-esther/villa-esther-mobile.css",
   "./css/villa-esther/villa-esther-mobile.css?v=20261012",
@@ -47,7 +48,7 @@ const CORE = [
   "./icon-512.png",
   "./index.html",
   "./instituciones/institucion-vicente-diaz.html",
-  "./js/vicente-diaz/vicente-groq-chat.js?v=20261015",
+  "./js/vicente-diaz/vicente-groq-chat.js?v=20261016",
   "./instituciones/oferta-educativa-cordoba.html",
   "./instituciones/villa-esther/institucion-villa-esther.html",
   "./instituciones/villa-esther/villa-explora-futuro.html",
@@ -67,7 +68,8 @@ const CORE = [
   "./js/villa-esther/habilidades-digitales.js",
   "./js/villa-esther/villa-firebase.js",
   "./js/villa-esther/villa-gemini.js",
-  "./js/villa-esther/villa-gemini.js?v=20261011",
+  "./js/villa-esther/villa-gemini.js?v=20261016",
+  "./js/villa-esther/villa-icfes-tutor.js?v=20261016",
   "./js/villa-esther/villa-ingles-dictionary-data.js",
   "./js/villa-esther/villa-ingles-dictionary.js",
   "./js/villa-esther/villa-ingles-grammar.js",

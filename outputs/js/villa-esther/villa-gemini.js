@@ -1,4 +1,4 @@
-// Sends learning and career-guidance prompts to the server-side Gemini endpoint.
+// Sends ICFES practice generation to Gemini and tutoring chats to GroqCloud.
 (() => {
   window.aulaGemini = async (payload) => {
     const response = await fetch("/api/aula", {
@@ -9,6 +9,17 @@
     const data = await response.json().catch(() => ({}));
     if (!response.ok)
       throw new Error(data.error || `Gemini respondió con error (${response.status}).`);
+    return data;
+  };
+  window.villaGroqChat = async (payload) => {
+    const response = await fetch("/api/groq-chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok)
+      throw new Error(data.error || `Groq respondió con error (${response.status}).`);
     return data;
   };
 
@@ -61,12 +72,12 @@
     send.disabled = true;
     clear.disabled = true;
     input.disabled = true;
-    status.textContent = "Gemini está preparando una respuesta…";
+    status.textContent = "El orientador está preparando una respuesta…";
     chat.messages.push({ role: "user", text });
     addMessage("user", text);
     input.value = "";
     try {
-      const result = await window.aulaGemini({
+      const result = await window.villaGroqChat({
         mode: "vocational",
         messages: chat.messages.slice(-10),
       });
@@ -78,7 +89,7 @@
       chat.messages.pop();
       input.value = text;
       addMessage("system", error.message);
-      status.textContent = "No se pudo consultar Gemini. Revisa la conexión e inténtalo otra vez.";
+      status.textContent = "No se pudo consultar el orientador. Revisa la conexión e inténtalo otra vez.";
     } finally {
       chat.busy = false;
       send.disabled = false;

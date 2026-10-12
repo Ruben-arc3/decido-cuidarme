@@ -88,12 +88,7 @@ function setAuthView(user) {
     ? `${user.displayName || "Estudiante"} · ${user.email}`
     : "";
   if ($("careerChatStatus")) {
-    $("careerLoginLink").hidden = !!user;
-    $("careerChatStatus").textContent = !ready
-      ? "Firebase aún no está configurado para esta página."
-      : !user
-        ? "Inicia sesión para conversar con Gemini."
-        : "Sesión iniciada. Puedes conversar con Gemini.";
+    $("careerChatStatus").textContent = "Disponible sin cuenta mediante Groq. No escribas datos personales.";
   }
   $("teacherTools").hidden = true;
   if (user)
@@ -116,7 +111,7 @@ else {
         isTokenAutoRefreshEnabled: true,
       });
     else
-      status("Falta configurar App Check. La sesión funciona; Gemini requiere su clave de sitio.");
+      status("Falta configurar App Check. La sesión funciona; las herramientas de cuenta pueden estar limitadas.");
     try {
       db = initializeFirestore(app, {
         localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() }),
@@ -129,7 +124,7 @@ else {
     onAuthStateChanged(auth, async (user) => {
       setAuthView(user);
       if (!user) {
-        status("Puedes practicar sin cuenta. Inicia sesión para guardar resultados y usar Gemini.");
+        status("Puedes practicar sin cuenta. Inicia sesión para guardar y sincronizar resultados.");
         return;
       }
       try {
@@ -368,12 +363,11 @@ $("askTutor").addEventListener("click", async () => {
     answer = $("tutorAnswer");
   button.disabled = true;
   answer.hidden = false;
-  answer.textContent = "Pensando…";
+  answer.textContent = "El tutor ICFES está preparando una respuesta…";
   try {
-    const result = await window.aulaGemini({
-      mode: "tutor",
-      question,
-      context: "Estudiante de secundaria que se prepara para Saber 11.",
+    const result = await window.villaGroqChat({
+      mode: "icfes",
+      messages: [{ role: "user", text: question }],
     });
     answer.textContent = result.answer;
   } catch (e) {
@@ -382,6 +376,16 @@ $("askTutor").addEventListener("click", async () => {
     button.disabled = false;
   }
 });
+window.villaGroqChat ??= async (payload) => {
+  const response = await fetch("/api/groq-chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify(payload),
+  });
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(data.error || `Groq respondió con error (${response.status}).`);
+  return data;
+};
 const careerChat = { messages: [], busy: false };
 const careerLog = $("careerChatLog");
 const careerLauncher = $("careerLauncher"),
@@ -416,23 +420,6 @@ $("careerChatForm").addEventListener("submit", async (event) => {
   const input = $("careerChatInput"),
     text = input.value.trim();
   if (!text) return;
-  if (!ready) {
-    $("careerChatStatus").textContent = "Firebase aún no está configurado para esta página.";
-    addCareerMessage(
-      "system",
-      "Esta herramienta necesita la configuración de Firebase para conectarse con Gemini.",
-    );
-    return;
-  }
-  if (!currentUser) {
-    $("careerChatStatus").textContent = "Inicia sesión en Aula digital para conversar con Gemini.";
-    $("careerLoginLink").hidden = false;
-    addCareerMessage(
-      "system",
-      "Primero inicia sesión o crea una cuenta en Aula digital. Usa el enlace de abajo para ir al formulario.",
-    );
-    return;
-  }
   careerChat.busy = true;
   const button = $("careerChatSend"),
     clearButton = $("careerChatClear"),
@@ -440,12 +427,12 @@ $("careerChatForm").addEventListener("submit", async (event) => {
   button.disabled = true;
   clearButton.disabled = true;
   input.disabled = true;
-  statusEl.textContent = "Gemini está pensando una respuesta…";
+  statusEl.textContent = "El orientador está preparando una respuesta…";
   careerChat.messages.push({ role: "user", text });
   addCareerMessage("user", text);
   input.value = "";
   try {
-    const result = await window.aulaGemini({
+    const result = await window.villaGroqChat({
       mode: "vocational",
       messages: careerChat.messages.slice(-10),
     });
@@ -458,7 +445,7 @@ $("careerChatForm").addEventListener("submit", async (event) => {
     input.value = text;
     addCareerMessage("system", error.message);
     statusEl.textContent =
-      "No se pudo consultar Gemini. Revisa tu sesión y conexión; tu mensaje sigue en el campo.";
+      "No se pudo consultar el orientador. Revisa la conexión; tu mensaje sigue en el campo.";
   } finally {
     careerChat.busy = false;
     button.disabled = false;

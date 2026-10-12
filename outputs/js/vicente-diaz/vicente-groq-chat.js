@@ -51,10 +51,10 @@
     addMessage("user", text);
     input.value = "";
     try {
-      const response = await fetch("/api/vicente-chat", {
+      const response = await fetch("/api/groq-chat", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ messages: chat.messages.slice(-10) }),
+        body: JSON.stringify({ mode: "vocational", messages: chat.messages.slice(-10) }),
       });
       const result = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(result.error || `El chat respondió con error (${response.status}).`);

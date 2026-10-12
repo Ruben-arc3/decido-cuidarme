@@ -1,0 +1,91 @@
+.icfes-tutor-card {
+  display: grid;
+  gap: 16px;
+  padding: clamp(16px, 3vw, 24px);
+  border: 1px solid #d9e5e0;
+  border-top: 4px solid #347da2;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 12px 30px #173b4d12;
+}
+.icfes-tutor-log {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  max-height: 280px;
+  min-height: 110px;
+  overflow-y: auto;
+  padding: 12px;
+  border: 1px solid #d9e5e0;
+  border-radius: 14px;
+  background: #f5faf8;
+}
+.icfes-tutor-message {
+  max-width: min(88%, 680px);
+  padding: 10px 13px;
+  border-radius: 13px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.icfes-tutor-message.assistant {
+  justify-self: start;
+  border: 1px solid #d8e7e1;
+  background: #fff;
+}
+.icfes-tutor-message.user {
+  justify-self: end;
+  background: #e0f2eb;
+}
+.icfes-tutor-message.system {
+  justify-self: center;
+  background: #fff4d8;
+  color: #6e5518;
+  font-size: 0.92rem;
+}
+.icfes-tutor-form {
+  display: grid;
+  gap: 8px;
+}
+.icfes-tutor-form label {
+  font-weight: 800;
+}
+.icfes-tutor-form label span {
+  color: #617887;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+.icfes-tutor-form textarea {
+  width: 100%;
+  min-height: 78px;
+  resize: vertical;
+  padding: 12px 14px;
+  border: 1px solid #cbdcd5;
+  border-radius: 12px;
+  color: #142d45;
+  font: inherit;
+}
+.icfes-tutor-form textarea:focus-visible {
+  outline: 3px solid #ffd66d;
+  outline-offset: 2px;
+}
+.icfes-tutor-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+}
+.icfes-tutor-actions .smallnote {
+  flex: 1 1 220px;
+}
+@media (max-width: 600px) {
+  .icfes-tutor-card {
+    padding: 13px;
+  }
+  .icfes-tutor-actions > button {
+    flex: 1 1 100%;
+  }
+  .icfes-tutor-message {
+    max-width: 96%;
+  }
+}
