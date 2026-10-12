@@ -41,6 +41,9 @@
   }
 
   launcher.addEventListener("click", () => showPanel(panel.hidden));
+  document.querySelectorAll("[data-career-open]").forEach((button) => {
+    button.addEventListener("click", () => showPanel(true));
+  });
   $("careerClose")?.addEventListener("click", () => showPanel(false));
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && !panel.hidden) showPanel(false);

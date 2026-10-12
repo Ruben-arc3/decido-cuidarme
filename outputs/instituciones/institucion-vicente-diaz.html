@@ -12,6 +12,9 @@
     <title>Institución Educativa Vicente Díaz · Decido Cuidarme</title>
     <link rel="stylesheet" href="../css/pages/instituciones/institucion-vicente-diaz.css" />
     <link rel="stylesheet" href="../css/vicente-diaz/vicente-diaz-learning.css" />
+    <link rel="stylesheet" href="../css/pages/instituciones/villa-esther/institucion-villa-esther-03.css" />
+    <link rel="stylesheet" href="../css/pages/instituciones/villa-esther/institucion-villa-esther-04.css" />
+    <link rel="stylesheet" href="../css/vicente-diaz/vicente-diaz-chat.css" />
   </head>
   <body>
     <header class="vicente-brand-banner">
@@ -108,6 +111,7 @@
           <article><span>03</span><h3>Lo que puedes explorar</h3><p>Prueba una actividad nueva y conversa con alguien que conozca esa área.</p></article>
         </div>
         <p class="vicente-orientation-note">Anota tus ideas y luego compáralas con las opciones del <a href="oferta-educativa-cordoba.html">catálogo de carreras de Córdoba</a>.</p>
+        <button class="btn vicente-chat-open" type="button" data-career-open>Conversar con el orientador vocacional con IA →</button>
       </section>
       <section class="section" id="docentes">
         <div class="sectionhead">
@@ -206,11 +210,126 @@ Analicen una situación ficticia y propongan una respuesta segura.</textarea
           experiencias personales para participar.
         </div>
       </section>
+      <div class="career-widget" id="careerWidget">
+        <button
+          id="careerLauncher"
+          class="career-launcher"
+          type="button"
+          aria-expanded="false"
+          aria-haspopup="dialog"
+          aria-controls="careerPanel"
+          aria-label="Abrir orientador vocacional con IA"
+        >
+          <span class="career-launcher-icon" aria-hidden="true"
+            ><svg viewBox="0 0 24 24" focusable="false">
+              <path
+                d="M5 5.75A2.75 2.75 0 0 1 7.75 3h8.5A2.75 2.75 0 0 1 19 5.75v7.5A2.75 2.75 0 0 1 16.25 16H11l-4.8 4v-4.2A2.75 2.75 0 0 1 5 13.25z"
+              /></svg></span
+          ><span class="career-launcher-label">Orientación vocacional</span
+          ><span class="career-ai-tag">IA</span>
+        </button>
+        <section
+          id="careerPanel"
+          class="career-panel"
+          role="dialog"
+          aria-modal="false"
+          aria-labelledby="careerTitle"
+          aria-describedby="careerPrivacy"
+          hidden
+        >
+          <header class="career-header">
+            <div class="career-avatar" aria-hidden="true">D</div>
+            <div class="career-heading">
+              <h2 id="careerTitle">Explora tu camino</h2>
+              <p>Orientación vocacional · IA</p>
+            </div>
+            <button
+              id="careerClose"
+              class="career-close"
+              type="button"
+              aria-label="Cerrar orientador"
+            >
+              ×
+            </button>
+          </header>
+          <div class="career-panel-body">
+            <p class="career-intro" id="careerPrivacy">
+              Te ayudo a explorar intereses y opciones para tu futuro; la decisión es tuya. El mensaje se envía a Gemini. No escribas nombres, teléfonos ni experiencias personales o íntimas. Disponible sin registro; requiere conexión a internet.
+            </p>
+            <h3 class="career-prompts-heading">Empieza por una idea</h3>
+            <div class="career-prompts" aria-label="Sugerencias para iniciar la conversación">
+              <button
+                class="career-prompt"
+                type="button"
+                data-career-prompt="No sé qué estudiar. Ayúdame a empezar explorando lo que me interesa."
+              >
+                <span class="career-prompt-main">No sé qué estudiar</span
+                ><span class="career-prompt-hint">Explora lo que te gusta</span></button
+              ><button
+                class="career-prompt"
+                type="button"
+                data-career-prompt="Me gusta resolver problemas y crear cosas. ¿Qué áreas podría explorar y cómo las pruebo en el colegio?"
+              >
+                <span class="career-prompt-main">Crear y resolver</span
+                ><span class="career-prompt-hint">Conecta tus intereses con áreas</span></button
+              ><button
+                class="career-prompt"
+                type="button"
+                data-career-prompt="Quiero conocer opciones de estudio relacionadas con ayudar a otras personas."
+              >
+                <span class="career-prompt-main">Ayudar a otras personas</span
+                ><span class="career-prompt-hint">Explora opciones para aportar</span></button
+              ><button
+                class="career-prompt"
+                type="button"
+                data-career-prompt="Ayúdame a descubrir qué habilidades quisiera desarrollar, sin elegir una carrera por mí."
+              >
+                <span class="career-prompt-main">Descubrir habilidades</span
+                ><span class="career-prompt-hint">Piensa qué quieres fortalecer</span>
+              </button>
+            </div>
+            <div
+              id="careerChatLog"
+              class="career-log"
+              role="log"
+              aria-live="polite"
+              aria-relevant="additions"
+            >
+              <div class="career-message assistant">
+                ¡Hola! Podemos explorar lo que disfrutas, lo que se te facilita y qué te gustaría
+                probar. ¿Qué actividad te hace perder la noción del tiempo?
+              </div>
+            </div>
+            <form id="careerChatForm" class="career-form">
+              <label class="field" for="careerChatInput"
+                ><span class="career-meta"
+                  >Escribe una pregunta o idea · máximo 1.200 caracteres</span
+                ><textarea
+                  class="form-control"
+                  id="careerChatInput"
+                  maxlength="1200"
+                  required
+                  placeholder="Ej.: disfruto organizar actividades con mis compañeros…"
+                ></textarea></label
+              ><button class="btn" id="careerChatSend" type="submit">Enviar</button>
+            </form>
+            <div class="career-actions">
+              <button class="btn secondary" id="careerChatClear" type="button">
+                Borrar conversación</button
+              ><span class="career-meta" id="careerChatStatus" aria-live="polite"
+                >Disponible sin cuenta. No escribas datos personales.</span
+              >
+            </div>
+          </div>
+        </section>
+      </div>
+
       <footer class="footer">
         Institución Educativa Vicente Díaz · <a href="../index.html">Volver a Decido Cuidarme</a>
       </footer>
     </main>
     <script src="../js/pages/instituciones/institucion-vicente-diaz.js"></script>
+    <script src="../js/villa-esther/villa-gemini.js?v=20261015" defer></script>
     <script src="../js/pwa-install.js" defer></script>
     <script src="../js/register-service-worker.js"></script>
   </body>
