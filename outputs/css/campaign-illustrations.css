@@ -41,30 +41,83 @@
   animation-delay: -2.8s;
 }
 
-.campaign-detail .hero h1,
-.campaign-detail .hero > p:not(.eyebrow),
-.campaign-detail .hero .eyebrow,
-.campaign-detail .hero .button {
+.campaign-story-banner {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(170px, 0.8fr);
+  align-items: center;
+  gap: 20px;
+  min-height: 205px;
+  margin-top: 22px;
+  padding: clamp(20px, 3vw, 32px);
+  overflow: hidden;
+  border: 1px solid #dce7e6;
+  border-left: 6px solid var(--banner-accent);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 85% 15%, #ffffffb5 0 3px, transparent 4px) 0 0 / 22px 22px,
+    linear-gradient(115deg, var(--banner-wash), #fff 76%);
+  box-shadow: 0 12px 30px #15344d0d;
+}
+
+.banner-wellbeing {
+  --banner-accent: #148875;
+  --banner-wash: #e1f3ed;
+}
+
+.banner-listening {
+  --banner-accent: #bd5b43;
+  --banner-wash: #fff0e9;
+}
+
+.banner-boundaries {
+  --banner-accent: #7160b1;
+  --banner-wash: #f0edfb;
+}
+
+.campaign-story-banner > div {
   position: relative;
   z-index: 1;
+  max-width: 600px;
 }
 
-.campaign-detail .hero h1,
-.campaign-detail .hero > p:not(.eyebrow) {
-  max-width: min(68%, 650px);
+.campaign-story-banner .eyebrow {
+  margin-bottom: 7px;
+  color: var(--banner-accent);
 }
 
-.campaign-hero-art {
-  position: absolute;
-  z-index: 0;
-  top: 50%;
-  right: clamp(18px, 5vw, 56px);
-  width: clamp(150px, 25%, 250px);
-  height: auto;
-  transform: translateY(-48%);
-  filter: drop-shadow(0 12px 15px #061d2c35);
+.campaign-story-banner h2 {
+  margin: 0;
+  color: #10243b;
+  font-size: clamp(22px, 3vw, 34px);
+  font-weight: 850;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+.campaign-story-banner > div > p:not(.eyebrow) {
+  max-width: 520px;
+  margin: 10px 0 0;
+  color: #526a7e;
+  font-size: 14px;
+}
+
+.campaign-story-banner img {
+  display: block;
+  width: 100%;
+  max-height: 170px;
+  object-fit: contain;
+  filter: drop-shadow(0 9px 12px #19334b1c);
   animation: illustration-float 5.5s ease-in-out infinite;
-  pointer-events: none;
+}
+
+.banner-listening img {
+  animation-delay: -1.7s;
+}
+
+.banner-boundaries img {
+  animation-delay: -3.2s;
 }
 
 @keyframes illustration-float {
@@ -96,20 +149,30 @@
     max-width: 100%;
   }
 
-  .campaign-hero-art {
-    right: 5px;
-    bottom: -5px;
-    top: auto;
-    width: 120px;
-    opacity: 0.22;
-    transform: none;
+  .campaign-story-banner {
+    grid-template-columns: minmax(0, 1fr) minmax(90px, 34%);
+    gap: 8px;
+    min-height: 150px;
+    padding: 17px 13px;
+  }
+
+  .campaign-story-banner h2 {
+    font-size: clamp(19px, 5vw, 25px);
+  }
+
+  .campaign-story-banner > div > p:not(.eyebrow) {
+    font-size: 12px;
+  }
+
+  .campaign-story-banner img {
+    max-height: 125px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .platform-illustration,
   .campaign-card-art,
-  .campaign-hero-art {
+  .campaign-story-banner img {
     animation: none;
   }
 }
