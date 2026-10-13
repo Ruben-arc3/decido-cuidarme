@@ -1,116 +1,223 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <link rel="icon" href="../favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" sizes="512x512" href="../favicon.png" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#142039" />
-    <title>Memorama: Límites y redes seguras · Prevención del abuso sexual</title>
-    <link rel="stylesheet" href="../css/pages/juegos/memorama-limites-y-redes-seguras.css" />
-  </head>
-  <body>
-    <header class="top">
-      <span class="brand">DECIDO CUIDARME · JUEGO COOPERATIVO</span
-      ><a href="../index.html">← Página central</a>
-    </header>
-    <main class="wrap">
-      <section class="intro">
-        <div class="panel">
-          <div class="eyebrow">CAMPAÑA DE PREVENCIÓN · ABUSO SEXUAL</div>
-          <h1>Memorama: Límites y redes seguras</h1>
-          <p>
-            Encuentren parejas sobre límites, consentimiento y redes de apoyo, a su propio ritmo.
-          </p>
-          <div class="roles">
-            <span>Grupo: acuerda las coordenadas</span><span>Memoria: recuerda cartas vistas</span
-            ><span>Piloto: voltea las cartas</span><span>Roten quién propone en cada jugada</span>
-          </div>
-        </div>
-        <div class="panel">
-          <div class="stats">
-            <div class="stat"><b id="round">1 / 2</b><small>RONDA</small></div>
-            <div class="stat"><b id="pairs">0 / 8</b><small>PAREJAS</small></div>
-            <div class="stat"><b id="moves">0</b><small>JUGADAS</small></div>
-            <div class="stat"><b id="focus">LÍMITES</b><small>ENFOQUE</small></div>
-          </div>
-          <div class="instructions" id="instruction">
-            Digan una coordenada por carta: A1, C4, etc. Encuentren dos cartas idénticas.
-          </div>
-        </div>
-      </section>
-      <section class="layout">
-        <div class="panel board-panel">
-          <div class="boardhead">
-          <strong id="roundTitle">RONDA 1 · CÓMO BUSCAR Y DAR APOYO</strong><span id="status">LISTOS</span>
-          </div>
-          <div id="board" class="memory-grid" aria-label="Tablero de cartas de memoria"></div>
-          <div class="toast" id="toast" aria-live="polite"></div>
-          <div class="toolbar">
-            <button class="primary" id="start">▶ EMPEZAR</button><button id="pause">Ⅱ PAUSA</button>
-            <button id="reveal" disabled aria-label="Mantén presionado para mostrar las cartas">👁 MANTÉN PARA VER</button><button id="project">⛶ PROYECTAR</button>
-          </div>
-        </div>
-        <aside class="side">
-          <div class="panel">
-            <h2>CÓMO JUGAR</h2>
-            <ul>
-              <li>Observen las cartas durante 3 segundos. Mantengan presionado el botón para volver a verlas.</li>
-              <li>Volteen dos: forman pareja si tienen el mismo mensaje y dibujo.</li>
-              <li>Si no coinciden, recuerden su ubicación.</li>
-              <li>En cada turno propone otro equipo. Son dos rondas y no hay límite de tiempo.</li>
-            </ul>
-            <p class="note">
-              Mouse, pantalla táctil o teclado (Tab y Enter). Sin preguntas y sin contar
-              experiencias personales.
-            </p>
-          </div>
-          <div class="panel">
-            <h2>EQUIPO QUE PROPONE</h2>
-            <div id="team" class="active-team">Equipo 1</div>
-            <p class="note">
-              Rótense como portavoz, memoria y piloto para que participe todo el salón.
-            </p>
-          </div>
-          <div class="panel">
-            <h2>PAREJAS ENCONTRADAS</h2>
-            <div id="ledger" class="ledger">
-              <span>Las coincidencias quedan visibles en el tablero.</span>
-            </div>
-          </div>
-        </aside>
-      </section>
-    </main>
-    <div class="overlay" id="intro">
-      <div class="dialog">
-        <div class="eyebrow">MEMORAMA PREVENTIVO · UNA PANTALLA PARA TODO EL SALÓN</div>
-        <h2>¿Pueden encontrar las parejas de las dos rondas?</h2>
-        <p>
-          La primera ronda tiene 8 parejas para reconocer formas de buscar y dar apoyo. La segunda
-          aumenta a 10 parejas e incorpora decisiones y redes de apoyo más complejas.
-        </p>
-        <p><b>Una persona maneja el PC; el salón recuerda y propone.</b></p>
-        <button class="action" id="go">EMPEZAR EL RETO</button>
-        <p class="tiny">Jueguen a su ritmo: no hay límite de tiempo.</p>
-      </div>
-    </div>
-    <div class="overlay" id="ending" hidden>
-      <div class="dialog">
-        <div class="eyebrow">RETO COMPLETADO</div>
-        <h2>¡La memoria del salón funcionó!</h2>
-        <p id="endText"></p>
-        <p><b>Para conversar:</b> ¿qué puede hacer que pedir ayuda sea más fácil y seguro?</p>
-        <button class="action" id="again">JUGAR OTRA VEZ</button>
-      </div>
-    </div>
-    <div class="overlay" id="roundEnd" hidden>
-      <div class="dialog">
-        <div class="eyebrow">RONDA SUPERADA</div>
-        <h2 id="roundEndTitle">¡Buen trabajo!</h2>
-        <p id="roundEndText"></p>
-        <button class="action" id="nextRound">SIGUIENTE RONDA</button>
-      </div>
-    </div>
-    <script src="../js/pages/juegos/memorama-limites-y-redes-seguras.js"></script>
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10162f">
+<title>Decido Cuidarme | Memorama por equipos</title>
+<style>
+:root{--bg:#10162f;--panel:#192342;--line:#34436c;--text:#f4f7ff;--muted:#bac6e7;--cyan:#56e0e5;--gold:#ffd166;--pink:#ff70b7}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#263765 0,#10162f 58%);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:15px 3vw;border-bottom:1px solid #ffffff20;background:#0b1025aa}
+.brand{font-weight:900;letter-spacing:.12em;font-size:.82rem;color:var(--cyan)}header span:last-child{color:var(--muted);font-size:.86rem}
+main{max-width:1500px;margin:auto;padding:22px 3vw 40px}.hero{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-bottom:18px}.eyebrow{color:var(--gold);font-size:.75rem;font-weight:900;letter-spacing:.12em}h1{font-size:clamp(1.8rem,4vw,3.3rem);line-height:1.02;margin:8px 0}p{color:var(--muted);line-height:1.5;margin:.5rem 0}.badge{border:1px solid #ffffff26;border-radius:999px;padding:9px 13px;color:var(--cyan);white-space:nowrap;font-weight:800}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}.stat,.panel{background:#192342eF;border:1px solid var(--line);border-radius:17px;padding:15px}.stat strong{display:block;font-size:clamp(1.3rem,2.5vw,2rem);font-variant-numeric:tabular-nums}.stat span{font-size:.7rem;color:var(--muted);font-weight:800;letter-spacing:.1em}
+.content{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:16px;align-items:start}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.panel-head h2{margin:0;font-size:1rem;letter-spacing:.04em}.status{font-size:.72rem;font-weight:900;color:var(--cyan);letter-spacing:.1em}
+.teams{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:16px}.team{--team:#56e0e5;border:1px solid var(--team);border-radius:12px;padding:10px;background:#ffffff08;cursor:pointer;text-align:left;color:var(--text);min-width:0}.team.active{background:color-mix(in srgb,var(--team) 20%,#192342);box-shadow:0 0 0 2px var(--team),0 0 20px color-mix(in srgb,var(--team) 25%,transparent)}.team .name{font-weight:900;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.team .score{font-size:1.3rem;font-weight:900}.team small{display:block;color:var(--muted);font-size:.7rem}
+.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.card{position:relative;min-height:118px;border:1px solid #51618e;border-radius:13px;background:linear-gradient(145deg,#27365f,#182242);color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;transition:transform .15s,border-color .15s,background .15s;overflow:hidden}.card:hover:not(:disabled){transform:translateY(-2px);border-color:var(--cyan)}.card:focus-visible,button:focus-visible{outline:3px solid white;outline-offset:3px}.card .back{font-size:2.1rem;font-weight:900;color:#8293c4}.card .coord{position:absolute;top:7px;left:9px;font-size:.7rem;color:#c5d0f2;font-weight:800}.card .front{display:none}.card.revealed .back{display:none}.card.revealed .front{display:block}.card.revealed{background:linear-gradient(145deg,#eaf7ff,#cbdcff);color:#152044;border-color:white}.card.revealed .coord{color:#34436c}.card.matched{background:linear-gradient(145deg,#174e49,#1d7667);border-color:#67f0c2;color:white;cursor:default}.card.matched .front{display:block}.card.matched .coord{color:#c6fff0}.card:disabled{cursor:default}.emoji{display:block;font-size:1.9rem;margin-bottom:5px}.msg{font-size:.9rem;font-weight:850;line-height:1.22}.toolbar{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}button{font:inherit}.btn{border:1px solid #52628d;background:#27365f;color:white;padding:11px 15px;border-radius:11px;font-weight:850;cursor:pointer}.btn.primary{background:var(--cyan);color:#0b2033;border-color:var(--cyan)}.btn:disabled{opacity:.4;cursor:not-allowed}.side{display:grid;gap:14px}.side h3{margin:0 0 10px;font-size:.92rem}.turnbox{font-size:1.25rem;font-weight:900}.note{font-size:.88rem}.log{display:grid;gap:8px;max-height:220px;overflow:auto}.logitem{border-left:3px solid var(--cyan);padding:7px 10px;background:#ffffff08;border-radius:0 8px 8px 0;font-size:.83rem;color:#e6ecff}.message{min-height:54px;margin-top:12px;border:1px solid #34436c;background:#101a38;border-radius:12px;padding:12px;color:#eaf1ff}.message strong{color:var(--gold)}.hidden{display:none!important}
+.overlay{position:fixed;inset:0;background:#080d20eF;display:flex;align-items:center;justify-content:center;padding:20px;z-index:10}.dialog{width:min(600px,100%);background:#192342;border:1px solid #566897;border-radius:22px;padding:clamp(22px,4vw,38px);box-shadow:0 25px 100px #0008}.dialog h2{font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.05;margin:10px 0}.dialog .btn{margin-top:12px}.rules{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}.rule{background:#ffffff08;border:1px solid #ffffff15;border-radius:12px;padding:12px}.rule b{display:block;color:var(--cyan);margin-bottom:4px}.toast{position:fixed;left:50%;top:18%;transform:translateX(-50%) scale(.8);z-index:20;background:var(--gold);color:#152044;font-size:clamp(1.2rem,4vw,2.4rem);font-weight:1000;padding:15px 25px;border-radius:15px;box-shadow:0 0 55px #ffd16677;opacity:0;pointer-events:none}.toast.show{animation:pop 1.1s ease forwards}@keyframes pop{0%{opacity:0;transform:translateX(-50%) scale(.6)}15%,75%{opacity:1;transform:translateX(-50%) scale(1)}100%{opacity:0;transform:translateX(-50%) scale(.9)}}.confetti{position:fixed;inset:0;pointer-events:none;z-index:19;background:radial-gradient(circle at 15% 20%,#ffd166 0 4px,transparent 5px),radial-gradient(circle at 80% 30%,#56e0e5 0 5px,transparent 6px),radial-gradient(circle at 40% 75%,#ff70b7 0 4px,transparent 5px);animation:fade .9s ease forwards}@keyframes fade{to{opacity:0}}.timer{font-size:1.7rem;font-weight:1000;color:var(--gold);font-variant-numeric:tabular-nums}
+@media(max-width:950px){.content{grid-template-columns:1fr}.side{grid-template-columns:repeat(2,minmax(0,1fr))}.side .panel:last-child{grid-column:1/-1}.card{min-height:95px}.hero{align-items:flex-start;flex-direction:column}}
+@media(max-width:600px){main{padding:15px}.stats{grid-template-columns:repeat(2,1fr)}.teams{grid-template-columns:repeat(2,1fr)}.grid{gap:5px}.card{min-height:78px;padding:6px}.msg{font-size:.72rem}.emoji{font-size:1.4rem}.side{grid-template-columns:1fr}.side .panel:last-child{grid-column:auto}.rules{grid-template-columns:1fr}}
+@media print{.toolbar,header span:last-child{display:none}}
+body::after{content:"";position:fixed;inset:0;border:6px solid var(--tc,#56e0e5);pointer-events:none;z-index:5;transition:border-color .3s}
+.dialog{max-height:94vh;overflow:auto}
+.shield{display:flex;align-items:center;gap:14px;margin:0 0 14px;background:#192342eF;border:1px solid var(--line);border-radius:14px;padding:10px 16px;font-weight:900;font-size:.8rem;letter-spacing:.1em;color:var(--cyan)}
+.shield .bar{flex:1;height:16px;background:#ffffff14;border-radius:99px;overflow:hidden}.shield .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#56e0e5,#6ce6a3);border-radius:99px;transition:width .6s}.shield b{color:var(--text);font-size:1.1rem}
+.kbd{margin-top:12px;color:var(--muted);font-size:.85rem;display:flex;gap:14px;align-items:center}.kbd b{color:var(--gold)}#kbdBuf{font-size:1.6rem;color:var(--cyan);min-width:60px}
+.turnbanner{position:fixed;left:0;right:0;top:38%;text-align:center;font-size:clamp(2rem,7vw,5rem);font-weight:1000;color:#0b1025;padding:18px;z-index:18;pointer-events:none;opacity:0}
+.turnbanner.show{animation:ban 1.2s ease forwards}@keyframes ban{0%{opacity:0;transform:scaleY(.4)}15%,70%{opacity:1;transform:scaleY(1)}100%{opacity:0}}
+.timer.low{color:#ff5d6c;animation:pulse .5s infinite alternate}@keyframes pulse{to{transform:scale(1.15)}}
+@media(min-width:1100px){.content{grid-template-columns:minmax(0,1fr) 330px}.card{min-height:132px}.card .back{font-size:2.8rem}.msg{font-size:1.15rem}.emoji{font-size:2.5rem}.note{font-size:1rem}.message{font-size:1.1rem}.btn{font-size:1.05rem}.team .name{font-size:1.1rem}.team .score{font-size:1.7rem}.stat strong{font-size:2.2rem}.turnbox{font-size:1.6rem}.timer{font-size:2.6rem}}
+</style>
+</head>
+<body>
+<header><span class="brand">DECIDO CUIDARME · RETO COOPERATIVO</span><span>Una pantalla · Todo el salón participa</span></header>
+<main>
+<section class="hero"><div><div class="eyebrow">CAMPAÑA DE PREVENCIÓN · LÍMITES Y REDES SEGURAS</div><h1>Memorama <span style="color:var(--cyan)">por equipos</span></h1><p>Recuerden, acuerden y descubran mensajes para cuidarse y apoyar a los demás.</p></div><div class="badge">🏆 4 EQUIPOS · 1 MISIÓN</div></section>
+<section class="stats">
+<div class="stat"><strong id="roundStat">1 / 2</strong><span>RONDA</span></div>
+<div class="stat"><strong id="pairsStat">0 / 8</strong><span>PAREJAS</span></div>
+<div class="stat"><strong id="movesStat">0</strong><span>JUGADAS</span></div>
+<div class="stat"><strong id="timerStat">00:20</strong><span>TIEMPO DE ACUERDO</span></div>
+</section>
+<div class="shield"><span>🛡️ ESCUDO DEL SALÓN</span><div class="bar"><i id="shieldFill"></i></div><b id="shieldTxt">0 / 18</b></div>
+<div class="content">
+<section class="panel">
+<div class="panel-head"><h2 id="roundTitle">RONDA 1 · MEMORIA EN EQUIPO</h2><span class="status" id="status">PREPARADOS</span></div>
+<div class="teams" id="teams"></div>
+<div class="panel-head"><h2>🃏 TABLERO DE MEMORIA</h2><span id="turnLabel" class="status">TURNO: AZUL</span></div>
+<div class="grid" id="board" aria-label="Tablero de cartas"></div>
+<div class="message" id="message" aria-live="polite">Pulsa <b>Empezar</b>. Primero observa las cartas y acuerda las coordenadas con tu equipo.</div>
+<div class="kbd"><span>⌨️ Escribe una coordenada (ej. <b>B3</b>) · <b>1-4</b> equipo · <b>U</b> persona nueva · <b>H</b> ver cartas · <b>P</b> pausa · <b>Enter</b> continuar</span><b id="kbdBuf"></b></div>
+<div class="toolbar">
+<button class="btn primary" id="startBtn">▶ EMPEZAR</button>
+<button class="btn" id="pauseBtn" disabled>Ⅱ PAUSA</button>
+<button class="btn" id="peekBtn" disabled>👁 VER CARTAS (3 s)</button>
+<button class="btn" id="partBtn" disabled>🗣 PERSONA NUEVA +25</button>
+<button class="btn" id="soundBtn">🔊 SONIDO</button>
+<button class="btn" id="projectBtn">⛶ PANTALLA COMPLETA</button>
+<button class="btn" id="resetBtn">↻ REINICIAR</button>
+</div>
+</section>
+<aside class="side">
+<div class="panel"><h3>🎮 TURNO ACTUAL</h3><div class="turnbox" id="activeTeam">Equipo Azul</div><p class="note" id="turnHint">Deliberen juntos y digan dos coordenadas.</p><div class="timer" id="timerSide">00:20</div><p class="note">El temporizador organiza el turno; no hay límite para completar el juego.</p></div>
+<div class="panel"><h3>⚡ REGLAS DE PUNTOS</h3><p class="note">🎯 Pareja encontrada: <b>+100</b></p><p class="note">🔥 Dos aciertos seguidos del mismo equipo: <b>+50 extra</b></p><p class="note">🤝 Reto sorpresa superado: <b>+100</b></p><p class="note">🗣 Participa una persona nueva: <b>+25</b> (el facilitador lo marca).</p><p class="note">🔁 Si aciertas, <b>sigues jugando</b>.</p><p class="note">No se restan puntos por equivocarse.</p></div>
+<div class="panel"><h3>📜 ÚLTIMOS EVENTOS</h3><div class="log" id="log"><div class="logitem">El salón está listo para jugar.</div></div></div>
+</aside>
+</div>
+</main>
+<div class="turnbanner" id="turnBanner"></div>
+<div class="toast" id="toast">¡COMBO!</div>
+<div class="overlay" id="intro">
+<div class="dialog"><div class="eyebrow">MISIÓN COOPERATIVA</div><h2>¿Qué equipo recordará mejor… y tomará decisiones seguras?</h2><p>Organicen el salón en cuatro equipos. Una persona maneja el computador; el resto observa, debate y propone coordenadas.</p><div class="rules"><div class="rule"><b>🎯 Objetivo</b><span>Encontrar parejas de mensajes.</span></div><div class="rule"><b>🧠 Acuerdo</b><span>El equipo tiene 20 segundos para elegir.</span></div><div class="rule"><b>🏆 Puntos</b><span>Sumen parejas, combos y retos.</span></div><div class="rule"><b>🛡️ Cuidado</b><span>Casos ficticios; nadie debe contar vivencias personales.</span></div></div><p><b>Importante:</b> el juego enseña estrategias generales de cuidado. Si alguien necesita ayuda, debe poder hablar en privado con un adulto seguro.</p><button class="btn primary" id="goBtn">EMPEZAR EL RETO →</button></div>
+</div>
+<div class="overlay hidden" id="challenge">
+<div class="dialog"><div class="eyebrow">⚡ CARTA SORPRESA</div><h2 id="challengeTitle">Reto de equipo</h2><p id="challengeText"></p><div id="challengeOptions"></div><p id="challengeFeedback" aria-live="polite"></p><button class="btn primary hidden" id="challengeContinue">CONTINUAR →</button></div>
+</div>
+<div class="overlay hidden" id="roundOverlay">
+<div class="dialog"><div class="eyebrow">RONDA SUPERADA</div><h2 id="roundEndTitle">¡Buen trabajo!</h2><p id="roundEndText"></p><button class="btn primary" id="nextRoundBtn">SIGUIENTE RONDA →</button></div>
+</div>
+<div class="overlay hidden" id="endOverlay">
+<div class="dialog"><div class="eyebrow">🏆 MISIÓN COMPLETADA</div><h2>¡El salón logró el reto!</h2><p id="endText"></p><div id="finalScores"></div><div class="rule" style="margin:14px 0"><b>💬 Para conversar</b><span>¿Qué puede hacer que pedir ayuda sea más fácil y seguro?</span></div>
+<div class="rule" style="margin:14px 0"><b>✍️ Mi compromiso</b><span>En una hoja: «Una cosa que haré para cuidarme o apoyar a otros es…». Después, quien quiera lo lee en voz alta.</span><div class="timer" id="closeTimer" style="margin-top:8px">05:00</div><button class="btn" id="closeBtn">⏱ INICIAR 5 MIN DE CIERRE</button></div><button class="btn primary" id="againBtn">JUGAR OTRA VEZ ↻</button></div>
+</div>
+<script>
+(() => {
+"use strict";
+const $ = id => document.getElementById(id);
+let soundOn=true,ac;
+function beep(k){if(!soundOn)return;try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();const seq={ok:[[523,.1],[659,.1],[784,.18]],bad:[[220,.25]],tick:[[880,.05]],flip:[[440,.04]],win:[[523,.12],[659,.12],[784,.12],[1047,.3]],combo:[[659,.08],[784,.08],[988,.08],[1319,.25]]}[k];let t=ac.currentTime;seq.forEach(([f,d])=>{const o=ac.createOscillator(),g=ac.createGain();o.frequency.value=f;o.type=k==="bad"?"sawtooth":"triangle";g.gain.setValueAtTime(.12,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g);g.connect(ac.destination);o.start(t);o.stop(t+d);t+=d})}catch(e){}}
+const teamDefs = [
+ {name:"Equipo Azul",color:"#56e0e5",score:0,streak:0,participation:0,pairs:0,best:0},
+ {name:"Equipo Morado",color:"#c18aff",score:0,streak:0,participation:0,pairs:0,best:0},
+ {name:"Equipo Verde",color:"#6ce6a3",score:0,streak:0,participation:0,pairs:0,best:0},
+ {name:"Equipo Naranja",color:"#ffb15c",score:0,streak:0,participation:0,pairs:0,best:0}
+];
+const rounds = [
+ {title:"RONDA 1 · MEMORIA EN EQUIPO",focus:"LÍMITES Y APOYO",pairs:[
+  ["🛑","Puedo decir NO","Puedo poner límites y merezco que los respeten."],
+  ["🗣️","Pedir ayuda","Puedo hablar con una persona adulta de confianza."],
+  ["🤝","Consentimiento","Debe ser libre; puedo cambiar de opinión."],
+  ["🔒","Privacidad","Nadie debe presionarme para compartir imágenes íntimas."],
+  ["💚","Adulto seguro","Busco a alguien que escuche y tome en serio."],
+  ["🚩","Señal de alerta","Si algo me incomoda o asusta, puedo alejarme y buscar apoyo."],
+  ["🧡","Apoyar sin juzgar","Escucho, creo y acompaño sin culpar."],
+  ["📣","No guardar daño","Puedo contar una situación insegura aunque me pidan secreto."]
+ ]},
+ {title:"RONDA 2 · MEMORIA + DECISIONES",focus:"DECISIONES SEGURAS",pairs:[
+  ["🛡️","Mi cuerpo, mis límites","Nadie tiene derecho a tocarme o presionarme sin mi consentimiento."],
+  ["📱","Presión en línea","No tengo que enviar fotos; puedo bloquear y pedir ayuda."],
+  ["👂","Escuchar","Escuchar con respeto ayuda a que alguien se sienta acompañado."],
+  ["🧭","Alejarme","Si me siento en peligro, busco un lugar seguro y apoyo."],
+  ["🧑‍🏫","Red de apoyo","Puede ser un familiar seguro, docente u orientador."],
+  ["🚫","No es mi culpa","La responsabilidad es de quien hace daño, no de quien lo cuenta."],
+  ["🫶","Acompañar","Puedo acompañar a pedir ayuda sin investigar ni presionar."],
+  ["🔐","Secreto incómodo","No debo guardar secretos que me hagan sentir inseguro."],
+  ["💬","Pedir orientación","Puedo buscar orientación aunque no sepa cómo explicar todo."],
+  ["🌱","Cuidarnos","Respetar límites y pedir ayuda son acciones valientes."]
+ ]}
+];
+let roundIndex=0,deck=[],first=null,second=null,lock=false,started=false,paused=false,moves=0,matched=0,activeTeam=0,turnSeconds=20,timerId=null,turnToken=0,previewTimeout=null,challengeUsed=new Set(),lastPairCount=0,turnCount=0;
+const letters=["A","B","C","D","E"];
+let challengeOk=false,peeksLeft=2,totalMatched=0,pool=[];
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function makeDeck(){const cards=[];rounds[roundIndex].pairs.forEach((p,i)=>{for(let n=0;n<2;n++)cards.push({id:`${i}-${n}`,pair:i,emoji:p[0],label:p[1],desc:p[2],revealed:false,matched:false})});return shuffle(cards)}
+function log(msg){const el=document.createElement("div");el.className="logitem";el.textContent=msg;$("log").prepend(el);while($("log").children.length>5)$("log").lastChild.remove()}
+function toast(msg){$("toast").textContent=msg;$("toast").classList.remove("show");void $("toast").offsetWidth;$("toast").classList.add("show");const c=document.createElement("div");c.className="confetti";document.body.append(c);setTimeout(()=>c.remove(),950)}
+function message(html){$("message").innerHTML=html}
+function renderTeams(){
+ document.documentElement.style.setProperty("--tc",teamDefs[activeTeam].color);
+ $("teams").innerHTML="";
+ teamDefs.forEach((t,i)=>{const b=document.createElement("button");b.className="team"+(i===activeTeam?" active":"");b.style.setProperty("--team",t.color);b.innerHTML=`<span class="name">${t.name}</span><span class="score">${t.score}</span><small>${i===activeTeam?"▶ TURNO ACTUAL":"Puntos acumulados"}</small>`;b.title="Pulsa para asignar el turno a este equipo";b.addEventListener("click",()=>{if(!started||paused)return;activeTeam=i;renderTeams();updateTurn();log("Turno asignado a "+t.name+".")});$("teams").append(b)});
+ $("activeTeam").textContent=teamDefs[activeTeam].name;$("turnLabel").textContent="TURNO: "+teamDefs[activeTeam].name.replace("Equipo ","").toUpperCase();
+}
+function coords(i){return letters[Math.floor(i/5)]+((i%5)+1)}
+function renderBoard(){
+ $("board").innerHTML="";
+ deck.forEach((c,i)=>{const b=document.createElement("button");b.className="card"+(c.revealed?" revealed":"")+(c.matched?" matched":"");b.disabled=!started||paused||lock||c.matched||c.revealed;b.setAttribute("aria-label",`${coords(i)}${c.revealed||c.matched?": "+c.label:" carta oculta"}`);
+ b.innerHTML=`<span class="coord">${coords(i)}</span><span class="back">?</span><span class="front"><span class="emoji">${c.emoji}</span><span class="msg">${c.label}</span></span>`;b.addEventListener("click",()=>flip(i));$("board").append(b)});
+}
+function updateStats(){const total=rounds[roundIndex].pairs.length;$("roundStat").textContent=`${roundIndex+1} / 2`;$("pairsStat").textContent=`${matched} / ${total}`;$("movesStat").textContent=moves;$("roundTitle").textContent=rounds[roundIndex].title;$("status").textContent=!started?"PREPARADOS":paused?"EN PAUSA":matched===total?"COMPLETADO":"EN JUEGO";$("peekBtn").disabled=!started||paused||lock||peeksLeft<=0;$("peekBtn").textContent=`👁 VER CARTAS (${peeksLeft})`;$("partBtn").disabled=!started||paused;$("shieldFill").style.width=(totalMatched/18*100)+"%";$("shieldTxt").textContent=totalMatched+" / 18";$("pauseBtn").disabled=!started||matched===rounds[roundIndex].pairs.length;$("startBtn").disabled=started;$("startBtn").textContent=started?"✓ EN JUEGO":"▶ EMPEZAR";renderTeams()}
+function updateTurn(){renderTeams();$("turnHint").textContent=`Deliberen juntos: ${teamDefs[activeTeam].name} elige dos coordenadas.`}
+function showAll(ms=3000){if(!started||paused||lock)return;deck.forEach(c=>{if(!c.matched)c.revealed=true});renderBoard();$("peekBtn").disabled=true;message("<strong>¡Memoria activa!</strong> Observen las posiciones y ayúdense a recordarlas.");clearTimeout(previewTimeout);previewTimeout=setTimeout(()=>{deck.forEach(c=>{if(!c.matched&&c!==first&&c!==second)c.revealed=false});renderBoard();updateStats()},ms)}
+function begin(){if(started)return;started=true;paused=false;peeksLeft=2;deck=makeDeck();first=second=null;lock=false;moves=matched=turnCount=0;activeTeam=0;challengeUsed.clear();renderBoard();updateStats();showAll(3000);message("<strong>¡A jugar!</strong> Miren el tablero durante 3 segundos. Luego el equipo azul elige dos coordenadas.");log("Comienza "+rounds[roundIndex].title.toLowerCase()+".");startTimer()}
+function flip(i){
+ if(!started||paused||lock)return;const c=deck[i];if(c.matched||c.revealed)return;
+ c.revealed=true;beep("flip");renderBoard();
+ if(!first){first=c;message(`<strong>${teamDefs[activeTeam].name}:</strong> primera carta ${coords(i)}. Acuerden la segunda.`);return}
+ second=c;moves++;lock=true;renderBoard();updateStats();
+ if(first.pair===second.pair){
+  first.matched=second.matched=true;first.revealed=second.revealed=true;matched++;const t=teamDefs[activeTeam];t.score+=100;t.streak++;t.pairs++;t.best=Math.max(t.best,t.streak);totalMatched++;
+  let extra="";if(t.streak>=2){t.score+=50;extra=" ¡COMBO +50!";toast("🔥 COMBO +150");beep("combo");}else{toast("¡PAREJA +100!");beep("ok");}
+  message(`<strong>¡Coincidencia!</strong> ${first.emoji} ${first.label}. ${first.desc}<br><strong>+100 puntos.</strong>${extra}`);
+  log(`${t.name} encontró "${first.label}" (+${t.streak>=2?150:100}).`);first=null;second=null;lock=false;turnCount++;
+  renderBoard();updateStats();
+  if(matched===rounds[roundIndex].pairs.length){stopTimer();setTimeout(endRound,650);return}
+  // Every third matched pair can trigger a short scenario, at most one per round.
+  if(matched%3===0){setTimeout(openChallenge,650);return}
+  startTimer();
+ }else{
+  teamDefs[activeTeam].streak=0;beep("bad");message("<strong>No coinciden.</strong> Recuerden dónde estaban. ¡No se restan puntos!");log(`${teamDefs[activeTeam].name} probó dos cartas. Siguiente turno.`);setTimeout(()=>{if(first)first.revealed=false;if(second)second.revealed=false;first=second=null;lock=false;renderBoard();nextTeam();startTimer()},1150)
+ }
+}
+function banner(){const b=$("turnBanner");b.textContent="▶ "+teamDefs[activeTeam].name.toUpperCase();b.style.background=teamDefs[activeTeam].color;b.classList.remove("show");void b.offsetWidth;b.classList.add("show")}
+function nextTeam(){activeTeam=(activeTeam+1)%teamDefs.length;updateTurn();updateStats();banner()}
+function startTimer(){clearInterval(timerId);turnSeconds=20;paintTimer();if(!started||paused)return;const token=++turnToken;timerId=setInterval(()=>{if(token!==turnToken)return;turnSeconds--;paintTimer();if(turnSeconds<=0){clearInterval(timerId);if(started&&!paused&&!lock){message("<strong>¡Tiempo de acuerdo!</strong> Elijan una coordenada para comenzar. El facilitador puede dar 10 segundos extra si el grupo lo necesita.");log("Se agotó el tiempo de acuerdo; el facilitador puede dar tiempo extra.");turnSeconds=10;paintTimer();startTimerAfterExtra()}}},1000)}
+function startTimerAfterExtra(){clearInterval(timerId);const token=++turnToken;timerId=setInterval(()=>{if(token!==turnToken)return;turnSeconds--;paintTimer();if(turnSeconds<=0){clearInterval(timerId);nextTeam();startTimer();message("<strong>Cambio de turno.</strong> El equipo siguiente puede intentarlo.")}},1000)}
+function paintTimer(){const s=Math.max(0,turnSeconds);$("timerSide").classList.toggle("low",s<=5&&started&&!paused);if(s<=5&&s>0&&started&&!paused)beep("tick");const v=`00:${String(s).padStart(2,"0")}`;$("timerStat").textContent=v;$("timerSide").textContent=v}
+function stopTimer(){clearInterval(timerId);turnToken++}
+function pauseGame(){if(!started||matched===rounds[roundIndex].pairs.length)return;paused=!paused;if(paused){stopTimer();clearTimeout(previewTimeout);message("<strong>Juego en pausa.</strong> Pulsa Reanudar para continuar.");$("pauseBtn").textContent="▶ REANUDAR"}else{$("pauseBtn").textContent="Ⅱ PAUSA";renderBoard();startTimer();message("<strong>¡Seguimos!</strong> Acuerden la próxima jugada.")}renderBoard();updateStats()}
+const challenges=[
+ {title:"¿Qué harías?",text:"Una persona te pide guardar un secreto que te hace sentir inseguro y dice que no se lo cuentes a nadie. ¿Cuál es una respuesta segura?",options:["Buscar a una persona adulta segura y contárselo.","Guardarlo para no molestar a nadie.","Prometer que nunca lo contarás."],correct:0,feedback:"Buscar a una persona adulta segura es una buena opción. No tienes que guardar secretos que te hagan sentir en peligro."},
+ {title:"Apoyo sin juzgar",text:"Un compañero te cuenta que alguien cruzó sus límites. ¿Qué ayuda más?",options:["Escucharlo, no culparlo y acompañarlo a buscar ayuda.","Preguntarle una y otra vez por todos los detalles.","Decirle que no cuente nada para evitar problemas."],correct:0,feedback:"Escuchar sin juzgar, no presionar por detalles y acompañar a buscar ayuda puede marcar una diferencia."},
+ {title:"Presión digital",text:"Alguien insiste en que envíes una foto íntima para demostrar que confías en esa persona. ¿Qué puedes hacer?",options:["Enviar la foto para que no se enoje.","Decir que no, dejar de responder si hace falta y pedir ayuda.","Compartirla solo con un grupo pequeño."],correct:1,feedback:"No tienes que enviar imágenes íntimas. Puedes poner límites, bloquear y pedir apoyo a una persona adulta segura."},
+ {title:"Chat de grupo",text:"En un chat grupal comparten sin permiso una foto privada de alguien y todos se ríen. ¿Qué ayuda más?",options:["No reenviarla, no burlarme, apoyar a la persona afectada y avisar a un adulto de confianza.","Reenviarla solo a un amigo, así no es tan grave.","Quedarme callado porque no es mi problema."],correct:0,feedback:"Compartir imágenes sin permiso hace daño. No reenviar, apoyar y buscar a un adulto ayuda a frenar el problema."},
+ {title:"No es tu culpa",text:"Una amiga dice que alguien la hace sentir incómoda y cree que es su culpa. ¿Qué le dirías?",options:["Que la responsabilidad es de quien cruza los límites y que puede buscar a un adulto de confianza.","Que seguro está exagerando.","Que lo olvide y no lo cuente."],correct:0,feedback:"Quien cuenta una situación incómoda no es culpable. Creer y acompañar ayuda a que se sienta segura."},
+ {title:"Contacto en línea",text:"Alguien que conociste en línea te pide que no le cuentes a nadie que hablan. ¿Qué es lo más seguro?",options:["Contárselo a un adulto de confianza y dejar de responder.","Aceptar, porque dice que confía en ti.","Darle tu dirección para demostrar que confías."],correct:0,feedback:"Pedir secreto es una señal de alerta. Es seguro avisar a un adulto y no compartir datos personales."},
+ {title:"Cambiar de opinión",text:"¿Qué es cierto sobre el consentimiento?",options:["Puedo cambiar de opinión en cualquier momento y debe respetarse.","Si ya dije que sí, no puedo retractarme.","Solo cuenta si lo digo delante de otras personas."],correct:0,feedback:"El consentimiento es libre y puede retirarse cuando quieras."},
+ {title:"No sé cómo explicarlo",text:"Necesitas ayuda, pero no sabes cómo explicar lo que pasó. ¿Qué puedes hacer?",options:["Decir \"necesito hablar con alguien\" y pedir orientación aunque no sepa explicarlo todo.","Esperar a tener las palabras perfectas.","Resolverlo solo sin decirle a nadie."],correct:0,feedback:"No necesitas tener todo claro para pedir ayuda. Un primer paso basta."}
+];
+function nextChallenge(){if(!pool.length)pool=shuffle(challenges.map((_,i)=>i));const c=challenges[pool.pop()];const o=shuffle(c.options.map((t,i)=>({t,ok:i===c.correct})));return{...c,options:o.map(x=>x.t),correct:o.findIndex(x=>x.ok)}}
+function openChallenge(){stopTimer();paused=true;renderBoard();const q=nextChallenge();challengeOk=false;$("challengeTitle").textContent=q.title;$("challengeText").textContent=q.text;$("challengeFeedback").textContent="";$("challengeOptions").innerHTML="";$("challengeContinue").classList.add("hidden");q.options.forEach((opt,i)=>{const b=document.createElement("button");b.className="btn";b.style.display="block";b.style.width="100%";b.style.textAlign="left";b.style.margin="8px 0";b.textContent=String.fromCharCode(65+i)+". "+opt;b.addEventListener("click",()=>{[...$("challengeOptions").querySelectorAll("button")].forEach(x=>x.disabled=true);if(i===q.correct){challengeOk=true;beep("ok");teamDefs[activeTeam].score+=100;$("challengeFeedback").innerHTML="✅ <strong>¡Reto superado! +100 puntos.</strong> "+q.feedback;toast("RETO +100");log(`${teamDefs[activeTeam].name} superó el reto sorpresa (+100).`)}else{$("challengeFeedback").innerHTML="💡 <strong>Vamos a aprender:</strong> "+q.feedback;log(`${teamDefs[activeTeam].name} revisó una situación de prevención.`)}renderTeams();$("challengeContinue").classList.remove("hidden")});$("challengeOptions").append(b)});$("challenge").classList.remove("hidden")}
+function endRound(){stopTimer();beep("win");started=false;paused=false;$("roundEndTitle").textContent=roundIndex===0?"¡Ronda 1 superada!":"¡Todas las parejas encontradas!";const leader=[...teamDefs].sort((a,b)=>b.score-a.score)[0];$("roundEndText").textContent=`Encontraron ${matched} parejas en ${moves} jugadas. ${leader.name} lleva ${leader.score} puntos. Recuerden: pedir apoyo y respetar los límites son formas de cuidarnos.`;$("roundOverlay").classList.remove("hidden");$("pauseBtn").disabled=true}
+function nextRound(){roundIndex=1;first=second=null;lock=false;started=false;paused=false;moves=matched=0;activeTeam=(activeTeam+1)%teamDefs.length;deck=makeDeck();$("roundOverlay").classList.add("hidden");renderBoard();updateStats();message("<strong>Ronda 2:</strong> hay más parejas y nuevas situaciones. Pulsa Empezar para continuar.");$("startBtn").disabled=false;$("startBtn").textContent="▶ EMPEZAR RONDA 2"}
+function finish(){stopTimer();started=false;paused=false;$("endText").textContent=`El grupo encontró todas las parejas de las dos rondas. Se realizaron ${moves} jugadas en la última ronda. Lo importante es recordar que poner límites, buscar ayuda y acompañar sin juzgar son acciones de cuidado.`;const sorted=[...teamDefs].sort((a,b)=>b.score-a.score);$("finalScores").innerHTML=sorted.map((t,i)=>`<p style="border-left:4px solid ${t.color};padding:8px 12px;background:#ffffff08;border-radius:8px"><b>${i+1}. ${t.name}</b> — ${t.score} puntos</p>`).join("");const top=k=>[...teamDefs].sort((a,b)=>b[k]-a[k])[0];const bp=top("pairs"),bs=top("best"),bt=top("participation");
+$("finalScores").innerHTML+=`<p>🏅 Más parejas: <b>${bp.name}</b> (${bp.pairs}) · 🔥 Mejor racha: <b>${bs.name}</b> (${bs.best}) · 🗣 Más participativo: <b>${bt.name}</b> (${bt.participation})</p>`;beep("win");$("endOverlay").classList.remove("hidden")}
+function reset(){stopTimer();peeksLeft=2;clearTimeout(previewTimeout);roundIndex=0;started=false;paused=false;first=second=null;lock=false;moves=matched=turnCount=0;activeTeam=0;challengeUsed.clear();teamDefs.forEach(t=>{t.score=0;t.streak=0;t.participation=0;t.pairs=0;t.best=0;totalMatched=0});deck=makeDeck();$("intro").classList.remove("hidden");$("challenge").classList.add("hidden");$("roundOverlay").classList.add("hidden");$("endOverlay").classList.add("hidden");$("pauseBtn").textContent="Ⅱ PAUSA";renderBoard();updateStats();message("Pulsa Empezar. Primero observa las cartas y acuerda las coordenadas con tu equipo.");$("startBtn").disabled=false}
+$("goBtn").addEventListener("click",()=>{$("intro").classList.add("hidden");begin()});
+$("startBtn").addEventListener("click",()=>{if(roundIndex===1&&matched===0&&!started){begin()}else begin()});
+$("pauseBtn").addEventListener("click",pauseGame);
+$("peekBtn").addEventListener("click",()=>{if(peeksLeft<=0)return;peeksLeft--;showAll(3000);updateStats()});
+$("projectBtn").addEventListener("click",async()=>{try{if(!document.fullscreenElement)await document.documentElement.requestFullscreen();else await document.exitFullscreen()}catch(e){message("El navegador no permitió pantalla completa. Pulsa F11 para proyectar.")}});
+$("resetBtn").addEventListener("click",reset);
+function addPart(){if(!started||paused)return;const t=teamDefs[activeTeam];t.score+=25;t.participation++;beep("ok");toast("🗣 +25 "+t.name.replace("Equipo ",""));log(t.name+": participó una persona nueva (+25).");renderTeams();updateStats()}
+$("partBtn").addEventListener("click",addPart);
+$("soundBtn").addEventListener("click",()=>{soundOn=!soundOn;$("soundBtn").textContent=soundOn?"🔊 SONIDO":"🔇 SIN SONIDO"});
+let buf="",bufT;
+function setBuf(v){buf=v;clearTimeout(bufT);$("kbdBuf").textContent=buf?buf+"_":"";if(buf)bufT=setTimeout(()=>setBuf(""),4000)}
+$("challengeContinue").addEventListener("click",()=>{$("challenge").classList.add("hidden");paused=false;if(!challengeOk)nextTeam();renderBoard();updateStats();startTimer();message("<strong>¡Reto completado!</strong> Continúen buscando parejas.")});
+$("nextRoundBtn").addEventListener("click",()=>{if(roundIndex===0)nextRound();else{$("roundOverlay").classList.add("hidden");finish()}});
+let closeId;
+$("closeBtn").addEventListener("click",()=>{clearInterval(closeId);let t=300;const p=()=>$("closeTimer").textContent=String(Math.floor(t/60)).padStart(2,"0")+":"+String(t%60).padStart(2,"0");p();closeId=setInterval(()=>{t--;p();if(t<=0){clearInterval(closeId);beep("win")}},1000)});
+$("againBtn").addEventListener("click",()=>{clearInterval(closeId);$("closeTimer").textContent="05:00";reset()});
+document.addEventListener("keydown",e=>{
+ if(e.ctrlKey||e.metaKey||e.altKey)return;
+ const k=e.key.toLowerCase(),vis=id=>!$(id).classList.contains("hidden");
+ if(vis("challenge")){const o=[...$("challengeOptions").querySelectorAll("button")];const i="abc".indexOf(k);if(k.length===1&&i>=0&&o[i]&&!o[i].disabled)o[i].click();else if(k==="enter"){e.preventDefault();if(!$("challengeContinue").classList.contains("hidden"))$("challengeContinue").click()}return}
+ for(const [id,b] of [["intro","goBtn"],["roundOverlay","nextRoundBtn"]])if(vis(id)){if(k==="enter"){e.preventDefault();$(b).click()}return}
+ if(k==="escape"){setBuf("");return}
+ if(k==="p"&&started){pauseGame();return}
+ if(k==="u"){addPart();return}
+ if(k==="h"){$("peekBtn").click();return}
+ if(!started||paused)return;
+ if(k.length===1&&"abcde".includes(k)){setBuf(k.toUpperCase());return}
+ if(/^[1-5]$/.test(k)){
+  if(buf){const idx=letters.indexOf(buf)*5+(+k-1);setBuf("");if(idx<deck.length)flip(idx);return}
+  if(+k<=4&&!first){activeTeam=+k-1;updateTurn();log("Turno asignado a "+teamDefs[activeTeam].name+".");banner()}
+ }
+});
+deck=makeDeck();renderBoard();updateStats();
+})();
+</script>
+</body>
 </html>
