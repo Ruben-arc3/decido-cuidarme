@@ -3,73 +3,65 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#10243b" />
-    <meta name="description" content="Memorama por equipos para aprender señales de tránsito colombianas y reglas básicas de seguridad para motociclistas." />
+    <meta name="theme-color" content="#101e2b" />
+    <meta name="description" content="Memorama retro por equipos para reconocer señales colombianas y aprender reglas de seguridad vial." />
     <title>Memorama vial colombiano · Decido Cuidarme</title>
     <link rel="icon" href="../favicon.ico" sizes="any" />
     <link rel="stylesheet" href="../css/pages/juegos/memorama-vial-colombia.css" />
   </head>
   <body>
     <header class="topbar">
-      <a class="brand" href="../index.html"><span class="brand-mark">DC</span><span><strong>Decido Cuidarme</strong><small>Campaña de movilidad segura</small></span></a>
-      <a class="back-link" href="../recursos/prevencion-siniestros-viales.html">← Campaña vial</a>
+      <a class="brand" href="../index.html"><span class="brand-mark">DC</span><span><strong>DECIDO CUIDARME</strong><small>CAMPAÑA DE MOVILIDAD SEGURA</small></span></a>
+      <a class="back-link" href="../recursos/prevencion-siniestros-viales.html">← CAMPAÑA VIAL</a>
     </header>
     <main class="game-shell">
-      <section class="intro-card">
-        <div><p class="eyebrow">MEMORAMA · COLOMBIA</p><h1>Señales y rutas seguras</h1><p>Encuentren la pareja entre cada señal y su significado, o entre una regla motociclista y la acción que la explica. Cada tres turnos, una pregunta sorpresa suma puntos.</p></div>
+      <section class="hero-panel">
+        <div><p class="eyebrow">ARCADE EDUCATIVO · COLOMBIA</p><h1>MEMORAMA <span>VIAL</span></h1><p>Volteen las cartas y encuentren dos imágenes iguales. Recuerden las señales y las decisiones que ayudan a cuidar a motociclistas y a todas las personas en la vía.</p></div>
         <div class="road-stamp" aria-hidden="true"><span>🛑</span><b>VÍA<br />SEGURA</b></div>
       </section>
 
-      <section class="setup-bar" id="setupBar" aria-label="Configuración de equipos">
-        <label for="teamCount">Equipos
-          <select id="teamCount"><option value="1">1 equipo</option><option value="2" selected>2 equipos</option><option value="3">3 equipos</option><option value="4">4 equipos</option></select>
-        </label>
-        <div id="teamNames" class="team-name-fields"></div>
-        <button class="button primary" id="newGame" type="button">Nueva partida</button>
-      </section>
-
-      <section class="scoreboard" id="scoreboard" aria-label="Puntaje por equipo"></section>
-
+      <section class="scoreboard" id="scoreboard" aria-label="Puntaje por equipo" aria-live="polite"></section>
       <section class="game-layout">
         <div class="board-panel">
-          <div class="board-heading"><div><span class="eyebrow">TURNO</span><h2 id="turnLabel">Equipo 1</h2></div><div class="stats"><span><b id="pairsFound">0 / 8</b><small>PAREJAS</small></span><span><b id="turnCount">0</b><small>TURNOS</small></span></div></div>
-          <p class="status-line" id="statusLine" role="status">Seleccionen dos cartas y busquen la relación.</p>
-          <div class="memory-board" id="memoryBoard" aria-label="Tablero de 16 cartas"></div>
+          <div class="board-heading"><div><p class="eyebrow" id="roundLabel">RONDA 1 / 2</p><h2 id="roundTitle">SEÑALES Y PROTECCIÓN</h2></div><div class="stats"><span><b id="pairsFound">0 / 8</b><small>PAREJAS</small></span><span><b id="movesCount">0</b><small>JUGADAS</small></span><span><b id="timerDisplay">00:20</b><small>TURNO</small></span></div></div>
+          <p class="status-line" id="statusLine" role="status">Pulsa Empezar. Observen las cartas durante 3 segundos.</p>
+          <div class="memory-board" id="memoryBoard" aria-label="Tablero de cartas de memoria"></div>
+          <div class="toast" id="toast" aria-live="polite"></div>
           <div class="controls">
-            <button class="button secondary" id="pauseButton" type="button" aria-pressed="false">Ⅱ Pausar</button>
-            <button class="button secondary" id="projectButton" type="button">⛶ Proyectar</button>
+            <button class="pixel-button gold" id="startButton" type="button">▶ EMPEZAR</button>
+            <button class="pixel-button" id="pauseButton" type="button" disabled>Ⅱ PAUSA</button>
+            <button class="pixel-button" id="peekButton" type="button" disabled>👁 VER CARTAS (3 S)</button>
+            <button class="pixel-button hold-button" id="holdButton" type="button" disabled>✦ MANTENER PARA VER</button>
+            <button class="pixel-button" id="projectButton" type="button">⛶ PROYECTAR</button>
+            <button class="pixel-button" id="resetButton" type="button">↻ NUEVA PARTIDA</button>
           </div>
-          <p class="source-note">Contenido educativo. Consulta las normas vigentes y la señalización instalada en cada vía.</p>
+          <p class="keyboard-hint">COORDENADAS: pulsa la letra y el número · <kbd>P</kbd> pausa · <kbd>H</kbd> ver cartas · <kbd>ESPACIO</kbd> mantener para ver</p>
         </div>
         <aside class="side-panel">
-          <h2>Cómo se juega</h2>
-          <ol><li>Elijan cuántos equipos participan, de 1 a 4.</li><li>En cada turno, el equipo voltea dos cartas.</li><li>Si coinciden la señal y su significado, o la regla y su explicación, el equipo suma un punto.</li><li>Cada tres turnos aparece una pregunta sorpresa: una respuesta correcta suma un punto extra.</li></ol>
-          <div class="quick-facts"><b>Reglas que aparecen</b><p>Casco bien puesto, alta visibilidad en horarios requeridos, luces cuando corresponde y atención sin distracciones.</p></div>
-          <a class="source-link" href="https://mintransporte.gov.co/documentos/29/manuales-desenalizacion-vial/" target="_blank" rel="noopener noreferrer">Manual de Señalización Vial de Colombia ↗</a>
-          <a class="source-link" href="https://mintransporte.gov.co/preguntas-frecuentes/60/transito-cascos/" target="_blank" rel="noopener noreferrer">MinTransporte: reglas sobre cascos ↗</a>
-          <a class="source-link" href="https://mintransporte.gov.co/preguntas-frecuentes/113/transito-infracciones-a-las-normas-de-transito/" target="_blank" rel="noopener noreferrer">MinTransporte: reflectivos y luces ↗</a>
+          <div class="side-block"><p class="eyebrow">TURNO ACTUAL</p><h2 id="activeTeam">Equipo 1</h2><p>El equipo propone dos coordenadas. Si encuentra una pareja, conserva el turno.</p></div>
+          <div class="side-block"><p class="eyebrow">REGLAS DEL RETO</p><ul><li>Hay dos rondas con parejas iguales.</li><li>Coincidir suma 100 puntos; dos aciertos seguidos dan +50.</li><li>Cada tres parejas aparece una pregunta sorpresa.</li><li>No hay límite total de tiempo. El reloj solo organiza cada turno.</li></ul></div>
+          <div class="side-block"><p class="eyebrow">PARA APRENDER</p><p>Las señales ilustradas son representaciones educativas basadas en la señalización vial de Colombia. Sigue siempre las señales reales y las indicaciones de la autoridad.</p><a href="https://mintransporte.gov.co/documentos/29/manuales-desenalizacion-vial/" target="_blank" rel="noopener noreferrer">Manual de Señalización Vial ↗</a><a href="https://mintransporte.gov.co/preguntas-frecuentes/113/transito-infracciones-a-las-normas-de-transito/" target="_blank" rel="noopener noreferrer">MinTransporte: reflectivos y luces ↗</a></div>
         </aside>
       </section>
     </main>
 
+    <div class="overlay" id="introDialog">
+      <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="introTitle"><p class="eyebrow">MEMORIA EN EQUIPO</p><h2 id="introTitle">¿Recuerdan dónde están las parejas?</h2><p>Elige de 1 a 4 equipos. Al comenzar, el tablero se mostrará durante 3 segundos. Después, cada equipo propone dos coordenadas para encontrar las cartas iguales.</p>
+        <section class="setup-bar" id="setupBar" aria-label="Configuración de equipos"><label for="teamCount">EQUIPOS<select id="teamCount"><option value="1">1 equipo</option><option value="2" selected>2 equipos</option><option value="3">3 equipos</option><option value="4">4 equipos</option></select></label><div id="teamNames" class="team-name-fields"></div><button class="pixel-button" id="newGame" type="button">↻ REINICIAR</button></section>
+        <p>Las preguntas sorpresa también pueden dar puntos. No hay cuenta regresiva para terminar la partida.</p><button class="pixel-button gold" id="goButton" type="button">EMPEZAR RETO →</button></section>
+    </div>
     <div class="overlay" id="questionDialog" hidden>
-      <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="questionTitle">
-        <p class="eyebrow">PREGUNTA SORPRESA · <span id="questionTeam"></span></p>
-        <h2 id="questionTitle"></h2>
-        <div class="quiz-options" id="quizOptions"></div>
-        <p class="quiz-feedback" id="quizFeedback" role="status" aria-live="polite"></p>
-        <button class="button primary" id="continueButton" type="button" hidden>Continuar →</button>
-      </section>
+      <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="questionTitle"><p class="eyebrow">RETO SORPRESA · <span id="questionTeam"></span></p><h2 id="questionTitle"></h2><div class="quiz-options" id="quizOptions"></div><p class="quiz-feedback" id="quizFeedback" role="status" aria-live="polite"></p><button class="pixel-button gold" id="continueButton" type="button" hidden>CONTINUAR →</button></section>
     </div>
-
-    <div class="overlay" id="pauseOverlay" hidden>
-      <section class="dialog pause-dialog" role="status"><p class="eyebrow">PAUSA</p><h2>El tablero está en pausa</h2><p>Cuando el grupo esté listo, pueden continuar.</p><button class="button primary" id="resumeButton" type="button">Continuar partida</button></section>
+    <div class="overlay" id="roundDialog" hidden>
+      <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="roundDialogTitle"><p class="eyebrow">RONDA SUPERADA</p><h2 id="roundDialogTitle">¡Buen trabajo!</h2><p id="roundDialogText"></p><button class="pixel-button gold" id="nextRoundButton" type="button">RONDA 2 →</button></section>
     </div>
-
+    <div class="overlay" id="pauseDialog" hidden>
+      <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="pauseTitle"><p class="eyebrow">PAUSA</p><h2 id="pauseTitle">EL JUEGO ESTÁ EN PAUSA</h2><p>Cuando estén listos, continúen la partida.</p><button class="pixel-button gold" id="resumeButton" type="button">▶ REANUDAR</button></section>
+    </div>
     <div class="overlay" id="endDialog" hidden>
-      <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="endTitle"><p class="eyebrow">MEMORIA VIAL COMPLETADA</p><h2 id="endTitle">¡Buen trabajo!</h2><p id="endSummary"></p><button class="button primary" id="playAgain" type="button">Jugar otra vez</button></section>
+      <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="endTitle"><p class="eyebrow">MISIÓN COMPLETADA</p><h2 id="endTitle">¡MEMORIA VIAL!</h2><p id="endSummary"></p><div id="finalScores" class="final-scores"></div><button class="pixel-button gold" id="playAgainButton" type="button">JUGAR OTRA VEZ</button></section>
     </div>
-
     <script src="../js/pages/juegos/memorama-vial-colombia.js" defer></script>
   </body>
 </html>
