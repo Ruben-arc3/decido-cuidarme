@@ -18,6 +18,8 @@ const TOPICS = {
     "prevención violencia intrafamiliar convivencia familiar apoyo Colombia educativo",
   abuso:
     "prevención violencia sexual consentimiento protección niños adolescentes Colombia educativo",
+  vial:
+    "seguridad vial educación peatones ciclistas motociclistas jóvenes Colombia prevención siniestros",
 };
 
 const json = (data, status = 200) =>

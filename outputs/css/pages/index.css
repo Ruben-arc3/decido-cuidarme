@@ -286,6 +286,10 @@ a {
   --accent: #7160b1;
   --wash: #eee9ff;
 }
+.campaign.road-safety {
+  --accent: #c57b15;
+  --wash: #fff0c9;
+}
 .campaign-top {
   position: relative;
   z-index: 1;
@@ -1161,6 +1165,10 @@ body {
 .campaign.safety {
   --accent: #7160b1;
   --wash: #eee9ff;
+}
+.campaign.road-safety {
+  --accent: #c57b15;
+  --wash: #fff0c9;
 }
 .campaign .activity-count {
   display: inline-flex;

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300" role="img" aria-labelledby="title desc">
+  <title id="title">Movilidad segura</title>
+  <desc id="desc">Ilustración de un paso peatonal, una señal de tránsito y una bicicleta.</desc>
+  <rect width="520" height="300" rx="24" fill="#fff4d9"/>
+  <circle cx="428" cy="63" r="38" fill="#ffe3a2"/>
+  <path d="M0 223h520v77H0z" fill="#d9e5e1"/>
+  <path d="M0 245h520" stroke="#71858a" stroke-width="5" stroke-dasharray="36 24"/>
+  <path d="M30 203h200l-19 39H50z" fill="#fff" opacity=".92"/>
+  <path d="M70 203h27l-15 39H55zm61 0h27l-15 39h-27zm61 0h27l-15 39h-27z" fill="#d6e5df"/>
+  <path d="M349 57h68v104h-68z" rx="12" fill="#18364a"/>
+  <circle cx="383" cy="82" r="13" fill="#ef6655"/><circle cx="383" cy="109" r="13" fill="#f4c44f"/><circle cx="383" cy="136" r="13" fill="#41aa83"/>
+  <path d="M383 161v47" stroke="#18364a" stroke-width="8"/>
+  <circle cx="278" cy="212" r="28" fill="none" stroke="#188875" stroke-width="7"/><circle cx="343" cy="212" r="28" fill="none" stroke="#188875" stroke-width="7"/>
+  <path d="m278 212 24-37 20 37h-44l31-27h34" fill="none" stroke="#188875" stroke-linecap="round" stroke-linejoin="round" stroke-width="7"/>
+  <circle cx="306" cy="157" r="9" fill="#bd5b43"/><path d="m304 168-11 21 20 5 9-18m-26 1-16 11m24-3 10 26" fill="none" stroke="#bd5b43" stroke-linecap="round" stroke-width="8"/>
+</svg>

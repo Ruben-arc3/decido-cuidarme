@@ -76,6 +76,11 @@
   --banner-wash: #f0edfb;
 }
 
+.banner-road-safety {
+  --banner-accent: #c57b15;
+  --banner-wash: #fff4d9;
+}
+
 .campaign-story-banner > div {
   position: relative;
   z-index: 1;
