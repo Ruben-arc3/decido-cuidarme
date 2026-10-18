@@ -1,5 +1,5 @@
 // PWA offline layer: precaches local resources and falls back to cached copies when offline.
-const CACHE = "decido-cuidarme-offline-v67";
+const CACHE = "decido-cuidarme-offline-v68";
 const CORE = [
   "./css/vicente-diaz/vicente-diaz-chat.css",
   "./instituciones/vicente-diaz/vicente-habilidad-verificar-informacion.html",
@@ -85,6 +85,7 @@ const CORE = [
   "./juegos/mapa-seguro.html",
   "./juegos/memorama-decisiones-que-cuidan.html",
   "./juegos/memorama-limites-y-redes-seguras.html",
+  "./juegos/memorama-vial-colombia.html",
   "./juegos/mi-ruta-mi-decision.html",
   "./juegos/mision-salida-segura.html",
   "./juegos/parejas-de-apoyo.html",
@@ -142,6 +143,7 @@ const CORE = [
   "./css/pages/juegos/mapa-seguro.css",
   "./css/pages/juegos/memorama-decisiones-que-cuidan.css",
   "./css/pages/juegos/memorama-limites-y-redes-seguras.css",
+  "./css/pages/juegos/memorama-vial-colombia.css",
   "./css/pages/juegos/mi-ruta-mi-decision.css",
   "./css/pages/juegos/mision-salida-segura-02.css",
   "./css/pages/juegos/mision-salida-segura.css",
@@ -172,6 +174,7 @@ const CORE = [
   "./js/pages/juegos/mapa-seguro.js",
   "./js/pages/juegos/memorama-decisiones-que-cuidan.js",
   "./js/pages/juegos/memorama-limites-y-redes-seguras.js",
+  "./js/pages/juegos/memorama-vial-colombia.js",
   "./js/pages/juegos/mi-ruta-mi-decision.js",
   "./js/pages/juegos/mision-salida-segura-actions.js",
   "./js/pages/juegos/mision-salida-segura.js",
