@@ -119,26 +119,30 @@ body.proj .modal{max-width:640px;zoom:1.4}
 <script>
 const TOTAL=7, COLORS=['#d62828','#2f6fed','#e8590c'];
 const W=[
-["VACAS","Animales que cruzan la vía rural. Hay señal de «animales en la vía».","De noche y con niebla reduce la velocidad: los animales sueltos causan siniestros."],
+["CEBRA","Paso peatonal con rayas blancas sobre la vía.","En la cebra el peatón tiene prioridad: detén el vehículo por completo antes de la línea."],
+["ACERA","Espacio de la vía exclusivo para peatones.","No estaciones ni circules sobre la acera; el peatón siempre debe tener espacio."],
+["CEDER","Lo que debe hacer el conductor ante peatones, niños y adultos mayores.","El peatón es el más vulnerable: cede el paso y baja la velocidad cerca de escuelas y veredas."],
+["SENDA","Camino angosto por donde caminan las personas.","Sin senda, camina por la berma de frente al tráfico y con ropa visible; el conductor debe ir despacio."],
+["MIRAR","Antes de cruzar, el peatón debe hacerlo a ambos lados.","Cruza solo cuando sea seguro, aunque tengas prioridad: busca el contacto visual con el conductor."],
+["POLVO","Nube que levantan los carros en camino destapado y quita visibilidad.","Con polvo reduce la velocidad, enciende luces y no adelantes sin ver: pueden venir peatones."],
+["BARRO","Vuelve resbalosa la vía destapada en época de lluvias.","Con barro aumenta la distancia de frenado: baja la velocidad y frena suave."],
+["GRAVA","Piedra suelta en vías destapadas que hace derrapar.","En grava frena suave, mantén distancia y evita giros bruscos."],
+["HUECO","Daño muy frecuente en caminos destapados y vías rurales.","Esquívalo con prudencia, sin invadir el carril contrario ni arrollar a quien camina."],
+["ZANJA","Cuneta del borde del camino, peligrosa si te sales de la vía.","Mantente en tu carril y lejos del borde blando: puede ceder y causar un volcamiento."],
+["CURVA","Señal preventiva muy común en caminos de montaña.","Frena antes de la curva, no dentro de ella; no adelantes y usa la bocina si no ves."],
+["ROCAS","Señal preventiva de «caída de ...» en zonas de montaña.","No te detengas bajo taludes inestables y atiende las señales de derrumbe."],
+["BERMA","Franja lateral de la carretera, fuera de la calzada.","Si no hay acera, camina por la berma de frente a los vehículos."],
+["VACAS","Animales que cruzan el camino. Hay señal de «animales en la vía».","De noche y con niebla reduce la velocidad: los animales sueltos causan siniestros."],
 ["CHIVA","Bus rural tradicional con escalera, típico de veredas.","Nunca viajes en el techo ni superes el número de pasajeros permitido."],
 ["MOTOS","El vehículo más usado en caminos y veredas.","Casco bien abrochado, luces encendidas y no exceder los ocupantes permitidos."],
 ["CASCO","Protege la cabeza de motociclistas y ciclistas.","Un casco homologado reduce de forma importante las lesiones graves en la cabeza."],
-["BERMA","Franja lateral de la carretera, fuera de la calzada.","Si no hay acera, camina por la berma y de frente a los vehículos."],
-["CURVA","Señal preventiva muy común en carreteras de montaña.","Frena antes de la curva, no dentro de ella, y no adelantes en ella."],
-["PEAJE","Punto donde se paga por usar la carretera.","Reduce la velocidad al acercarte y respeta la señalización y los carriles."],
 ["FRENO","Si se recalienta en una bajada larga, puede fallar.","En bajadas largas usa cambios bajos (freno motor) y no solo el pedal."],
-["BARRO","Vuelve resbalosa la vía destapada en época de lluvias.","Con barro aumenta la distancia de frenado: baja la velocidad y frena suave."],
-["HUECO","Daño del pavimento muy frecuente en vías rurales.","Esquívalo con prudencia, sin invadir el carril contrario."],
-["PAUSA","Lo que debes hacer cada dos horas en un viaje largo.","La fatiga y el sueño causan siniestros: descansa, hidrátate y estira."],
-["CARGA","Lo que transportan los camiones y las mulas.","Debe ir bien amarrada y señalizada si sobresale del vehículo."],
-["ROCAS","Señal preventiva de «caída de ...» en zonas de montaña.","No te detengas bajo taludes inestables y atiende las señales de derrumbe."],
-["GRAVA","Piedra suelta en vías destapadas que hace derrapar.","En grava frena suave, mantén distancia y evita giros bruscos."],
-["CRUCE","Punto donde una vía rural se une con otra o con una férrea.","Detente, mira a ambos lados y cede el paso en los cruces sin semáforo."],
 ["LENTO","Así van los tractores y vehículos agrícolas en la vía.","No adelantes en curvas, cima ni línea continua; ten paciencia."],
+["PAUSA","Lo que debes hacer cada dos horas en un viaje largo.","La fatiga y el sueño causan siniestros: descansa, hidrátate y estira."],
 ["VIAJE","Antes de salir, planifícalo y revisa el vehículo.","Revisa frenos, llantas y luces, lleva SOAT vigente y avisa tu ruta."],
-["LUCES","Con niebla o lluvia debes encenderlas para ver y ser visto.","En niebla usa luces bajas o antiniebla, nunca las altas."],
-["FINCA","Su entrada genera cruces con la vía principal.","Señaliza y reduce mucho antes de entrar o salir de predios."],
-["MULAS","Así se les dice a los camiones de carga pesada.","Un vehículo pesado necesita muchos más metros para frenar: deja distancia."]
+["LUCES","Con niebla, lluvia o polvo debes encenderlas para ver y ser visto.","En niebla usa luces bajas o antiniebla, nunca las altas."],
+["FINCA","Su entrada genera cruces con el camino principal.","Señaliza y reduce mucho antes de entrar o salir de predios; vigila a los peatones."],
+["CRUCE","Punto donde dos caminos o vías se encuentran.","Reduce, mira a ambos lados y cede el paso: en el campo la visibilidad suele ser poca."]
 ];
 const $=id=>document.getElementById(id);
 let teams=[],n=2,words=[],wi=0,target,row,col,over,locked=true,hints,rev,grid,mute=false,AC;
@@ -178,7 +182,7 @@ function build(){
 function nextWord(){
   target=words[wi];row=0;col=0;over=false;locked=true;hints=0;rev=[];grid=Array.from({length:6},()=>[]);
   build();$('boom').style.display='none';$('car').classList.remove('crash');
-  $('hint').textContent='Palabra '+(wi+1)+' de '+TOTAL+'. Tema: seguridad vial en zonas rurales.';
+  $('hint').textContent='Palabra '+(wi+1)+' de '+TOTAL+'. Tema: caminos destapados, peatones y prevención.';
   $('hintBtn').disabled=false;$('hintBtn').textContent='💡 Pista';sem('g');renderTeams();
   const t=teams[wi%teams.length];
   modal('<h2 style="color:'+t.c+'">Turno de '+t.n+'</h2><p>Palabra '+(wi+1)+' de '+TOTAL+' · 5 letras · 6 intentos</p><div style="font-size:54px">'+(['🐄','🚌','🏍️','⛰️','🚧','🌧️','🚜'][wi%7])+'</div><button class="btn" id="rdy">¡Listos!</button>');
