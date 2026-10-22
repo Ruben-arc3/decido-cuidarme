@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Wordle Vial Rural</title>
+<title>Wordle Vial Rural - Puerto Escondido</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Barlow:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f3efe3;--fg:#1d2024;--card:#fff;--line:#c9c3b0;--tile:#fff;--ok:#1f8a4c;--mid:#f2b705;--no:#6b7078;--road:#2a2d33;--accent:#ffc928;--key:#ddd7c4;
@@ -15,7 +15,7 @@ html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:Barlow,system-ui,sans-serif;display:flex;justify-content:center}
 .app{width:100%;max-width:460px;padding:10px 12px 18px;display:flex;flex-direction:column;gap:10px}
 header{grid-area:hd;display:flex;align-items:center;justify-content:space-between;gap:8px}
-h1{font-family:'Barlow Condensed',Impact,sans-serif;font-weight:800;font-size:28px;line-height:1;margin:0;background:var(--accent);color:#111;padding:5px 12px;border:3px solid #111;border-radius:8px;transform:rotate(-1.5deg)}
+h1{font-family:'Barlow Condensed',Impact,sans-serif;font-weight:800;font-size:24px;line-height:1;margin:0;background:var(--accent);color:#111;padding:5px 10px;border:3px solid #111;border-radius:8px;transform:rotate(-1.5deg)}
 .sem{display:flex;flex-direction:column;gap:3px;background:#111;padding:5px;border-radius:8px}
 .sem i{width:11px;height:11px;border-radius:50%;background:#444;transition:.3s}
 .sem i.on.r{background:#ff3b30;box-shadow:0 0 10px #ff3b30}.sem i.on.y{background:#ffd60a;box-shadow:0 0 10px #ffd60a}.sem i.on.g{background:#30d158;box-shadow:0 0 10px #30d158}
@@ -42,9 +42,9 @@ h1{font-family:'Barlow Condensed',Impact,sans-serif;font-weight:800;font-size:28
 .btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.94)}.btn:disabled{opacity:.45;cursor:default;transform:none}
 .btn.sm{font-size:16px;padding:4px 10px}.btn.ghost{background:var(--card);color:var(--fg);border-color:var(--line)}
 .hint{flex:1;background:var(--card);border:2px dashed var(--line);border-radius:8px;padding:6px 10px;font-size:14px;font-weight:500;display:flex;align-items:center;min-height:44px}
-.board{grid-area:bd;display:grid;gap:6px;margin:2px auto;width:100%;max-width:340px;align-content:start}
-.row{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
-.t{aspect-ratio:1;border:3px solid var(--line);background:var(--tile);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(28px,9vw,40px);text-transform:uppercase;user-select:none}
+.board{grid-area:bd;display:grid;gap:5px;margin:2px auto;width:100%;max-width:440px;align-content:start}
+.row{display:grid;gap:3px}
+.t{aspect-ratio:1;border:2px solid var(--line);background:var(--tile);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(12px,4.5vw,26px);text-transform:uppercase;user-select:none}
 .t.ghost{color:#8884;border-style:dashed}
 .t.fill{border-color:var(--fg);animation:pop .15s}
 @keyframes pop{50%{transform:scale(1.15)}}
@@ -55,10 +55,10 @@ h1{font-family:'Barlow Condensed',Impact,sans-serif;font-weight:800;font-size:28
 @keyframes shake{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
 .t.dance{animation:dance .7s ease}
 @keyframes dance{30%{transform:translateY(-22px) rotate(-6deg)}60%{transform:translateY(4px)}}
-.kb{grid-area:kb;display:flex;flex-direction:column;gap:6px}
-.kr{display:flex;gap:5px;justify-content:center}
-.k{flex:1;max-width:42px;height:50px;border:0;border-radius:7px;background:var(--key);color:var(--fg);font-family:Barlow,sans-serif;font-weight:700;font-size:16px;cursor:pointer;transition:transform .1s,background .3s;padding:0}
-.k.w{flex:1.6;max-width:66px;font-size:13px}
+.kb{grid-area:kb;display:flex;flex-direction:column;gap:5px}
+.kr{display:flex;gap:4px;justify-content:center}
+.k{flex:1;max-width:38px;height:48px;border:0;border-radius:6px;background:var(--key);color:var(--fg);font-family:Barlow,sans-serif;font-weight:700;font-size:15px;cursor:pointer;transition:transform .1s,background .3s;padding:0}
+.k.w{flex:1.5;max-width:62px;font-size:12px}
 .k:active{transform:scale(.88)}
 .k.ok{background:var(--ok);color:#fff}.k.mid{background:var(--mid);color:#111}.k.no{background:var(--no);color:#fff;opacity:.7}
 .toast{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);left:50%;transform:translate(-50%,-90px);background:#111;color:#fff;padding:9px 16px;border-radius:8px;font-weight:700;transition:transform .3s;z-index:60;border:2px solid var(--accent)}
@@ -67,8 +67,8 @@ h1{font-family:'Barlow Condensed',Impact,sans-serif;font-weight:800;font-size:28
 .ov.show{display:flex}
 .modal{background:var(--card);border:4px solid #111;border-radius:14px;max-width:400px;width:100%;padding:18px;text-align:center;animation:rise .5s cubic-bezier(.3,1.5,.5,1)}
 @keyframes rise{from{transform:scale(.5) rotate(-6deg);opacity:0}}
-.modal h2{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:34px;margin:0 0 4px;line-height:1.05}
-.modal .w{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:44px;letter-spacing:6px;color:var(--ok)}
+.modal h2{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:32px;margin:0 0 4px;line-height:1.05}
+.modal .w{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:28px;letter-spacing:2px;color:var(--ok);word-break:break-all}
 .modal p{margin:8px 0;font-size:15px}
 .tip{background:var(--accent);color:#111;border-radius:8px;padding:8px 10px;font-weight:700}
 .nsel{display:flex;gap:8px;justify-content:center;margin:10px 0}
@@ -84,8 +84,8 @@ body.shk{animation:shake .5s}
 /* modo proyeccion */
 body.proj .app{max-width:none;display:grid;grid-template-columns:min(44vh,38vw) 1fr;grid-template-rows:auto auto auto auto 1fr;grid-template-areas:"hd hd" "tm tm" "rd rd" "bd ps" "bd kb";gap:12px 3vw;padding:14px 3vw;align-content:start}
 body.proj .board{max-width:none;gap:8px}body.proj .row{gap:8px}
-body.proj .t{font-size:clamp(34px,6.4vh,70px)}
-body.proj h1{font-size:clamp(30px,5vh,52px)}
+body.proj .t{font-size:clamp(16px,3.5vh,42px)}
+body.proj h1{font-size:clamp(26px,4.5vh,46px)}
 body.proj .road{height:clamp(54px,8vh,84px)}body.proj .car{font-size:clamp(38px,6vh,60px)}
 body.proj .tm{font-size:clamp(16px,2.6vh,28px);padding:6px 14px}body.proj .tm b{font-size:clamp(28px,4.4vh,48px)}
 body.proj .hint{font-size:clamp(18px,3vh,32px);padding:12px 16px}
@@ -101,7 +101,7 @@ body.proj .modal{max-width:640px;zoom:1.4}
 <div class="app" id="app">
   <header>
     <div class="sem" aria-hidden="true"><i class="r"></i><i class="y"></i><i class="g"></i></div>
-    <h1>WORDLE VIAL RURAL</h1>
+    <h1>VIAL RURAL - PUERTO ESCONDIDO</h1>
     <div class="hb"><button class="btn sm" id="proj" title="Modo proyección">📽️ Proyectar</button><button class="btn sm ghost" id="snd" aria-label="Sonido">🔊</button></div>
   </header>
   <div class="teams" id="teams"></div>
@@ -117,33 +117,37 @@ body.proj .modal{max-width:640px;zoom:1.4}
 <div class="ov" id="ov"><div class="modal" id="modal"></div></div>
 
 <script>
-const TOTAL=7, COLORS=['#d62828','#2f6fed','#e8590c'];
-const W=[
-["CEBRA","Paso peatonal con rayas blancas sobre la vía.","En la cebra el peatón tiene prioridad: detén el vehículo por completo antes de la línea."],
-["ACERA","Espacio de la vía exclusivo para peatones.","No estaciones ni circules sobre la acera; el peatón siempre debe tener espacio."],
-["CEDER","Lo que debe hacer el conductor ante peatones, niños y adultos mayores.","El peatón es el más vulnerable: cede el paso y baja la velocidad cerca de escuelas y veredas."],
-["SENDA","Camino angosto por donde caminan las personas.","Sin senda, camina por la berma de frente al tráfico y con ropa visible; el conductor debe ir despacio."],
-["MIRAR","Antes de cruzar, el peatón debe hacerlo a ambos lados.","Cruza solo cuando sea seguro, aunque tengas prioridad: busca el contacto visual con el conductor."],
-["POLVO","Nube que levantan los carros en camino destapado y quita visibilidad.","Con polvo reduce la velocidad, enciende luces y no adelantes sin ver: pueden venir peatones."],
-["BARRO","Vuelve resbalosa la vía destapada en época de lluvias.","Con barro aumenta la distancia de frenado: baja la velocidad y frena suave."],
-["GRAVA","Piedra suelta en vías destapadas que hace derrapar.","En grava frena suave, mantén distancia y evita giros bruscos."],
-["HUECO","Daño muy frecuente en caminos destapados y vías rurales.","Esquívalo con prudencia, sin invadir el carril contrario ni arrollar a quien camina."],
-["ZANJA","Cuneta del borde del camino, peligrosa si te sales de la vía.","Mantente en tu carril y lejos del borde blando: puede ceder y causar un volcamiento."],
-["CURVA","Señal preventiva muy común en caminos de montaña.","Frena antes de la curva, no dentro de ella; no adelantes y usa la bocina si no ves."],
-["ROCAS","Señal preventiva de «caída de ...» en zonas de montaña.","No te detengas bajo taludes inestables y atiende las señales de derrumbe."],
-["BERMA","Franja lateral de la carretera, fuera de la calzada.","Si no hay acera, camina por la berma de frente a los vehículos."],
-["VACAS","Animales que cruzan el camino. Hay señal de «animales en la vía».","De noche y con niebla reduce la velocidad: los animales sueltos causan siniestros."],
-["CHIVA","Bus rural tradicional con escalera, típico de veredas.","Nunca viajes en el techo ni superes el número de pasajeros permitido."],
-["MOTOS","El vehículo más usado en caminos y veredas.","Casco bien abrochado, luces encendidas y no exceder los ocupantes permitidos."],
-["CASCO","Protege la cabeza de motociclistas y ciclistas.","Un casco homologado reduce de forma importante las lesiones graves en la cabeza."],
-["FRENO","Si se recalienta en una bajada larga, puede fallar.","En bajadas largas usa cambios bajos (freno motor) y no solo el pedal."],
-["LENTO","Así van los tractores y vehículos agrícolas en la vía.","No adelantes en curvas, cima ni línea continua; ten paciencia."],
-["PAUSA","Lo que debes hacer cada dos horas en un viaje largo.","La fatiga y el sueño causan siniestros: descansa, hidrátate y estira."],
-["VIAJE","Antes de salir, planifícalo y revisa el vehículo.","Revisa frenos, llantas y luces, lleva SOAT vigente y avisa tu ruta."],
-["LUCES","Con niebla, lluvia o polvo debes encenderlas para ver y ser visto.","En niebla usa luces bajas o antiniebla, nunca las altas."],
-["FINCA","Su entrada genera cruces con el camino principal.","Señaliza y reduce mucho antes de entrar o salir de predios; vigila a los peatones."],
-["CRUCE","Punto donde dos caminos o vías se encuentran.","Reduce, mira a ambos lados y cede el paso: en el campo la visibilidad suele ser poca."]
+const TOTAL=12, COLORS=['#d62828','#2f6fed','#e8590c'];
+
+// Banco de palabras FÁCILES (5-6 letras)
+const EASY_WORDS = [
+  ["BARRO", "Común en los caminos destapados de Puerto Escondido cuando llueve.", "Reduce la velocidad en tramos arcillosos para evitar volcamiento o derrapes."],
+  ["CASCO", "Elemento vital para los motociclistas en zona urbana y veredas.", "Debe estar homologado y abrochado; salva vidas en choques en moto."],
+  ["CURVA", "Tramos peligrosos en las vías de acceso a Puerto Escondido.", "Frena antes de entrar a la curva, mantén tu carril y no adelantes."],
+  ["VACAS", "Ganado suelto que suele cruzarse en las vías rurales cordobesas.", "Ante presencia de animales reduce la velocidad por completo y usa las direccionales."],
+  ["ARROYO", "Cuerpos de agua que desbordan o cruzan las vías en época invernal.", "Nunca intentes cruzar un arroyo crecido con el vehículo o la moto."],
+  ["FRENOS", "Sistema mecánico crítico para transitar en trochas y bajadas.", "Revisa tus frenos antes de salir a la carretera o entrar a la zona rural."],
+  ["MOTOS", "El vehículo más usado en los caminos y veredas de Puerto Escondido.", "Respeta el cupo máximo permitido y usa siempre la prenda reflectiva de noche."],
+  ["LUCES", "Indispensables para ser visto de noche o bajo la lluvia en la carretera.", "Revisa que el stop y el faro delantero funcionen bien antes de salir a la vía."],
+  ["CEDER", "Dar el paso a peatones o vehículos con prioridad.", "El peatón siempre tiene la prelación, especialmente niños y adultos mayores."]
 ];
+
+// Banco de palabras DIFICILES (7 a 13 letras)
+const HARD_WORDS = [
+  ["MANTENIMIENTO", "Revisión periódica de llantas, frenos, luces y dirección del vehículo.", "Un vehículo en buen estado previene fallas mecánicas en trayectos rurales alejados."],
+  ["DISTRACCION", "Usar el celular o no mirar la vía adecuadamente al manejar.", "Un segundo de distracción a 60 km/h equivale a recorrer más de 15 metros a ciegas."],
+  ["PREVENCION", "Actitud anticipada para evitar siniestros y reaccionar a tiempo ante el peligro.", "Maneja a la defensiva: asume que otros conductores o peatones pueden equivocarse."],
+  ["SEMAFORO", "Dispositivo de control de tráfico en cruces urbanos e intersecciones.", "Respeta la luz roja; acelerar para ganar el amarillo es causa frecuente de choques."],
+  ["SOMNOLENCIA", "Estado de fatiga o sueño al volante por largas jornadas de manejo.", "Si sientes cansancio, detén el vehículo en un lugar seguro y descansa antes de seguir."],
+  ["SEÑALIZACION", "Conjunto de letreros, demarcaciones y avisos informativos en la vía.", "Las señales preventivas (amarillas) te advierten con tiempo sobre peligros en la vía."],
+  ["VISIBILIDAD", "Capacidad de ver con claridad la carretera ante humo, lluvia o polvo.", "Si la visibilidad baja a cero por la lluvia o polvo, oríllate con luces intermitentes."],
+  ["RESPONSABLE", "Cualidad de un conductor que cuida su vida y la de todos en la comunidad.", "La seguridad vial en Puerto Escondido depende del compromiso y respeto de todos."],
+  ["PEATONES", "Usuarios de la vía más vulnerables tanto en la zona urbana como en veredas.", "Tienen prioridad siempre. Reduce la velocidad cerca de parques, colegios y caseríos."],
+  ["CARRERITAS", "Práctica ilegal de exceso de velocidad en motos o vehículos en la vía pública.", "Respetar los límites de velocidad salva vidas y previene tragedias fatales en la comunidad."],
+  ["IMPRUDENCIA", "Causa principal de siniestros viales por no acatar las señales o conducir distraído.", "No uses el celular mientras manejas y mantén siempre los ojos en la vía."],
+  ["ALCOHOLEMIA", "Estado totalmente incompatible con la conducción de cualquier vehículo.", "Si vas a tomar en las fiestas o eventos, entrega las llaves; no arriesgues la vida de los demás."]
+];
+
 const $=id=>document.getElementById(id);
 let teams=[],n=2,words=[],wi=0,target,row,col,over,locked=true,hints,rev,grid,mute=false,AC;
 try{mute=!!JSON.parse(localStorage.getItem('wvr')||'{}').m}catch(e){}
@@ -157,48 +161,97 @@ function renderTeams(bump){
   $('teams').innerHTML=teams.map((t,i)=>'<div class="tm'+(i===wi%teams.length&&!finished?' act':'')+(bump===i?' bump':'')+'" style="--c:'+t.c+'"><i></i><span>'+t.n+'</span><b>'+t.p+'</b></div>').join('')
 }
 let finished=false;
-/* configuracion */
+
 function setup(){
   finished=false;locked=true;
   const names=teams.length===n?teams.map(t=>t.n):[];
   let h='<h2>¿Cuántos equipos juegan?</h2><div class="nsel">'+[1,2,3].map(k=>'<button class="btn'+(k===n?' on':'')+'" data-n="'+k+'">'+k+'</button>').join('')+'</div>';
   for(let i=0;i<n;i++)h+='<div class="nm" style="--c:'+COLORS[i]+'"><i></i><input maxlength="14" value="'+(names[i]||'Equipo '+(i+1))+'" aria-label="Nombre del equipo '+(i+1)+'"></div>';
-  h+='<p>'+TOTAL+' palabras rurales de seguridad vial. Los equipos se turnan, cada palabra da hasta 60 puntos.</p><button class="btn" id="go">🚦 ¡A la carretera!</button>';
+  h+='<p>12 palabras de seguridad vial (4 fáciles + 8 difíciles aleatorias). ¡A partir del nivel 5 el reto se vuelve más difícil!</p><button class="btn" id="go">🚦 ¡A la carretera!</button>';
   modal(h);
   document.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>{n=+b.dataset.n;beep(500,.08);setup()});
   $('go').onclick=()=>{
     const ins=[...document.querySelectorAll('.nm input')];
     teams=ins.map((x,i)=>({n:x.value.trim()||'Equipo '+(i+1),c:COLORS[i],p:0}));
-    words=W.slice().sort(()=>Math.random()-.5).slice(0,TOTAL);wi=0;beep(600,.15);
+    
+    // Seleccionar 4 fáciles al azar y 8 difíciles al azar
+    const shuffledEasy = EASY_WORDS.slice().sort(() => Math.random() - 0.5).slice(0, 4);
+    const shuffledHard = HARD_WORDS.slice().sort(() => Math.random() - 0.5).slice(0, 8);
+    words = [...shuffledEasy, ...shuffledHard];
+    
+    wi=0;beep(600,.15);
     $('car').style.left='6px';nextWord();
   };
 }
+
 function build(){
   const b=$('board');b.innerHTML='';
-  for(let r=0;r<6;r++){const d=document.createElement('div');d.className='row';for(let c=0;c<5;c++){const t=document.createElement('div');t.className='t';d.appendChild(t)}b.appendChild(d)}
+  const len=target[0].length;
+  for(let r=0;r<6;r++){
+    const d=document.createElement('div');
+    d.className='row';
+    d.style.gridTemplateColumns=`repeat(${len}, 1fr)`;
+    for(let c=0;c<len;c++){
+      const t=document.createElement('div');
+      t.className='t';
+      d.appendChild(t);
+    }
+    b.appendChild(d);
+  }
   const k=$('kb');k.innerHTML='';
-  ['QWERTYUIOP','ASDFGHJKL','*ZXCVBNM#'].forEach(s=>{const d=document.createElement('div');d.className='kr';[...s].forEach(ch=>{const e=document.createElement('button');e.className='k';if(ch=='*'){e.textContent='ENVIAR';e.classList.add('w');e.dataset.k='ENTER'}else if(ch=='#'){e.textContent='⌫';e.classList.add('w');e.dataset.k='BACK'}else{e.textContent=ch;e.dataset.k=ch}e.onclick=()=>press(e.dataset.k);d.appendChild(e)});k.appendChild(d)})
+  ['QWERTYUIOP','ASDFGHJKLÑ','*ZXCVBNM#'].forEach(s=>{const d=document.createElement('div');d.className='kr';[...s].forEach(ch=>{const e=document.createElement('button');e.className='k';if(ch=='*'){e.textContent='ENVIAR';e.classList.add('w');e.dataset.k='ENTER'}else if(ch=='#'){e.textContent='⌫';e.classList.add('w');e.dataset.k='BACK'}else{e.textContent=ch;e.dataset.k=ch}e.onclick=()=>press(e.dataset.k);d.appendChild(e)});k.appendChild(d)})
 }
+
 function nextWord(){
-  target=words[wi];row=0;col=0;over=false;locked=true;hints=0;rev=[];grid=Array.from({length:6},()=>[]);
+  target=[words[wi][0].toUpperCase(), words[wi][1], words[wi][2]];
+  const len=target[0].length;
+  row=0;col=0;over=false;locked=true;hints=0;rev=[];
+  grid=Array.from({length:6},()=>[]);
   build();$('boom').style.display='none';$('car').classList.remove('crash');
-  $('hint').textContent='Palabra '+(wi+1)+' de '+TOTAL+'. Tema: caminos destapados, peatones y prevención.';
+  $('hint').textContent='Palabra '+(wi+1)+' de '+TOTAL+'. (Dificultad: '+(wi>=4?'Alta 🔥':'Fácil ⭐')+')';
   $('hintBtn').disabled=false;$('hintBtn').textContent='💡 Pista';sem('g');renderTeams();
   const t=teams[wi%teams.length];
-  modal('<h2 style="color:'+t.c+'">Turno de '+t.n+'</h2><p>Palabra '+(wi+1)+' de '+TOTAL+' · 5 letras · 6 intentos</p><div style="font-size:54px">'+(['🐄','🚌','🏍️','⛰️','🚧','🌧️','🚜'][wi%7])+'</div><button class="btn" id="rdy">¡Listos!</button>');
+  modal('<h2 style="color:'+t.c+'">Turno de '+t.n+'</h2><p>Palabra '+(wi+1)+' de '+TOTAL+' · <b>'+len+' letras</b> · 6 intentos</p><div style="font-size:50px">'+(['🐄','🚌','🏍️','⛰️','🚧','🌧️','🚜','🏖️','⚠️','🚨','🚦','🛑'][wi%12])+'</div><button class="btn" id="rdy">¡Listos!</button>');
   $('rdy').onclick=()=>{closeM();locked=false;beep(700,.12,'triangle')};
 }
+
 function rowEl(){return $('board').children[row]}
-function paint(){const ts=rowEl().children;for(let c=0;c<5;c++){const t=ts[c],l=grid[row][c];t.classList.remove('ghost');if(l){t.textContent=l}else if(rev.includes(c)){t.textContent=target[0][c];t.classList.add('ghost')}else t.textContent=''}}
+function paint(){
+  const ts=rowEl().children;
+  const len=target[0].length;
+  for(let c=0;c<len;c++){
+    const t=ts[c],l=grid[row][c];
+    t.classList.remove('ghost');
+    if(l){
+      t.textContent=l;
+    }else if(rev.includes(c)){
+      t.textContent=target[0][c];
+      t.classList.add('ghost');
+    }else{
+      t.textContent='';
+    }
+  }
+}
+
 function press(k){
   if(over||locked)return;
+  const len=target[0].length;
   if(k==='ENTER')return submit();
   if(k==='BACK'){if(col>0){col--;grid[row][col]='';rowEl().children[col].classList.remove('fill');paint();beep(300,.05)}return}
-  if(col<5&&/^[A-Z]$/.test(k)){grid[row][col]=k;const t=rowEl().children[col];col++;paint();t.classList.remove('fill');void t.offsetWidth;t.classList.add('fill');beep(420+col*40,.06)}
+  if(col<len&&/^[A-ZÑ]$/.test(k)){grid[row][col]=k;const t=rowEl().children[col];col++;paint();t.classList.remove('fill');void t.offsetWidth;t.classList.add('fill');beep(420+col*40,.06)}
 }
-function evalG(g,w){const res=Array(5).fill('no'),cnt={};for(let i=0;i<5;i++){if(g[i]===w[i])res[i]='ok';else cnt[w[i]]=(cnt[w[i]]||0)+1}for(let i=0;i<5;i++){if(res[i]!=='ok'&&cnt[g[i]]>0){res[i]='mid';cnt[g[i]]--}}return res}
+
+function evalG(g,w){
+  const len=w.length;
+  const res=Array(len).fill('no'),cnt={};
+  for(let i=0;i<len;i++){if(g[i]===w[i])res[i]='ok';else cnt[w[i]]=(cnt[w[i]]||0)+1}
+  for(let i=0;i<len;i++){if(res[i]!=='ok'&&cnt[g[i]]>0){res[i]='mid';cnt[g[i]]--}}
+  return res;
+}
+
 function submit(){
-  if(col<5){const r=rowEl();r.classList.add('shake');setTimeout(()=>r.classList.remove('shake'),450);toast('Faltan letras');sem('r');setTimeout(()=>sem(row>=4?'y':'g'),700);beep(150,.2,'sawtooth');return}
+  const len=target[0].length;
+  if(col<len){const r=rowEl();r.classList.add('shake');setTimeout(()=>r.classList.remove('shake'),450);toast('Faltan letras');sem('r');setTimeout(()=>sem(row>=4?'y':'g'),700);beep(150,.2,'sawtooth');return}
   locked=true;const g=grid[row],w=target[0],res=evalG(g,w),ts=rowEl().children;
   res.forEach((s,i)=>setTimeout(()=>{ts[i].classList.add('flip');beep(300+i*70,.12,'triangle');setTimeout(()=>{ts[i].classList.remove('ghost');ts[i].classList.add(s);colorKey(g[i],s)},300)},i*320));
   setTimeout(()=>{
@@ -207,10 +260,12 @@ function submit(){
     if(row>=6)return end(false);
     if(row>=4)sem('y');locked=false;paint();
     if(row===5)toast('¡Último intento!');
-  },5*320+400);
+  },len*320+400);
 }
+
 function colorKey(l,s){const k=document.querySelector('.k[data-k="'+l+'"]');if(!k||k.classList.contains('ok'))return;if(k.classList.contains('mid')&&s!=='ok')return;k.classList.remove('mid','no');k.classList.add(s)}
 function confetti(m=70){const cs=['#ffc928','#d62828','#1f8a4c','#2f6fed','#fff'];for(let i=0;i<m;i++){const e=document.createElement('div');e.className='cf';e.textContent=Math.random()<.2?['🚦','🐄','🏁','⭐'][i%4]:'';if(!e.textContent){e.style.width='9px';e.style.height='14px';e.style.background=cs[i%5]}e.style.left=Math.random()*100+'vw';e.style.animationDuration=(2+Math.random()*2.5)+'s';e.style.animationDelay=Math.random()*.6+'s';document.body.appendChild(e);setTimeout(()=>e.remove(),5500)}}
+
 function end(won){
   over=true;locked=true;const t=target,ti=wi%teams.length,nn=row+1;let gain=0;
   if(won){
@@ -228,21 +283,29 @@ function end(won){
     $('nx').onclick=()=>{closeM();wi++;$('car').style.left='calc('+(wi/TOTAL)+' * (100% - 46px) + 6px)';if(wi>=TOTAL)results();else nextWord()};
   },won?1300:1600);
 }
+
 function results(){
   finished=true;renderTeams();sem('g');
   const s=teams.slice().sort((a,b)=>b.p-a.p),top=s[0].p,m=['🥇','🥈','🥉'];
   const winners=s.filter(t=>t.p===top);
   let h='<h2>'+(teams.length===1?'¡Recorrido completo!':winners.length>1?'¡Empate en el podio!':'¡Ganó '+s[0].n+'!')+'</h2>';
   s.forEach((t,i)=>{h+='<div class="rk" style="--c:'+t.c+';animation-delay:'+(i*.25)+'s"><em>'+(teams.length>1?m[s.findIndex(x=>x.p===t.p)]:'🏁')+'</em><span>'+t.n+'</span><b>'+t.p+'</b></div>'});
-  h+='<p>Maneja con prudencia: respeta las señales, los límites de velocidad y descansa en carretera.</p><button class="btn" id="again">🔁 Jugar de nuevo</button>';
+  h+='<p>Maneja con precaución en Puerto Escondido: respeta las señales, cuida a los peatones y conduce con responsabilidad.</p><button class="btn" id="again">🔁 Jugar de nuevo</button>';
   modal(h);confetti(110);[523,659,784,1047].forEach((f,i)=>setTimeout(()=>beep(f,.25,'triangle',.09),i*160));
   $('again').onclick=()=>{$('car').style.left='6px';setup()};
 }
+
 $('hintBtn').onclick=()=>{
   if(over||locked)return;
+  const len=target[0].length;
   if(hints===0){hints=1;$('hint').textContent='💡 '+target[1]+' (−5 pts)';$('hintBtn').textContent='🔤 Revelar letra';beep(700,.15,'sine')}
-  else{const free=[0,1,2,3,4].filter(i=>!rev.includes(i));if(free.length>1){rev.push(free[Math.floor(Math.random()*free.length)]);hints++;paint();beep(800,.15,'sine');toast('Letra revelada (−5 pts)')}if(free.length<=2)$('hintBtn').disabled=true}
+  else{
+    const free=Array.from({length:len},(_,i)=>i).filter(i=>!rev.includes(i));
+    if(free.length>1){rev.push(free[Math.floor(Math.random()*free.length)]);hints++;paint();beep(800,.15,'sine');toast('Letra revelada (−5 pts)')}
+    if(free.length<=2)$('hintBtn').disabled=true;
+  }
 };
+
 $('snd').onclick=()=>{mute=!mute;snd();beep(600,.1)};
 $('proj').onclick=()=>{
   const on=document.body.classList.toggle('proj');
@@ -251,8 +314,8 @@ $('proj').onclick=()=>{
   toast(on?'Modo proyección activado':'Modo normal');
 };
 document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&document.body.classList.contains('proj')){document.body.classList.remove('proj');$('proj').textContent='📽️ Proyectar'}});
-document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT'||e.ctrlKey||e.metaKey||e.altKey)return;const k=e.key;if(k==='Enter'){const b=$('rdy')||$('nx')||$('go')||$('again');if($('ov').classList.contains('show')&&b){b.click();return}press('ENTER')}else if(k==='Backspace')press('BACK');else if(/^[a-zA-Z]$/.test(k))press(k.toUpperCase())});
-snd();build();$('hint').textContent='Configura los equipos para comenzar.';setup();
+document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT'||e.ctrlKey||e.metaKey||e.altKey)return;const k=e.key;if(k==='Enter'){const b=$('rdy')||$('nx')||$('go')||$('again');if($('ov').classList.contains('show')&&b){b.click();return}press('ENTER')}else if(k==='Backspace')press('BACK');else if(/^[a-zA-ZñÑ]$/.test(k))press(k.toUpperCase())});
+snd();$('hint').textContent='Configura los equipos para comenzar.';setup();
 </script>
 </body>
 </html>
