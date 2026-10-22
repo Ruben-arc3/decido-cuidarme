@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f3efe3" />
+    <meta name="description" content="Adivina seis palabras de seguridad vial y señales comunes en Colombia. Juego de Wordle para 1 a 4 equipos." />
+    <title>Wordle vial colombiano · Decido Cuidarme</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Barlow:wght@500;700;800&display=swap" rel="stylesheet" />
+    <link rel="icon" href="../favicon.ico" sizes="any" />
+    <link rel="stylesheet" href="../css/pages/juegos/wordle-vial-colombia.css" />
+    <script src="../js/pages/juegos/wordle-vial-colombia.js" defer></script>
+  </head>
+  <body>
+    <main class="wordle-shell">
+      <header class="wordle-header">
+        <div class="sem" aria-label="Semáforo de la partida"><i class="light-red"></i><i class="light-yellow"></i><i class="light-green is-on"></i></div>
+        <h1 class="arcade-title" id="page-title">WORDLE VIAL</h1>
+        <div class="header-actions">
+          <button class="text-button sound-button" id="sound-toggle" type="button" aria-label="Activar o desactivar sonido">🔊</button>
+          <button class="text-button projection-button" id="projection-mode" type="button">⛶</button>
+        </div>
+      </header>
+
+      <section class="wordle-intro" aria-labelledby="page-title">
+        <p class="eyebrow">JUEGO DE PALABRAS · 6 RONDAS</p>
+        <h2>Wordle <span>vial</span></h2>
+        <p>Descifren palabras de seguridad vial y señales comunes en Colombia. Cada equipo juega por turnos: tienen seis intentos para resolver cada palabra.</p>
+      </section>
+
+      <section class="setup-panel" id="setup-panel" aria-labelledby="setup-title">
+        <div class="panel-heading">
+          <div><p class="eyebrow">ANTES DE EMPEZAR</p><h2 id="setup-title">Armen sus equipos</h2></div>
+          <span class="round-count">1–4 equipos</span>
+        </div>
+        <label class="team-count-label" for="team-count">Cantidad de equipos</label>
+        <select id="team-count" name="team-count">
+          <option value="1">1 equipo</option>
+          <option value="2" selected>2 equipos</option>
+          <option value="3">3 equipos</option>
+          <option value="4">4 equipos</option>
+        </select>
+        <div class="team-name-list" id="team-name-list"></div>
+        <button class="primary-button" id="start-game" type="button">Comenzar partida <span aria-hidden="true">→</span></button>
+      </section>
+
+      <section class="game-panel" id="game-panel" hidden aria-label="Partida Wordle vial">
+        <div class="game-toolbar">
+          <p class="round-count" id="round-label">Palabra 1 de 6</p>
+          <div class="toolbar-actions"><button class="text-button" id="restart-game" type="button">↻ Nueva</button></div>
+        </div>
+        <div class="scoreboard" id="scoreboard" aria-label="Puntaje por equipo"></div>
+        <div class="road" id="road" aria-label="Progreso de la partida"><div class="road-car" id="road-car" aria-hidden="true">🚗</div><span class="road-flag" aria-hidden="true">🏁</span></div>
+
+        <div class="puzzle-panel" id="puzzle-panel">
+          <p class="turn-indicator" id="turn-label"></p>
+          <div class="hint-controls"><button class="hint-button" id="reveal-letter" type="button">💡 Letra</button><p class="word-hint" id="word-hint"></p></div>
+          <p class="hint-progress" id="hint-progress" aria-live="polite">Letras reveladas: 0</p>
+          <div class="word-grid" id="word-grid" aria-label="Tablero de intentos"></div>
+          <form class="guess-form" id="guess-form">
+            <label class="visually-hidden" for="guess-input">Escribe tu palabra</label>
+            <input id="guess-input" name="guess" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="8" placeholder="TU PALABRA" />
+            <button class="primary-button" id="submit-guess" type="submit">Probar</button>
+          </form>
+          <div class="keyboard" id="keyboard" aria-label="Teclado en pantalla"></div>
+          <p class="game-message" id="game-message" role="status" aria-live="polite">Escribe una palabra y presiona Probar.</p>
+          <button class="primary-button next-button" id="next-round" type="button" hidden>Siguiente palabra <span aria-hidden="true">→</span></button>
+        </div>
+      </section>
+
+      <aside class="how-to-play">
+        <h2>¿Cómo se juega?</h2>
+        <ul>
+          <li>Las casillas verdes indican una letra correcta en el lugar correcto.</li>
+          <li>Las amarillas indican una letra que sí está en la palabra, pero va en otra posición.</li>
+          <li>Las grises no aparecen en la respuesta. Las tildes no cuentan como una letra distinta.</li>
+          <li>Los equipos se turnan en cada intento. Resolver antes da más puntos.</li>
+        </ul>
+        <p class="source-note">Actividad educativa inspirada en conceptos del <a href="https://mintransporte.gov.co/info/mintransporte/media/anexos/7DAc6WQN.pdf" target="_blank" rel="noopener noreferrer">Manual de Señalización Vial de Colombia, adoptado en 2024 ↗</a>. En la vía real, obedece siempre las señales y las indicaciones de las autoridades.</p>
+      </aside>
+
+      <footer class="wordle-footer"><a href="../index.html">Decido Cuidarme</a><span>Practiquen en equipo y cuídense en cada trayecto.</span></footer>
+    </main>
+  </body>
+</html>

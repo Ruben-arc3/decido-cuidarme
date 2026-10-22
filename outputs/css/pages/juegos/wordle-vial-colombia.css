@@ -1,0 +1,69 @@
+:root{--bg:#f3efe3;--fg:#1d2024;--card:#fffdf7;--line:#c9c3b0;--tile:#fff;--ok:#1f8a4c;--mid:#f2b705;--no:#6b7078;--road:#2a2d33;--accent:#ffc928;--stop:#d62828;--key:#ddd7c4;--muted:#62635f;color-scheme:light}
+*{box-sizing:border-box}
+body{min-height:100vh;margin:0;background:var(--bg);color:var(--fg);font-family:Barlow,system-ui,sans-serif;display:flex;justify-content:center;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+[hidden]{display:none!important}
+.wordle-shell{width:100%;max-width:460px;padding:10px 12px 18px;display:flex;flex-direction:column;gap:10px}
+.wordle-header{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.sem{display:flex;flex-direction:column;gap:3px;background:#111;padding:5px;border-radius:8px;flex:none}
+.sem i{width:11px;height:11px;border-radius:50%;background:#444;transition:.3s}
+.sem i.light-red.is-on{background:#ff3b30;box-shadow:0 0 10px #ff3b30}.sem i.light-yellow.is-on{background:#ffd60a;box-shadow:0 0 10px #ffd60a}.sem i.light-green.is-on{background:#30d158;box-shadow:0 0 10px #30d158}
+.arcade-title{margin:0;padding:5px 12px;border:3px solid #111;border-radius:8px;background:var(--accent);color:#111;font:800 30px/1 'Barlow Condensed',Impact,sans-serif;transform:rotate(-1.5deg);white-space:nowrap}
+.header-actions{display:flex;align-items:center;gap:5px}
+.text-button{border:0;background:transparent;color:var(--fg);font:800 12px Barlow,sans-serif;cursor:pointer}
+.sound-button,.projection-button{width:34px;height:34px;padding:0;border:2px solid var(--line);border-radius:8px;background:var(--card);font-size:17px}
+.wordle-intro{display:none}
+.setup-panel,.game-panel,.how-to-play{border:2px solid var(--line);border-radius:10px;background:var(--card);box-shadow:0 2px 0 #0000000c}
+.setup-panel{padding:15px}
+.panel-heading,.game-toolbar{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.panel-heading h2{margin:0;font:800 25px/1 'Barlow Condensed',sans-serif}
+.eyebrow{margin:0 0 4px;color:#6d5f39;font-size:9px;font-weight:800;letter-spacing:.12em}
+.round-count{min-width:52px;margin:0;padding:4px 8px;border:2px solid var(--line);border-radius:8px;background:var(--card);font-size:12px;font-weight:800;text-align:center}
+.team-count-label,.team-name-field{display:block;color:#454640;font-size:12px;font-weight:700}
+#team-count,.team-name-field input,#guess-input{width:100%;min-height:40px;margin-top:5px;padding:8px 10px;border:2px solid var(--line);border-radius:7px;background:var(--tile);color:var(--fg);font:600 14px Barlow,sans-serif}
+#team-count{margin-bottom:10px}.team-name-list{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.primary-button,.hint-button{display:inline-flex;min-height:42px;align-items:center;justify-content:center;gap:7px;padding:5px 12px;border:3px solid #111;border-radius:8px;background:var(--accent);color:#111;font:800 18px/1 'Barlow Condensed',sans-serif;cursor:pointer;transition:transform .12s}
+.primary-button:hover:not(:disabled),.hint-button:hover:not(:disabled){transform:translateY(-2px)}.primary-button:active:not(:disabled),.hint-button:active:not(:disabled){transform:scale(.94)}.primary-button:disabled,.hint-button:disabled{opacity:.45;cursor:default}
+#start-game{margin-top:12px}
+.game-panel{padding:8px 9px 10px;border:0;border-radius:0;background:transparent;box-shadow:none}
+.game-toolbar{margin-bottom:7px}.toolbar-actions{display:flex;gap:6px;align-items:center}.game-toolbar .text-button{padding:5px 7px;border:2px solid var(--line);border-radius:7px;background:var(--card)}
+.scoreboard{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;margin:0 0 8px}
+.score-card{display:flex;min-width:54px;align-items:center;justify-content:center;gap:5px;padding:4px 8px;border:2px solid var(--line);border-radius:8px;background:var(--card);text-align:center}
+.score-card.is-active{border-color:#111;background:#fff0b2;box-shadow:0 0 0 1px #111}.score-card span{max-width:88px;overflow:hidden;font-size:11px;font-weight:700;text-overflow:ellipsis;white-space:nowrap}.score-card strong{color:#111;font:800 20px/1 'Barlow Condensed',sans-serif}.score-card small{display:none}
+.road{position:relative;height:50px;overflow:hidden;border:2px solid #111;border-radius:8px;background:var(--road)}
+.road::before{position:absolute;top:50%;left:0;right:0;height:4px;margin-top:-2px;background:repeating-linear-gradient(90deg,#ffd60a 0 22px,transparent 22px 44px);content:"";animation:lane 1s linear infinite}
+@keyframes lane{to{background-position:-44px 0}}
+.road-car{position:absolute;z-index:1;top:6px;left:27px;font-size:32px;filter:drop-shadow(0 3px 2px #0008);transition:left .8s cubic-bezier(.3,1.4,.5,1);transform:scaleX(-1)}
+.road-car.is-crash{animation:crash .9s forwards}@keyframes crash{20%{transform:scaleX(-1) translateX(-12px) rotate(-30deg)}60%{transform:scaleX(-1) translateY(-12px) rotate(160deg)}100%{transform:scaleX(-1) rotate(380deg);opacity:.7}}
+.road-flag{position:absolute;right:7px;top:5px;font-size:28px}
+.puzzle-panel{width:100%;margin:0 auto;text-align:center}
+.turn-indicator{margin:0 0 6px;color:#394a3b;font-size:12px;font-weight:800}
+.hint-controls{display:flex;align-items:stretch;gap:8px;margin-bottom:5px}.hint-button{flex:none;min-height:44px;padding:5px 10px;font-size:17px}
+.word-hint{flex:1;min-height:44px;display:flex;align-items:center;margin:0;padding:6px 9px;border:2px dashed var(--line);border-radius:8px;background:var(--card);font-size:12px;font-weight:500;text-align:left}
+.hint-progress{min-height:14px;margin:0 0 4px;color:#62635f;font-size:10px;text-align:center}
+.word-grid{display:grid;gap:6px;width:100%;max-width:340px;margin:2px auto 9px;perspective:900px}
+.word-row{display:grid;grid-template-columns:repeat(var(--word-length),minmax(0,1fr));gap:6px}
+.word-tile{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border:3px solid var(--line);border-radius:8px;background:var(--tile);font:800 clamp(24px,8vw,40px)/1 'Barlow Condensed',sans-serif;text-transform:uppercase;user-select:none;backface-visibility:hidden;transform-style:preserve-3d}
+.word-tile.is-revealed{border-color:#bbb18d;border-style:dashed;color:#777}
+.word-tile.is-correct,.word-tile.is-present,.word-tile.is-absent{border-color:transparent;color:#fff}
+.word-tile.is-correct{--flip-color:var(--ok);background:var(--ok)}.word-tile.is-present{--flip-color:var(--mid);background:var(--mid);color:#111}.word-tile.is-absent{--flip-color:var(--no);background:var(--no)}
+.word-tile.is-scored{animation:flip .6s ease both;animation-delay:var(--flip-delay,0ms)}@keyframes flip{0%{transform:rotateX(0);background:var(--tile)}48%{transform:rotateX(90deg);background:var(--tile)}52%{transform:rotateX(-90deg);background:var(--flip-color)}100%{transform:rotateX(0);background:var(--flip-color)}}
+.guess-form{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);clip-path:inset(50%);white-space:nowrap}
+.keyboard{display:flex;flex-direction:column;gap:6px;margin-top:4px}.keyboard-row{display:flex;justify-content:center;gap:5px}
+.keyboard-key{flex:1;max-width:42px;height:48px;padding:0;border:0;border-radius:7px;background:var(--key);color:var(--fg);font:700 16px Barlow,sans-serif;cursor:pointer;transition:transform .1s,background .3s}
+.keyboard-key:active{transform:scale(.88)}.keyboard-key.key-wide{flex:1.6;max-width:66px;font-size:12px}
+.keyboard-key.is-correct{background:var(--ok);color:#fff}.keyboard-key.is-present{background:var(--mid);color:#111}.keyboard-key.is-absent{background:var(--no);color:#fff;opacity:.7}
+.game-message{min-height:20px;margin:7px 0 0;color:#51514c;font-size:11px;font-weight:700}.next-button{display:flex;margin:7px auto 0}
+.how-to-play{padding:13px 15px}.how-to-play h2{margin:0 0 6px;font:800 19px 'Barlow Condensed',sans-serif}.how-to-play ul{margin:0;padding-left:17px;color:#50514b;font-size:10px}.how-to-play li+li{margin-top:3px}
+.source-note{margin:9px 0 0;padding-top:8px;border-top:1px solid var(--line);color:#6b6a61;font-size:9px}.source-note a{color:#1e6b3c;font-weight:700}
+.wordle-footer{display:flex;justify-content:space-between;gap:9px;padding:9px 0 0;border-top:1px solid var(--line);color:#6b6a61;font-size:9px}.wordle-footer a{color:#343a3d;font-weight:800;text-decoration:none}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);clip-path:inset(50%);white-space:nowrap}:focus-visible{outline:3px solid #245a38;outline-offset:2px}
+.confetti-piece{position:fixed;z-index:40;top:-14px;width:9px;height:14px;pointer-events:none;background:var(--confetti-color);animation:fall 1.8s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(650deg);opacity:.7}}
+body.projection-mode{min-height:100vh;background:var(--bg)}body.projection-mode .wordle-shell{width:min(100%,1100px);max-width:none;min-height:100vh;padding:2vh 3vw;gap:1.3vh}
+body.projection-mode .wordle-intro,body.projection-mode .setup-panel,body.projection-mode .how-to-play,body.projection-mode .wordle-footer{display:none!important}
+body.projection-mode .arcade-title{font-size:38px}body.projection-mode .game-panel{display:flex;flex:1;flex-direction:column;justify-content:center;padding:1vh 2vw}
+body.projection-mode .scoreboard{margin-bottom:1vh}.score-card span{max-width:140px}body.projection-mode .road{height:58px}
+body.projection-mode .turn-indicator{font-size:18px}body.projection-mode .word-hint{font-size:17px}body.projection-mode .word-grid{width:min(80vw,620px);max-width:none;margin:1vh auto 1.5vh}
+body.projection-mode .word-row{gap:9px}body.projection-mode .word-tile{border-width:4px;font-size:clamp(38px,7vh,60px)}body.projection-mode .keyboard-key{height:58px;max-width:62px;font-size:20px}
+body.projection-mode .game-message{font-size:16px}body.projection-mode .hint-button{font-size:20px}
+@media(max-width:560px){.arcade-title{font-size:27px;padding:5px 9px}.score-card span{max-width:66px}.game-panel{padding:6px 4px}.word-grid{max-width:330px}.word-row,.word-grid{gap:5px}.word-tile{border-width:2px;border-radius:7px;font-size:clamp(22px,8vw,36px)}.keyboard-key{height:46px;max-width:35px;font-size:15px}.keyboard-row{gap:4px}.keyboard-key.key-wide{max-width:57px}.team-name-list{grid-template-columns:1fr}.how-to-play{padding:11px}.wordle-footer{flex-direction:column;gap:4px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}

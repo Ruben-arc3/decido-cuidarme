@@ -1,5 +1,5 @@
 // PWA offline layer: precaches local resources and falls back to cached copies when offline.
-const CACHE = "decido-cuidarme-offline-v76";
+const CACHE = "decido-cuidarme-offline-v80";
 const CORE = [
   "./css/vicente-diaz/vicente-diaz-chat.css",
   "./instituciones/vicente-diaz/vicente-habilidad-verificar-informacion.html",
@@ -96,6 +96,7 @@ const CORE = [
   "./juegos/ruta-al-futuro.html",
   "./juegos/rutas-de-luz.html",
   "./juegos/una-red-de-apoyo.html",
+  "./juegos/wordle-vial-colombia.html",
   "./manifest-vicente-diaz.webmanifest",
   "./manifest-villa-esther.webmanifest",
   "./manifest.webmanifest",
@@ -157,6 +158,7 @@ const CORE = [
   "./css/pages/juegos/rutas-de-luz.css",
   "./css/pages/juegos/una-red-de-apoyo-inline.css",
   "./css/pages/juegos/una-red-de-apoyo.css",
+  "./css/pages/juegos/wordle-vial-colombia.css",
   "./css/pages/recursos/portal-prevencion-inline.css",
   "./css/pages/recursos/portal-prevencion.css",
   "./js/pages/instituciones/institucion-vicente-diaz.js",
@@ -188,6 +190,7 @@ const CORE = [
   "./js/pages/juegos/rutas-de-luz.js",
   "./js/pages/juegos/una-red-de-apoyo-actions.js",
   "./js/pages/juegos/una-red-de-apoyo.js",
+  "./js/pages/juegos/wordle-vial-colombia.js",
   "./js/pages/recursos/portal-prevencion-actions.js",
   "./js/pages/recursos/portal-prevencion.js",
   "./js/register-service-worker.js",
