@@ -81,19 +81,71 @@ h1{font-family:'Barlow Condensed',Impact,sans-serif;font-weight:800;font-size:24
 .cf{position:fixed;top:-20px;z-index:70;pointer-events:none;animation:fall linear forwards}
 @keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
 body.shk{animation:shake .5s}
-/* modo proyeccion */
-body.proj .app{max-width:none;display:grid;grid-template-columns:min(44vh,38vw) 1fr;grid-template-rows:auto auto auto auto 1fr;grid-template-areas:"hd hd" "tm tm" "rd rd" "bd ps" "bd kb";gap:12px 3vw;padding:14px 3vw;align-content:start}
-body.proj .board{max-width:none;gap:8px}body.proj .row{gap:8px}
-body.proj .t{font-size:clamp(16px,3.5vh,42px)}
-body.proj h1{font-size:clamp(26px,4.5vh,46px)}
-body.proj .road{height:clamp(54px,8vh,84px)}body.proj .car{font-size:clamp(38px,6vh,60px)}
-body.proj .tm{font-size:clamp(16px,2.6vh,28px);padding:6px 14px}body.proj .tm b{font-size:clamp(28px,4.4vh,48px)}
-body.proj .hint{font-size:clamp(18px,3vh,32px);padding:12px 16px}
-body.proj .btn{font-size:clamp(18px,2.8vh,30px)}
-body.proj .kb{align-self:end}
-body.proj .k{max-width:none;height:clamp(44px,8vh,84px);font-size:clamp(18px,3vh,30px)}
-body.proj .k.w{max-width:none;font-size:clamp(13px,2.2vh,22px)}
-body.proj .modal{max-width:640px;zoom:1.4}
+
+/* --- MODO PROYECCIÓN OPTIMIZADO PARA AULAS / PANTALLAS GRANDES --- */
+body.proj .app{
+  max-width: none;
+  width: 96vw;
+  height: 94vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas: 
+    "hd hd"
+    "tm rd"
+    "bd ps_kb";
+  gap: 16px 3vw;
+  padding: 12px 2vw;
+  align-content: start;
+}
+body.proj header{ grid-area: hd; }
+body.proj .teams{ grid-area: tm; align-self: center; }
+body.proj .road{ grid-area: rd; height: 60px; }
+body.proj .board{ 
+  grid-area: bd; 
+  max-width: 100%; 
+  width: 100%; 
+  gap: 8px; 
+  align-self: center;
+}
+body.proj .row{ gap: 6px; }
+body.proj .t{ 
+  font-size: clamp(20px, 3.8vw, 42px); 
+  border-width: 3.5px; 
+  font-weight: 800;
+  border-radius: 8px;
+}
+body.proj .ps_kb_container{
+  grid-area: ps_kb;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+body.proj h1{ font-size: clamp(28px, 3.2vw, 48px); padding: 6px 16px; }
+body.proj .car{ font-size: 42px; }
+body.proj .tm{ font-size: clamp(18px, 1.8vw, 26px); padding: 8px 16px; border-width: 3px; }
+body.proj .tm b{ font-size: clamp(30px, 3vw, 46px); }
+body.proj .pistas{ width: 100%; }
+body.proj .hint{ font-size: clamp(18px, 1.9vw, 28px); padding: 12px 18px; border-width: 3px; font-weight: 700; }
+body.proj .btn{ font-size: clamp(20px, 2vw, 30px); border-width: 3px; padding: 8px 16px; }
+body.proj .kb{ gap: 8px; }
+body.proj .kr{ gap: 6px; }
+body.proj .k{ 
+  max-width: none; 
+  height: clamp(52px, 7vh, 76px); 
+  font-size: clamp(20px, 2.2vw, 32px); 
+  font-weight: 800; 
+  border-radius: 8px; 
+  box-shadow: 0 4px 0 #0003;
+}
+body.proj .k.w{ max-width: none; font-size: clamp(14px, 1.5vw, 22px); }
+body.proj .modal{ max-width: 720px; padding: 30px; border-width: 6px; }
+body.proj .modal h2{ font-size: 46px; }
+body.proj .modal .w{ font-size: 42px; letter-spacing: 4px; }
+body.proj .modal p{ font-size: 22px; }
+body.proj .tip{ font-size: 22px; padding: 12px 16px; }
+
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition-duration:.01s!important}}
 </style>
 </head>
@@ -106,12 +158,14 @@ body.proj .modal{max-width:640px;zoom:1.4}
   </header>
   <div class="teams" id="teams"></div>
   <div class="road" id="road"><div class="car" id="car">🚗</div><div class="boom" id="boom">💥</div><div class="flag">🏁</div></div>
-  <div class="pistas">
-    <button class="btn" id="hintBtn">💡 Pista</button>
-    <div class="hint" id="hint"></div>
-  </div>
   <div class="board" id="board"></div>
-  <div class="kb" id="kb"></div>
+  <div class="ps_kb_container" id="ps_kb_container">
+    <div class="pistas">
+      <button class="btn" id="hintBtn">💡 Pista</button>
+      <div class="hint" id="hint"></div>
+    </div>
+    <div class="kb" id="kb"></div>
+  </div>
 </div>
 <div class="toast" id="toast"></div>
 <div class="ov" id="ov"><div class="modal" id="modal"></div></div>
@@ -166,14 +220,13 @@ function setup(){
   const names=teams.length===n?teams.map(t=>t.n):[];
   let h='<h2>¿Cuántos equipos juegan?</h2><div class="nsel">'+[1,2,3].map(k=>'<button class="btn'+(k===n?' on':'')+'" data-n="'+k+'">'+k+'</button>').join('')+'</div>';
   for(let i=0;i<n;i++)h+='<div class="nm" style="--c:'+COLORS[i]+'"><i></i><input maxlength="14" value="'+(names[i]||'Equipo '+(i+1))+'" aria-label="Nombre del equipo '+(i+1)+'"></div>';
-  h+='<p>12 palabras de seguridad vial (4 fáciles + 8 difíciles aleatorias). ¡A partir del nivel 5 el reto se vuelve más difícil!</p><button class="btn" id="go">🚦 ¡A la carretera!</button>';
+  h+='<p>12 palabras de seguridad vial (4 fáciles + 8 difíciles aleatorias).</p><button class="btn" id="go">🚦 ¡A la carretera!</button>';
   modal(h);
   document.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>{n=+b.dataset.n;beep(500,.08);setup()});
   $('go').onclick=()=>{
     const ins=[...document.querySelectorAll('.nm input')];
     teams=ins.map((x,i)=>({n:x.value.trim()||'Equipo '+(i+1),c:COLORS[i],p:0}));
     
-    // Seleccionar 4 fáciles al azar y 8 difíciles al azar
     const shuffledEasy = EASY_WORDS.slice().sort(() => Math.random() - 0.5).slice(0, 4);
     const shuffledHard = HARD_WORDS.slice().sort(() => Math.random() - 0.5).slice(0, 8);
     words = [...shuffledEasy, ...shuffledHard];
