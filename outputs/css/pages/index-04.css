@@ -647,3 +647,57 @@ body {
     transition: none;
   }
 }
+
+/* Hero visual inspired by the shared sketch: a curious face peeks over a message card. */
+.hero-panel {
+  min-height: 420px;
+  padding: 0 20px 20px;
+  border: 1px solid #d9ddd8;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 16px 40px #26372812;
+  color: #18231f;
+}
+.hero-panel:after { display: none; }
+.hero-panel-title { display: none; }
+.platform-illustration {
+  top: 5px;
+  right: 50%;
+  bottom: auto;
+  width: min(100%, 430px);
+  max-height: 310px;
+  opacity: 1;
+  transform: translateX(50%);
+  filter: none;
+}
+.hero-shortcuts {
+  position: relative;
+  gap: 7px;
+  margin: 255px 0 0;
+}
+.hero-shortcuts a {
+  padding: 10px 12px;
+  border: 1px solid #e1e5df;
+  border-radius: 9px;
+  background: #fbfcfa;
+  color: #34423a;
+  font-size: 11px;
+  backdrop-filter: none;
+}
+.hero-shortcuts a:hover { background: #f1f6f1; }
+.hero-shortcuts a span { color: #148875; }
+@media (max-width: 900px) {
+  .hero-panel { min-height: 395px; }
+  .hero-shortcuts { margin-top: 238px; }
+}
+@media (max-width: 620px) {
+  .hero-panel { min-height: 360px; padding: 0 14px 15px; }
+  .platform-illustration { top: 0; width: min(100%, 405px); }
+  .hero-shortcuts { margin-top: 218px; }
+  .hero-shortcuts a { padding: 8px 10px; }
+}
+@keyframes platform-float-centered {
+  0%, 100% { transform: translate(50%, 0); }
+  50% { transform: translate(50%, -7px); }
+}
+.platform-illustration { animation: platform-float-centered 5s ease-in-out infinite; }

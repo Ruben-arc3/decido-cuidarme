@@ -1,9 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 360" fill="none">
-  <title>Estudiantes aprendiendo y cuidándose en comunidad</title>
-  <circle cx="270" cy="180" r="154" fill="#B8F1E3" opacity=".2"/>
-  <circle cx="83" cy="90" r="23" fill="#FFD66D"/><path d="m83 52 5 19 18-9-10 17 19 5-19 5 10 17-18-9-5 19-5-19-18 9 10-17-19-5 19-5-10-17 18 9 5-19Z" fill="#FFD66D"/>
-  <path d="M112 284c4-61 31-97 70-97s65 36 69 97" fill="#F47769"/><circle cx="182" cy="151" r="43" fill="#D89465"/><path d="M140 150c-3-36 15-59 44-59 25 0 43 20 42 50-12-5-22-15-29-28-12 19-32 30-57 37Z" fill="#233B54"/><path d="M164 157h3m29 0h3" stroke="#233B54" stroke-width="5" stroke-linecap="round"/><path d="M171 175c7 6 16 6 23 0" stroke="#9B5146" stroke-width="4" stroke-linecap="round"/>
-  <path d="M278 284c3-61 29-97 69-97s67 36 70 97" fill="#4F9C8D"/><circle cx="347" cy="151" r="43" fill="#E9B783"/><path d="M304 148c-1-35 15-58 44-58 30 0 47 24 42 61-18-8-31-21-39-39-10 19-25 31-47 36Z" fill="#4D3541"/><path d="M329 157h3m29 0h3" stroke="#233B54" stroke-width="5" stroke-linecap="round"/><path d="M336 175c7 6 16 6 23 0" stroke="#9B5146" stroke-width="4" stroke-linecap="round"/>
-  <path d="M180 232c23-18 49-18 73 0l19 48H161l19-48Z" fill="#FFF4D6" stroke="#D9E7DD" stroke-width="4"/><path d="M271 231c24-18 50-18 73 0l20 49h-111l18-49Z" fill="#FFF4D6" stroke="#D9E7DD" stroke-width="4"/><path d="M270 235v44" stroke="#D3B86E" stroke-width="4"/><path d="M196 255h52m43 0h51" stroke="#74B7A6" stroke-width="4" stroke-linecap="round"/><path d="M82 285h356" stroke="#B5E3D7" stroke-width="8" stroke-linecap="round"/>
-  <path d="M437 120c0-18 14-32 32-32s32 14 32 32c0 27-32 49-32 49s-32-22-32-49Z" fill="#FFD66D"/><path d="M456 120h26m-13-13v26" stroke="#23465B" stroke-width="5" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 360" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Un personaje asoma sobre una tarjeta de actividades</title>
+  <desc id="desc">Ilustración lineal de una cara curiosa encima de una ventana con actividad nueva.</desc>
+  <defs>
+    <filter id="shadow" x="24" y="94" width="472" height="266" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset dy="9"/>
+      <feGaussianBlur stdDeviation="10"/>
+      <feComposite in2="SourceAlpha" operator="out"/>
+      <feColorMatrix values="0 0 0 0 0.12 0 0 0 0 0.19 0 0 0 0 0.16 0 0 0 0.13 0"/>
+      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"/>
+      <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+    </filter>
+  </defs>
+  <g stroke="#20251f" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M211 146c-3-40 13-72 50-81 37-9 70 13 76 49 7 38-5 69-31 86-12 8-22 14-34 23l-3-41" fill="#fffdf8" stroke-width="4"/>
+    <path d="M224 110c-3-13 3-22 12-22 8 0 12 8 11 19M269 103c1-8 6-13 12-12 7 1 9 8 7 15" stroke-width="4"/>
+    <circle cx="237" cy="112" r="4" fill="#20251f" stroke="none"/>
+    <circle cx="281" cy="107" r="4" fill="#20251f" stroke="none"/>
+    <path d="m264 116-7 34 13-4M247 161c8 5 17 5 25 1M204 127c-9-1-13 5-12 13 1 8 6 12 14 11M329 115c8-2 13 3 14 11s-4 13-12 15" stroke-width="4"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="48" y="137" width="424" height="203" rx="14" fill="#fff" stroke="#d9ddd8" stroke-width="2"/>
+    <path d="M49 152c0-8 6-14 14-14h394c8 0 14 6 14 14v31H49v-31Z" fill="#fafbf9"/>
+    <path d="M49 183h422" stroke="#e2e5e0" stroke-width="2"/>
+    <circle cx="68" cy="160" r="4" fill="#e7e8e3"/><circle cx="82" cy="160" r="4" fill="#e7e8e3"/><circle cx="96" cy="160" r="4" fill="#e7e8e3"/>
+    <text x="312" y="164" fill="#54615a" font-family="Arial,sans-serif" font-size="11" font-weight="600">Compartir</text>
+    <path d="M377 156h14v11h-8l-4 4v-4h-2z" stroke="#68746d" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="m414 155 2.7 5.5 6.1.9-4.4 4.3 1 6-5.4-2.9-5.4 2.9 1-6-4.4-4.3 6.1-.9 2.7-5.5Z" stroke="#68746d" stroke-width="1.5" stroke-linejoin="round"/>
+    <circle cx="445" cy="160" r="1.5" fill="#68746d"/><circle cx="451" cy="160" r="1.5" fill="#68746d"/><circle cx="457" cy="160" r="1.5" fill="#68746d"/>
+    <circle cx="330" cy="153" r="10" fill="#df493e"/><text x="327" y="157" fill="#fff" font-family="Arial,sans-serif" font-size="10" font-weight="700">3</text>
+    <rect x="68" y="204" width="38" height="38" rx="12" fill="#f7dda0"/>
+    <path d="M78 232c1-7 4-11 9-11s8 4 9 11" fill="#d7795e"/><circle cx="87" cy="215" r="7" fill="#c98562"/><path d="M80 215c0-7 3-10 8-10s8 4 8 9c-4-1-6-3-8-6-2 4-4 6-8 7Z" fill="#33483d"/>
+    <text x="119" y="218" fill="#20251f" font-family="Arial,sans-serif" font-size="13" font-weight="700">Tu espacio para cuidarte</text>
+    <text x="119" y="237" fill="#768078" font-family="Arial,sans-serif" font-size="10">Ideas, juegos y personas que te acompañan.</text>
+    <rect x="68" y="261" width="177" height="52" rx="9" fill="#edf6f0"/>
+    <circle cx="88" cy="287" r="11" fill="#d5f0e1"/><path d="M83 287h10M88 282v10" stroke="#168875" stroke-width="2" stroke-linecap="round"/>
+    <text x="107" y="284" fill="#31483b" font-family="Arial,sans-serif" font-size="10" font-weight="700">Explora las campañas</text>
+    <text x="107" y="300" fill="#718078" font-family="Arial,sans-serif" font-size="9">Recursos para tu comunidad</text>
+    <rect x="260" y="261" width="190" height="52" rx="9" fill="#fff3d7"/>
+    <circle cx="281" cy="287" r="11" fill="#ffe5a1"/><path d="m278 282 7 5-7 5v-10Z" fill="#b77d16"/>
+    <text x="300" y="284" fill="#51442b" font-family="Arial,sans-serif" font-size="10" font-weight="700">Juega y aprende</text>
+    <text x="300" y="300" fill="#84775c" font-family="Arial,sans-serif" font-size="9">Actividades para hacer en equipo</text>
+  </g>
 </svg>
