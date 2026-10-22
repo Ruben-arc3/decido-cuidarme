@@ -43,3 +43,11 @@ Antes de crear cuentas de menores o guardar su progreso, la institución debe de
 ## 5. Compatibilidad con Cloudflare Pages
 
 `wrangler.jsonc` configura la carpeta estática `outputs`; `functions/api/aula.js` es el endpoint de Gemini. La carpeta `firebase-functions/` conserva las funciones de Firebase usadas por grupos y otras herramientas existentes. Firebase Hosting queda configurado como otra opción de publicación. La práctica local no depende de ninguno de los dos servicios.
+
+## 6. Publicar el contador de la página central
+
+El botón de buena vibra guarda un total compartido en Firestore, en `publicCounters/platformClicks`. Debe existir Firestore en el proyecto `camp2-93288`. El archivo `firestore.rules` autoriza leer ese total y aumentarlo de uno en uno sin iniciar sesión. Publicar a GitHub/Cloudflare actualiza la página, pero no publica las reglas de Firebase; cuando cambien las reglas, ejecútalas aparte desde la raíz del repositorio:
+
+```powershell
+npx firebase-tools deploy --only firestore:rules --project camp2-93288
+```

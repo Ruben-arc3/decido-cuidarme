@@ -9,4 +9,5 @@ export const firebaseConfig = {
   storageBucket: "camp2-93288.firebasestorage.app",
   measurementId: "G-ZBM5FJ4VG4",
 };
-export const recaptchaEnterpriseSiteKey = "REEMPLAZAR_SITE_KEY_RECAPTCHA_ENTERPRISE";
+// Optional: set this from Firebase App Check only when the project requires it.
+export const recaptchaEnterpriseSiteKey = "";

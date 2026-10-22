@@ -28,6 +28,16 @@ const json = (data, status = 200) =>
     headers: { "Cache-Control": "public, max-age=0, s-maxage=900, stale-while-revalidate=3600" },
   });
 
+async function readJson(response) {
+  const body = await response.text();
+  if (!body.trim()) return null;
+  try {
+    return JSON.parse(body);
+  } catch {
+    return null;
+  }
+}
+
 export async function onRequestGet({ request, env }) {
   const origin = request.headers.get("Origin");
   if (origin && origin !== new URL(request.url).origin)
@@ -64,7 +74,9 @@ export async function onRequestGet({ request, env }) {
 
   try {
     const response = await fetch(apiUrl, { cf: { cacheTtl: 900, cacheEverything: true } });
-    const payload = await response.json();
+    const payload = await readJson(response);
+    if (!payload)
+      return json({ error: "YouTube devolvió una respuesta vacía o no válida." }, 502);
     if (!response.ok) {
       const status = response.status === 403 ? 503 : 502;
       return json(
@@ -92,7 +104,9 @@ export async function onRequestGet({ request, env }) {
       const detailsResponse = await fetch(detailsUrl, {
         cf: { cacheTtl: 900, cacheEverything: true },
       });
-      const details = await detailsResponse.json();
+      const details = await readJson(detailsResponse);
+      if (!details)
+        return json({ error: "YouTube devolvió una respuesta vacía al verificar las duraciones." }, 502);
       if (!detailsResponse.ok)
         return json({ error: "No se pudieron verificar las duraciones de los videos." }, 502);
       durations = new Map(
@@ -129,7 +143,8 @@ export async function onRequestGet({ request, env }) {
       ];
     });
     return json({ videos });
-  } catch {
+  } catch (error) {
+    console.error("[api/youtube] Falló la consulta de videos", error);
     return json({ error: "No se pudo conectar con YouTube. Intenta de nuevo." }, 502);
   }
 }

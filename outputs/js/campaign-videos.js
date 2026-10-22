@@ -10,6 +10,16 @@ function showCampaignVideoStatus(grid, message) {
   grid.append(status);
 }
 
+async function readJsonResponse(response) {
+  const body = await response.text();
+  if (!body.trim()) return null;
+  try {
+    return JSON.parse(body);
+  } catch {
+    return null;
+  }
+}
+
 function createCampaignVideoCard(video) {
   const card = document.createElement("article");
   card.className = "video-card";
@@ -62,8 +72,17 @@ async function loadCampaignVideos(grid) {
     const response = await fetch(
       `/api/youtube?${new URLSearchParams({ tema: topic, maxSeconds: "300" })}`,
     );
-    const payload = await response.json();
-    if (!response.ok) throw new Error(payload.error || "No fue posible consultar YouTube.");
+    const payload = await readJsonResponse(response);
+    if (!response.ok) {
+      if (payload?.error) throw new Error(payload.error);
+      if (response.status === 404 || !response.headers.get("content-type")?.includes("json"))
+        throw new Error(
+          "El servidor local no tiene activa la búsqueda de videos. Usa Cloudflare Pages o inicia la vista local con Wrangler Pages y configura YOUTUBE_API_KEY.",
+        );
+      throw new Error("El servicio de videos respondió con un error. Intenta de nuevo más tarde.");
+    }
+    if (!payload || !Array.isArray(payload.videos))
+      throw new Error("El servicio de videos devolvió una respuesta vacía o no válida.");
 
     const videos = (payload.videos || []).filter(
       (video) => Number.isFinite(video.durationSeconds) && video.durationSeconds <= 300,
@@ -78,10 +97,11 @@ async function loadCampaignVideos(grid) {
 
     grid.replaceChildren(...videos.map(createCampaignVideoCard));
   } catch (error) {
-    showCampaignVideoStatus(
-      grid,
-      `${error.message} La búsqueda de videos requiere conexión a internet.`,
-    );
+    const message =
+      error instanceof TypeError
+        ? "No se pudo conectar con el servicio de videos. Revisa tu conexión a internet e intenta de nuevo."
+        : error.message || "No se pudo consultar el servicio de videos.";
+    showCampaignVideoStatus(grid, message);
   }
 }
 

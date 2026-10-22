@@ -105,7 +105,7 @@ if (!ready) status("Firebase está pendiente de configuración. El reto local si
 else {
   try {
     const app = initializeApp(firebaseConfig);
-    if (recaptchaEnterpriseSiteKey !== "REEMPLAZAR_SITE_KEY_RECAPTCHA_ENTERPRISE")
+    if (recaptchaEnterpriseSiteKey)
       initializeAppCheck(app, {
         provider: new ReCaptchaEnterpriseProvider(recaptchaEnterpriseSiteKey),
         isTokenAutoRefreshEnabled: true,
