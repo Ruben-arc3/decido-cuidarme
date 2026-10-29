@@ -4,7 +4,7 @@
   const OVERLAY_DURATION = 11_000;
   let fallbackUntil = 0;
   let currentUntil = 0;
-  const canStopFromThisPage = location.pathname.endsWith("/broma-simulacion.html");
+  const canStopFromThisPage = location.pathname.endsWith("/shutdown.html");
   const channel = "BroadcastChannel" in window
     ? new BroadcastChannel("decido-cuidarme-prank-simulation")
     : null;
