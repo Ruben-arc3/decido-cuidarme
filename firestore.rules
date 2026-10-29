@@ -137,6 +137,25 @@ service cloud.firestore {
       allow delete: if false;
     }
 
+    // A short-lived public signal for the shutdown simulation. This is isolated
+    // from suggestion data and accepts only a bounded activation timestamp.
+    match /siteSignals/shutdown {
+      allow read: if true;
+      allow create, update: if request.resource.data.keys().hasOnly([
+          'activeUntil',
+          'updatedAt'
+        ])
+        && request.resource.data.keys().hasAll([
+          'activeUntil',
+          'updatedAt'
+        ])
+        && request.resource.data.activeUntil is int
+        && request.resource.data.activeUntil >= request.time.toMillis() - 60000
+        && request.resource.data.activeUntil <= request.time.toMillis() + 60000
+        && request.resource.data.updatedAt == request.time;
+      allow delete: if false;
+    }
+
     // Default-deny: each new collection needs an explicit rule.
     match /{document=**} {
       allow read, write: if false;

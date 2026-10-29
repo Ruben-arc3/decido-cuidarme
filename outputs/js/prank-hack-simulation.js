@@ -82,7 +82,7 @@
 
   const globalSignalPromise = (async () => {
     const [{ firebaseConfig }, { initializeApp, getApps }, firestore] = await Promise.all([
-      import("/js/suggestion-firebase-config.js"),
+      import("/js/villa-esther/firebase-config.js"),
       import("https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js"),
       import("https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js"),
     ]);
