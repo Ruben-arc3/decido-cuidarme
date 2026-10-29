@@ -38,7 +38,7 @@
     button.addEventListener("click", async () => {
       if (isStandalone) return;
       if (!pendingInstall) {
-        say("El navegador aún no habilita la instalación para esta página.");
+        say("Este navegador aún no ofrece la instalación PWA para esta página.");
         return;
       }
 

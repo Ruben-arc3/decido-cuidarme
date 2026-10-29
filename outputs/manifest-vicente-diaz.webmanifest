@@ -6,6 +6,7 @@
   "lang": "es-CO",
   "start_url": "./instituciones/institucion-vicente-diaz.html?app=vicente-diaz",
   "scope": "./",
+  "display_override": ["standalone"],
   "display": "standalone",
   "background_color": "#f2f7f5",
   "theme_color": "#12364d",

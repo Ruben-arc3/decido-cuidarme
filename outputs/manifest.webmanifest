@@ -6,6 +6,7 @@
   "lang": "es-CO",
   "start_url": "./index.html?app=general",
   "scope": "./",
+  "display_override": ["standalone"],
   "display": "standalone",
   "background_color": "#f5f8f6",
   "theme_color": "#10243b",
