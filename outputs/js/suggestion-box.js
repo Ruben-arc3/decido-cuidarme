@@ -7,8 +7,10 @@ widget.innerHTML = `
   <dialog class="suggestion-dialog" id="suggestion-dialog" aria-labelledby="suggestion-title">
     <form class="suggestion-form" novalidate>
       <button class="suggestion-close" type="button" aria-label="Cerrar buzón">×</button>
-      <p class="suggestion-kicker">TU OPINIÓN AYUDA</p>
-      <h2 id="suggestion-title">¿Qué podemos mejorar?</h2>
+      <div class="suggestion-heading">
+        <span class="suggestion-heading-icon" aria-hidden="true">✳</span>
+        <div><p class="suggestion-kicker">BUZÓN DE SUGERENCIAS</p><h2 id="suggestion-title">Ayúdanos a mejorar</h2></div>
+      </div>
       <p class="suggestion-intro">Comparte una idea o cuéntanos si algo no funcionó. No necesitas crear una cuenta.</p>
       <label class="suggestion-field">Tipo de comentario
         <select name="category" required>
@@ -22,14 +24,22 @@ widget.innerHTML = `
         <textarea name="message" rows="5" minlength="10" maxlength="1200" required placeholder="Escribe aquí tu sugerencia…"></textarea>
       </label>
       <label class="suggestion-trap" aria-hidden="true">Deja este campo vacío<input name="website" tabindex="-1" autocomplete="off"></label>
-      <p class="suggestion-privacy">No incluyas nombres, teléfonos ni información personal. El comentario se guarda de forma privada para revisión del equipo.</p>
+      <p class="suggestion-privacy"><span aria-hidden="true">🔒</span> No incluyas nombres ni datos personales. Tu comentario se guarda de forma privada.</p>
       <p class="suggestion-status" data-suggestion-status role="status" aria-live="polite"></p>
-      <button class="suggestion-submit" type="submit">Enviar sugerencia</button>
+      <button class="suggestion-submit" type="submit"><span>Enviar sugerencia</span><span aria-hidden="true">→</span></button>
     </form>
+    <section class="suggestion-success" data-suggestion-success aria-labelledby="suggestion-success-title" tabindex="-1" hidden>
+      <span class="suggestion-success-icon" aria-hidden="true">✓</span>
+      <p class="suggestion-kicker">MENSAJE RECIBIDO</p>
+      <h2 id="suggestion-success-title" tabindex="-1">¡Gracias por compartir!</h2>
+      <p>Tu sugerencia quedó guardada. Nos ayudará a seguir mejorando Decido Cuidarme.</p>
+      <button class="suggestion-done" type="button">Listo</button>
+    </section>
   </dialog>`;
 document.body.append(widget);
 const dialog = widget.querySelector("dialog");
 const form = widget.querySelector("form");
+const success = widget.querySelector("[data-suggestion-success]");
 const status = widget.querySelector("[data-suggestion-status]");
 const submitButton = widget.querySelector(".suggestion-submit");
 let activeTrigger;
@@ -38,10 +48,14 @@ document.querySelectorAll("[data-suggestion-open]").forEach((trigger) => {
   trigger.addEventListener("click", () => {
     activeTrigger = trigger;
     status.textContent = "";
+    form.hidden = false;
+    success.hidden = true;
+    form.reset();
     dialog.showModal();
     form.elements.category.focus();
   });
 });
+widget.querySelector(".suggestion-done").addEventListener("click", () => dialog.close());
 widget.querySelector(".suggestion-close").addEventListener("click", () => dialog.close());
 dialog.addEventListener("click", (event) => {
   if (event.target === dialog) dialog.close();
@@ -59,7 +73,8 @@ form.addEventListener("submit", async (event) => {
   }
 
   submitButton.disabled = true;
-  submitButton.textContent = "Enviando…";
+  status.textContent = "Enviando tu sugerencia…";
+  submitButton.querySelector("span").textContent = "Enviando…";
   try {
     const [{ firebaseConfig }, { initializeApp, getApps }, firestore] = await Promise.all([
       import(new URL("js/suggestion-firebase-config.js", siteRoot).href),
@@ -77,9 +92,9 @@ form.addEventListener("submit", async (event) => {
       createdAt: firestore.serverTimestamp(),
     });
     form.reset();
-    status.textContent = "¡Gracias! Tu sugerencia quedó guardada.";
-    status.classList.add("is-success");
-    window.setTimeout(() => dialog.close(), 1800);
+    form.hidden = true;
+    success.hidden = false;
+    success.querySelector("h2").focus();
   } catch (error) {
     console.error("No se pudo enviar la sugerencia a Firebase", error);
     status.classList.remove("is-success");
@@ -90,11 +105,10 @@ form.addEventListener("submit", async (event) => {
       : "No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.";
   } finally {
     submitButton.disabled = false;
-    submitButton.textContent = "Enviar sugerencia";
+    submitButton.querySelector("span").textContent = "Enviar sugerencia";
   }
 });
 
 dialog.addEventListener("close", () => {
-  status.classList.remove("is-success");
   activeTrigger?.focus();
 });
