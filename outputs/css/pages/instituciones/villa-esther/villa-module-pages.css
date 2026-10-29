@@ -320,6 +320,56 @@
 .villa-module-page .module-tab:focus-visible,
 .villa-module-page .btn:focus-visible { outline: 3px solid #398b7350; outline-offset: 2px; }
 .villa-module-page :focus-visible { outline-color: #398b73; }
+.villa-module-page .learning-resources {
+  margin: 30px 0;
+  padding: clamp(20px, 3vw, 30px);
+  border: 1px solid #e4e9e3;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #f7faf7 0%, #fff 72%);
+}
+.villa-module-page .learning-resources .sectionhead { margin-bottom: 18px; }
+.villa-module-page .learning-resources .sectionhead h2 { margin: 4px 0 8px; }
+.villa-module-page .learning-resources .sectionhead p { color: var(--module-page-muted); }
+.villa-module-page .resource-eyebrow,
+.villa-module-page .resource-tag {
+  display: inline-flex;
+  width: fit-content;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: #eaf2ec;
+  color: #42624b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+.villa-module-page .resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 14px;
+}
+.villa-module-page .resource-card {
+  display: flex;
+  min-height: 205px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 19px;
+  border: 1px solid #e7e9e5;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 5px 18px #1c2b1e08;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.villa-module-page .resource-card:hover {
+  transform: translateY(-3px);
+  border-color: #c9d9cc;
+  box-shadow: 0 12px 26px #1c2b1e10;
+}
+.villa-module-page .resource-icon { margin-bottom: 12px; font-size: 24px; }
+.villa-module-page .resource-card h3 { margin: 0 0 8px; font-size: 17px; }
+.villa-module-page .resource-card p { flex: 1; margin: 0 0 14px; color: var(--module-page-muted); line-height: 1.65; }
+.villa-module-page .resource-card a { color: var(--module-page-accent); font-size: 13px; font-weight: 700; text-decoration: none; }
+.villa-module-page .resource-card a:hover { text-decoration: underline; }
+.villa-module-page .resource-card .resource-tag { margin-top: auto; }
 @keyframes module-art-drift {
   0%, 100% { transform: translateY(0) rotate(0); }
   50% { transform: translateY(-6px) rotate(1deg); }
