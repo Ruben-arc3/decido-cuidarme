@@ -4,7 +4,9 @@
   const OVERLAY_DURATION = 11_000;
   let fallbackUntil = 0;
   let currentUntil = 0;
-  const canStopFromThisPage = location.pathname.endsWith("/shutdown.html");
+  let globalActiveUntil = 0;
+  const currentPath = location.pathname.replace(/\/+$/, "");
+  const canStopFromThisPage = currentPath.endsWith("/shutdown") || currentPath.endsWith("/shutdown.html");
   const channel = "BroadcastChannel" in window
     ? new BroadcastChannel("decido-cuidarme-prank-simulation")
     : null;
@@ -46,7 +48,10 @@
     dismissOverlay();
     const status = document.getElementById("launch-status");
     if (status) status.textContent = "Simulación detenida.";
-    if (broadcast) publish({ type: "stop" });
+    if (broadcast) {
+      publish({ type: "stop" });
+      if (canStopFromThisPage) void publishGlobalSignal(Date.now());
+    }
   };
 
   const expireSimulation = (until) => {
@@ -61,8 +66,71 @@
     if (broadcast) writeUntil(until);
     startOverlay();
     expireSimulation(until);
-    if (broadcast) publish({ type: "start", until });
+    if (broadcast) {
+      publish({ type: "start", until });
+      void publishGlobalSignal(until);
+    }
   };
+
+  const showGlobalSignalError = (error) => {
+    console.error("No se pudo sincronizar shutdown con los demás dispositivos", error);
+    const status = document.getElementById("launch-status");
+    if (status) {
+      status.textContent = "La pantalla solo se activó en este dispositivo. No se pudo guardar la señal global; revisa la conexión y las reglas de Firestore.";
+    }
+  };
+
+  const globalSignalPromise = (async () => {
+    const [{ firebaseConfig }, { initializeApp, getApps }, firestore] = await Promise.all([
+      import("/js/suggestion-firebase-config.js"),
+      import("https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js"),
+      import("https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js"),
+    ]);
+    const appName = "shutdown-global-signal";
+    const app = getApps().find((candidate) => candidate.name === appName)
+      || initializeApp(firebaseConfig, appName);
+    const database = firestore.getFirestore(app);
+    const signalRef = firestore.doc(database, "siteSignals", "shutdown");
+
+    firestore.onSnapshot(
+      signalRef,
+      (snapshot) => {
+        const nextUntil = snapshot.exists() ? Number(snapshot.data().activeUntil || 0) : 0;
+        if (nextUntil > Date.now()) {
+          globalActiveUntil = nextUntil;
+          if (nextUntil > currentUntil) activateSimulation(nextUntil);
+          return;
+        }
+
+        const stoppedUntil = globalActiveUntil;
+        globalActiveUntil = 0;
+        if (stoppedUntil && currentUntil === stoppedUntil) stopSimulation(false);
+      },
+      (error) => showGlobalSignalError(error),
+    );
+
+    return { database, signalRef, setDoc: firestore.setDoc, serverTimestamp: firestore.serverTimestamp };
+  })().catch((error) => {
+    showGlobalSignalError(error);
+    return null;
+  });
+
+  async function publishGlobalSignal(activeUntil) {
+    const firebase = await globalSignalPromise;
+    if (!firebase) return;
+    try {
+      await firebase.setDoc(firebase.signalRef, {
+        activeUntil,
+        updatedAt: firebase.serverTimestamp(),
+      });
+      const status = document.getElementById("launch-status");
+      if (status) status.textContent = activeUntil > Date.now()
+        ? "Señal enviada a los dispositivos conectados."
+        : "Señal detenida en los dispositivos conectados.";
+    } catch (error) {
+      showGlobalSignalError(error);
+    }
+  }
 
   const startOverlay = () => {
     if (!document.body || document.querySelector("[data-prank-overlay]")) return;

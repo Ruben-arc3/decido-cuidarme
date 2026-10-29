@@ -13,6 +13,7 @@
       button { min-height: 44px; padding: 0 18px; border: 1px solid #334339; border-radius: 4px; background: #111713; color: #c2d1c5; font: 13px ui-monospace, monospace; cursor: pointer; transition: background .16s ease; }
       button:hover { background: #1a241d; }
       button:focus-visible { outline: 3px solid #ffd0c8; outline-offset: 3px; }
+      #launch-status { display: block; min-height: 1.5em; margin-top: 14px; color: #a8f5bb; font: 12px/1.5 ui-monospace, monospace; }
       @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: .01ms !important; } }
     </style>
     <script defer src="js/prank-hack-simulation.js"></script>
@@ -20,6 +21,7 @@
   <body>
     <main>
       <button type="button" data-start-simulation>Iniciar</button>
+      <span id="launch-status" role="status" aria-live="polite"></span>
     </main>
   </body>
 </html>
