@@ -6,6 +6,7 @@
   "lang": "es-CO",
   "start_url": "./instituciones/villa-esther/institucion-villa-esther.html?app=villa-esther",
   "scope": "./",
+  "prefer_related_applications": false,
   "display_override": ["standalone"],
   "display": "standalone",
   "background_color": "#f2f7f5",
