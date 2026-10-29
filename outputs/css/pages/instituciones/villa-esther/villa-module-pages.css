@@ -1,0 +1,345 @@
+/* Shared Notion-inspired styling for Villa Esther's independent module pages. */
+.villa-module-page {
+  --module-page-paper: #f7f7f5;
+  --module-page-ink: #20231f;
+  --module-page-muted: #686e67;
+  --module-page-line: #e7e8e5;
+  --module-page-accent: #398b73;
+  background: var(--module-page-paper);
+  color: var(--module-page-ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.villa-module-page .villa-brand-banner {
+  border-bottom: 1px solid var(--module-page-line);
+  background: #fff;
+  box-shadow: 0 1px 2px #20231f08;
+  color: var(--module-page-ink);
+}
+.villa-module-page .villa-brand-crest {
+  border: 1px solid var(--module-page-line);
+  box-shadow: none;
+}
+.villa-module-page .villa-brand-kicker { color: #747a73; }
+.villa-module-page .villa-brand-name { color: var(--module-page-ink); }
+.villa-module-page .villa-brand-motto { color: var(--module-page-muted); }
+.villa-module-page .villa-brand-home {
+  border: 1px solid var(--module-page-line);
+  border-radius: 8px;
+  background: #fff;
+  color: #414741;
+  transition: background .16s ease, border-color .16s ease;
+}
+.villa-module-page .villa-brand-home:hover {
+  border-color: #d8dbd6;
+  background: #f5f6f4;
+}
+.villa-module-page .top {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--module-page-line);
+  background: #ffffffed;
+  box-shadow: 0 1px 3px #20231f05;
+  backdrop-filter: blur(12px);
+}
+.villa-module-page .shell,
+.villa-module-page main.shell {
+  width: min(1100px, calc(100% - 40px));
+  margin-inline: auto;
+}
+.villa-module-page main.shell { padding-bottom: 54px; }
+.villa-module-page .top .brand {
+  color: #454b45;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: .08em;
+}
+.villa-module-page .top .back {
+  color: #626862;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.villa-module-page .top .back:hover { color: var(--module-page-ink); }
+.villa-module-page .hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, .68fr);
+  align-items: center;
+  gap: clamp(18px, 3vw, 38px);
+  min-height: 280px;
+  margin: 24px 0 22px;
+  padding: clamp(25px, 4vw, 44px);
+  border: 1px solid var(--module-page-line);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 3px 10px #20231f05;
+  color: var(--module-page-ink);
+}
+.villa-module-page .hero > :not(.module-hero-illustration) { grid-column: 1; }
+.villa-module-page .hero > .module-hero-illustration {
+  grid-column: 2;
+  grid-row: 1 / span 5;
+  display: block;
+  width: min(100%, 420px);
+  height: auto;
+  justify-self: end;
+  filter: drop-shadow(0 10px 12px #20231f0b);
+  animation: module-art-drift 6s ease-in-out infinite;
+}
+.villa-module-page .hero > .hero-copy { grid-column: 1; }
+.villa-module-page .hero .kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--module-page-accent);
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: .08em;
+}
+.villa-module-page .hero .kicker::before {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--module-page-accent);
+  content: "";
+}
+.villa-module-page .hero h1 {
+  max-width: 22ch;
+  margin: 12px 0 10px;
+  color: var(--module-page-ink);
+  font-size: clamp(32px, 4.2vw, 48px);
+  font-weight: 760;
+  line-height: 1.08;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+.villa-module-page .hero p {
+  max-width: 72ch;
+  margin: 0;
+  color: var(--module-page-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.villa-module-page .hero small {
+  color: var(--module-page-accent);
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: .08em;
+}
+.villa-module-page .card,
+.villa-module-page .challenge {
+  border: 1px solid var(--module-page-line);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 2px 7px #20231f04;
+  color: var(--module-page-ink);
+}
+.villa-module-page .card { padding: clamp(18px, 2.5vw, 26px); }
+.villa-module-page a.card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.villa-module-page a.card:hover {
+  transform: translateY(-4px);
+  border-color: #cfd8d0;
+  box-shadow: 0 12px 28px #20231f10;
+}
+.villa-module-page a.card:focus-visible {
+  outline: 3px solid #398b7350;
+  outline-offset: 3px;
+}
+.villa-module-page .grid > .card:hover {
+  transform: translateY(-3px);
+  border-color: #d8ded8;
+  box-shadow: 0 9px 20px #20231f0b;
+}
+.villa-module-page .icon {
+  display: inline-grid;
+  width: 45px;
+  height: 45px;
+  place-items: center;
+  border: 1px solid #e6e8e4;
+  border-radius: 13px;
+  background: #f7f8f6;
+  font-size: 23px;
+  transition: transform .18s ease, background .18s ease;
+}
+.villa-module-page a.card:hover .icon { transform: rotate(-5deg) scale(1.06); background: #eef5f0; }
+.villa-module-page a.card .go { display: inline-block; margin-top: 14px; color: var(--module-page-accent); font-size: 12px; font-weight: 700; }
+.villa-module-page .card h2,
+.villa-module-page .card h3,
+.villa-module-page .section h2 {
+  color: var(--module-page-ink);
+  font-weight: 680;
+  letter-spacing: -.025em;
+}
+.villa-module-page .card p,
+.villa-module-page .card li,
+.villa-module-page .note {
+  color: var(--module-page-muted);
+}
+.villa-module-page .grid { gap: 16px; }
+.villa-module-page .field label {
+  color: #505750;
+  font-size: 12px;
+  font-weight: 650;
+}
+.villa-module-page input:not([type="checkbox"]):not([type="radio"]),
+.villa-module-page textarea,
+.villa-module-page select {
+  border: 1px solid #dedfdb;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--module-page-ink);
+  font: inherit;
+  transition: border-color .16s ease, box-shadow .16s ease;
+}
+.villa-module-page input:not([type="checkbox"]):not([type="radio"]):focus,
+.villa-module-page textarea:focus,
+.villa-module-page select:focus {
+  border-color: #8bbba6;
+  outline: 0;
+  box-shadow: 0 0 0 3px #398b7318;
+}
+.villa-module-page .btn {
+  border: 1px solid var(--module-page-ink);
+  border-radius: 8px;
+  background: var(--module-page-ink);
+  color: #fff;
+  font: 650 13px/1.25 Inter, ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  text-decoration: none;
+  transition: transform .16s ease, background .16s ease, box-shadow .16s ease;
+}
+.villa-module-page .btn:hover {
+  transform: translateY(-1px);
+  background: #343934;
+  box-shadow: 0 4px 10px #20231f14;
+  color: #fff;
+}
+.villa-module-page .btn.secondary {
+  border-color: #dedfdb;
+  background: #fff;
+  color: #343a34;
+}
+.villa-module-page .btn.secondary:hover { background: #f6f7f5; }
+.villa-module-page .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 10px 14px;
+  border: 1px solid var(--module-page-ink);
+  border-radius: 8px;
+  background: var(--module-page-ink);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 650;
+  text-decoration: none;
+  transition: background .16s ease, transform .16s ease;
+}
+.villa-module-page .button:hover { transform: translateY(-1px); background: #343934; color: #fff; }
+.villa-module-page .button.alt { border-color: #dedfdb; background: #fff; color: #343a34; }
+.villa-module-page .button.alt:hover { background: #f6f7f5; }
+.villa-module-page .intro,
+.villa-module-page .note {
+  border: 1px solid var(--module-page-line);
+  border-left: 3px solid #a8cbb3;
+  border-radius: 9px;
+  background: #fff;
+  color: #606760;
+}
+.villa-module-page .summary { gap: 14px; }
+.villa-module-page .stat {
+  border: 1px solid var(--module-page-line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 7px #20231f04;
+}
+.villa-module-page .stat b { color: var(--module-page-ink); }
+.villa-module-page .filters input,
+.villa-module-page .filters select { border-color: #dedfdb; border-radius: 8px; }
+.villa-module-page table { border-collapse: separate; border-spacing: 0; }
+.villa-module-page th { color: #555c55; font-weight: 650; }
+.villa-module-page td,
+.villa-module-page th { border-color: #e8e9e6; }
+.villa-module-page .step,
+.villa-module-page .note,
+.villa-module-page .scenario,
+.villa-module-page .choice {
+  border-color: #e6e8e4;
+  border-radius: 10px;
+  background: #f8f9f7;
+}
+.villa-module-page .step { border-left: 3px solid #a8cbb3; }
+.villa-module-page .step b { color: var(--module-page-accent); }
+.villa-module-page .modulebar {
+  border-bottom: 1px solid var(--module-page-line);
+  background: #fff;
+  box-shadow: none;
+}
+.villa-module-page .modulebar a { color: #5c625c; }
+.villa-module-page .modulebar a:hover,
+.villa-module-page .modulebar a.active { color: var(--module-page-ink); }
+.villa-module-page .module-tab {
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: #626862;
+  font-weight: 600;
+}
+.villa-module-page .module-tab:hover { background: #f4f5f3; }
+.villa-module-page .module-tab.active {
+  border-color: #e6e8e4;
+  background: #f5f6f4;
+  color: var(--module-page-ink);
+}
+.villa-module-page .module-panel { animation: module-panel-enter .24s ease both; }
+.villa-module-page .choices .choice {
+  color: #454b45;
+  text-align: left;
+  cursor: pointer;
+  transition: transform .14s ease, background .14s ease, border-color .14s ease;
+}
+.villa-module-page .choices .choice:hover {
+  transform: translateX(3px);
+  border-color: #b9cebf;
+  background: #f0f5f1;
+}
+.villa-module-page details {
+  border: 1px solid var(--module-page-line);
+  border-radius: 10px;
+  background: #fafbf9;
+}
+.villa-module-page details summary { padding: 12px 14px; color: #454b45; font-weight: 650; cursor: pointer; }
+.villa-module-page details[open] { background: #fff; }
+.villa-module-page details > p { padding: 0 14px 12px; }
+.villa-module-page .module-tabs { display: flex; flex-wrap: wrap; gap: 5px; }
+.villa-module-page .module-tab:focus-visible,
+.villa-module-page .btn:focus-visible { outline: 3px solid #398b7350; outline-offset: 2px; }
+.villa-module-page :focus-visible { outline-color: #398b73; }
+@keyframes module-art-drift {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-6px) rotate(1deg); }
+}
+@keyframes module-panel-enter {
+  from { opacity: .65; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media(max-width:640px) {
+  .villa-module-page .shell,
+  .villa-module-page main.shell { width: calc(100% - 24px); }
+  .villa-module-page .hero { grid-template-columns: 1fr; min-height: 0; gap: 8px; margin-top: 16px; padding: 24px 19px; border-radius: 15px; }
+  .villa-module-page .hero > .module-hero-illustration { grid-column: 1; grid-row: auto; width: min(100%, 300px); justify-self: center; }
+  .villa-module-page .hero h1 { font-size: clamp(30px, 9vw, 40px); }
+  .villa-module-page .card { padding: 18px; }
+  .villa-module-page .topline { align-items: flex-start; gap: 12px; }
+  .villa-module-page .top .back { text-align: right; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .villa-module-page *,
+  .villa-module-page *::before,
+  .villa-module-page *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation: none !important; }
+}

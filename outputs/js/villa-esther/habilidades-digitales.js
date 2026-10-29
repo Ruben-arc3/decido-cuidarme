@@ -440,6 +440,14 @@ const order = [
 const id = document.body.dataset.skill;
 const lesson = lessons[id];
 const app = document.getElementById("skill-app");
+const lessonIllustrations = {
+  programacion: "villa-modulo-digital.svg",
+  "inteligencia-artificial": "villa-modulo-ia.svg",
+  "seguridad-informatica": "villa-modulo-seguridad.svg",
+  productividad: "villa-modulo-productividad.svg",
+  "verificar-informacion": "villa-modulo-verificar.svg",
+  "guia-digital": "villa-modulo-guia.svg",
+};
 
 if (!lesson || !app) {
   if (app)
@@ -485,7 +493,7 @@ if (!lesson || !app) {
   app.innerHTML = `
     <header class="top"><div class="shell topline"><a class="brand" href="villa-habilidades-digitales.html">VILLA ESTHER · HABILIDADES DIGITALES</a><a class="back" href="institucion-villa-esther.html#modulos">← Módulos</a></div></header>
     <main class="shell">
-      <section class="hero"><div class="kicker">Módulo ${index + 1} de ${order.length} · ${lesson.label}</div><h1>${lesson.icon} ${lesson.title}</h1><p>${lesson.intro}</p><span class="tag">Ruta breve · ${lesson.duration}</span></section>
+      <section class="hero"><div class="hero-copy"><div class="kicker">Módulo ${index + 1} de ${order.length} · ${lesson.label}</div><h1>${lesson.icon} ${lesson.title}</h1><p>${lesson.intro}</p><span class="tag">Ruta breve · ${lesson.duration}</span></div><img class="module-hero-illustration" src="../../assets/illustrations/${lessonIllustrations[id]}" alt="" aria-hidden="true" width="500" height="320" fetchpriority="high"></section>
       <section class="section"><h2>Qué vas a aprender</h2><p>${lesson.goal}</p><div class="cols">${lesson.ideas.map((idea, i) => `<div class="note"><b>${i + 1}.</b> ${idea}</div>`).join("")}</div></section>
       <section class="section"><h2>Conceptos clave para este reto</h2><p>Consulta estas palabras mientras resuelves la actividad. Cada una incluye su utilidad y un ejemplo.</p><div class="concept-grid">${concepts}</div></section>
       <section class="section"><h2>Prueba lo aprendido</h2><div class="scenario"><b>Situación</b><br>${lesson.scenario}</div><p><b>${lesson.question}</b></p><div class="choices">${choices}</div><div id="answer-feedback" class="feedback" role="status" aria-live="polite"></div><details><summary>Ver una explicación posible</summary><p>${lesson.feedback}</p></details></section>

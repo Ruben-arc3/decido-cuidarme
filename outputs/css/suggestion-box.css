@@ -1,0 +1,44 @@
+.platform-footer { margin-top: 54px; padding: 27px max(22px,calc((100vw - 1160px)/2)) 15px; border-top: 1px solid #2c3931; background: #17211d; color: #d8e1d9; }
+.platform-footer-main { display: grid; grid-template-columns: minmax(190px,1fr) minmax(0,1.5fr) auto; align-items: center; gap: 24px; max-width: 1160px; margin: 0 auto; }
+.platform-footer-brand { display: inline-flex; align-items: center; gap: 10px; color: #f4f7f3; text-decoration: none; }
+.platform-footer-mark { display: grid; width: 36px; height: 36px; place-items: center; border: 1px solid #44564a; border-radius: 11px; background: #293b30; color: #d4e5d7; font-size: 11px; font-weight: 850; }
+.platform-footer-brand strong,.platform-footer-brand small { display: block; }
+.platform-footer-brand strong { font-size: 10px; letter-spacing: .08em; }
+.platform-footer-brand small { margin-top: 3px; color: #aab8ad; font-size: 10px; }
+.platform-footer-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 17px; }
+.platform-footer-nav a { color: #bdc9bf; font-size: 11px; text-decoration: none; }
+.platform-footer-nav a:hover { color: #fff; text-decoration: underline; }
+.platform-footer-feedback { display: inline-flex; align-items: center; gap: 7px; min-height: 34px; padding: 0 10px; border: 1px solid #46574b; border-radius: 7px; background: #202d25; color: #d4e2d6; font: inherit; font-size: 11px; cursor: pointer; transition: background .15s ease,border-color .15s ease; }
+.platform-footer-feedback:hover { border-color: #76907b; background: #293a2e; }
+.platform-footer-feedback:focus-visible,.suggestion-submit:focus-visible,.suggestion-close:focus-visible { outline: 3px solid #4c9470; outline-offset: 3px; }
+.platform-footer-bottom { display: flex; justify-content: space-between; gap: 18px; max-width: 1160px; margin: 19px auto 0; padding-top: 12px; border-top: 1px solid #344139; color: #aab5ac; font-size: 9px; line-height: 1.5; }
+.suggestion-widget { position: relative; z-index: 1000; }
+.suggestion-dialog { width: min(480px, calc(100% - 28px)); max-width: 480px; max-height: min(90vh, 760px); padding: 0; overflow: auto; border: 1px solid #e2e7e1; border-radius: 18px; background: #fbfcfa; color: #222922; box-shadow: 0 24px 90px #14201740; }
+.suggestion-dialog::backdrop { background: #17231ccc; backdrop-filter: blur(3px); }
+.suggestion-form { position: relative; padding: 30px; }
+.suggestion-close { position: absolute; top: 14px; right: 15px; display: grid; width: 34px; height: 34px; place-items: center; border: 1px solid #e2e7e1; border-radius: 50%; background: white; color: #4c554d; font: 25px/1 sans-serif; cursor: pointer; }
+.suggestion-kicker { margin: 0 0 8px; color: #47795a; font-size: 10px; font-weight: 750; letter-spacing: .1em; }
+.suggestion-form h2 { max-width: 15ch; margin: 0; font-size: clamp(25px, 6vw, 32px); line-height: 1.12; letter-spacing: -.04em; }
+.suggestion-intro { margin: 10px 0 20px; color: #606a61; font-size: 13px; line-height: 1.55; }
+.suggestion-field { display: grid; gap: 7px; margin-top: 14px; color: #3c453d; font-size: 12px; font-weight: 650; }
+.suggestion-field select,.suggestion-field textarea { width: 100%; border: 1px solid #dce2dc; border-radius: 9px; background: #fff; color: #252c25; font-family: inherit; font-size: 14px; line-height: 1.5; }
+.suggestion-field select { min-height: 42px; padding: 0 11px; }
+.suggestion-field textarea { min-height: 126px; padding: 11px; resize: vertical; }
+.suggestion-field select:focus,.suggestion-field textarea:focus { outline: 3px solid #4c947035; border-color: #6d9a78; }
+.suggestion-field textarea::placeholder { color: #8a928b; }
+.suggestion-trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.suggestion-privacy { margin: 12px 0 4px; color: #747c74; font-size: 10px; line-height: 1.5; }
+.suggestion-status { min-height: 18px; margin: 8px 0; color: #9b3e36; font-size: 11px; line-height: 1.45; }
+.suggestion-status.is-success { color: #2c7046; }
+.suggestion-submit { width: 100%; min-height: 44px; border: 0; border-radius: 9px; background: #263d2e; color: #fff; font-family: inherit; font-size: 13px; font-weight: 700; line-height: 1.2; cursor: pointer; }
+.suggestion-submit:hover { background: #355640; }
+.suggestion-submit:disabled { opacity: .65; cursor: wait; }
+@media(max-width:640px) {
+  .platform-footer { margin-top: 38px; padding: 22px 17px 13px; }
+  .platform-footer-main { grid-template-columns: 1fr auto; gap: 17px 10px; }
+  .platform-footer-nav { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; gap: 8px 16px; }
+  .platform-footer-feedback { grid-column: 2; grid-row: 1; }
+  .platform-footer-bottom { flex-direction: column; gap: 5px; margin-top: 15px; }
+  .suggestion-form { padding: 25px 20px 20px; }
+}
+@media(prefers-reduced-motion:reduce) { .platform-footer-feedback { transition: none; } }

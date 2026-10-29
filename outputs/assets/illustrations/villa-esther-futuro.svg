@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 340" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Un camino hacia nuevas oportunidades</title>
+  <desc id="desc">Ilustración original de una estudiante que avanza hacia un arco luminoso, acompañada de libros y estrellas.</desc>
+  <path d="M63 73c40-48 121-59 181-27 54-35 140-21 183 24 44 46 42 128-1 176-43 48-137 62-223 47-74 18-145-18-162-78-15-53-10-104 22-142Z" fill="#EFF5F1"/>
+  <circle cx="397" cy="77" r="39" fill="#F9E7A9"/>
+  <path d="M397 19v-9m0 135v-9m58-59h9m-135 0h9m100-41 7-7m-96 96 7-7m82 0 7 7m-96-96 7 7" stroke="#D4A947" stroke-width="3" stroke-linecap="round"/>
+  <path d="M213 272V138c0-54 38-94 90-94s90 40 90 94v134" fill="#D5E9DC" stroke="#293B35" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M238 272V141c0-41 27-71 65-71s65 30 65 71v131" fill="#FAFCF8" stroke="#A8CBB3" stroke-width="3"/>
+  <path d="M88 274c48-2 84-15 115-45 23-22 37-40 59-50 25-12 42-8 60 7" stroke="#90B9A0" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 13"/>
+  <path d="m299 176 15 8-14 8" stroke="#398B73" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M102 237h47l15 14v30h-62v-44Z" fill="#F1C76C" stroke="#293B35" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M102 237v-13h42l20 13m-62 14h62m-31-14v44" stroke="#293B35" stroke-width="3" stroke-linejoin="round"/>
+  <path d="m126 220 11-23 13 6-12 22" fill="#F6E7B6" stroke="#293B35" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M248 236c-13-9-22-24-21-40 1-20 17-34 36-33 19 1 32 17 30 36-1 15-11 28-25 34l-2 14h-17l-1-11Z" fill="#E7AE86" stroke="#293B35" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M227 198c-2-21 9-36 28-39 18-3 32 8 36 24-13 0-24-6-30-15-6 12-18 22-34 30Z" fill="#293B35"/>
+  <path d="M240 204c0-5 3-8 7-8s7 3 7 8m13 1c0-5 3-8 7-8 4 0 7 4 6 8" stroke="#293B35" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="247" cy="205" r="2" fill="#293B35"/><circle cx="267" cy="205" r="2" fill="#293B35"/>
+  <path d="m258 205-3 10 6 1m-9 7c5 3 10 3 15-1" stroke="#293B35" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M235 239c-15 8-23 22-24 39l-1 27h80l-1-29c-1-17-9-30-24-38l-12 16-18-15Z" fill="#6E9F91" stroke="#293B35" stroke-width="4" stroke-linejoin="round"/>
+  <path d="m234 240-17 8c-8 4-13 11-14 20l-3 17 19 3 8-18m43-29 19 10c9 5 14 14 14 24v10h-18l-8-18" fill="#E7AE86" stroke="#293B35" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m270 248 18 8-11 22-18-9 11-21Z" fill="#F5D681" stroke="#293B35" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M333 114h29m-29 13h22m-22 13h26" stroke="#B3D1BC" stroke-width="3" stroke-linecap="round"/>
+  <path d="m169 106 6 12 13 2-10 9 2 13-11-7-12 7 3-13-10-9 13-2 6-12Z" fill="#F7D978" stroke="#293B35" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="m87 165 4 9 10 1-8 7 2 10-8-5-9 5 2-10-8-7 10-1 5-9Z" fill="#D6E7DC" stroke="#293B35" stroke-width="2.5" stroke-linejoin="round"/>
+  <ellipse cx="252" cy="315" rx="166" ry="8" fill="#293B35" opacity=".08"/>
+</svg>

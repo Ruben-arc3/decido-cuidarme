@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 320" fill="none" role="img" aria-labelledby="t d"><title id="t">Ruta hacia una meta</title><desc id="d">Dibujo original de un camino con señales, una brújula y una bandera de llegada.</desc>
+<path d="M63 66c44-38 124-46 177-17 57-33 141-14 183 33 42 47 36 125-10 173-48 50-139 54-224 39-78 14-148-22-164-81-15-55-2-112 38-147Z" fill="#EFF5F1"/>
+<circle cx="379" cy="81" r="27" fill="#F8E6A7"/><path d="M379 39v-9m0 102v-9m42-42h9m-102 0h9" stroke="#D7A943" stroke-width="3" stroke-linecap="round"/>
+<path d="M92 253c55-28 71-91 133-105 46-10 67 32 117 18 28-8 42-27 57-49" stroke="#7EB19A" stroke-width="12" stroke-linecap="round" stroke-dasharray="2 22"/>
+<path d="M111 234v-61h52v61m-52-41h52" stroke="#293B35" stroke-width="4" stroke-linejoin="round"/><path d="M121 173v-15h32v15" fill="#F4C96D" stroke="#293B35" stroke-width="3"/>
+<circle cx="247" cy="120" r="43" fill="#fff" stroke="#293B35" stroke-width="4"/><path d="m247 83 13 36-13 39-13-39 13-36Z" fill="#E58F72" stroke="#293B35" stroke-width="3"/><circle cx="247" cy="120" r="6" fill="#F4C96D" stroke="#293B35" stroke-width="3"/>
+<path d="M392 169V78m0 2 44 13-44 14" stroke="#293B35" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M392 80l44 13-44 14V80Z" fill="#E58F72"/>
+<path d="m177 78 7 14 15 2-11 10 3 15-14-8-13 8 3-15-11-10 15-2 6-14Z" fill="#F7D978" stroke="#293B35" stroke-width="2.5" stroke-linejoin="round"/><ellipse cx="254" cy="286" rx="160" ry="8" fill="#293B35" opacity=".08"/></svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 150" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Compañero de estudio curioso</title>
+  <desc id="desc">Personaje dibujado a mano que se asoma detrás de un libro abierto.</desc>
+  <ellipse cx="109" cy="137" rx="75" ry="7" fill="#20231f" opacity=".08"/>
+  <path d="M37 87c17-10 42-10 71 2 29-12 55-12 74-2v48c-22-10-47-9-74 3-27-12-52-13-71-3V87Z" fill="#fff" stroke="#29302b" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M108 90v48m-58-39c14-5 28-4 43 1m31-1c15-5 29-6 43-1" stroke="#cbd8ce" stroke-width="2" stroke-linecap="round"/>
+  <path d="M72 81c-3-25 6-46 27-54 24-9 47 3 51 28 4 20-4 37-17 45l-3-18" fill="#fffdf8" stroke="#29302b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M78 49c-8-7-3-18 5-18 0-11 14-15 20-6 6-12 20-10 22 1 11-4 18 8 12 16" stroke="#29302b" stroke-width="3" stroke-linecap="round"/>
+  <path d="M91 56c-2-6 1-10 5-10 5 0 7 5 6 10m19-3c1-5 4-8 8-7 4 1 5 5 3 9" stroke="#29302b" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="98" cy="56" r="2.6" fill="#29302b"/><circle cx="128" cy="55" r="2.6" fill="#29302b"/>
+  <path d="m112 59-5 17 9-2m-15 8c5 4 11 4 16 0" stroke="#29302b" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M76 98c-8 4-13 1-15-6m69 6c8 4 13 1 15-6" stroke="#29302b" stroke-width="3" stroke-linecap="round"/>
+  <path d="m36 70 5 10 11 2-8 7 2 11-10-5-9 5 2-11-8-7 11-2 4-10Z" fill="#f7d46b" stroke="#29302b" stroke-width="2" stroke-linejoin="round"/>
+  <circle cx="176" cy="48" r="15" fill="#e5f2e9" stroke="#29302b" stroke-width="2"/>
+  <path d="M176 39v13m0 5v1" stroke="#398b73" stroke-width="3" stroke-linecap="round"/>
+</svg>

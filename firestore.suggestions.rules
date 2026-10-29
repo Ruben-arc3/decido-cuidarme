@@ -1,0 +1,37 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /publicSuggestions/{suggestionId} {
+      allow create: if request.resource.data.keys().hasOnly([
+          'category',
+          'message',
+          'page',
+          'status',
+          'createdAt'
+        ])
+        && request.resource.data.keys().hasAll([
+          'category',
+          'message',
+          'page',
+          'status',
+          'createdAt'
+        ])
+        && request.resource.data.category in ['idea', 'error', 'content', 'other']
+        && request.resource.data.message is string
+        && request.resource.data.message.size() >= 10
+        && request.resource.data.message.size() <= 1200
+        && request.resource.data.page is string
+        && request.resource.data.page.size() <= 160
+        && request.resource.data.status == 'new'
+        && request.resource.data.createdAt == request.time;
+
+      // Visitors may submit; reading and moderation stay in trusted Firebase Console access.
+      allow read, update, delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

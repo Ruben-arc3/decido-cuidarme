@@ -53,6 +53,21 @@ Consulta [CONFIGURAR-FIREBASE.md](../outputs/CONFIGURAR-FIREBASE.md). Revisa esp
 - App Check para funciones Firebase;
 - privacidad y retención antes de guardar datos de estudiantes.
 
+### Buzón de sugerencias
+
+El buzón usa el proyecto Firebase independiente `campana-73d64`, configurado en
+`outputs/js/suggestion-firebase-config.js`. Sus reglas están separadas para no cambiar las reglas
+del proyecto principal (`camp2-93288`). Si el proyecto del buzón aún no tiene una base de datos
+Firestore, créala primero desde Firebase Console. Después publica únicamente sus reglas desde la
+raíz del repositorio:
+
+```powershell
+firebase deploy --only firestore:rules --project campana-73d64 --config firebase.suggestions.json
+```
+
+Los comentarios se guardan en `publicSuggestions`. Los visitantes pueden enviarlos sin cuenta; la
+lectura y moderación se hacen desde el acceso confiable a Firebase Console.
+
 ## Flujo GitHub sugerido
 
 1. Crea una rama `feature/nombre-corto` o `fix/nombre-corto` desde `main`.
