@@ -4,7 +4,7 @@
   "short_name": "Decido Cuidarme",
   "description": "Campañas escolares de prevención, recursos y juegos educativos.",
   "lang": "es-CO",
-  "start_url": "./index.html?app=general",
+  "start_url": "./?app=general",
   "scope": "./",
   "prefer_related_applications": false,
   "display_override": ["standalone"],

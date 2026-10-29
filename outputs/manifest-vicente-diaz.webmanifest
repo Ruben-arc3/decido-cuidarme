@@ -1,10 +1,10 @@
 {
-  "id": "./instituciones/institucion-vicente-diaz.html?app=vicente-diaz",
+  "id": "./instituciones/institucion-vicente-diaz?app=vicente-diaz",
   "name": "Decido Cuidarme · Vicente Díaz",
   "short_name": "Vicente Díaz",
   "description": "Campañas escolares de prevención y recursos de la Institución Educativa Vicente Díaz.",
   "lang": "es-CO",
-  "start_url": "./instituciones/institucion-vicente-diaz.html?app=vicente-diaz",
+  "start_url": "./instituciones/institucion-vicente-diaz?app=vicente-diaz",
   "scope": "./",
   "prefer_related_applications": false,
   "display_override": ["standalone"],

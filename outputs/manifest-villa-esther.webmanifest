@@ -1,10 +1,10 @@
 {
-  "id": "./instituciones/villa-esther/institucion-villa-esther.html?app=villa-esther",
+  "id": "./instituciones/villa-esther/institucion-villa-esther?app=villa-esther",
   "name": "Decido Cuidarme · Villa Esther",
   "short_name": "Villa Esther",
   "description": "Módulos de estudio, habilidades digitales, juegos y orientación vocacional de Villa Esther.",
   "lang": "es-CO",
-  "start_url": "./instituciones/villa-esther/institucion-villa-esther.html?app=villa-esther",
+  "start_url": "./instituciones/villa-esther/institucion-villa-esther?app=villa-esther",
   "scope": "./",
   "prefer_related_applications": false,
   "display_override": ["standalone"],
