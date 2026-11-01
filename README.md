@@ -1,90 +1,93 @@
 # Decido Cuidarme
 
-[![Validación del sitio](https://github.com/Ruben-arc3/decido-cuidarme/actions/workflows/validate-site.yml/badge.svg?branch=main)](https://github.com/Ruben-arc3/decido-cuidarme/actions/workflows/validate-site.yml)
+**Decido Cuidarme** es una plataforma educativa que acompaña las campañas de prevención realizadas por la **Alcaldía de Puerto Escondido, Córdoba**, con recursos para estudiantes, docentes y comunidades escolares.
 
-Plataforma educativa para campañas escolares de prevención y orientación. Reúne juegos para usar en grupo, recursos para estudiantes y herramientas de apoyo académico para las instituciones educativas Vicente Díaz y Villa Esther.
+La plataforma combina información, actividades participativas y juegos que pueden desarrollarse en el aula o proyectarse para jugar en grupo. Sus contenidos promueven el cuidado, la toma de decisiones informadas y la búsqueda de redes de apoyo.
 
-**Demo:** [decido-cuidarme.pages.dev](https://decido-cuidarme.pages.dev)
+**Sitio público:** [decido-cuidarme.pages.dev](https://decido-cuidarme.pages.dev/)
 
-## Qué ofrece
+## Contenidos
 
-- Campañas de prevención sobre consumo de sustancias psicoactivas, violencia intrafamiliar y abuso sexual.
-- Juegos educativos que se pueden proyectar y jugar en grupo desde un solo computador.
-- Espacios institucionales para Vicente Díaz y Villa Esther. Villa Esther incluye proyecto de vida, preparación Saber 11 y exploración de opciones educativas y laborales.
-- Recursos de aula y herramientas docentes con acceso a Firebase cuando está configurado.
-- Inglés con vocabulario local, consulta de frases y traducción español–inglés.
-- Una parte de los juegos y materiales estáticos disponible sin conexión; las APIs, el inicio de sesión y la sincronización requieren internet.
+- **Prevención del consumo de sustancias psicoactivas:** recursos informativos y actividades para conversar sobre decisiones, presión de grupo y apoyo entre pares.
+- **Prevención de la violencia intrafamiliar:** materiales para reconocer señales, escuchar y buscar acompañamiento seguro.
+- **Prevención del abuso sexual:** contenidos sobre límites, consentimiento, seguridad digital y redes de apoyo.
+- **Prevención de siniestros viales:** recursos y actividades sobre movilidad segura y cuidado de peatones, ciclistas y pasajeros.
+- **Juegos educativos:** memoramas, rompecabezas, retos arcade, historias interactivas y actividades colaborativas para el aula.
+- **Espacios institucionales:** recursos para la Institución Educativa Vicente Díaz y la Institución Educativa Villa Esther. Este último integra herramientas de orientación, proyecto de vida, preparación Saber 11 y exploración educativa y laboral.
+- **Recursos para docentes:** materiales de aula, orientación para actividades y una presentación guiada de la plataforma.
+
+Las actividades usan situaciones ficticias y no requieren que los participantes compartan experiencias personales. El material tiene propósito educativo y no sustituye la orientación profesional ni los protocolos institucionales.
 
 ## Tecnologías
 
-HTML, CSS y JavaScript; Cloudflare Pages y Pages Functions; Firebase Authentication y Firestore; Google Gemini API; APIs públicas de Tatoeba, MyMemory y Wikimedia; service worker para caché local.
+- Sitio estático desarrollado con HTML, CSS y JavaScript.
+- Cloudflare Pages para publicación y Pages Functions para servicios de servidor.
+- Firebase Authentication y Cloud Firestore para funciones de aula, cuentas y datos asociados.
+- Service worker y manifiestos PWA para instalación y acceso a recursos estáticos seleccionados sin conexión.
+- Integraciones de servidor con Gemini y YouTube, además de servicios públicos de frases, traducción e información multimedia.
 
-## Arquitectura y carpetas
+La configuración del cliente Firebase no equivale a credenciales privadas. Las reglas de Firestore y la validación del servidor son parte del control de acceso. Las claves de servicios externos deben guardarse como secretos en Cloudflare, nunca en el código que se entrega al navegador.
+
+## Estructura del repositorio
 
 ```text
-├── functions/api/              Endpoints de Pages: aula, frases y traducción
-├── firebase-functions/         Función callable de Firebase y utilidades administrativas
-├── outputs/                    Sitio estático publicado por Cloudflare Pages
-│   ├── index.html              Portal principal
-│   ├── instituciones/
-│   │   ├── institucion-vicente-diaz.html
-│   │   └── villa-esther/        Páginas de Villa Esther
-│   ├── juegos/                  Juegos educativos
-│   ├── recursos/                Portal de prevención
-│   ├── assets/                  Escudos e iconos institucionales
-│   ├── css/                     Estilos por institución
-│   ├── js/villa-esther/         Scripts de Villa Esther
-│   ├── service-worker.js        Caché de recursos para uso sin conexión
-│   └── manifest.webmanifest     Datos de instalación como aplicación
-├── docs/                        Arquitectura, despliegue y fuentes
-├── scripts/check-links.mjs      Validador de rutas locales
-├── firestore.rules             Reglas de acceso a Firestore
-├── wrangler.jsonc              Carpeta de salida: outputs
-└── firebase.json               Configuración de Firebase
+functions/                 Pages Functions y endpoints de servidor
+firebase-functions/        Funciones y utilidades administrativas de Firebase
+outputs/                   Sitio estático publicado
+  index.html               Página central
+  instituciones/           Espacios institucionales
+  juegos/                  Juegos y actividades interactivas
+  recursos/                Campañas y materiales informativos
+  css/                     Hojas de estilo
+  js/                      Lógica del sitio
+  service-worker.js        Caché de recursos estáticos
+docs/                      Arquitectura, despliegue y guía del código
+scripts/                   Herramientas de revisión del repositorio
+firestore.rules            Reglas de Firestore
+wrangler.jsonc             Configuración de Cloudflare Pages
 ```
 
-La oferta educativa de Córdoba se conserva en `outputs/instituciones/` porque es un recurso compartido. Los enlaces antiguos a páginas de Villa Esther redirigen a la nueva carpeta.
+## Uso local
 
-Más detalle: [guía para leer el código](docs/guia-del-codigo.md), [arquitectura](docs/arquitectura.md), [despliegue](docs/despliegue.md), [fuentes y uso responsable](docs/fuentes-y-uso-responsable.md), [contribuir](CONTRIBUTING.md).
-
-## Ejecutar en local
-
-Para navegar las páginas estáticas:
+Se requiere Python 3 para servir las páginas estáticas:
 
 ```powershell
 py -m http.server 8080 --directory outputs
 ```
 
-Abre <http://localhost:8080>. Esto sirve el contenido estático; no ejecuta las Pages Functions.
+Abre `http://localhost:8080`. Esta opción sirve páginas y juegos estáticos, pero no ejecuta Pages Functions.
 
-Para ejecutar Pages Functions en local con Wrangler:
+Para probar localmente Pages Functions, usa Wrangler:
 
 ```powershell
 npx wrangler pages dev outputs
 ```
 
-Para probar las APIs localmente, crea `.dev.vars` en la raíz con `GEMINI_API_KEY=tu_clave` y `YOUTUBE_API_KEY=tu_clave`. El archivo está excluido de Git. Firebase Authentication requiere `localhost` en los dominios autorizados de Firebase. Las APIs externas necesitan conexión.
+Las funciones que dependen de servicios externos requieren variables locales en `.dev.vars`. Consulta `.dev.vars.example` y `docs/despliegue.md`; el archivo con valores reales está excluido de Git.
 
-## Despliegue
+## Publicación
 
-Cloudflare Pages usa `outputs` como directorio de publicación y detecta `functions/` automáticamente. Conecta el repositorio en Pages, deja vacío el comando de compilación y configura los secretos `GEMINI_API_KEY` y `YOUTUBE_API_KEY` en Production (y en Preview si lo utilizas). Al enviar cambios a `main`, Pages publica automáticamente si Git está conectado.
+Cloudflare Pages publica el directorio `outputs/`. Con el repositorio conectado a GitHub, los cambios enviados a `main` generan una publicación automática. La configuración se encuentra en `wrangler.jsonc` y las instrucciones completas, incluidas las variables de entorno y Firebase, están en [docs/despliegue.md](docs/despliegue.md).
 
-El despliegue manual desde la raíz es:
+También se puede publicar manualmente desde la raíz del repositorio:
 
 ```powershell
 npx wrangler pages deploy outputs --project-name decido-cuidarme
 ```
 
-Consulta los pasos de Firebase y Cloudflare en [docs/despliegue.md](docs/despliegue.md) y [outputs/CONFIGURAR-FIREBASE.md](outputs/CONFIGURAR-FIREBASE.md).
+## Seguridad y uso responsable
 
-## Seguridad y privacidad
+- No subas claves privadas, credenciales de servicio, tokens ni archivos `.dev.vars` al repositorio.
+- Configura las claves de Gemini y YouTube como secretos de Cloudflare.
+- Revisa `firestore.rules` antes de cambiar permisos y valida la autenticación en funciones que manejan datos de aula.
+- Evita registrar información personal o relatos identificables de estudiantes.
+- El contenido generado automáticamente requiere revisión docente.
+- Verifica que las rutas y contactos locales de apoyo estén actualizados antes de utilizarlos en una actividad.
 
-- No guardes claves de API, credenciales de servicio ni archivos `.dev.vars` en Git.
-- La función de Gemini recibe la clave desde Cloudflare; no debe exponerse en HTML ni JavaScript del navegador.
-- Firebase protege los datos con Authentication y reglas de Firestore. Revisa esas reglas antes de ampliar permisos.
-- No ingreses datos personales ni relatos identificables de estudiantes en los asistentes. El contenido generado por IA requiere revisión docente.
-- Las actividades son educativas; no reemplazan atención profesional ni protocolos institucionales.
+## Documentación
 
-## Aportar cambios
-
-Usa una rama por mejora y abre un Pull Request hacia `main`. GitHub Actions revisa los enlaces locales del sitio automáticamente. Guía: [CONTRIBUTING.md](CONTRIBUTING.md).
+- [Arquitectura](docs/arquitectura.md)
+- [Desarrollo y despliegue](docs/despliegue.md)
+- [Guía para leer el código](docs/guia-del-codigo.md)
+- [Fuentes y uso responsable](docs/fuentes-y-uso-responsable.md)
+- [Contribución al proyecto](CONTRIBUTING.md)
