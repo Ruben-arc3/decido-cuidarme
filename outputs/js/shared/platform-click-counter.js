@@ -1,4 +1,4 @@
-import { firebaseConfig, recaptchaEnterpriseSiteKey } from "./villa-esther/firebase-config.js";
+import { firebaseConfig, recaptchaEnterpriseSiteKey } from "../villa-esther/firebase-config.js";
 
 const queuedClicks = window.platformCounterQueue || [];
 
