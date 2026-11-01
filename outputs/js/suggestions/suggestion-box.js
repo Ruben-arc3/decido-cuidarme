@@ -1,5 +1,5 @@
 const componentScript = document.currentScript;
-const siteRoot = new URL("../", componentScript.src);
+const siteRoot = new URL("../../", componentScript.src);
 
 const widget = document.createElement("div");
 widget.className = "suggestion-widget";
@@ -77,7 +77,7 @@ form.addEventListener("submit", async (event) => {
   submitButton.querySelector("span").textContent = "Enviando…";
   try {
     const [{ firebaseConfig }, { initializeApp, getApps }, firestore] = await Promise.all([
-      import(new URL("js/suggestion-firebase-config.js", siteRoot).href),
+      import(new URL("js/suggestions/suggestion-firebase-config.js", siteRoot).href),
       import("https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js"),
       import("https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js"),
     ]);

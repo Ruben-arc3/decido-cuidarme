@@ -22,6 +22,8 @@ flowchart TD
 
 Villa Esther está organizada dentro de `outputs/instituciones/villa-esther/`. Sus archivos propios también se agrupan en `outputs/css/villa-esther/`, `outputs/js/villa-esther/` y `outputs/assets/villa-esther/`. Vicente Díaz tiene su página en `outputs/instituciones/` y sus recursos de marca en carpetas `vicente-diaz` bajo `css/` y `assets/`.
 
+Los estilos y scripts transversales se agrupan por función: `outputs/css/shared/` y `outputs/js/shared/` contienen la interfaz general; `campaigns/` contiene recursos visuales y funciones de las campañas; `js/suggestions/` mantiene aislado el buzón y su configuración Firebase. Los archivos exclusivos de una página siguen la estructura espejo de `outputs/css/pages/` y `outputs/js/pages/`.
+
 ## API y funciones de servidor
 
 Cloudflare Pages detecta los endpoints de `functions/api/`:

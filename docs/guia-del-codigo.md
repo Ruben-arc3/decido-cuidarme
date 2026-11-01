@@ -39,14 +39,16 @@ En `outputs/recursos/`, `portal-prevencion.html` organiza los materiales y cada 
 
 ## JavaScript del sitio
 
-- `outputs/js/campaign-videos.js` carga los videos breves de las tres campañas y presenta sus duraciones verificadas.
+- `outputs/js/campaigns/` agrupa funciones compartidas por las campañas, como la carga de videos.
+- `outputs/js/shared/` contiene navegación, instalación PWA, contador, recorrido guiado, service worker y la simulación Shutdown.
+- `outputs/js/suggestions/` reúne el buzón y la configuración pública de su proyecto Firebase.
+- `outputs/js/villa-esther/` y `outputs/js/vicente-diaz/` reúnen integraciones propias de cada institución.
 - `outputs/js/pages/juegos/memorama-limites-y-redes-seguras.js` administra las dos rondas del memorama preventivo y su modo de proyección.
 - `outputs/js/pages/` contiene la lógica específica extraída de cada HTML. La estructura de carpetas refleja la ubicación de las páginas: `juegos/`, `recursos/` e `instituciones/`.
-- `outputs/js/register-service-worker.js` registra el service worker compartido para habilitar la caché offline.
 
 | Ruta                                                      | Qué hace                                                                                |
 | --------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `outputs/js/pwa-install.js`                               | Controla el botón de instalación de la plataforma o de una institución.                 |
+| `outputs/js/shared/pwa-install.js`                       | Controla el botón de instalación de la plataforma o de una institución.                 |
 | `outputs/js/villa-esther/firebase-config.js`              | Configuración pública del cliente Firebase. No debe contener secretos de servidor.      |
 | `outputs/js/villa-esther/villa-firebase.js`               | Registro y acceso, clases, progreso, preguntas publicadas y chat vocacional.            |
 | `outputs/js/villa-esther/villa-gemini.js`                 | Conecta la interfaz de orientación con la función del servidor.                         |
@@ -59,10 +61,9 @@ En `outputs/recursos/`, `portal-prevencion.html` organiza los materiales y cada 
 
 ## Estilos
 
-- `outputs/css/campaign-videos.css` presenta el estado de carga y la etiqueta de duración de los videos de campaña.
-- `outputs/css/campaign-game-cards-retro.css` aplica el estilo retro adaptable a las tarjetas de juegos de las tres campañas principales.
-- `outputs/css/pages/` contiene los estilos específicos de cada página, organizados con la misma estructura de carpetas que los HTML. Los sufijos `-02`, `-03` conservan el orden de bloques CSS que antes estaban separados en el documento.
-- `outputs/css/` contiene estilos compartidos, campañas, adaptación móvil e instalación PWA.
+- `outputs/css/shared/` contiene navegación, buzón de sugerencias e instalación PWA.
+- `outputs/css/campaigns/` agrupa la presentación compartida de campañas, videos, ilustraciones, tarjetas y adaptación móvil.
+- `outputs/css/pages/` contiene los estilos específicos de cada página, organizados con la misma estructura de carpetas que los HTML. La página de presentación guiada tiene su propia carpeta y los sufijos `-02`, `-03` conservan el orden de bloques CSS separados.
 - `outputs/css/villa-esther/` contiene la identidad visual, los módulos digitales, inglés y la biblioteca de videos de Villa Esther.
 - `outputs/css/vicente-diaz/` contiene el estilo institucional de Vicente Díaz.
 

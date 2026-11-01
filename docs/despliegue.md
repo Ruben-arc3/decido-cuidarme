@@ -56,7 +56,7 @@ Consulta [CONFIGURAR-FIREBASE.md](../outputs/CONFIGURAR-FIREBASE.md). Revisa esp
 ### Buzón de sugerencias
 
 El buzón usa el proyecto Firebase independiente `campana-73d64`, configurado en
-`outputs/js/suggestion-firebase-config.js`. Sus reglas están separadas para no cambiar las reglas
+`outputs/js/suggestions/suggestion-firebase-config.js`. Sus reglas están separadas para no cambiar las reglas
 del proyecto principal (`camp2-93288`). Si el proyecto del buzón aún no tiene una base de datos
 Firestore, créala primero desde Firebase Console. Después publica únicamente sus reglas desde la
 raíz del repositorio:

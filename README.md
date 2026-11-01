@@ -38,8 +38,19 @@ outputs/                   Sitio estático publicado
   instituciones/           Espacios institucionales
   juegos/                  Juegos y actividades interactivas
   recursos/                Campañas y materiales informativos
-  css/                     Hojas de estilo
-  js/                      Lógica del sitio
+  css/
+    shared/                Estilos de navegación, PWA y sugerencias
+    campaigns/             Estilos compartidos de campañas
+    pages/                 Estilos específicos de páginas
+    villa-esther/          Estilos institucionales de Villa Esther
+    vicente-diaz/          Estilos institucionales de Vicente Díaz
+  js/
+    shared/                Navegación, PWA, contador y funciones generales
+    campaigns/             Scripts compartidos por campañas
+    suggestions/           Buzón y configuración Firebase pública
+    pages/                 Scripts específicos de páginas
+    villa-esther/          Scripts de Villa Esther
+    vicente-diaz/          Scripts de Vicente Díaz
   service-worker.js        Caché de recursos estáticos
 docs/                      Arquitectura, despliegue y guía del código
 scripts/                   Herramientas de revisión del repositorio
