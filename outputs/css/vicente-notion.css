@@ -1,0 +1,194 @@
+/* Vicente Díaz · estilo editorial tipo Notion con garabatos animados. Cargar al final. */
+body.school-portal--vicente {
+  --ink: #111;
+  --text: #37352f;
+  --muted: #6b6a66;
+  --line: #e9e9e7;
+  --coral: #ff7a6b;
+  --yellow: #ffd666;
+  --blue: #8ec1ff;
+  --green: #7ed3a1;
+  background: #fff;
+  color: var(--text);
+  font-family: Inter, "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+body.school-portal--vicente main.shell { padding-bottom: 40px; }
+body.school-portal--vicente .section { padding: 0; margin-top: clamp(44px, 7vw, 84px); }
+body.school-portal--vicente h1,
+body.school-portal--vicente h2,
+body.school-portal--vicente h3 { color: var(--ink); font-family: inherit; }
+
+/* Hero */
+body.school-portal--vicente .hero {
+  position: relative;
+  display: block;
+  min-height: 320px;
+  margin: 8px 0 0;
+  padding: clamp(8px, 3vw, 28px) min(38vw, 380px) 0 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  overflow: visible;
+}
+body.school-portal--vicente .school-hero-art { display: none; }
+body.school-portal--vicente .hero .kicker {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+body.school-portal--vicente .hero .kicker::before { display: none; }
+body.school-portal--vicente .hero h1 {
+  max-width: 13ch;
+  margin: 10px 0 18px;
+  font-size: clamp(44px, 8vw, 84px);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+body.school-portal--vicente .hero p { max-width: 50ch; color: var(--text); font-size: clamp(16px, 2vw, 19px); line-height: 1.6; }
+body.school-portal--vicente .pwa-install-area .pwa-install-status { color: var(--muted); }
+body.school-portal--vicente .pwa-install-button,
+body.school-portal--vicente .btn {
+  min-height: 44px;
+  padding: 0 18px;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  background: var(--ink);
+  color: #fff;
+  font: 700 13px/1 inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+body.school-portal--vicente .pwa-install-button:hover,
+body.school-portal--vicente .btn:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--coral); background: var(--ink); color: #fff; }
+body.school-portal--vicente .btn.secondary { background: #fff; color: var(--ink); }
+
+/* Garabatos */
+.doodle { overflow: visible; pointer-events: none; }
+.doodle-hero { position: absolute; top: 0; right: 0; width: min(36vw, 340px); }
+.doodle-hero .v-float { transform-box: fill-box; transform-origin: center; animation: v-float 4.5s ease-in-out infinite; }
+.doodle-hero .v-hop { transform-box: fill-box; transform-origin: 50% 100%; animation: v-hop 1.8s ease-in-out infinite; }
+.doodle-hero .v-eyes circle { transform-box: fill-box; transform-origin: center; animation: v-blink 5s infinite; }
+.doodle-hero .v-tassel { transform-box: fill-box; transform-origin: 50% 0; animation: v-sway 1.6s ease-in-out infinite; }
+.doodle-hero .v-flag { transform-box: fill-box; transform-origin: 0 50%; animation: v-wave 1.4s ease-in-out infinite; }
+.doodle-hero .v-spark { transform-box: fill-box; transform-origin: center; animation: v-twinkle 2.4s ease-in-out infinite; }
+.doodle-hero .v-hand { transform-box: view-box; transform-origin: 120px 92px; animation: v-spin 6s linear infinite; }
+.doodle-hero .v-book { transform-box: fill-box; transform-origin: center; animation: v-float 3.4s ease-in-out infinite; }
+.doodle-hero .v-spark:nth-of-type(2) { animation-delay: -0.9s; }
+.doodle-hero .v-spark:nth-of-type(3) { animation-delay: -1.7s; }
+@keyframes v-float { 50% { transform: translateY(-8px); } }
+@keyframes v-hop { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-14px); } 55% { transform: translateY(0) scale(1.03, 0.96); } }
+@keyframes v-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(0.1); } }
+@keyframes v-sway { 50% { transform: rotate(18deg); } }
+@keyframes v-wave { 50% { transform: skewY(-10deg) scaleX(0.92); } }
+@keyframes v-twinkle { 50% { transform: scale(1.5) rotate(20deg); opacity: 0.45; } }
+@keyframes v-wiggle { 25% { transform: rotate(-10deg) scale(1.08); } 75% { transform: rotate(8deg) scale(1.08); } }
+
+/* Encabezados de sección */
+body.school-portal--vicente .sectionhead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.7fr) auto;
+  align-items: end;
+  gap: 10px 36px;
+  margin-bottom: 26px;
+  padding: 0;
+  border: 0;
+}
+body.school-portal--vicente .sectionhead > div { grid-column: 1 / 3; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.7fr); gap: 10px 36px; align-items: end; }
+body.school-portal--vicente .sectionhead h2 { grid-column: 1; margin: 0; font-size: clamp(30px, 5vw, 52px); font-weight: 800; line-height: 1.02; letter-spacing: -0.05em; text-wrap: balance; }
+body.school-portal--vicente .sectionhead p { grid-column: 2; margin: 0; max-width: none; color: var(--muted); font-size: 14px; line-height: 1.6; }
+body.school-portal--vicente .sectionhead > h2 { grid-column: 1; }
+body.school-portal--vicente .sectionhead > p { grid-column: 2; }
+body.school-portal--vicente .module-mascot { display: none; }
+
+/* Botones del hero */
+body.school-portal--vicente .hero .links { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 24px; }
+body.school-portal--vicente .pilllink { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border: 2px solid var(--ink); border-radius: 8px; background: var(--yellow); color: var(--ink); font-size: 13px; font-weight: 800; text-decoration: none; transition: transform .15s ease, box-shadow .15s ease; }
+body.school-portal--vicente .pilllink.alt { background: #fff; }
+body.school-portal--vicente .pilllink:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+
+/* Módulos */
+body.school-portal--vicente .vicente-module-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 14px; }
+body.school-portal--vicente .vicente-module-card { --m: var(--green); position: relative; display: flex; flex-direction: column; min-height: 230px; padding: 22px; overflow: visible; border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb, var(--m) 24%, #fff); box-shadow: none; color: var(--text); text-decoration: none; transition: transform .15s ease, box-shadow .15s ease; }
+body.school-portal--vicente .vicente-module-card::before, body.school-portal--vicente .vicente-module-card::after { display: none; content: none; }
+body.school-portal--vicente .vicente-module-card.icfes { --m: #b9a8ff; }
+body.school-portal--vicente .vicente-module-card.careers { --m: #8ec1ff; }
+body.school-portal--vicente .vicente-module-card.digital { --m: #ff9a85; }
+body.school-portal--vicente .vicente-module-card.orientation { --m: #7ed3a1; }
+body.school-portal--vicente .vicente-module-card.english { --m: #ffd666; }
+body.school-portal--vicente .vicente-module-card:hover { transform: translate(-3px, -3px); box-shadow: 5px 5px 0 var(--ink); }
+body.school-portal--vicente .vicente-module-icon, body.school-portal--vicente .resource .icon { display: grid; width: 48px; height: 48px; place-items: center; margin-bottom: 14px; border: 2px solid var(--ink); border-radius: 12px; background: #fff; box-shadow: 2px 2px 0 var(--ink); font-size: 24px; }
+body.school-portal--vicente .vicente-module-card:hover .vicente-module-icon, body.school-portal--vicente .resource:hover .icon { animation: v-wiggle .6s ease; }
+body.school-portal--vicente .vicente-module-label { display: block; margin: 0 0 6px; padding: 0; border: 0; background: none; color: var(--ink); opacity: .65; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+body.school-portal--vicente .vicente-module-card h3 { margin: 0 0 6px; font-size: 20px; font-weight: 800; letter-spacing: -.03em; line-height: 1.15; }
+body.school-portal--vicente .vicente-module-card p { margin: 0; color: var(--text); font-size: 13px; line-height: 1.55; }
+body.school-portal--vicente .vicente-module-link { margin-top: auto; padding-top: 16px; color: var(--ink); font-size: 13px; font-weight: 800; transition: padding-left .15s ease; }
+body.school-portal--vicente .vicente-module-card:hover .vicente-module-link { padding-left: 6px; }
+
+/* Orientación */
+body.school-portal--vicente .vicente-orientation-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 14px; }
+body.school-portal--vicente .vicente-orientation-grid article { position: relative; min-height: 220px; padding: 22px; border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb, #ffb3c6 26%, #fff); transition: transform .15s ease, box-shadow .15s ease; }
+body.school-portal--vicente .vicente-orientation-grid article:nth-child(2) { background: color-mix(in srgb, var(--yellow) 32%, #fff); }
+body.school-portal--vicente .vicente-orientation-grid article:nth-child(3) { background: color-mix(in srgb, var(--blue) 26%, #fff); }
+body.school-portal--vicente .vicente-orientation-grid article:hover { transform: translate(-3px, -3px); box-shadow: 5px 5px 0 var(--ink); }
+body.school-portal--vicente .vicente-orientation-grid article > span { display: block; margin: 0 0 56px; color: var(--ink); font: 700 13px/1 "Courier New", monospace; }
+body.school-portal--vicente .vicente-orientation-grid h3 { margin: 0 0 8px; font-size: 21px; font-weight: 800; letter-spacing: -.03em; line-height: 1.15; }
+body.school-portal--vicente .vicente-orientation-grid p { margin: 0; color: var(--text); font-size: 14px; line-height: 1.6; }
+.card-doodle { position: absolute; top: 18px; right: 18px; width: 54px; height: 54px; overflow: visible; pointer-events: none; }
+.card-doodle .d-a { transform-box: fill-box; transform-origin: center; animation: v-pulse 2.2s ease-in-out infinite; }
+.card-doodle .d-needle { transform-box: fill-box; transform-origin: center; animation: v-needle 3s ease-in-out infinite; }
+@keyframes v-pulse { 50% { transform: scale(1.14); } }
+@keyframes v-needle { 0%, 100% { transform: rotate(-25deg); } 50% { transform: rotate(35deg); } }
+@keyframes v-spin { to { transform: rotate(360deg); } }
+body.school-portal--vicente .vicente-orientation-note { margin: 20px 0 14px; color: var(--muted); font-size: 14px; }
+body.school-portal--vicente .vicente-orientation-note a { color: var(--ink); font-weight: 700; }
+
+/* Docentes */
+body.school-portal--vicente .panel { padding: clamp(18px, 3vw, 28px); border: 2px solid var(--ink); border-radius: 12px; background: #fff; box-shadow: 5px 5px 0 var(--ink); }
+body.school-portal--vicente .panel.preview { background: #fafaf9; }
+body.school-portal--vicente .panel h3 { font-size: 20px; font-weight: 800; letter-spacing: -.03em; }
+body.school-portal--vicente .field label { color: var(--ink); font-size: 12px; font-weight: 700; }
+body.school-portal--vicente .field input, body.school-portal--vicente .field select, body.school-portal--vicente .field textarea { border: 1px solid #d8d8d4; border-radius: 8px; background: #fff; }
+body.school-portal--vicente .slide { border-left: 4px solid var(--ink); background: #f7f7f5; }
+body.school-portal--vicente .slide small { color: var(--ink); }
+body.school-portal--vicente .tip { border: 0; border-left: 4px solid var(--ink); border-radius: 4px; background: #fff8e6; color: var(--text); }
+
+/* Estudiantes */
+body.school-portal--vicente #estudiantes { padding: clamp(22px, 5vw, 52px); border-radius: 6px; background: radial-gradient(circle at 20% 30%, #ffffff30 0 2px, transparent 3px) 0 0 / 22px 22px, var(--yellow); }
+body.school-portal--vicente .resource-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 14px; }
+body.school-portal--vicente .resource { min-height: 220px; padding: 22px; border: 2px solid var(--ink); border-radius: 10px; background: #fff; box-shadow: 4px 4px 0 var(--ink); transition: transform .15s ease, box-shadow .15s ease; }
+body.school-portal--vicente .resource:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+body.school-portal--vicente .resource h3 { margin: 0 0 6px; font-size: 20px; font-weight: 800; letter-spacing: -.03em; }
+body.school-portal--vicente .resource p { color: var(--text); font-size: 13px; line-height: 1.55; }
+body.school-portal--vicente .resource a { color: var(--ink); font-size: 13px; font-weight: 800; }
+
+/* Orientador con IA */
+body.school-portal--vicente .career-launcher { border: 2px solid var(--ink); background: var(--ink); box-shadow: 4px 4px 0 var(--coral); }
+body.school-portal--vicente .career-launcher:hover { transform: translate(-2px, -2px); background: var(--ink); box-shadow: 6px 6px 0 var(--coral); }
+body.school-portal--vicente .career-ai-tag { background: var(--yellow); color: var(--ink); font-weight: 800; }
+body.school-portal--vicente .career-panel { border: 2px solid var(--ink); border-radius: 14px; box-shadow: 6px 6px 0 var(--ink); }
+body.school-portal--vicente .career-header { background: var(--yellow); color: var(--ink); border-bottom: 2px solid var(--ink); }
+body.school-portal--vicente .career-heading h2 { color: var(--ink); font-weight: 800; }
+body.school-portal--vicente .career-heading p { color: #5d5b55; }
+body.school-portal--vicente .career-avatar,
+body.school-portal--vicente .career-close { border: 2px solid var(--ink); background: #fff; color: var(--ink); }
+
+body.school-portal--vicente a:focus-visible,
+body.school-portal--vicente button:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+@media (max-width: 760px) {
+  body.school-portal--vicente .hero { min-height: 0; padding: 190px 0 0; }
+  .doodle-hero { width: 190px; }
+  body.school-portal--vicente .sectionhead,
+  body.school-portal--vicente .sectionhead > div { grid-template-columns: 1fr; }
+  body.school-portal--vicente .sectionhead h2,
+  body.school-portal--vicente .sectionhead p,
+  body.school-portal--vicente .sectionhead > h2,
+  body.school-portal--vicente .sectionhead > p { grid-column: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .doodle *, body.school-portal--vicente * { animation: none !important; transition: none !important; }
+}

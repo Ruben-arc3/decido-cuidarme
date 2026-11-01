@@ -1,0 +1,324 @@
+/* Mejoras de diseño: jerarquía, ritmo, contraste y microinteracciones. Cargar al final. */
+body.campaign-detail {
+  --ink: #10243b;
+  --muted: #526a7e;
+  --line: #dce7e6;
+  --teal: #148875;
+  --coral: #bd5b43;
+  --violet: #7160b1;
+  --gold: #c57b15;
+  --radius: 18px;
+  --shadow: 0 12px 30px #15344d0f;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body.campaign-detail .page-shell > section + section,
+body.campaign-detail .page-shell > aside {
+  margin-top: clamp(28px, 5vw, 48px);
+}
+
+/* Hero */
+body.campaign-detail .hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(28px, 5vw, 56px);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 92% 8%, #fff4d9 0 90px, transparent 91px),
+    radial-gradient(circle at 78% 110%, #d8f0e8 0 140px, transparent 141px),
+    linear-gradient(120deg, #f3faf7, #fff 70%);
+  box-shadow: var(--shadow);
+}
+body.campaign-detail .hero h1 {
+  max-width: 14ch;
+  margin: 8px 0 14px;
+  font-size: clamp(34px, 6vw, 62px);
+  font-weight: 850;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+body.campaign-detail .hero > p:not(.eyebrow) {
+  max-width: 58ch;
+  color: var(--muted);
+  font-size: clamp(15px, 2vw, 18px);
+  line-height: 1.65;
+}
+body.campaign-detail .hero .button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 46px;
+  margin-top: 8px;
+  padding: 0 20px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 8px 18px #10243b33;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+body.campaign-detail .hero .button:hover {
+  transform: translateY(-2px);
+  background: #17375a;
+  box-shadow: 0 12px 24px #10243b3d;
+}
+
+/* Etiquetas y encabezados de sección */
+body.campaign-detail .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+body.campaign-detail .eyebrow::before {
+  width: 18px;
+  height: 3px;
+  border-radius: 3px;
+  background: currentColor;
+  content: "";
+  opacity: 0.7;
+}
+body.campaign-detail .section-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: end;
+  gap: 12px 32px;
+  margin-bottom: 22px;
+}
+body.campaign-detail .section-heading h2 {
+  margin: 6px 0 0;
+  font-size: clamp(26px, 4vw, 38px);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+body.campaign-detail .section-heading > p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Tarjetas de aprendizaje */
+body.campaign-detail .learning-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  gap: 16px;
+}
+body.campaign-detail .learning-card {
+  --c: var(--teal);
+  position: relative;
+  overflow: hidden;
+  padding: 24px 22px 22px;
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--c);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--c) 8%, #fff), #fff 55%);
+  box-shadow: 0 6px 18px #15344d0a;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+body.campaign-detail .learning-card.teal { --c: var(--teal); }
+body.campaign-detail .learning-card.coral { --c: var(--coral); }
+body.campaign-detail .learning-card.violet { --c: var(--violet); }
+body.campaign-detail .learning-card.gold { --c: var(--gold); }
+body.campaign-detail .learning-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px #15344d1a;
+}
+body.campaign-detail .learning-card .number {
+  display: inline-grid;
+  min-width: 38px;
+  height: 28px;
+  place-items: center;
+  margin-bottom: 14px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: var(--c);
+  color: #fff;
+  font: 800 12px/1 "Courier New", monospace;
+  letter-spacing: 0.06em;
+}
+body.campaign-detail .learning-card h3 {
+  margin: 0 0 8px;
+  font-size: 19px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+body.campaign-detail .learning-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* Mensaje clave + recurso de ayuda */
+body.campaign-detail .response {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  align-items: center;
+  gap: 28px;
+  padding: clamp(24px, 4vw, 40px);
+  border-radius: 24px;
+  background: linear-gradient(135deg, #10243b, #17405a);
+  color: #eaf3f6;
+}
+body.campaign-detail .response .eyebrow { color: #8fe0cf; }
+body.campaign-detail .response h2 {
+  margin: 8px 0 10px;
+  color: #fff;
+  font-size: clamp(26px, 4vw, 38px);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+}
+body.campaign-detail .response p { line-height: 1.65; }
+body.campaign-detail .help-box {
+  display: grid;
+  gap: 6px;
+  padding: 22px;
+  border: 1px solid #ffffff2e;
+  border-radius: 18px;
+  background: #ffffff14;
+  backdrop-filter: blur(4px);
+}
+body.campaign-detail .help-box .help-label {
+  color: #8fe0cf;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+body.campaign-detail .help-box strong { color: #fff; font-size: 19px; }
+body.campaign-detail .help-box p { margin: 0 0 6px; color: #cfe0e8; font-size: 13px; }
+body.campaign-detail .help-box a {
+  justify-self: start;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 0.15s ease;
+}
+body.campaign-detail .help-box a:hover { transform: translateY(-2px); }
+
+/* Videos */
+body.campaign-detail .video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 16px;
+}
+body.campaign-detail .video-note {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 12px;
+}
+body.campaign-detail .campaign-video-state {
+  padding: 32px 20px;
+  background:
+    linear-gradient(90deg, transparent, #ffffffa0, transparent) 0 0 / 200% 100%,
+    #f1f7f4;
+  animation: polish-shimmer 1.6s linear infinite;
+}
+@keyframes polish-shimmer { to { background-position: -200% 0, 0 0; } }
+
+/* Recursos */
+body.campaign-detail .resources {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 28px;
+  align-items: start;
+}
+body.campaign-detail .resources h2 {
+  margin: 6px 0 8px;
+  font-size: clamp(24px, 3.5vw, 34px);
+  letter-spacing: -0.03em;
+}
+body.campaign-detail .resources p { color: var(--muted); }
+body.campaign-detail .resource-links { display: grid; gap: 10px; }
+body.campaign-detail .resource-links a {
+  display: grid;
+  gap: 4px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--teal);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+body.campaign-detail .resource-links a:nth-child(2) { border-left-color: var(--violet); }
+body.campaign-detail .resource-links a:nth-child(3) { border-left-color: var(--gold); }
+body.campaign-detail .resource-links a:hover {
+  transform: translateX(4px);
+  box-shadow: 0 10px 22px #15344d14;
+}
+body.campaign-detail .resource-links a span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+body.campaign-detail .resource-links a strong { font-size: 15px; line-height: 1.35; }
+
+/* Juegos: refuerzo de contraste y área táctil */
+body.campaign-detail .campaign-games--retro { border-radius: 22px; }
+body.campaign-detail .campaign-games--retro .mini-game-card small { color: #3d5668; }
+
+/* Nota para el aula */
+body.campaign-detail .classroom-note {
+  display: grid;
+  gap: 4px;
+  padding: 18px 22px 18px 58px;
+  position: relative;
+  border: 1px solid #f0d9a3;
+  border-radius: 16px;
+  background: #fff8e6;
+  color: #5d4510;
+}
+body.campaign-detail .classroom-note::before {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  content: "✎";
+  font-size: 22px;
+  line-height: 1;
+}
+body.campaign-detail .classroom-note p { margin: 0; line-height: 1.6; }
+
+/* Pie de página: el botón de sugerencias ahora es legible sobre fondo oscuro */
+.platform-footer .platform-footer-feedback {
+  border-color: #46574b;
+  background: #202d25;
+  color: #d4e2d6;
+}
+
+/* Accesibilidad */
+body.campaign-detail a:focus-visible,
+body.campaign-detail button:focus-visible {
+  outline: 3px solid #4c9470;
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  body.campaign-detail .section-heading,
+  body.campaign-detail .response,
+  body.campaign-detail .resources { grid-template-columns: 1fr; }
+  body.campaign-detail .hero { border-radius: 18px; }
+  body.campaign-detail .hero h1 { max-width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.campaign-detail * { transition: none !important; animation: none !important; }
+  body.campaign-detail .learning-card:hover,
+  body.campaign-detail .resource-links a:hover { transform: none; }
+}

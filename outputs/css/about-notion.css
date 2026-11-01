@@ -1,0 +1,134 @@
+/* Conoce la plataforma · estilo editorial tipo Notion con garabatos animados. Cargar al final. */
+body.about-page {
+  --ink: #111; --text: #37352f; --muted: #6b6a66; --line: #e9e9e7;
+  --coral: #ff7a6b; --yellow: #ffd666; --blue: #8ec1ff; --green: #7ed3a1;
+  background: #fff; color: var(--text);
+  font-family: Inter, "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+body.about-page .about-shell { padding-bottom: 40px; }
+body.about-page .section { margin: 0 0 clamp(44px, 7vw, 84px); }
+body.about-page h1, body.about-page h2, body.about-page h3 { color: var(--ink); }
+
+/* Etiquetas */
+body.about-page .eyebrow, body.about-page .section-kicker { margin: 0 0 8px; color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+body.about-page .eyebrow span { display: none; }
+
+/* Hero */
+body.about-page .about-hero { overflow: visible; margin: 20px 0 clamp(48px, 8vw, 96px); padding: clamp(8px, 3vw, 28px) 0 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
+body.about-page .about-hero h1 { max-width: 14ch; margin: 0; font-size: clamp(40px, 6.6vw, 76px); font-weight: 800; line-height: .99; letter-spacing: -.055em; text-wrap: balance; }
+body.about-page .about-lead { max-width: 54ch; color: var(--text); font-size: clamp(16px, 2vw, 19px); line-height: 1.6; }
+body.about-page .button { min-height: 44px; padding: 0 18px; border: 2px solid var(--ink); border-radius: 8px; background: #fff; color: var(--ink); font-weight: 700; box-shadow: none; transition: transform .15s ease, box-shadow .15s ease; }
+body.about-page .button:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); background: #fff; }
+body.about-page .button.primary { background: var(--ink); color: #fff; }
+body.about-page .button.primary:hover { background: var(--ink); box-shadow: 4px 4px 0 var(--coral); }
+body.about-page .hero-note { padding: 24px; border: 2px solid var(--ink); border-radius: 12px; background: #fff7d6; box-shadow: 6px 6px 0 var(--ink); transform: rotate(1.5deg); transition: transform .2s ease; }
+body.about-page .hero-note:hover { transform: rotate(0); }
+body.about-page .note-icon { border: 2px solid var(--ink); border-radius: 10px; background: #fff; color: var(--ink); box-shadow: 2px 2px 0 var(--ink); }
+body.about-page .hero-note > strong { font-size: 19px; font-weight: 800; letter-spacing: -.03em; }
+body.about-page .hero-note > p, body.about-page .hero-note > small { color: var(--text); }
+body.about-page .quick-stats { border-color: #1111; }
+body.about-page .quick-stats b { font-size: 30px; font-weight: 800; }
+body.about-page .quick-stats span { color: var(--text); font-size: 11px; }
+
+/* Garabatos */
+.doodle { overflow: visible; pointer-events: none; }
+.doodle-peek { position: absolute; top: -84px; right: 22px; width: 130px; }
+.doodle-peek .v-look { animation: v-look 4s ease-in-out infinite; }
+.doodle-peek .v-glasses { animation: v-bob 3s ease-in-out infinite; }
+.doodle-peek .v-eyes circle { transform-box: fill-box; transform-origin: center; animation: v-blink 5s infinite; }
+.doodle-peek .v-hand { animation: v-tap 1.2s ease-in-out infinite; }
+.doodle-peek .v-hand:nth-of-type(2) { animation-delay: -.6s; }
+.doodle-watch { position: absolute; top: -62px; right: clamp(24px, 6vw, 70px); width: 96px; z-index: 2; }
+.doodle-watch .v-tick { transform-box: view-box; transform-origin: 60px 74px; animation: v-spin 5s linear infinite; }
+.doodle-watch .v-eyes circle { transform-box: fill-box; transform-origin: center; animation: v-blink 4s infinite; }
+.doodle-watch .v-ring { transform-box: fill-box; transform-origin: center; animation: v-twinkle 2s ease-in-out infinite; }
+.card-doodle { position: absolute; top: 18px; right: 18px; width: 52px; height: 52px; overflow: visible; pointer-events: none; }
+.card-doodle .d-a { transform-box: fill-box; transform-origin: center; animation: v-pulse 2.2s ease-in-out infinite; }
+.card-doodle .d-b { animation: v-blinkop 2.4s ease-in-out infinite; }
+.card-doodle .d-c { transform-box: fill-box; transform-origin: 50% 100%; animation: v-sway 2s ease-in-out infinite; }
+@keyframes v-look { 0%, 100% { transform: translateX(-3px); } 50% { transform: translateX(3px); } }
+@keyframes v-bob { 50% { transform: translateY(-3px); } }
+@keyframes v-tap { 50% { transform: translateY(-5px); } }
+@keyframes v-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+@keyframes v-spin { to { transform: rotate(360deg); } }
+@keyframes v-twinkle { 50% { transform: scale(1.25); opacity: .5; } }
+@keyframes v-pulse { 50% { transform: scale(1.12); } }
+@keyframes v-blinkop { 50% { opacity: .3; } }
+@keyframes v-sway { 50% { transform: rotate(8deg); } }
+@keyframes v-wiggle { 25% { transform: rotate(-10deg) scale(1.08); } 75% { transform: rotate(8deg) scale(1.08); } }
+
+/* Encabezados */
+body.about-page .section-heading, body.about-page .tour-heading { display: flex; align-items: end; justify-content: space-between; gap: 12px 36px; margin-bottom: 26px; padding: 0; border: 0; }
+body.about-page .section-heading h2 { font-size: clamp(30px, 5vw, 52px); font-weight: 800; line-height: 1.02; letter-spacing: -.05em; text-wrap: balance; }
+body.about-page .tour-heading h2 { font-weight: 800; letter-spacing: -.05em; }
+body.about-page .section-heading > p, body.about-page .tour-heading p:not(.section-kicker) { color: var(--muted); font-size: 14px; line-height: 1.6; }
+
+/* Tarjetas: público y metodología */
+body.about-page .info-card, body.about-page .method-card { --c: var(--blue); padding: 22px; border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb, var(--c) 24%, #fff); box-shadow: none; transition: transform .15s ease, box-shadow .15s ease; }
+body.about-page .info-card:nth-child(2) { --c: var(--yellow); }
+body.about-page .info-card:nth-child(3) { --c: var(--green); }
+body.about-page .method-card:nth-child(2) { --c: var(--yellow); }
+body.about-page .method-card:nth-child(3) { --c: var(--coral); }
+body.about-page .method-card:nth-child(4) { --c: var(--green); }
+body.about-page .info-card:hover, body.about-page .method-card:hover { transform: translate(-3px, -3px); border-color: var(--line); box-shadow: 5px 5px 0 var(--ink); }
+body.about-page .card-index { color: var(--ink); font: 700 13px/1 "Courier New", monospace; }
+body.about-page .info-card h3 { margin: 52px 0 8px; font-size: 22px; font-weight: 800; letter-spacing: -.03em; }
+body.about-page .method-card h3 { margin: 14px 0 8px; font-size: 21px; font-weight: 800; letter-spacing: -.03em; }
+body.about-page .info-card p, body.about-page .method-card p { color: var(--text); font-size: 14px; line-height: 1.6; }
+body.about-page .method-symbol { border: 2px solid var(--ink); border-radius: 10px; background: #fff; color: var(--ink); box-shadow: 2px 2px 0 var(--ink); font-weight: 800; }
+body.about-page .method-card:hover .method-symbol { animation: v-wiggle .6s ease; }
+body.about-page .source-links a { padding: 7px 10px; border: 1.5px solid var(--ink); border-radius: 6px; background: #fff; color: var(--ink); font-weight: 700; }
+body.about-page .source-links a:hover { background: var(--yellow); }
+body.about-page .inline-link, body.about-page .text-link { color: var(--ink); font-weight: 800; }
+body.about-page .source-note { border: 0; border-left: 4px solid var(--ink); border-radius: 4px; background: #f7f7f5; color: var(--text); }
+
+/* Campañas con el color de cada tema */
+body.about-page .campaign-card { position: relative; min-height: 230px; padding: 22px; border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb, var(--cc) 30%, #fff); box-shadow: none; transition: transform .15s ease, box-shadow .15s ease; }
+body.about-page .campaign-card.substances { --cc: #ff9a85; }
+body.about-page .campaign-card.family { --cc: #8fd6c7; }
+body.about-page .campaign-card.safety { --cc: #b9a8ff; }
+body.about-page .campaign-card.road { --cc: #ffcf3d; }
+body.about-page .campaign-card:hover { transform: translate(-3px, -3px); border-color: var(--line); box-shadow: 5px 5px 0 var(--ink); }
+body.about-page .campaign-card > span { color: var(--ink); opacity: .7; font-size: 10px; font-weight: 700; }
+body.about-page .campaign-card h3 { margin: 56px 0 8px; font-size: 22px; font-weight: 800; letter-spacing: -.03em; }
+body.about-page .campaign-card p { color: var(--text); font-size: 13px; }
+body.about-page .campaign-card b { color: var(--ink); font-size: 13px; font-weight: 800; transition: padding-left .15s ease; }
+body.about-page .campaign-card:hover b { padding-left: 6px; }
+
+/* Recorrido */
+body.about-page .tour-section { position: relative; padding: clamp(22px, 5vw, 52px); border: 0; border-radius: 6px; background: radial-gradient(circle at 20% 30%, #ffffff30 0 2px, transparent 3px) 0 0 / 22px 22px, var(--yellow); }
+body.about-page .duration-pill { border: 2px solid var(--ink); background: #fff; color: var(--ink); font-weight: 700; }
+body.about-page .tour-layout { border: 2px solid var(--ink); border-radius: 12px; box-shadow: 6px 6px 0 var(--ink); }
+body.about-page .tour-rail { border-right: 2px solid var(--ink); background: #fafaf9; }
+body.about-page .tour-step-button { border-radius: 8px; font-weight: 600; }
+body.about-page .tour-step-button > span:first-child { border: 1.5px solid var(--ink); background: #fff; color: var(--ink); }
+body.about-page .tour-step-button:hover { background: #f1f1ee; }
+body.about-page .tour-step-button.is-current { border-color: var(--ink); background: var(--ink); color: #fff; }
+body.about-page .tour-step-button.is-current > span:first-child { border-color: var(--yellow); background: var(--yellow); color: var(--ink); }
+body.about-page .tour-rail progress::-webkit-progress-value { background: var(--coral); }
+body.about-page .tour-rail progress::-moz-progress-bar { background: var(--coral); }
+body.about-page .tour-rail progress::-webkit-progress-bar { background: #ecece9; }
+body.about-page .panel-label { display: inline-block; padding: 4px 9px; border: 1.5px solid var(--ink); border-radius: 6px; background: var(--blue); color: var(--ink); font-weight: 800; }
+body.about-page .tour-panel h3 { font-weight: 800; letter-spacing: -.05em; }
+body.about-page .tour-panel > p { color: var(--text); }
+body.about-page .tour-panel blockquote { border-left: 4px solid var(--ink); background: #fff8e6; color: var(--text); }
+body.about-page .tour-controls { border-top: 2px solid var(--line); }
+body.about-page .tour-restart, body.about-page .tour-complete-note { color: var(--ink); font-weight: 700; }
+body.about-page .sample-dashboard { border: 2px solid var(--ink); border-radius: 10px; box-shadow: 3px 3px 0 var(--ink); }
+body.about-page .sample-banner { background: var(--yellow); color: var(--ink); font-weight: 700; }
+body.about-page .sample-metrics div { border: 1.5px solid var(--ink); border-radius: 8px; }
+
+body.about-page a:focus-visible, body.about-page button:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+@media (max-width: 900px) {
+  body.about-page .hero-note { margin-top: 84px; }
+  body.about-page .section-heading, body.about-page .tour-heading { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 640px) {
+  .doodle-watch { width: 72px; top: -48px; }
+  body.about-page .about-hero h1 { max-width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .doodle *, .card-doodle *, body.about-page * { animation: none !important; transition: none !important; }
+}

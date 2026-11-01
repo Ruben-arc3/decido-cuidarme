@@ -1,0 +1,229 @@
+/* Villa Esther · estilo editorial tipo Notion con garabatos animados. Cargar al final. */
+body.school-portal--villa {
+  --ink: #111;
+  --text: #37352f;
+  --muted: #6b6a66;
+  --line: #e9e9e7;
+  --coral: #ff7a6b;
+  --yellow: #ffd666;
+  --blue: #8ec1ff;
+  --green: #7ed3a1;
+  background: #fff;
+  color: var(--text);
+  font-family: Inter, "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+body.school-portal--villa main.shell { padding-bottom: 40px; }
+body.school-portal--villa .section { padding: 0; margin-top: clamp(44px, 7vw, 84px); }
+body.school-portal--villa h1,
+body.school-portal--villa h2,
+body.school-portal--villa h3 { color: var(--ink); font-family: inherit; }
+
+/* Hero */
+body.school-portal--villa .hero.villa-retro-hero {
+  position: relative;
+  display: block;
+  min-height: 320px;
+  margin: 8px 0 0;
+  padding: clamp(8px, 3vw, 28px) min(38vw, 380px) 0 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  overflow: visible;
+}
+body.school-portal--villa .school-hero-art { display: none; }
+body.school-portal--villa .hero .kicker {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+body.school-portal--villa .hero .kicker::before { display: none; }
+body.school-portal--villa .hero h1 {
+  max-width: 13ch;
+  margin: 10px 0 18px;
+  font-size: clamp(44px, 8vw, 84px);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+body.school-portal--villa .hero p { max-width: 50ch; color: var(--text); font-size: clamp(16px, 2vw, 19px); line-height: 1.6; }
+body.school-portal--villa .pwa-install-area .pwa-install-status { color: var(--muted); }
+body.school-portal--villa .pwa-install-button,
+body.school-portal--villa .btn {
+  min-height: 44px;
+  padding: 0 18px;
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  background: var(--ink);
+  color: #fff;
+  font: 700 13px/1 inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+body.school-portal--villa .pwa-install-button:hover,
+body.school-portal--villa .btn:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--coral); background: var(--ink); color: #fff; }
+body.school-portal--villa .btn.secondary { background: #fff; color: var(--ink); }
+
+/* Garabatos */
+.doodle { overflow: visible; pointer-events: none; }
+.doodle-hero { position: absolute; top: 0; right: 0; width: min(36vw, 340px); }
+.doodle-hero .v-float { transform-box: fill-box; transform-origin: center; animation: v-float 4.5s ease-in-out infinite; }
+.doodle-hero .v-hop { transform-box: fill-box; transform-origin: 50% 100%; animation: v-hop 1.8s ease-in-out infinite; }
+.doodle-hero .v-eyes circle { transform-box: fill-box; transform-origin: center; animation: v-blink 5s infinite; }
+.doodle-hero .v-tassel { transform-box: fill-box; transform-origin: 50% 0; animation: v-sway 1.6s ease-in-out infinite; }
+.doodle-hero .v-flag { transform-box: fill-box; transform-origin: 0 50%; animation: v-wave 1.4s ease-in-out infinite; }
+.doodle-hero .v-spark { transform-box: fill-box; transform-origin: center; animation: v-twinkle 2.4s ease-in-out infinite; }
+.doodle-hero .v-spark:nth-of-type(2) { animation-delay: -0.9s; }
+.doodle-hero .v-spark:nth-of-type(3) { animation-delay: -1.7s; }
+@keyframes v-float { 50% { transform: translateY(-8px); } }
+@keyframes v-hop { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-14px); } 55% { transform: translateY(0) scale(1.03, 0.96); } }
+@keyframes v-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(0.1); } }
+@keyframes v-sway { 50% { transform: rotate(18deg); } }
+@keyframes v-wave { 50% { transform: skewY(-10deg) scaleX(0.92); } }
+@keyframes v-twinkle { 50% { transform: scale(1.5) rotate(20deg); opacity: 0.45; } }
+@keyframes v-wiggle { 25% { transform: rotate(-10deg) scale(1.08); } 75% { transform: rotate(8deg) scale(1.08); } }
+
+/* Encabezados de sección */
+body.school-portal--villa .sectionhead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.7fr) auto;
+  align-items: end;
+  gap: 10px 36px;
+  margin-bottom: 26px;
+  padding: 0;
+  border: 0;
+}
+body.school-portal--villa .sectionhead > div { grid-column: 1 / 3; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.7fr); gap: 10px 36px; align-items: end; }
+body.school-portal--villa .sectionhead h2 { grid-column: 1; margin: 0; font-size: clamp(30px, 5vw, 52px); font-weight: 800; line-height: 1.02; letter-spacing: -0.05em; text-wrap: balance; }
+body.school-portal--villa .sectionhead p { grid-column: 2; margin: 0; max-width: none; color: var(--muted); font-size: 14px; line-height: 1.6; }
+body.school-portal--villa .sectionhead > h2 { grid-column: 1; }
+body.school-portal--villa .sectionhead > p { grid-column: 2; }
+body.school-portal--villa .module-mascot { display: none; }
+
+/* Módulos */
+body.school-portal--villa .module-grid.row { --bs-gutter-x: 14px; --bs-gutter-y: 14px; }
+body.school-portal--villa .module-card.card {
+  --m: var(--green);
+  min-height: 230px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--m) 24%, #fff);
+  box-shadow: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+body.school-portal--villa .module-card::before,
+body.school-portal--villa .module-card::after { display: none; content: none; }
+body.school-portal--villa .module-life { --m: #7ed3a1; }
+body.school-portal--villa .module-study { --m: #8ec1ff; }
+body.school-portal--villa .module-careers { --m: #9fd8e8; }
+body.school-portal--villa .module-icfes { --m: #b9a8ff; }
+body.school-portal--villa .module-work { --m: #ff9a85; }
+body.school-portal--villa .module-digital { --m: #ffb3c6; }
+body.school-portal--villa .module-english { --m: #ffd666; }
+body.school-portal--villa .module-games { --m: #ffb36b; }
+body.school-portal--villa .module-card:hover { transform: translate(-3px, -3px); box-shadow: 5px 5px 0 var(--ink); }
+body.school-portal--villa .module-card .module-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  margin-bottom: 14px;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 2px 2px 0 var(--ink);
+  font-size: 24px;
+}
+body.school-portal--villa .module-card:hover .module-icon { animation: v-wiggle 0.6s ease; }
+body.school-portal--villa .module-card .module-kicker { margin: 0 0 6px; color: var(--ink); opacity: 0.65; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; }
+body.school-portal--villa .module-card h3 { margin: 0 0 6px; font-size: 20px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; }
+body.school-portal--villa .module-card p { color: var(--text); font-size: 13px; line-height: 1.55; }
+body.school-portal--villa .module-card .module-go { margin-top: auto; padding-top: 16px; color: var(--ink); font-size: 13px; font-weight: 800; transition: padding-left 0.15s ease; }
+body.school-portal--villa .module-card:hover .module-go { padding-left: 6px; }
+
+/* Videos */
+body.school-portal--villa .feature.card { padding: 20px; border: 1px solid var(--line); border-radius: 12px; background: #fafaf9; box-shadow: none; }
+body.school-portal--villa .field label { color: var(--ink); font-size: 12px; font-weight: 700; }
+body.school-portal--villa .field input,
+body.school-portal--villa .field select { border: 1px solid #d8d8d4; border-radius: 8px; background: #fff; }
+body.school-portal--villa .smallnote { color: var(--muted); }
+
+/* Juegos */
+body.school-portal--villa .villa-retro-games {
+  padding: clamp(22px, 5vw, 52px);
+  border: 0;
+  border-radius: 6px;
+  background:
+    radial-gradient(circle at 20% 30%, #ffffff30 0 2px, transparent 3px) 0 0 / 22px 22px,
+    var(--yellow);
+}
+body.school-portal--villa .resource-grid.row { --bs-gutter-x: 14px; --bs-gutter-y: 14px; }
+body.school-portal--villa .resource.card {
+  min-height: 190px;
+  padding: 20px;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 4px 4px 0 var(--ink);
+  font-family: inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+body.school-portal--villa .resource.card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+body.school-portal--villa .resource.card .icon {
+  display: inline-grid;
+  width: auto;
+  min-width: 38px;
+  height: 28px;
+  place-items: center;
+  padding: 0 10px;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  background: var(--coral);
+  color: var(--ink);
+  font: 800 12px/1 "Courier New", monospace;
+}
+body.school-portal--villa .resource.card:nth-child(2) .icon { background: var(--blue); }
+body.school-portal--villa .resource.card:nth-child(3) .icon { background: var(--green); }
+body.school-portal--villa .resource.card h3 { margin: 14px 0 6px; font-size: 20px; font-weight: 800; letter-spacing: -0.03em; }
+body.school-portal--villa .resource.card p { color: var(--text); font-size: 13px; line-height: 1.55; }
+body.school-portal--villa .resource.card a { color: var(--ink); font-size: 13px; font-weight: 800; }
+
+/* Trayectorias */
+body.school-portal--villa .story.card { padding: 22px; border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb, var(--blue) 22%, #fff); box-shadow: none; transition: transform 0.15s ease, box-shadow 0.15s ease; }
+body.school-portal--villa .story.card:nth-child(2) { background: color-mix(in srgb, var(--yellow) 30%, #fff); }
+body.school-portal--villa .story.card:nth-child(3) { background: color-mix(in srgb, var(--coral) 24%, #fff); }
+body.school-portal--villa .story.card:hover { transform: translate(-3px, -3px); box-shadow: 5px 5px 0 var(--ink); }
+body.school-portal--villa .story.card blockquote { margin: 0 0 14px; color: var(--ink); font-size: 15px; line-height: 1.6; }
+body.school-portal--villa .story.card blockquote::before { display: block; margin-bottom: 4px; content: "“"; font-size: 44px; font-weight: 800; line-height: 0.8; }
+body.school-portal--villa .story.card b { color: var(--ink); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+
+/* Orientador con IA */
+body.school-portal--villa .career-launcher { border: 2px solid var(--ink); background: var(--ink); box-shadow: 4px 4px 0 var(--coral); }
+body.school-portal--villa .career-launcher:hover { transform: translate(-2px, -2px); background: var(--ink); box-shadow: 6px 6px 0 var(--coral); }
+body.school-portal--villa .career-ai-tag { background: var(--yellow); color: var(--ink); font-weight: 800; }
+body.school-portal--villa .career-panel { border: 2px solid var(--ink); border-radius: 14px; box-shadow: 6px 6px 0 var(--ink); }
+body.school-portal--villa .career-header { background: var(--yellow); color: var(--ink); border-bottom: 2px solid var(--ink); }
+body.school-portal--villa .career-heading h2 { color: var(--ink); font-weight: 800; }
+body.school-portal--villa .career-heading p { color: #5d5b55; }
+body.school-portal--villa .career-avatar,
+body.school-portal--villa .career-close { border: 2px solid var(--ink); background: #fff; color: var(--ink); }
+
+body.school-portal--villa a:focus-visible,
+body.school-portal--villa button:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+@media (max-width: 760px) {
+  body.school-portal--villa .hero.villa-retro-hero { min-height: 0; padding: 190px 0 0; }
+  .doodle-hero { width: 190px; }
+  body.school-portal--villa .sectionhead,
+  body.school-portal--villa .sectionhead > div { grid-template-columns: 1fr; }
+  body.school-portal--villa .sectionhead h2,
+  body.school-portal--villa .sectionhead p,
+  body.school-portal--villa .sectionhead > h2,
+  body.school-portal--villa .sectionhead > p { grid-column: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .doodle *, body.school-portal--villa * { animation: none !important; transition: none !important; }
+}

@@ -1,0 +1,307 @@
+/* Estilo editorial tipo Notion: blanco, tipografía gruesa, paneles de color y garabatos animados. Cargar al final. */
+body.campaign-detail {
+  --ink: #111;
+  --text: #37352f;
+  --muted: #6b6a66;
+  --line: #e9e9e7;
+  --coral: #ff7a6b;
+  --yellow: #ffd666;
+  --blue: #8ec1ff;
+  --green: #7ed3a1;
+  --k1: var(--green); --k2: var(--coral); --k3: var(--blue); --k4: var(--yellow);
+  --p1: var(--coral); --p2: var(--blue); --p3: var(--yellow);
+  background: #fff;
+  color: var(--text);
+  font-family: Inter, "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+body.campaign-detail .page-shell > * + * { margin-top: clamp(40px, 7vw, 80px); }
+body.campaign-detail h1, body.campaign-detail h2, body.campaign-detail h3 { color: var(--ink); }
+
+/* Etiquetas */
+body.campaign-detail .eyebrow {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Hero con personaje */
+body.campaign-detail .hero {
+  position: relative;
+  min-height: 300px;
+  padding: clamp(8px, 3vw, 24px) min(34vw, 300px) 0 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+body.campaign-detail .hero h1 {
+  max-width: 12ch;
+  margin: 0 0 18px;
+  font-size: clamp(44px, 8vw, 84px);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+body.campaign-detail .hero > p:not(.eyebrow) {
+  max-width: 52ch;
+  margin: 0 0 24px;
+  color: var(--text);
+  font-size: clamp(16px, 2vw, 19px);
+  line-height: 1.6;
+}
+body.campaign-detail .hero .button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 8px;
+  background: var(--ink);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+body.campaign-detail .hero .button:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--p1); }
+
+/* Garabatos */
+.doodle { overflow: visible; pointer-events: none; }
+.doodle-hero { position: absolute; top: 0; right: 0; width: min(30vw, 260px); }
+.doodle-hero .d-float { animation: d-float 4.5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.doodle-hero .d-eyes circle { transform-box: fill-box; transform-origin: center; animation: d-blink 5s infinite; }
+.doodle-hero .d-glasses { transform-box: fill-box; transform-origin: center; animation: d-glasses 3.2s ease-in-out infinite; }
+.doodle-hero .d-spark { transform-box: fill-box; transform-origin: center; animation: d-twinkle 2.4s ease-in-out infinite; }
+.doodle-hero .d-spark:nth-of-type(2) { animation-delay: -0.8s; }
+.doodle-hero .d-spark:nth-of-type(3) { animation-delay: -1.6s; }
+.doodle-hero .d-wave { transform-box: fill-box; transform-origin: 0% 100%; animation: d-wave 1.8s ease-in-out infinite; }
+.card-doodle { position: absolute; top: 18px; right: 18px; width: 54px; height: 54px; overflow: visible; }
+.card-doodle .d-a { transform-box: fill-box; transform-origin: center; animation: d-pulse 2.2s ease-in-out infinite; }
+.card-doodle .d-b { animation: d-dash 2.4s ease-in-out infinite; }
+.card-doodle .d-dot { transform-box: fill-box; transform-origin: center; animation: d-bounce 1.2s ease-in-out infinite; }
+.card-doodle .d-dot:nth-of-type(2) { animation-delay: -0.2s; }
+.card-doodle .d-dot:nth-of-type(3) { animation-delay: -0.4s; }
+@keyframes d-float { 50% { transform: translateY(-10px) rotate(2deg); } }
+@keyframes d-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(0.1); } }
+@keyframes d-glasses { 50% { transform: translateY(-3px); } }
+@keyframes d-twinkle { 50% { transform: scale(1.5) rotate(20deg); opacity: 0.45; } }
+@keyframes d-wave { 0%, 100% { transform: rotate(-8deg); } 50% { transform: rotate(14deg); } }
+@keyframes d-pulse { 50% { transform: scale(1.12); } }
+@keyframes d-dash { 50% { opacity: 0.35; } }
+@keyframes d-bounce { 50% { transform: translateY(-4px); } }
+
+/* Banner: panel coral con ventana */
+body.campaign-detail .campaign-story-banner {
+  min-height: 0;
+  padding: clamp(22px, 5vw, 56px);
+  border: 0;
+  border-radius: 6px;
+  background:
+    radial-gradient(circle at 20% 30%, #ffffff26 0 2px, transparent 3px) 0 0 / 22px 22px,
+    var(--p1);
+  box-shadow: none;
+}
+body.campaign-detail .campaign-story-banner > div,
+body.campaign-detail .response > div:first-child {
+  max-width: none;
+  padding: 22px 24px 26px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 18px 40px #0000001f;
+}
+body.campaign-detail .campaign-story-banner > div::before,
+body.campaign-detail .response > div:first-child::before {
+  display: block;
+  width: 58px;
+  height: 11px;
+  margin-bottom: 18px;
+  background:
+    radial-gradient(circle at 5px 5px, #ff5f57 5px, transparent 5.5px),
+    radial-gradient(circle at 29px 5px, #febc2e 5px, transparent 5.5px),
+    radial-gradient(circle at 53px 5px, #28c840 5px, transparent 5.5px);
+  content: "";
+}
+body.campaign-detail .campaign-story-banner .eyebrow { color: var(--muted); }
+body.campaign-detail .campaign-story-banner h2 { color: var(--ink); letter-spacing: -0.045em; }
+body.campaign-detail .campaign-story-banner > div > p:not(.eyebrow) { color: var(--text); font-size: 15px; }
+
+/* Encabezados de sección */
+body.campaign-detail .section-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+  align-items: end;
+  gap: 12px 40px;
+  margin-bottom: 28px;
+}
+body.campaign-detail .section-heading h2,
+body.campaign-detail .resources h2 {
+  margin: 0;
+  font-size: clamp(30px, 5vw, 52px);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.05em;
+  text-wrap: balance;
+}
+body.campaign-detail .section-heading > p { margin: 0; line-height: 1.6; }
+
+/* Tarjetas */
+body.campaign-detail .learning-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 14px;
+}
+body.campaign-detail .learning-card {
+  --c: var(--k1);
+  position: relative;
+  min-height: 250px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--c) 14%, #fff);
+  box-shadow: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+body.campaign-detail .learning-card.coral { --c: var(--k2); }
+body.campaign-detail .learning-card.violet { --c: var(--k3); }
+body.campaign-detail .learning-card.gold { --c: var(--k4); }
+body.campaign-detail .learning-card:hover { transform: translate(-3px, -3px); box-shadow: 5px 5px 0 var(--ink); }
+body.campaign-detail .learning-card .number {
+  display: block;
+  margin: 0 0 56px;
+  background: none;
+  color: var(--ink);
+  font: 700 13px/1 "Courier New", monospace;
+}
+body.campaign-detail .learning-card h3 { margin: 0 0 8px; font-size: 21px; letter-spacing: -0.03em; line-height: 1.15; }
+body.campaign-detail .learning-card p { margin: 0; color: var(--text); font-size: 14px; line-height: 1.6; }
+
+/* Mensaje clave en panel azul */
+body.campaign-detail .response {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  align-items: center;
+  gap: 28px;
+  padding: clamp(22px, 5vw, 56px);
+  border-radius: 6px;
+  background:
+    radial-gradient(circle at 20% 30%, #ffffff30 0 2px, transparent 3px) 0 0 / 22px 22px,
+    var(--p2);
+  color: var(--text);
+}
+body.campaign-detail .response .eyebrow { color: var(--muted); }
+body.campaign-detail .response h2 { margin: 0 0 10px; font-size: clamp(26px, 4vw, 40px); letter-spacing: -0.045em; line-height: 1.05; }
+body.campaign-detail .response p { line-height: 1.6; }
+body.campaign-detail .help-box {
+  display: grid;
+  gap: 6px;
+  padding: 22px;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  background: #fff7d6;
+  box-shadow: 5px 5px 0 var(--ink);
+  transform: rotate(-1.5deg);
+  transition: transform 0.2s ease;
+}
+body.campaign-detail .help-box:hover { transform: rotate(0deg) translateY(-3px); }
+body.campaign-detail .help-box .help-label { color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+body.campaign-detail .help-box strong { color: var(--ink); font-size: 20px; letter-spacing: -0.03em; }
+body.campaign-detail .help-box p { margin: 0 0 6px; font-size: 13px; }
+body.campaign-detail .help-box a { justify-self: start; padding: 9px 14px; border-radius: 8px; background: var(--ink); color: #fff; font-size: 13px; font-weight: 700; text-decoration: none; }
+
+/* Videos */
+body.campaign-detail .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px; }
+body.campaign-detail .video-note { margin-top: 14px; color: var(--muted); font-size: 12px; }
+body.campaign-detail .campaign-video-state { padding: 36px 20px; border: 1px dashed #cfcfcb; border-radius: 12px; background: #fafaf9; color: var(--muted); }
+
+/* Recursos */
+body.campaign-detail .resources { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 32px; align-items: start; }
+body.campaign-detail .resources p { color: var(--text); }
+body.campaign-detail .resource-links { display: grid; gap: 0; border-top: 1px solid var(--line); }
+body.campaign-detail .resource-links a {
+  display: grid;
+  gap: 4px;
+  padding: 18px 4px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: none;
+  color: var(--ink);
+  text-decoration: none;
+  transition: padding 0.15s ease, background 0.15s ease;
+}
+body.campaign-detail .resource-links a:hover { padding-left: 14px; background: #f7f7f5; }
+body.campaign-detail .resource-links a span { color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+body.campaign-detail .resource-links a strong { font-size: 17px; letter-spacing: -0.02em; line-height: 1.3; }
+
+/* Juegos */
+body.campaign-detail .campaign-games { margin-top: clamp(40px, 7vw, 80px); border: 0; border-radius: 6px; background: var(--p3); padding: clamp(22px, 5vw, 48px); }
+body.campaign-detail .campaign-games h2 { font-size: clamp(30px, 5vw, 48px); letter-spacing: -0.05em; }
+body.campaign-detail .campaign-games--retro .mini-game-card small { color: #3d3b36; }
+
+/* Nota */
+body.campaign-detail .classroom-note { padding: 18px 22px; border: 0; border-left: 4px solid var(--ink); border-radius: 4px; background: #f7f7f5; color: var(--text); }
+body.campaign-detail .classroom-note p { margin: 4px 0 0; line-height: 1.6; }
+
+body.campaign-detail a:focus-visible, body.campaign-detail button:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+@media (max-width: 760px) {
+  body.campaign-detail .hero { padding-right: 0; padding-top: 150px; min-height: 0; }
+  .doodle-hero { width: 130px; }
+  body.campaign-detail .section-heading,
+  body.campaign-detail .response,
+  body.campaign-detail .resources { grid-template-columns: 1fr; }
+  body.campaign-detail .learning-card { min-height: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .doodle *, .card-doodle *, body.campaign-detail * { animation: none !important; transition: none !important; }
+}
+
+/* ---- Temas por campaña ---- */
+body.theme-vial { --p1:#ffcf3d; --p2:#7ed3a1; --p3:#ff8a7a; --k1:#7ed3a1; --k2:#ffcf3d; --k3:#8ec1ff; --k4:#ff8a7a; }
+body.theme-familia { --p1:#ffb58a; --p2:#8fd6c7; --p3:#ffd666; --k1:#8fd6c7; --k2:#ffb58a; --k3:#8ec1ff; --k4:#ffd666; }
+body.theme-limites { --p1:#b9a8ff; --p2:#ffb3c6; --p3:#ffd666; --k1:#b9a8ff; --k2:#ffb3c6; --k3:#8ec1ff; --k4:#ffd666; }
+body.theme-vial .campaign-story-banner {
+  background:
+    linear-gradient(90deg, #111 0 50%, transparent 0) left 0 bottom 20px / 44px 4px repeat-x,
+    radial-gradient(circle at 20% 30%, #ffffff26 0 2px, transparent 3px) 0 0 / 22px 22px,
+    var(--p1);
+  padding-bottom: clamp(40px, 6vw, 70px);
+}
+body.theme-limites .help-box { border-style: dashed; border-radius: 28px; }
+body.theme-familia .help-box { border-radius: 28px 28px 28px 6px; }
+
+/* Más animaciones */
+.doodle-hero .d-l { animation: d-on 4s infinite; }
+.doodle-hero .d-l2 { animation-delay: -2.67s; }
+.doodle-hero .d-l3 { animation-delay: -1.33s; }
+.doodle-hero .d-road { stroke-dasharray: 14 12; animation: d-road 1s linear infinite; }
+.doodle-hero .d-spin, .card-doodle .d-spin { transform-box: fill-box; transform-origin: center; animation: d-spin 4s linear infinite; }
+.doodle-hero .d-rise { animation: d-rise 3s ease-out infinite; }
+.doodle-hero .d-rise:nth-of-type(2) { animation-delay: -1s; }
+.doodle-hero .d-rise:nth-of-type(3) { animation-delay: -2s; }
+.doodle-hero .d-beat, .doodle-hero .d-bubble { transform-box: fill-box; transform-origin: center; animation: d-pulse 1.6s ease-in-out infinite; }
+@keyframes d-on { 0%, 30% { opacity: 1; } 40%, 100% { opacity: 0.15; } }
+@keyframes d-road { to { stroke-dashoffset: -26; } }
+@keyframes d-spin { to { transform: rotate(360deg); } }
+@keyframes d-rise { 0% { transform: translateY(10px); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateY(-26px); opacity: 0; } }
+
+/* Secciones propias de otras campañas */
+body.campaign-detail .source-line { margin-top: 18px; color: var(--muted); font-size: 13px; }
+body.campaign-detail .source-line a { color: var(--ink); font-weight: 700; }
+body.campaign-detail .myth-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 14px; }
+body.campaign-detail .myth-card { padding: 22px; border: 1px solid var(--line); border-radius: 12px; background: #fff; box-shadow: none; transition: transform .15s ease, box-shadow .15s ease; }
+body.campaign-detail .myth-card:hover { transform: translate(-3px, -3px); box-shadow: 5px 5px 0 var(--ink); }
+body.campaign-detail .myth-label { display: inline-block; padding: 3px 9px; border: 2px solid var(--ink); border-radius: 6px; background: var(--p3); color: var(--ink); font: 800 11px/1.4 "Courier New", monospace; letter-spacing: .08em; }
+body.campaign-detail .digital-guide, body.campaign-detail .teaching-tools { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; padding: clamp(22px, 4vw, 44px); border: 2px solid var(--ink); border-radius: 12px; background: var(--p2); box-shadow: 6px 6px 0 var(--ink); }
+body.campaign-detail .teaching-tools { background: var(--p3); }
+body.campaign-detail .digital-guide h2, body.campaign-detail .teaching-tools h2 { margin: 0 0 10px; font-size: clamp(26px, 4vw, 38px); letter-spacing: -.045em; line-height: 1.05; }
+body.campaign-detail .digital-guide ol { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; counter-reset: step; }
+body.campaign-detail .digital-guide li, body.campaign-detail .teaching-steps article { padding: 14px 16px; border-radius: 10px; background: #fff; border: 1px solid var(--line); line-height: 1.55; }
+body.campaign-detail .teaching-steps { display: grid; gap: 10px; }
+body.campaign-detail .teaching-steps article > span { display: inline-grid; width: 26px; height: 26px; place-items: center; margin-right: 8px; border-radius: 50%; background: var(--ink); color: #fff; font: 700 12px/1 "Courier New", monospace; }
+body.campaign-detail .campaign-games:not(.campaign-games--retro) .mini-game-card { border: 2px solid var(--ink); border-radius: 10px; box-shadow: 4px 4px 0 var(--ink); }
+body.campaign-detail .campaign-games:not(.campaign-games--retro) .mini-game-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+@media (max-width: 760px) { body.campaign-detail .digital-guide, body.campaign-detail .teaching-tools { grid-template-columns: 1fr; } }
