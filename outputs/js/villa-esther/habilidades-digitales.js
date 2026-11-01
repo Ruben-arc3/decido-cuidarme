@@ -449,15 +449,34 @@ const lessonIllustrations = {
   "guia-digital": "villa-modulo-guia.svg",
 };
 
+const isVicente = window.location.pathname.includes("vicente") || (document.body.dataset.institution === "vicente-diaz");
+const schoolName = isVicente ? "VICENTE DÍAZ" : "VILLA ESTHER";
+const hubPage = isVicente ? "vicente-habilidades-digitales.html" : "villa-habilidades-digitales.html";
+const schoolHome = isVicente ? "../institucion-vicente-diaz.html" : "institucion-villa-esther.html";
+const filePrefix = isVicente ? "vicente-habilidad-" : "villa-habilidad-";
+const href = (key) => `${filePrefix}${key}.html`;
+
 if (!lesson || !app) {
   if (app)
     app.innerHTML =
-      '<main class="shell"><p>No encontramos este módulo. <a href="villa-habilidades-digitales.html">Volver a Habilidades digitales</a></p></main>';
+      `<main class="shell"><p>No encontramos este módulo. <a href="${hubPage}">Volver a Habilidades digitales</a></p></main>`;
 } else {
   const index = order.indexOf(id);
   const prev = index > 0 ? order[index - 1] : null;
   const next = index < order.length - 1 ? order[index + 1] : null;
-  const href = (key) => `villa-habilidad-${key}.html`;
+
+  const skillLabels = {
+    programacion: "🧑‍💻 Programación",
+    "inteligencia-artificial": "🤖 Inteligencia Artificial",
+    "seguridad-informatica": "🔐 Seguridad",
+    productividad: "⚡ Productividad",
+    "verificar-informacion": "🔍 Verificar Info",
+    "guia-digital": "📘 Guía Digital"
+  };
+  const skillPills = order
+    .map((k) => `<a class="skill-pill${k === id ? " active" : ""}" href="${href(k)}">${skillLabels[k]}</a>`)
+    .join("");
+
   const choices = lesson.choices
     .map(
       (choice, i) =>
@@ -491,7 +510,9 @@ if (!lesson || !app) {
   const done = localStorage.getItem(`habilidades:${id}`) === "done";
 
   app.innerHTML = `
-    <header class="top"><div class="shell topline"><a class="brand" href="villa-habilidades-digitales.html">VILLA ESTHER · HABILIDADES DIGITALES</a><a class="back" href="institucion-villa-esther.html#modulos">← Módulos</a></div></header>
+    <nav class="platform-skill-subnav" aria-label="Submódulos de habilidades digitales">
+      ${skillPills}
+    </nav>
     <main class="shell">
       <section class="hero"><div class="hero-copy"><div class="kicker">Módulo ${index + 1} de ${order.length} · ${lesson.label}</div><h1>${lesson.icon} ${lesson.title}</h1><p>${lesson.intro}</p><span class="tag">Ruta breve · ${lesson.duration}</span></div><img class="module-hero-illustration" src="../../assets/illustrations/${lessonIllustrations[id]}" alt="" aria-hidden="true" width="500" height="320" fetchpriority="high"></section>
       <section class="section"><h2>Qué vas a aprender</h2><p>${lesson.goal}</p><div class="cols">${lesson.ideas.map((idea, i) => `<div class="note"><b>${i + 1}.</b> ${idea}</div>`).join("")}</div></section>
@@ -501,7 +522,7 @@ if (!lesson || !app) {
       <section class="section"><h2>Consulta una fuente abierta</h2><p>Busca lecturas complementarias en Wikipedia en español mediante su API pública. Revisa siempre las fuentes originales y contrasta lo que encuentres con los recursos recomendados abajo. La búsqueda se envía a Wikimedia; no escribas datos personales.</p><div class="search-row"><label for="open-search-query">Tema para buscar</label><div class="inline-actions"><input id="open-search-query" maxlength="100" value="${lesson.apiQuery}" aria-label="Tema para buscar"><button class="primary" id="open-search-button" type="button">Buscar lecturas</button></div></div><div id="open-search-results" class="open-results" aria-live="polite"></div><p class="small">Resultados de Wikipedia en español, bajo licencia abierta. Úsalos como punto de partida, no como única fuente.</p></section>
       <section class="section"><h2>Fuentes recomendadas</h2><p>Materiales de instituciones y documentación especializada para contrastar la lectura complementaria.</p><ul class="resource-list">${resources}</ul></section>
       <section class="section"><h2>Cierra tu aprendizaje</h2><p>Antes de terminar, explica qué aprendiste y cuál sería tu siguiente paso para seguir practicando.</p><button class="mark-btn${done ? " done" : ""}" id="mark-done" type="button">${done ? "✓ Reto completado" : "Marcar reto como completado"}</button><p class="small">El avance se guarda en este navegador, sin crear una cuenta.</p></section>
-      <nav class="footnav" aria-label="Navegar entre módulos"><a href="villa-habilidades-digitales.html">← Ver todos los módulos</a>${prev ? `<a href="${href(prev)}">← Anterior</a>` : ""}${next ? `<a href="${href(next)}">Siguiente →</a>` : ""}</nav>
+      <nav class="footnav" aria-label="Navegar entre habilidades"><a href="${hubPage}">← Volver a Habilidades digitales</a>${prev ? `<a href="${href(prev)}">← Anterior</a>` : ""}${next ? `<a href="${href(next)}">Siguiente →</a>` : ""}</nav>
     </main>`;
 
   app.querySelectorAll("[data-choice]").forEach((button) =>
