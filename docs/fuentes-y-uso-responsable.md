@@ -18,9 +18,3 @@ Al ampliar o actualizar el dataset, conserva la atribución y revisa los términ
 
 Las campañas son material preventivo y de conversación guiada; no sustituyen atención psicológica, médica, jurídica ni protocolos de protección escolar. No solicites testimonios personales ni registres detalles que identifiquen a estudiantes. Si una actividad genera una revelación de riesgo, corresponde activar los canales institucionales establecidos.
 
-## Privacidad técnica
-
-- No pongas claves de API en archivos publicados en `outputs/`.
-- No subas credenciales de Firebase Admin ni datos reales de estudiantes.
-- Conserva las reglas de Firestore restrictivas y asigna roles docentes desde un canal administrativo.
-- Revisa cuotas, condiciones y políticas de tratamiento de datos de cada proveedor antes de ampliar su uso.
