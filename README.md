@@ -75,15 +75,6 @@ También se puede publicar manualmente desde la raíz del repositorio:
 npx wrangler pages deploy outputs --project-name decido-cuidarme
 ```
 
-## Seguridad y uso responsable
-
-- No subas claves privadas, credenciales de servicio, tokens ni archivos `.dev.vars` al repositorio.
-- Configura las claves de Gemini y YouTube como secretos de Cloudflare.
-- Revisa `firestore.rules` antes de cambiar permisos y valida la autenticación en funciones que manejan datos de aula.
-- Evita registrar información personal o relatos identificables de estudiantes.
-- El contenido generado automáticamente requiere revisión docente.
-- Verifica que las rutas y contactos locales de apoyo estén actualizados antes de utilizarlos en una actividad.
-
 ## Documentación
 
 - [Arquitectura](docs/arquitectura.md)
