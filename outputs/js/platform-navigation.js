@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     backdrop.setAttribute("aria-hidden", "true");
     document.body.appendChild(backdrop);
   }
+  let headerSpacer = null;
 
   const isMobileMenu = () => window.matchMedia(`(max-width: ${mobileBreakpoint}px)`).matches;
 
@@ -38,6 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const closeMenu = (restoreFocus = false) => {
     header.classList.remove("menu-open");
+    headerSpacer?.remove();
+    headerSpacer = null;
     toggle.setAttribute("aria-expanded", "false");
     toggle.setAttribute("aria-label", "Abrir menú de navegación");
     backdrop.classList.remove("active");
@@ -47,6 +50,13 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const openMenu = () => {
+    if (!headerSpacer) {
+      headerSpacer = document.createElement("div");
+      headerSpacer.className = "site-header-spacer";
+      headerSpacer.setAttribute("aria-hidden", "true");
+      headerSpacer.style.height = `${header.getBoundingClientRect().height}px`;
+      header.after(headerSpacer);
+    }
     header.classList.add("menu-open");
     toggle.setAttribute("aria-expanded", "true");
     toggle.setAttribute("aria-label", "Cerrar menú de navegación");

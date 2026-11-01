@@ -368,6 +368,10 @@
 .site-header.menu-open .nav-mobile-toggle .bar::after {
   transform: translateY(-6px) rotate(-45deg);
 }
+.site-header-spacer {
+  visibility: hidden;
+  pointer-events: none;
+}
 
 /* Telón de fondo (Backdrop) para móvil */
 .site-nav-backdrop {
@@ -568,6 +572,17 @@ body.nav-locked {
     display: flex;
     animation: slideDownMobile 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
+  .site-header.menu-open {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 110000;
+  }
+  .site-header.menu-open .nav-mobile-toggle {
+    position: relative;
+    z-index: 110002;
+  }
+  .site-header.menu-open .site-nav-menu { z-index: 110001; }
+  .site-nav-backdrop { z-index: 109999; }
   @keyframes slideDownMobile {
     from {
       opacity: 0;
