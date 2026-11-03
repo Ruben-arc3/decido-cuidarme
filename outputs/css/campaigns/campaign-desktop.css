@@ -1,0 +1,428 @@
+/* Escritorio v3: sin caja contenedora. El contenido respira directamente sobre la página,
+   con ritmo vertical claro, filas de dos columnas y bloques con identidad propia.
+   Cargar al FINAL, después de campaign-layout.css. Solo actúa en pantallas >= 960px;
+   el móvil queda exactamente como está. */
+
+@media (min-width: 960px) {
+
+  /* ---------- Página y contenedor (sin caja) ---------- */
+  html body.campaign-detail {
+    background: #fff;
+  }
+  html body.campaign-detail main.page-shell {
+    --r: 14px;
+    --gap-section: clamp(48px, 5vw, 72px);
+    width: min(1080px, calc(100% - 64px));
+    margin: 32px auto 72px;
+    padding: 0;
+    gap: var(--gap-section) 24px;
+    align-items: stretch;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+  }
+
+  /* Cinta e índice forman una franja: separados del bloque superior, juntos entre sí */
+  html body.campaign-detail main.page-shell > .phrase-strip { margin-top: 0; }
+  html body.campaign-detail main.page-shell > .quick-nav { margin-top: calc(var(--gap-section) * -0.5); }
+
+  /* ---------- Fila 1: título (5) + banner (7) ---------- */
+  html body.campaign-detail main.page-shell .hero {
+    grid-column: span 5;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 64px;
+    align-content: center;
+    align-self: center;
+    column-gap: 12px;
+    min-height: 0;
+    padding: 0 !important;
+  }
+  html body.campaign-detail main.page-shell .doodle-hero {
+    position: static;
+    grid-column: 2;
+    grid-row: 1;
+    width: 64px;
+    height: auto;
+    justify-self: end;
+    align-self: center;
+  }
+  html body.campaign-detail main.page-shell .hero .eyebrow {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+    margin: 0;
+  }
+  html body.campaign-detail main.page-shell .hero h1 {
+    grid-column: 1 / -1;
+    max-width: 11ch;
+    margin: 10px 0 16px;
+    font-size: clamp(40px, 4.6vw, 58px);
+    line-height: 0.98;
+    letter-spacing: -0.05em;
+  }
+  html body.campaign-detail main.page-shell .hero > p:not(.eyebrow) {
+    grid-column: 1 / -1;
+    max-width: 42ch;
+    margin: 0 0 22px;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  html body.campaign-detail main.page-shell .hero .button {
+    grid-column: 1 / -1;
+    justify-self: start;
+    min-height: 42px;
+    margin-top: 0;
+    padding: 0 18px;
+    border-radius: 10px;
+    font-size: 13.5px;
+  }
+
+  html body.campaign-detail main.page-shell .campaign-story-banner {
+    grid-column: span 7;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+    align-items: center;
+    align-content: stretch;
+    gap: 16px;
+    padding: 20px;
+    border-radius: var(--r);
+    background:
+      radial-gradient(circle at 20% 30%, #ffffff30 0 2px, transparent 3px) 0 0 / 20px 20px,
+      color-mix(in srgb, var(--p1) 88%, #fff);
+  }
+  html body.campaign-detail main.page-shell .campaign-story-banner > div {
+    padding: 16px 18px 18px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px #0000001a;
+  }
+  html body.campaign-detail main.page-shell .campaign-story-banner > div::before {
+    margin-bottom: 10px;
+  }
+  html body.campaign-detail main.page-shell .campaign-story-banner h2 {
+    font-size: clamp(19px, 1.9vw, 24px);
+    line-height: 1.12;
+  }
+  html body.campaign-detail main.page-shell .campaign-story-banner > div > p:not(.eyebrow) {
+    margin-top: 8px;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+  html body.campaign-detail main.page-shell .campaign-story-banner img {
+    max-height: 130px;
+  }
+
+  /* Conversación de ejemplo */
+  html body.campaign-detail .decision-chat {
+    gap: 7px;
+  }
+  html body.campaign-detail .decision-chat .dc-row {
+    gap: 7px;
+  }
+  html body.campaign-detail .decision-chat .dc-row p {
+    padding: 7px 11px;
+    border-width: 1.5px;
+    font-size: 12.5px;
+  }
+  html body.campaign-detail .decision-chat .dc-avatar {
+    width: 28px;
+    height: 28px;
+    border-width: 1.5px;
+    font-size: 14px;
+  }
+
+  /* ---------- Cinta de frases + índice ---------- */
+  html body.campaign-detail .phrase-strip {
+    padding: 14px 0;
+  }
+  html body.campaign-detail .phrase-set span {
+    margin-right: 8px;
+    padding: 6px 14px;
+    border-radius: 9px;
+    font-size: 14px;
+  }
+  html body.campaign-detail main.page-shell .quick-nav {
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 0;
+    border: 0;
+  }
+  html body.campaign-detail main.page-shell .quick-nav a {
+    min-height: 34px;
+    padding: 0 15px;
+    border: 1.5px solid var(--ink);
+    background: #fff;
+    font-size: 12.5px;
+    font-weight: 700;
+  }
+  html body.campaign-detail main.page-shell .quick-nav a:hover {
+    background: var(--p3);
+  }
+
+  /* ---------- Encabezados de sección ---------- */
+  html body.campaign-detail main.page-shell .section-heading {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+    align-items: end;
+    gap: 6px 40px;
+    margin-bottom: 22px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--ink);
+  }
+  html body.campaign-detail main.page-shell .section-heading h2,
+  html body.campaign-detail main.page-shell .resources h2 {
+    font-size: clamp(26px, 2.8vw, 34px);
+    line-height: 1.05;
+  }
+  html body.campaign-detail main.page-shell .section-heading > p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  html body.campaign-detail main.page-shell .eyebrow {
+    margin-bottom: 4px;
+    font-size: 11px;
+  }
+
+  /* ---------- Conceptos ---------- */
+  html body.campaign-detail main.page-shell .learning-grid {
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 14px;
+  }
+  html body.campaign-detail main.page-shell .learning-card {
+    min-height: 0;
+    padding: 18px 18px 20px;
+    border-radius: 12px;
+  }
+  html body.campaign-detail main.page-shell .learning-card .number {
+    display: inline-block;
+    margin: 0 0 14px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: #ffffffb0;
+    font-size: 11px;
+  }
+  html body.campaign-detail main.page-shell .learning-card h3 {
+    margin-bottom: 7px;
+    font-size: 18px;
+    line-height: 1.15;
+  }
+  html body.campaign-detail main.page-shell .learning-card p {
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+  html body.campaign-detail main.page-shell .learning-card:hover {
+    transform: translate(-2px, -3px);
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  html body.campaign-detail main.page-shell .card-doodle {
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+  }
+
+  /* ---------- Mensaje clave (7) + recursos (5) ---------- */
+  html body.campaign-detail main.page-shell .response {
+    grid-column: span 7;
+    gap: 16px;
+    padding: 22px;
+    border-radius: var(--r);
+    background:
+      radial-gradient(circle at 20% 30%, #ffffff40 0 2px, transparent 3px) 0 0 / 20px 20px,
+      color-mix(in srgb, var(--p2) 75%, #fff);
+  }
+  html body.campaign-detail main.page-shell .response > div:first-child {
+    padding: 18px 20px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px #0000001a;
+  }
+  html body.campaign-detail main.page-shell .response > div:first-child::before {
+    margin-bottom: 10px;
+  }
+  html body.campaign-detail main.page-shell .response h2 {
+    margin-bottom: 8px;
+    font-size: clamp(22px, 2.3vw, 28px);
+  }
+  html body.campaign-detail main.page-shell .response p {
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+  html body.campaign-detail main.page-shell .help-box {
+    gap: 4px;
+    padding: 15px 18px;
+    border-width: 2px;
+    border-radius: 12px;
+    box-shadow: 4px 4px 0 var(--ink);
+    transform: none;
+  }
+  html body.campaign-detail main.page-shell .help-box .help-label {
+    font-size: 10.5px;
+  }
+  html body.campaign-detail main.page-shell .help-box strong {
+    font-size: 17px;
+  }
+  html body.campaign-detail main.page-shell .help-box p {
+    margin-bottom: 6px;
+    font-size: 13px;
+  }
+  html body.campaign-detail main.page-shell .help-box a {
+    padding: 8px 13px;
+    font-size: 12.5px;
+  }
+
+  /* Recursos: sin tarjeta, solo una lista limpia con regla superior */
+  html body.campaign-detail main.page-shell .resources {
+    grid-column: span 5;
+    gap: 10px;
+    align-content: start;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+  }
+  html body.campaign-detail main.page-shell .resources > div > p {
+    margin-top: 6px;
+    font-size: 14px;
+  }
+  html body.campaign-detail main.page-shell .resource-links {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  html body.campaign-detail main.page-shell .resource-links a {
+    gap: 3px;
+    padding: 12px 4px;
+  }
+  html body.campaign-detail main.page-shell .resource-links a:hover {
+    padding-left: 12px;
+  }
+  html body.campaign-detail main.page-shell .resource-links a span {
+    font-size: 10.5px;
+  }
+  html body.campaign-detail main.page-shell .resource-links a strong {
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  /* ---------- Videos ---------- */
+  html body.campaign-detail main.page-shell .video-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  html body.campaign-detail main.page-shell .video-card {
+    border-radius: 12px;
+  }
+  html body.campaign-detail main.page-shell .video-copy {
+    padding: 14px 16px 16px;
+  }
+  html body.campaign-detail main.page-shell .video-copy h3 {
+    margin: 4px 0;
+    font-size: 16px;
+  }
+  html body.campaign-detail main.page-shell .video-copy p {
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+  html body.campaign-detail main.page-shell .video-note {
+    margin-top: 12px;
+    font-size: 12px;
+  }
+  html body.campaign-detail main.page-shell .campaign-video-state {
+    padding: 22px 16px;
+  }
+
+  /* ---------- Juegos (8) + nota (4) ---------- */
+  html body.campaign-detail main.page-shell .campaign-games {
+    grid-column: span 8;
+    margin-top: 0;
+    padding: 22px;
+    border-radius: var(--r);
+    background: color-mix(in srgb, var(--p3) 80%, #fff);
+  }
+  html body.campaign-detail main.page-shell .campaign-games h2 {
+    font-size: clamp(24px, 2.5vw, 30px);
+  }
+  html body.campaign-detail main.page-shell .campaign-games > div:first-child > p:not(.eyebrow) {
+    margin: 5px 0 14px;
+    font-size: 14px;
+  }
+  html body.campaign-detail .campaign-games--retro .mini-game-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr));
+    gap: 10px;
+  }
+  html body.campaign-detail .campaign-games--retro .mini-game-grid.single-game {
+    grid-template-columns: minmax(0, 260px);
+  }
+  html body.campaign-detail .campaign-games--retro .mini-game-card {
+    min-height: 120px;
+    padding: 13px 14px 12px;
+    border-width: 2px;
+    border-bottom-width: 4px;
+    border-radius: 9px;
+    box-shadow: 3px 3px 0 #17354b22;
+  }
+  html body.campaign-detail .campaign-games--retro .mini-game-card::after {
+    top: -15px;
+    right: -15px;
+    width: 50px;
+    height: 50px;
+    border-width: 7px;
+  }
+  html body.campaign-detail .campaign-games--retro .mini-game-card span {
+    min-height: 20px;
+    padding: 3px 7px;
+    font-size: 9px;
+  }
+  html body.campaign-detail .campaign-games--retro .mini-game-card strong {
+    margin-top: 8px;
+    font-size: 14.5px;
+    line-height: 1.2;
+  }
+  html body.campaign-detail .campaign-games--retro .mini-game-card small {
+    padding-top: 8px;
+    font-size: 11px;
+    line-height: 1.3;
+  }
+  html body.campaign-detail main.page-shell .all-games-link {
+    margin-top: 12px;
+    font-size: 11.5px;
+  }
+
+  html body.campaign-detail main.page-shell .classroom-note {
+    grid-column: span 4;
+    align-self: start;
+    justify-content: flex-start;
+    padding: 18px 20px;
+    border-width: 2px;
+    border-radius: var(--r);
+    box-shadow: 4px 4px 0 var(--ink);
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  /* ---------- Bloques de otras campañas ---------- */
+  html body.campaign-detail main.page-shell .myth-grid {
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 14px;
+  }
+  html body.campaign-detail main.page-shell .myth-card {
+    padding: 18px;
+    border-radius: 12px;
+  }
+  html body.campaign-detail main.page-shell .digital-guide,
+  html body.campaign-detail main.page-shell .teaching-tools {
+    gap: 16px 28px;
+    padding: 22px;
+    border-width: 2px;
+    border-radius: var(--r);
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  html body.campaign-detail main.page-shell .digital-guide h2,
+  html body.campaign-detail main.page-shell .teaching-tools h2 {
+    font-size: clamp(24px, 2.5vw, 30px);
+  }
+  html body.campaign-detail main.page-shell .digital-guide li,
+  html body.campaign-detail main.page-shell .teaching-steps article {
+    padding: 12px 14px;
+    font-size: 13.5px;
+  }
+  html body.campaign-detail main.page-shell .teaching-steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

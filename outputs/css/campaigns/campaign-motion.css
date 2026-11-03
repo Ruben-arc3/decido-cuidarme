@@ -1,0 +1,128 @@
+/* Movimiento adicional para las campañas. Cargar después de campaign-desktop.css. */
+body.campaign-detail main.page-shell .hero {
+  animation: campaign-hero-enter 700ms cubic-bezier(.2,.75,.25,1) both;
+}
+
+body.campaign-detail main.page-shell .campaign-story-banner {
+  animation-delay: 90ms;
+}
+
+html body.campaign-detail main.page-shell .campaign-story-banner img.campaign-topic-illustration {
+  display: block;
+  width: min(100%, 360px);
+  max-height: 184px;
+  justify-self: center;
+  object-fit: contain;
+  filter: drop-shadow(0 9px 7px rgb(17 17 17 / 10%));
+  transform-origin: 50% 85%;
+  transition: scale 260ms ease, filter 260ms ease;
+  animation: illustration-arrive 700ms cubic-bezier(.18,.8,.25,1) both,
+    illustration-drift 5.8s ease-in-out 700ms infinite;
+}
+body.campaign-detail main.page-shell .campaign-story-banner:hover .campaign-topic-illustration,
+body.campaign-detail main.page-shell .campaign-story-banner:active .campaign-topic-illustration {
+  scale: 1.045;
+  filter: drop-shadow(0 14px 10px rgb(17 17 17 / 15%));
+}
+
+/* La ilustración de bienestar aparece dentro de la tarjeta de prevención. */
+html body.campaign-detail main.page-shell .banner-wellbeing > div > .campaign-topic-illustration {
+  width: min(100%, 260px);
+  max-height: 116px;
+  margin: 8px auto -8px;
+}
+
+body.campaign-detail main.page-shell .learning-card {
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+body.campaign-detail main.page-shell .learning-card:hover {
+  transform: translateY(-5px) rotate(-.35deg);
+  box-shadow: 0 16px 30px rgb(17 17 17 / 11%);
+}
+body.campaign-detail main.page-shell .learning-card .card-doodle {
+  transition: transform 250ms cubic-bezier(.2,.75,.25,1);
+}
+body.campaign-detail main.page-shell .learning-card:hover .card-doodle {
+  transform: rotate(-8deg) scale(1.12);
+}
+body.campaign-detail main.page-shell .learning-card:active {
+  transform: translateY(-1px) scale(.985);
+}
+body.campaign-detail main.page-shell .hero .button {
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+body.campaign-detail main.page-shell .hero .button:hover {
+  transform: translateY(-3px) rotate(-1deg);
+  box-shadow: 0 9px 0 color-mix(in srgb, var(--p1) 76%, white);
+}
+body.campaign-detail main.page-shell .hero .button:active {
+  transform: translateY(1px) scale(.97);
+  box-shadow: none;
+}
+body.campaign-detail main.page-shell :is(.hero .button, .quick-nav a, .mini-game-card):focus-visible {
+  outline: 3px solid var(--p1);
+  outline-offset: 4px;
+}
+
+/* Entrada al desplazarse: el script solo añade estas clases si hay soporte. */
+html.campaign-scroll-motion .motion-reveal {
+  opacity: 0;
+  transform: translateY(26px) scale(.985);
+  transition: opacity 640ms ease var(--motion-delay, 0ms),
+    transform 700ms cubic-bezier(.2,.75,.25,1) var(--motion-delay, 0ms);
+  will-change: opacity, transform;
+}
+html.campaign-scroll-motion .motion-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@keyframes campaign-hero-enter {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes illustration-arrive {
+  0% { opacity: 0; transform: translateY(18px) scale(.92) rotate(-4deg); }
+  75% { opacity: 1; transform: translateY(-3px) scale(1.025) rotate(1deg); }
+  100% { opacity: 1; transform: translateY(0) scale(1) rotate(0); }
+}
+@keyframes illustration-drift {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  50% { translate: 0 -6px; rotate: 1deg; }
+}
+
+@media (max-width: 600px) {
+  html body.campaign-detail main.page-shell .campaign-story-banner img.campaign-topic-illustration {
+    width: min(78vw, 300px);
+    max-height: 158px;
+  }
+  html body.campaign-detail main.page-shell .banner-wellbeing > div > .campaign-topic-illustration {
+    width: min(70vw, 220px);
+    max-height: 100px;
+  }
+  body.campaign-detail main.page-shell .learning-card:hover {
+    transform: translateY(-2px);
+  }
+  body.campaign-detail main.page-shell .learning-card:active {
+    transform: scale(.985);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.campaign-detail main.page-shell .hero,
+  body.campaign-detail main.page-shell .campaign-story-banner,
+  html body.campaign-detail main.page-shell .campaign-topic-illustration,
+  body.campaign-detail main.page-shell .learning-card {
+    animation: none !important;
+    transition: none !important;
+    translate: none !important;
+    rotate: none !important;
+  }
+  html.campaign-scroll-motion .motion-reveal,
+  html.campaign-scroll-motion .motion-reveal.is-visible {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    will-change: auto;
+  }
+}

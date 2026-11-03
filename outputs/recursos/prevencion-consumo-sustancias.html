@@ -14,13 +14,18 @@
     <link rel="stylesheet" href="../css/campaigns/prevencion-violencia-sexual-extra.css" />
     <link rel="stylesheet" href="../css/campaigns/campanas-recursos.css" />
     <link rel="stylesheet" href="../css/campaigns/campaign-videos.css" />
+
     <link rel="stylesheet" href="../css/campaigns/campaign-game-cards-retro.css" />
     <link rel="stylesheet" href="../css/campaigns/mobile-campaigns.css" />
     <link rel="stylesheet" href="../css/campaigns/campaign-illustrations.css" />
     <link rel="stylesheet" href="../css/shared/suggestion-box.css?v=20261029-suggestion2" />
     <link rel="stylesheet" href="../css/shared/platform-navigation.css" />
     <link rel="stylesheet" href="../css/campaigns/campaign-notion.css" />
+    <link rel="stylesheet" href="../css/campaigns/campaign-layout.css" />
+    <link rel="stylesheet" href="../css/campaigns/campaign-desktop.css" />
+    <link rel="stylesheet" href="../css/campaigns/campaign-motion.css" />
     <script src="../js/shared/platform-navigation.js" defer></script>
+    <script src="../js/campaigns/campaign-motion.js" defer></script>
 </head>
   <body class="campaign-detail"><header class="site-header">
       <div class="site-navbar">
@@ -181,16 +186,38 @@
           <p class="eyebrow">DECISIONES INFORMADAS</p>
           <h2 id="banner-title">Cuidar también es elegir con información</h2>
           <p>No tienes que enfrentar la presión a solas: una persona de confianza puede acompañarte.</p>
+          <img class="campaign-topic-illustration" src="../assets/illustrations/campana-bienestar.svg" alt="" aria-hidden="true" width="300" height="225" loading="lazy" decoding="async" />
         </div>
-        <img
-          src="../assets/illustrations/campana-bienestar.svg"
-          alt=""
-          aria-hidden="true"
-          width="520"
-          height="300"
-        />
+        <figure
+          class="decision-chat"
+          role="img"
+          aria-label="Ejemplo de conversación: alguien invita a un plan con presión de grupo y la otra persona responde con calma que prefiere irse con su grupo y pide acompañamiento a la salida."
+        >
+          <div class="dc-row dc-in dc-b1">
+            <span class="dc-avatar">😬</span><p>¿Vienes? Todos van a probar.</p>
+          </div>
+          <div class="dc-row dc-out dc-b2"><p>Paso. Me voy con mi grupo.</p></div>
+          <div class="dc-row dc-in dc-b3">
+            <span class="dc-avatar">🙄</span><p>Uy, qué aburrido…</p>
+          </div>
+          <div class="dc-row dc-out dc-b4"><p>Es mi decisión. ¿Me acompañas a la salida?</p></div>
+          <div class="dc-row dc-badge dc-b5"><p>✓ Decisión respetada</p></div>
+        </figure>
       </aside>
-      <section class="content-section">
+      <div class="phrase-strip" role="group" aria-label="Frases para responder a la presión: Paso, No quiero, Me voy con mi grupo, Prefiero otra cosa, Llamo a alguien de confianza, Es mi decisión">
+        <div class="phrase-track">
+          <div class="phrase-set"><span>“Paso”</span><span>“No quiero”</span><span>“Me voy con mi grupo”</span><span>“Prefiero otra cosa”</span><span>“Llamo a alguien de confianza”</span><span>“Es mi decisión”</span></div>
+          <div class="phrase-set" aria-hidden="true"><span>“Paso”</span><span>“No quiero”</span><span>“Me voy con mi grupo”</span><span>“Prefiero otra cosa”</span><span>“Llamo a alguien de confianza”</span><span>“Es mi decisión”</span></div>
+        </div>
+      </div>
+      <nav class="quick-nav" aria-label="En esta página">
+        <a href="#saber">Lo esencial</a>
+        <a href="#ayuda">Mensaje clave</a>
+        <a href="#videos">Videos</a>
+        <a href="#recursos">Para profundizar</a>
+        <a href="#juegos">Juegos</a>
+      </nav>
+      <section class="content-section" id="saber">
         <div class="section-heading">
           <div>
             <p class="eyebrow">Conceptos básicos</p>
@@ -237,7 +264,7 @@
           </article>
         </div>
       </section>
-      <section class="response">
+      <section class="response" id="ayuda">
         <div>
           <p class="eyebrow">Para tener presente</p>
           <h2>El consumo no define a una persona</h2>
@@ -279,7 +306,7 @@
           reproducción requiere conexión a internet.
         </p>
       </section>
-      <section class="resources">
+      <section class="resources" id="recursos">
         <div>
           <p class="eyebrow">Fuentes y material</p>
           <h2>Para profundizar</h2>
@@ -308,6 +335,7 @@
         </div>
       </section>
       <section
+        id="juegos"
         class="campaign-games campaign-games--retro campaign-games--consumo"
         aria-labelledby="games-title"
       >

@@ -1,4 +1,4 @@
-/* Cartas retro compactas para los juegos enlazados desde las tres campañas. */
+/* Cartas retro con acentos propios para las cuatro campañas. */
 .campaign-games--retro {
   --game-accent: #0d8178;
   --game-accent-soft: #d8f0e8;
@@ -12,6 +12,11 @@
 .campaign-games--retro.campaign-games--family {
   --game-accent: #278878;
   --game-accent-soft: #d9f0e7;
+}
+
+.campaign-games--retro.campaign-games--vial {
+  --game-accent: #b87912;
+  --game-accent-soft: #fff0bd;
 }
 
 .campaign-games--retro.campaign-games--consumo {

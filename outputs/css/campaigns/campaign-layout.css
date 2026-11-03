@@ -1,0 +1,486 @@
+/* Maquetación en cuadrícula (menos "cascada") y mejoras para móvil.
+   Cargar al final, después de campaign-notion.css. No cambia colores ni tipografía. */
+
+/* ---------- Base: el contenedor pasa de pila vertical a cuadrícula ---------- */
+body.campaign-detail main.page-shell {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-auto-flow: row dense;
+  gap: clamp(16px, 2.4vw, 28px);
+  align-items: stretch;
+}
+
+body.campaign-detail main.page-shell > * {
+  grid-column: 1 / -1; /* por defecto, ancho completo */
+  min-width: 0;
+  margin: 0;
+  scroll-margin-top: 84px;
+}
+
+/* Las secciones ya no necesitan el aire vertical grande */
+body.campaign-detail main.page-shell .content-section {
+  padding-top: 0;
+}
+body.campaign-detail main.page-shell .section-heading {
+  margin-bottom: 18px;
+}
+
+/* ---------- Índice rápido ---------- */
+body.campaign-detail main.page-shell .quick-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+body.campaign-detail main.page-shell .quick-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+body.campaign-detail main.page-shell .quick-nav a:hover {
+  background: var(--p3);
+}
+
+/* ---------- Escritorio: bloques lado a lado ---------- */
+@media (min-width: 960px) {
+  body.campaign-detail main.page-shell {
+    width: min(1120px, calc(100% - 48px));
+  }
+
+  /* Fila 1: título + banner */
+  body.campaign-detail main.page-shell .hero {
+    grid-column: span 7;
+    align-self: center;
+    padding-right: 190px;
+  }
+  body.campaign-detail main.page-shell .hero h1 {
+    font-size: clamp(44px, 5.4vw, 68px);
+  }
+  body.campaign-detail main.page-shell .doodle-hero {
+    width: 170px;
+  }
+  body.campaign-detail main.page-shell .campaign-story-banner {
+    grid-column: span 5;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: center;
+    gap: 16px;
+    padding: clamp(22px, 3vw, 34px);
+  }
+  body.campaign-detail main.page-shell .campaign-story-banner > div {
+    padding: 18px 20px 22px;
+  }
+  body.campaign-detail main.page-shell .campaign-story-banner img {
+    max-height: 120px;
+    justify-self: center;
+  }
+
+  /* Conceptos: compactos */
+  body.campaign-detail main.page-shell .learning-card {
+    min-height: 210px;
+  }
+  body.campaign-detail main.page-shell .learning-card .number {
+    margin-bottom: 34px;
+  }
+
+  /* Fila: mensaje clave (7) + recursos (5) */
+  body.campaign-detail main.page-shell .response {
+    grid-column: span 7;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+    padding: clamp(24px, 3vw, 40px);
+  }
+  body.campaign-detail main.page-shell .resources {
+    grid-column: span 5;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    align-content: start;
+    padding: clamp(22px, 2.6vw, 32px);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: #fafaf9;
+  }
+  body.campaign-detail main.page-shell .resources h2 {
+    font-size: clamp(26px, 3vw, 36px);
+  }
+  body.campaign-detail main.page-shell .resource-links a strong {
+    font-size: 15px;
+  }
+
+  /* Fila: juegos (8) + nota para el salón (4) */
+  body.campaign-detail main.page-shell .campaign-games {
+    grid-column: span 8;
+    padding: clamp(22px, 2.6vw, 34px);
+  }
+  body.campaign-detail main.page-shell .campaign-games h2 {
+    font-size: clamp(28px, 3.2vw, 40px);
+  }
+  body.campaign-detail main.page-shell .classroom-note {
+    grid-column: span 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 28px;
+    border: 2px solid var(--ink);
+    border-radius: 12px;
+    background: #fff7d6;
+    box-shadow: 5px 5px 0 var(--ink);
+    font-size: 15px;
+  }
+}
+
+/* ---------- Tableta ---------- */
+@media (min-width: 721px) and (max-width: 959px) {
+  body.campaign-detail main.page-shell .learning-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  body.campaign-detail main.page-shell .learning-card {
+    min-height: 190px;
+  }
+  body.campaign-detail main.page-shell .learning-card .number {
+    margin-bottom: 30px;
+  }
+}
+
+/* ---------- Móvil ---------- */
+@media (max-width: 720px) {
+  body.campaign-detail main.page-shell {
+    width: calc(100% - 24px);
+    margin: 10px auto 32px;
+    gap: 22px;
+  }
+
+  /* Título compacto: etiqueta a la izquierda, personaje a la derecha */
+  body.campaign-detail main.page-shell .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 84px;
+    align-items: center;
+    column-gap: 12px;
+    min-height: 0;
+    padding: 0;
+    border-radius: 0;
+  }
+  body.campaign-detail main.page-shell .doodle-hero {
+    position: static;
+    grid-column: 2;
+    grid-row: 1;
+    width: 84px;
+    height: auto;
+    justify-self: end;
+  }
+  body.campaign-detail main.page-shell .hero .eyebrow {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0;
+  }
+  body.campaign-detail main.page-shell .hero h1 {
+    grid-column: 1 / -1;
+    max-width: none;
+    margin: 8px 0 12px;
+    font-size: clamp(38px, 11.5vw, 50px);
+  }
+  body.campaign-detail main.page-shell .hero > p:not(.eyebrow) {
+    grid-column: 1 / -1;
+    margin: 0 0 16px;
+    font-size: 15px;
+  }
+  body.campaign-detail main.page-shell .hero .button {
+    grid-column: 1 / -1;
+    justify-self: start;
+    margin-top: 0;
+  }
+
+  /* Banner en una sola columna */
+  body.campaign-detail main.page-shell .campaign-story-banner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    padding: 14px;
+    border-radius: 10px;
+  }
+  body.campaign-detail main.page-shell .campaign-story-banner > div {
+    padding: 16px 16px 18px;
+  }
+  body.campaign-detail main.page-shell .campaign-story-banner > div::before {
+    margin-bottom: 12px;
+  }
+  body.campaign-detail main.page-shell .campaign-story-banner h2 {
+    font-size: 24px;
+  }
+  body.campaign-detail main.page-shell .campaign-story-banner > div > p:not(.eyebrow) {
+    font-size: 14px;
+  }
+  body.campaign-detail main.page-shell .campaign-story-banner img {
+    max-height: 84px;
+    justify-self: center;
+  }
+
+  /* Índice rápido: fila deslizable */
+  body.campaign-detail main.page-shell .quick-nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-inline: -12px;
+    padding: 2px 12px;
+    scrollbar-width: none;
+  }
+  body.campaign-detail main.page-shell .quick-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Encabezados */
+  body.campaign-detail main.page-shell .section-heading {
+    display: block;
+    margin-bottom: 14px;
+  }
+  body.campaign-detail main.page-shell .section-heading h2,
+  body.campaign-detail main.page-shell .resources h2 {
+    font-size: clamp(28px, 8vw, 34px);
+  }
+  body.campaign-detail main.page-shell .section-heading > p {
+    margin-top: 8px;
+    font-size: 14px;
+  }
+
+  /* Carruseles horizontales (conceptos y videos) */
+  body.campaign-detail main.page-shell .learning-grid,
+  body.campaign-detail main.page-shell .video-grid {
+    display: flex;
+    gap: 12px;
+    margin-inline: -12px;
+    padding: 2px 12px 14px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 12px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  body.campaign-detail main.page-shell .learning-grid::-webkit-scrollbar,
+  body.campaign-detail main.page-shell .video-grid::-webkit-scrollbar {
+    display: none;
+  }
+  body.campaign-detail main.page-shell .learning-card {
+    flex: 0 0 78%;
+    min-height: 0;
+    padding: 18px;
+    scroll-snap-align: start;
+  }
+  body.campaign-detail main.page-shell .learning-card .number {
+    margin-bottom: 22px;
+  }
+  body.campaign-detail main.page-shell .learning-card h3 {
+    font-size: 19px;
+  }
+  body.campaign-detail main.page-shell .video-card {
+    flex: 0 0 84%;
+    scroll-snap-align: start;
+  }
+  body.campaign-detail main.page-shell .video-grid .campaign-video-state {
+    flex: 0 0 100%;
+  }
+
+  /* Mensaje clave */
+  body.campaign-detail main.page-shell .response {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    padding: 20px 16px;
+    border-radius: 10px;
+  }
+  body.campaign-detail main.page-shell .response h2 {
+    font-size: 26px;
+  }
+  body.campaign-detail main.page-shell .help-box {
+    padding: 16px;
+    transform: none;
+  }
+
+  /* Recursos */
+  body.campaign-detail main.page-shell .resources {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+  body.campaign-detail main.page-shell .resource-links a {
+    padding: 14px 4px;
+  }
+  body.campaign-detail main.page-shell .resource-links a strong {
+    font-size: 15px;
+  }
+
+  /* Juegos en 2 columnas */
+  body.campaign-detail main.page-shell .campaign-games {
+    padding: 18px 14px;
+    border-radius: 10px;
+  }
+  body.campaign-detail main.page-shell .campaign-games h2 {
+    font-size: 26px;
+  }
+  body.campaign-detail main.page-shell .mini-game-grid:not(.single-game) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+  body.campaign-detail main.page-shell .campaign-games--retro .mini-game-card {
+    min-height: 132px;
+    padding: 12px;
+  }
+  body.campaign-detail main.page-shell .campaign-games--retro .mini-game-card strong {
+    font-size: 14px;
+  }
+  body.campaign-detail main.page-shell .campaign-games--retro .mini-game-card small {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    font-size: 10px;
+  }
+
+  body.campaign-detail main.page-shell .classroom-note {
+    padding: 14px 16px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  body.campaign-detail main.page-shell .mini-game-grid:not(.single-game) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.campaign-detail main.page-shell .learning-grid,
+  body.campaign-detail main.page-shell .video-grid {
+    scroll-behavior: auto;
+  }
+}
+
+
+/* =====================================================================
+   Parte superior animada: entrada del título, conversación y cinta de frases
+   ===================================================================== */
+
+/* Entrada del título: una sola secuencia al cargar */
+@keyframes hero-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+body.campaign-detail main.page-shell .hero > :not(.doodle) {
+  animation: hero-in 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+body.campaign-detail main.page-shell .hero > h1 { animation-delay: 0.08s; }
+body.campaign-detail main.page-shell .hero > p:not(.eyebrow) { animation-delay: 0.18s; }
+body.campaign-detail main.page-shell .hero > .button { animation-delay: 0.3s; }
+
+/* Conversación de ejemplo (ciclo de 14 s) */
+body.campaign-detail .decision-chat {
+  display: grid;
+  align-content: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.35;
+}
+body.campaign-detail .decision-chat .dc-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  opacity: 0;
+}
+body.campaign-detail .decision-chat .dc-out { justify-content: flex-end; }
+body.campaign-detail .decision-chat .dc-badge { justify-content: center; }
+body.campaign-detail .decision-chat .dc-row p {
+  max-width: 80%;
+  margin: 0;
+  padding: 9px 13px;
+  border: 2px solid var(--ink);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+}
+body.campaign-detail .decision-chat .dc-in p {
+  border-radius: 14px 14px 14px 4px;
+  background: #fff;
+}
+body.campaign-detail .decision-chat .dc-out p {
+  border-radius: 14px 14px 4px 14px;
+  background: var(--ink);
+  color: #fff;
+}
+body.campaign-detail .decision-chat .dc-badge p {
+  max-width: none;
+  border-radius: 999px;
+  background: var(--p3);
+  font-weight: 800;
+}
+body.campaign-detail .decision-chat .dc-avatar {
+  display: grid;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--p3);
+  font-size: 15px;
+  line-height: 1;
+}
+body.campaign-detail .decision-chat .dc-b1 { animation: dc-b1 14s ease-out infinite; }
+body.campaign-detail .decision-chat .dc-b2 { animation: dc-b2 14s ease-out infinite; }
+body.campaign-detail .decision-chat .dc-b3 { animation: dc-b3 14s ease-out infinite; }
+body.campaign-detail .decision-chat .dc-b4 { animation: dc-b4 14s ease-out infinite; }
+body.campaign-detail .decision-chat .dc-b5 { animation: dc-b5 14s ease-out infinite; }
+
+@keyframes dc-b1 { 0%, 4% { opacity: 0; transform: translateY(14px) scale(0.96); } 7%, 90% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; transform: translateY(-6px); } }
+@keyframes dc-b2 { 0%, 17% { opacity: 0; transform: translateY(14px) scale(0.96); } 20%, 90% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; transform: translateY(-6px); } }
+@keyframes dc-b3 { 0%, 31% { opacity: 0; transform: translateY(14px) scale(0.96); } 34%, 90% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; transform: translateY(-6px); } }
+@keyframes dc-b4 { 0%, 46% { opacity: 0; transform: translateY(14px) scale(0.96); } 49%, 90% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; transform: translateY(-6px); } }
+@keyframes dc-b5 { 0%, 61% { opacity: 0; transform: translateY(14px) scale(0.9); } 64%, 90% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; transform: translateY(-6px); } }
+
+/* Cinta de frases */
+body.campaign-detail .phrase-strip {
+  overflow: hidden;
+  padding: 6px 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+}
+body.campaign-detail .phrase-track {
+  display: flex;
+  width: max-content;
+  animation: phrase-scroll 34s linear infinite;
+}
+body.campaign-detail .phrase-strip:hover .phrase-track { animation-play-state: paused; }
+body.campaign-detail .phrase-set { display: flex; }
+body.campaign-detail .phrase-set span {
+  margin-right: 10px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: var(--p1);
+  color: var(--ink);
+  font-size: clamp(15px, 2vw, 19px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  transform: rotate(1deg);
+}
+body.campaign-detail .phrase-set span:nth-child(3n + 2) { background: var(--p2); transform: rotate(-1.2deg); }
+body.campaign-detail .phrase-set span:nth-child(3n) { background: var(--p3); }
+@keyframes phrase-scroll { to { transform: translateX(-50%); } }
+
+@media (max-width: 720px) {
+  body.campaign-detail .decision-chat { font-size: 12.5px; }
+  body.campaign-detail .decision-chat .dc-row p { max-width: 86%; font-size: 12.5px; }
+  body.campaign-detail .phrase-set span { padding: 8px 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.campaign-detail .decision-chat .dc-row { opacity: 1 !important; transform: none !important; }
+  body.campaign-detail .phrase-track { width: auto; flex-wrap: wrap; gap: 8px 0; }
+  body.campaign-detail .phrase-set + .phrase-set { display: none; }
+  body.campaign-detail .phrase-set { flex-wrap: wrap; gap: 8px 0; }
+  body.campaign-detail .phrase-strip { -webkit-mask-image: none; mask-image: none; }
+}
