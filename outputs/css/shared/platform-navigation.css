@@ -125,6 +125,7 @@
 
 .nav-item.active {
   color: var(--nav-primary);
+  background-color: var(--nav-hover-bg);
   font-weight: 700;
 }
 
